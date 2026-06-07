@@ -87,7 +87,7 @@ const translations = {
     wizardTitle: "프로젝트 전략 및 기획",
     step1: "기획 & 전략",
     step2: "프로젝트 전달",
-    step3: "전달 & 최적화",
+    step3: "최종 제출",
     errFillRequired: "브랜드 이름과 제품 설명을 입력해 주세요.",
     errBrandNameRequired: "브랜드 / 서비스 이름을 입력해 주세요.",
     errProductDescRequired: "제품 / 서비스 설명을 입력해 주세요.",
