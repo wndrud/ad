@@ -4090,7 +4090,10 @@ ${customConceptText}
 
                 <div className="form-group" style={{ background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '12px', boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}>
                   <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', fontSize: '1rem' }}>
-                    <Sparkles size={18} style={{ color: 'var(--gold)' }} />
+                    <svg width="18" height="18" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                      <polygon points="10,10 10,90 30,90 30,38 50,90 70,10 70,62 90,10 90,10" fill="none" stroke="white" strokeWidth="10" strokeLinejoin="round" strokeLinecap="round"/>
+                      <polygon points="50,90 70,10 90,10 90,90 70,90 70,38 50,90" fill="none" stroke="#FACC15" strokeWidth="10" strokeLinejoin="round" strokeLinecap="round"/>
+                    </svg>
                     {translations[lang].step2Title}
                   </label>
                   <textarea 
@@ -4188,7 +4191,10 @@ ${customConceptText}
                       marginBottom: '1.5rem',
                       boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)'
                     }}>
-                      <Sparkles size={28} />
+                      <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="10,10 10,90 30,90 30,38 50,90 70,10 70,62 90,10 90,10" fill="none" stroke="white" strokeWidth="10" strokeLinejoin="round" strokeLinecap="round"/>
+                        <polygon points="50,90 70,10 90,10 90,90 70,90 70,38 50,90" fill="none" stroke="#FACC15" strokeWidth="10" strokeLinejoin="round" strokeLinecap="round"/>
+                      </svg>
                     </div>
                     <h4 style={{
                       fontFamily: 'var(--font-serif)',
