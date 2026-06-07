@@ -111,7 +111,7 @@ const translations = {
     labelBrandName: "브랜드 / 서비스 이름",
     labelProductDesc: "제품 / 서비스 설명",
     placeholderBrandName: "예: Vespera, Nike, Stripe",
-    placeholderProductDesc: "제품의 장점, 핵심 가치 제안 및 특징을 설명해 주세요...",
+    placeholderProductDesc: "고객님의 의도와 정확한 광고 제작을 위해 최대한 상세히 작성해주시길 바랍니다",
     labelAudience: "타겟 오디언스",
     labelMood: "광고 무드 & 톤",
     labelBudget: "예산 범위",
@@ -1470,6 +1470,10 @@ const serviceDetailsData = {
 };
 
 const heroVideos = [
+  "/14887170_1080_1920_30fps.mp4",
+  "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4",
+  "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4",
+  "/11939614_2160_3840_60fps.mp4",
   "/3917703-uhd_2160_4096_25fps.mp4",
   "/4650065-uhd_2160_4096_30fps.mp4",
   "/4752362-hd_1066_1920_25fps.mp4",
@@ -1890,25 +1894,25 @@ function App() {
   const [productDesc, setProductDesc] = useState('');
   const [email, setEmail] = useState('');
 
-  const [categoryPreset, setCategoryPreset] = useState(['E-commerce & Retail']);
+  const [categoryPreset, setCategoryPreset] = useState([]);
   const [customCategory, setCustomCategory] = useState('');
 
-  const [goalPreset, setGoalPreset] = useState(['Conversions & Sales']);
+  const [goalPreset, setGoalPreset] = useState([]);
   const [customGoal, setCustomGoal] = useState('');
 
-  const [placementsPreset, setPlacementsPreset] = useState(['Social Video Ads (Instagram/FB)']);
+  const [placementsPreset, setPlacementsPreset] = useState([]);
   const [customPlacements, setCustomPlacements] = useState('');
 
-  const [audiencePreset, setAudiencePreset] = useState(['2030 Career Professionals']);
+  const [audiencePreset, setAudiencePreset] = useState([]);
   const [customAudience, setCustomAudience] = useState('');
 
-  const [moodPreset, setMoodPreset] = useState(['Sophisticated & Premium']);
+  const [moodPreset, setMoodPreset] = useState([]);
   const [customMood, setCustomMood] = useState('');
 
-  const [budgetPreset, setBudgetPreset] = useState(['Starter ($1,000 - $3,000)']);
+  const [budgetPreset, setBudgetPreset] = useState([]);
   const [customBudget, setCustomBudget] = useState('');
 
-  const [timelinePreset, setTimelinePreset] = useState(['Express (72 Hours)']);
+  const [timelinePreset, setTimelinePreset] = useState([]);
   const [customTimeline, setCustomTimeline] = useState('');
 
   const [customConceptText, setCustomConceptText] = useState('');
@@ -3404,7 +3408,7 @@ ${customConceptText}
               <div className="contact-grid">
                 
                 {/* FAQ Accordion Block */}
-                <div className="faq-block">
+                <div className="faq-block animate-on-scroll" style={{ '--delay': '0s' }}>
                   <div className="hero-tag">FAQ</div>
                   <h2 className="section-title" style={{ marginBottom: '3rem' }}>
                     {translations[lang].faqTitle}
@@ -3435,7 +3439,7 @@ ${customConceptText}
                 </div>
 
                 {/* Inquiry Form Block */}
-                <div className="inquiry-block">
+                <div className="inquiry-block animate-on-scroll" style={{ '--delay': '0.2s' }}>
                   <div className="hero-tag">{translations[lang].contactTitle}</div>
                   <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>
                     VERARVO <span>Inquiry</span>
@@ -3529,91 +3533,7 @@ ${customConceptText}
               </div>
             </div>
 
-            {step === 1 && (
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-                <button
-                  type="button"
-                  className="btn-white-fill"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--gold) 0%, #FACC15 100%)',
-                    color: '#000',
-                    fontWeight: '700',
-                    border: 'none',
-                    padding: '0.8rem 2rem',
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    transition: 'transform 0.2s, box-shadow 0.2s'
-                  }}
-                  disabled={loading}
-                  onClick={async () => {
-                    // 1. Prepopulate form values with mock data
-                    setCategoryPreset(['E-commerce & Retail']);
-                    setGoalPreset(['Conversions & Sales']);
-                    setPlacementsPreset(['Social Video Ads (Instagram/FB)']);
-                    setAudiencePreset(['2030 Career Professionals']);
-                    setMoodPreset(['Sophisticated & Premium']);
-                    setBudgetPreset(['Starter ($1,000 - $3,000)']);
-                    setTimelinePreset(['Express (72 Hours)']);
-                    
-                    setBrandName('VERARVO AI');
-                    setEmail('hello@verarvo.com');
-                    setProductDesc('생성형 AI 기술을 활용하여 제품 사진 한 장만으로 트렌디하고 감각적인 광고 비디오를 자동 생성하는 서비스입니다.');
-                    
-                    setLoading(true);
-                    setErrorMsg('');
-                    
-                    try {
-                      // 2. Submit Step 1
-                      const response = await fetch('http://localhost:8080/api/ads/campaign', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                          brandName: 'VERARVO AI',
-                          productDescription: '생성형 AI 기술을 활용하여 제품 사진 한 장만으로 트렌디하고 감각적인 광고 비디오를 자동 생성하는 서비스입니다.',
-                          email: 'hello@verarvo.com',
-                          targetAudience: '2030 Career Professionals',
-                          campaignGoal: 'Conversions & Sales',
-                          mood: 'Sophisticated & Premium',
-                          projectCategory: 'E-commerce & Retail',
-                          placements: 'Social Video Ads (Instagram/FB)',
-                          budgetRange: 'Starter ($1,000 - $3,000)',
-                          targetTimeline: 'Express (72 Hours)'
-                        })
-                      });
-                      
-                      if (!response.ok) throw new Error('Failed to connect to backend server');
-                      const data = await response.json();
-                      const campaignIdVal = data.campaign.id;
-                      setCampaignId(campaignIdVal);
-                      setConcepts(data.concepts);
-                      
-                      // Use the first concept or custom text
-                      const defaultConceptText = data.concepts && data.concepts.length > 0 
-                        ? data.concepts[0].description 
-                        : '생성형 AI 기술을 활용하여 제품 사진 한 장만으로 트렌디하고 감각적인 광고 비디오를 자동 생성합니다.';
-                      
-                      setCustomConceptText(defaultConceptText);
-                      
-                      // 3. Submit Step 2 (Concept submission)
-                      await handleConceptSubmit(defaultConceptText, campaignIdVal);
-                    } catch (err) {
-                      console.error(err);
-                      setErrorMsg(lang === 'KO' 
-                        ? '자동 신청 중 오류가 발생했습니다. 로컬 백엔드 서버(8080 포트)가 실행 중인지 확인해 주세요.'
-                        : 'Auto-submit failed. Please make sure the local backend server is running on port 8080.');
-                      setLoading(false);
-                    }
-                  }}
-                >
-                  <Sparkles size={18} />
-                  {lang === 'KO' ? '⚡ 원클릭 자동 완성 및 신청' : '⚡ Quick Auto-Submit'}
-                </button>
-              </div>
-            )}
+
 
             {/* ERROR DISPLAY */}
             {errorMsg && (

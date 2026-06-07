@@ -34,3 +34,8 @@ extracted_*/
 scratch/
 candidate_*.jsx
 *.log
+
+# Temporary scripts and artifacts in src
+frontend/src/*.py
+frontend/src/*.txt
+frontend/src/backup/
