@@ -4080,7 +4080,7 @@ ${customConceptText}
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', textAlign: 'center', marginBottom: '0.5rem', lineHeight: '1.6' }}>
                   {translations[lang].step2Desc}
                 </p>
-                <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.88rem', textAlign: 'center', marginBottom: '2.5rem', lineHeight: '1.6' }}>
+                <p style={{ color: 'var(--gold)', fontSize: '0.88rem', textAlign: 'center', marginBottom: '2.5rem', lineHeight: '1.6' }}>
                   {translations[lang].step2DescSub || ''}
                 </p>
 
