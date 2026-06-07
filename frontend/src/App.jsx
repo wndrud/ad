@@ -4176,9 +4176,10 @@ ${customConceptText}
                   }}></div>
                   <div style={{ position: 'relative', zIndex: 1 }}>
                     <div style={{
-                      display: 'flex',
+                      display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
+                      position: 'relative',
                       width: '64px',
                       height: '64px',
                       borderRadius: '50%',
@@ -4189,7 +4190,7 @@ ${customConceptText}
                       boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
                       overflow: 'hidden'
                     }}>
-                      <img src="/logo-nv-transparent.png" alt="NV logo" style={{ width: '40px', height: '40px', objectFit: 'contain', display: 'block', margin: 'auto' }} />
+                      <img src="/logo-nv-transparent.png" alt="NV logo" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '40px', height: '40px', objectFit: 'contain' }} />
                     </div>
                     <h4 style={{
                       fontFamily: 'var(--font-serif)',
