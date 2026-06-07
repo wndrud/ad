@@ -121,7 +121,7 @@ const translations = {
     optionOther: "기타 (직접 입력...)",
     loadingStrategy: "전략 분석 중...",
     step2Title: "프로젝트 전달",
-    step2Desc: "프로젝트의 핵심 광고 컨셉을 타이핑해 주세요. 입력하신 컨셉을 바탕으로 맞춤형 비디오와 스토리보드 에셋이 즉시 생성됩니다.",
+    step2Desc: "프로젝트의 핵심 광고 컨셉을 타이핑해 주세요. 입력하신 컨셉을 바탕으로 뛰어난 기술자들과 AI 창작물을 제작합니다. 고객님의 의도에 맞게 최대한 자세히 작성해 주시길 바랍니다.",
     step2Placeholder: "예: 바쁜 현대인을 위해 터치 한 번으로 끝나는 간편한 커피 머신의 편리함을 강조. 따뜻하고 고급스러운 톤앤매너로 신뢰감을 부여함.",
     labelPlacementsRec: "추천 채널",
     labelEstimatedCTR: "예상 CTR",
