@@ -2893,11 +2893,10 @@ select.form-control-line option {
   
   /* 제작물 (Services) 로우 가로 정렬 및 태그 오른쪽 정렬 */
   .service-row {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
     gap: 0.5rem !important;
-    padding: 1.8rem 1rem !important;
+    padding: 1.5rem 1rem !important;
     position: relative !important;
   }
   
@@ -2909,24 +2908,28 @@ select.form-control-line option {
     content: '' !important;
     position: absolute !important;
     left: 0 !important;
-    top: 2.1rem !important;
+    top: 1.8rem !important;
     width: 3px !important;
     height: 14px !important;
     background: var(--gold) !important;
   }
   
   .service-name {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
     font-size: 1.15rem !important;
     font-weight: 700 !important;
     color: #ffffff !important;
     display: inline-block !important;
     padding-left: 0.8rem !important;
+    max-width: 95% !important;
   }
   
   .service-badge {
-    position: absolute !important;
-    right: 1rem !important;
-    top: 1.8rem !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    position: static !important;
+    align-self: center !important;
     margin: 0 !important;
     font-size: 0.7rem !important;
     border: 1px solid var(--gold) !important;
@@ -2934,18 +2937,18 @@ select.form-control-line option {
     background: rgba(212, 175, 55, 0.05) !important;
     padding: 0.25rem 0.6rem !important;
     border-radius: 2px !important;
-    grid-column: auto !important;
   }
   
   .service-desc {
+    grid-column: 1 / 3 !important;
+    grid-row: 2 !important;
     font-size: 0.85rem !important;
     color: var(--text-muted) !important;
     line-height: 1.5 !important;
-    margin-top: 0.2rem !important;
+    margin-top: 0.4rem !important;
     padding-left: 0.8rem !important;
-    max-width: 90% !important;
+    max-width: 100% !important;
     text-align: left !important;
-    grid-column: auto !important;
   }
   
   /* 타임라인 (Process) 상단 4개 노드 가로 배열 + 하단 2x2 그리드 카드 배치 */
@@ -3084,6 +3087,59 @@ select.form-control-line option {
     grid-template-columns: 1fr !important;
     gap: 0.5rem !important;
   }
+
+  /* Stacking grid selectors in wizard preset options on mobile */
+  .grid-select {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  .select-card {
+    padding: 0.8rem 1rem !important;
+  }
+
+  /* Applicant summary details grid mobile layout */
+  .summary-details-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Wizard Actions group padding & wrap in footer */
+  .wizard-actions-group {
+    display: flex !important;
+    gap: 0.8rem !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* Prevent metric stats values from wrapping */
+  .stat-val {
+    white-space: nowrap !important;
+  }
+
+  /* Back to home button sizing in wizard header */
+  .btn-back-landing {
+    font-size: 0.75rem !important;
+    padding: 0.45rem 0.75rem !important;
+  }
+
+  /* Stack Careers checkbox list on mobile */
+  .careers-checkbox-list {
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem !important;
+  }
+
+  /* Scale FAQ texts slightly on mobile to prevent overflow */
+  .faq-question {
+    font-size: 0.95rem !important;
+  }
+  .faq-answer {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -3098,6 +3154,12 @@ select.form-control-line option {
   .visual-card-wrap {
     max-width: 220px !important;
   }
+}
+
+/* Global text-wrap normalization to prevent word splitting in Korean */
+p, h1, h2, h3, h4, h5, h6, .service-name, .service-desc, .timeline-card-title, .timeline-detail-text, .faq-answer {
+  word-break: keep-all;
+  word-wrap: break-word;
 }
 
 
