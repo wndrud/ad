@@ -35,6 +35,7 @@ public class InquiryController {
             resendApiKey = System.getProperty("RESEND_API_KEY");
         }
 
+        boolean isRender = "true".equals(System.getenv("RENDER"));
         boolean sent = false;
         String errorMessage = "";
 
@@ -50,9 +51,21 @@ public class InquiryController {
                 response.put("error", "Resend API Error: " + result.getErrorMessage());
                 return ResponseEntity.status(500).body(response);
             }
+        } else if (isRender) {
+            // Collect safe environment keys to help diagnose configuration issues
+            java.util.List<String> safeKeys = new java.util.ArrayList<>();
+            for (String key : System.getenv().keySet()) {
+                String lower = key.toLowerCase();
+                if (!lower.contains("password") && !lower.contains("pwd") && !lower.contains("secret") && !lower.contains("mail")) {
+                    safeKeys.add(key);
+                }
+            }
+            response.put("success", false);
+            response.put("error", "Resend API Key is missing. Current Render Service Name: " + System.getenv("RENDER_SERVICE_NAME") + ". Active Env Keys: " + safeKeys);
+            return ResponseEntity.status(500).body(response);
         }
 
-        // Fallback to SMTP
+        // Fallback to SMTP only if NOT on Render (e.g. local development)
         if (!sent) {
             try {
                 SimpleMailMessage message = new SimpleMailMessage();
