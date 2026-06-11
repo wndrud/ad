@@ -11,6 +11,9 @@ COPY settings.gradle .
 # Copy source code
 COPY src src
 
+# Fix line endings of gradlew script for Linux environment (in case it was checked out as CRLF on Windows)
+RUN sed -i 's/\r$//' gradlew
+
 # Grant execute permission on the gradlew script and build
 RUN chmod +x ./gradlew
 RUN ./gradlew build -x test --no-daemon
