@@ -26,6 +26,7 @@ public class InquiryController {
             resendApiKey = System.getProperty("RESEND_API_KEY");
         }
 
+        boolean isRender = "true".equals(System.getenv("RENDER"));
         boolean sent = false;
         String errorMessage = "";
 
@@ -41,9 +42,14 @@ public class InquiryController {
                 response.put("error", "Resend API Error: " + result.getErrorMessage());
                 return ResponseEntity.status(500).body(response);
             }
+        } else if (isRender) {
+            // On Render, SMTP is blocked, so Resend is required. If key is missing, show a clear error.
+            response.put("success", false);
+            response.put("error", "Resend API Key is missing. Please configure RESEND_API_KEY in the Environment settings of your Render backend service.");
+            return ResponseEntity.status(500).body(response);
         }
 
-        // Fallback to SMTP only if Resend API key is NOT configured
+        // Fallback to SMTP only if NOT on Render (e.g. local development)
         if (!sent) {
             try {
                 SimpleMailMessage message = new SimpleMailMessage();
