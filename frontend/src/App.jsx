@@ -21,6 +21,8 @@ import {
   ChevronRight
 } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const translations = {
   KO: {
     navServices: "서비스",
@@ -1896,7 +1898,7 @@ function App() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:8080/api/inquiry', {
+      const response = await fetch(`${API_BASE_URL}/api/inquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -2017,7 +2019,7 @@ function App() {
         formData.append('resume', careerForm.resume);
       }
       
-      const response = await fetch('http://localhost:8080/api/careers', {
+      const response = await fetch(`${API_BASE_URL}/api/careers`, {
         method: 'POST',
         body: formData
       });
@@ -2249,7 +2251,7 @@ function App() {
 
   // Fetch campaign history on mount (just for console print or future use)
   useEffect(() => {
-    fetch('http://localhost:8080/api/ads/campaigns')
+    fetch(`${API_BASE_URL}/api/ads/campaigns`)
       .then(res => res.json())
       .then(data => console.log('Loaded campaigns history:', data))
       .catch(err => console.log('Backend not connected yet or offline. Using fallback.'));
@@ -2596,7 +2598,7 @@ ${customConceptText}
     setErrorMsg('');
 
     try {
-      const response = await fetch('http://localhost:8080/api/ads/campaign', {
+      const response = await fetch(`${API_BASE_URL}/api/ads/campaign`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -2621,7 +2623,7 @@ ${customConceptText}
       setStep(2);
     } catch (err) {
       console.error(err);
-      setErrorMsg('Unable to connect to the backend server. Please make sure it is running on port 8080.');
+      setErrorMsg('Unable to connect to the backend server. Please make sure the backend is running.');
     } finally {
       setLoading(false);
     }
@@ -2660,7 +2662,7 @@ ${customConceptText}
 
     try {
       // 1. Post custom concept to backend
-      const customConceptResponse = await fetch(`http://localhost:8080/api/ads/campaign/${activeCampaignId}/custom-concept`, {
+      const customConceptResponse = await fetch(`${API_BASE_URL}/api/ads/campaign/${activeCampaignId}/custom-concept`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ conceptText: conceptVal })
@@ -2669,7 +2671,7 @@ ${customConceptText}
       if (!customConceptResponse.ok) throw new Error('Failed to save custom concept on backend');
 
       // 2. Generate assets immediately
-      const generateResponse = await fetch(`http://localhost:8080/api/ads/campaign/${activeCampaignId}/generate-assets`, {
+      const generateResponse = await fetch(`${API_BASE_URL}/api/ads/campaign/${activeCampaignId}/generate-assets`, {
         method: 'POST'
       });
 
