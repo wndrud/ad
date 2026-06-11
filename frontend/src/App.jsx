@@ -4083,6 +4083,14 @@ function App() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const [mobileActiveSection, setMobileActiveSection] = useState('hero');
+
   const [activeServiceDetail, setActiveServiceDetail] = useState(initialUrlState.service);
 
   const [activeServiceSlide, setActiveServiceSlide] = useState(0);
@@ -4670,6 +4678,24 @@ function App() {
   const handleNavClick = (e, targetId) => {
 
     e.preventDefault();
+
+    if (isMobile) {
+      if (targetId === 'careers') {
+        setView('careers');
+        setActiveServiceDetail(null);
+        setMobileActiveSection('careers');
+        window.history.pushState({ view: 'careers', activeServiceDetail: null }, '', '/?view=careers');
+      } else {
+        setView('landing');
+        setActiveServiceDetail(null);
+        setStep(1);
+        setBriefStage(1);
+        setMobileActiveSection(targetId);
+        window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/');
+      }
+      window.scrollTo(0, 0);
+      return;
+    }
 
     if (targetId === 'careers') {
 
@@ -5363,7 +5389,7 @@ ${customConceptText}
 
         <div className="container header-inner">
 
-          <div className="logo" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={(e) => { e.preventDefault(); setView('landing'); setActiveServiceDetail(null); setStep(1); setBriefStage(1); console.log('[History] Pushing landing state (Logo click)'); window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/'); window.scrollTo(0, 0); }}>
+          <div className="logo" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={(e) => { e.preventDefault(); setView('landing'); setActiveServiceDetail(null); setStep(1); setBriefStage(1); setMobileActiveSection('hero'); console.log('[History] Pushing landing state (Logo click)'); window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/'); window.scrollTo(0, 0); }}>
 
             VER
 
@@ -5561,7 +5587,7 @@ ${customConceptText}
 
                   <div className="mobile-menu-header-bar">
 
-                    <div className="logo" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={(e) => { e.preventDefault(); setView('landing'); setActiveServiceDetail(null); setMobileMenuOpen(false); window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/'); window.scrollTo(0, 0); }}>
+                    <div className="logo" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={(e) => { e.preventDefault(); setView('landing'); setActiveServiceDetail(null); setMobileMenuOpen(false); setMobileActiveSection('hero'); window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/'); window.scrollTo(0, 0); }}>
 
                       VER
 
@@ -6549,6 +6575,8 @@ ${customConceptText}
 
             {/* HERO SECTION */}
 
+            {(!isMobile || mobileActiveSection === 'hero') && (
+
             <section className="hero-sec">
 
               {/* Background Video */}
@@ -6763,7 +6791,11 @@ ${customConceptText}
 
             </section>
 
+            )}
+
             {/* ABOUT SECTION */}
+
+            {(!isMobile || mobileActiveSection === 'work') && (
 
             <section id="work" className="about-sec container">
 
@@ -7073,7 +7105,11 @@ ${customConceptText}
 
             </section>
 
+            )}
+
             {/* SERVICES SECTION */}
+
+            {(!isMobile || mobileActiveSection === 'services') && (
 
             <section id="services" className="services-sec container">
 
@@ -7353,7 +7389,11 @@ ${customConceptText}
 
             </section>
 
+            )}
+
             {/* PROCESS SECTION */}
+
+            {(!isMobile || mobileActiveSection === 'process') && (
 
             <section id="process" className="process-sec container">
 
@@ -7676,6 +7716,8 @@ ${customConceptText}
               </div>
 
             </section>
+
+            )}
 
           </>
 
