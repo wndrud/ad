@@ -2611,20 +2611,45 @@ select.form-control-line option {
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 1.25rem !important;
+    padding: 0 1.5rem !important;
   }
   
+  /* PC와 동일하게 깔끔하고 아담한 가로형 버튼 정렬 유지 */
   .wizard-footer {
-    flex-direction: column !important;
-    gap: 1rem !important;
-    align-items: stretch !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 0.8rem !important;
+    flex-wrap: wrap !important;
+    padding-top: 1.5rem !important;
   }
   
   .wizard-footer button {
-    width: 100% !important;
-    justify-content: center !important;
+    width: auto !important;
+    padding: 0.65rem 1.2rem !important;
+    font-size: 0.85rem !important;
   }
   
+  /* 비디오 크기를 지나치게 크지 않게 컴팩트하고 대칭적인 크기로 조절 */
+  .visual-card-wrap {
+    max-width: 250px !important; /* 모바일 비디오 너비를 아담하게 정돈 */
+    margin: 0 auto !important;
+    border-radius: 8px !important;
+  }
+  
+  /* 미디어 예시 전체 영역 대칭 및 가운데 정렬 강화 */
+  .service-detail-visuals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .visuals-flex {
+    gap: 1.5rem !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  
+  /* PC 홈사이트 디자인 밸런스를 훼손하지 않는 자연스러운 반응형 폰트 및 여백 */
   .hero-title {
     font-size: 3rem !important;
     line-height: 1.3 !important;
@@ -2654,6 +2679,10 @@ select.form-control-line option {
   
   .section-title {
     font-size: 2rem !important;
+  }
+  
+  .visual-card-wrap {
+    max-width: 220px !important; /* 초소형 기기에서도 꽉 차지 않는 예쁜 핏 */
   }
 }
 
