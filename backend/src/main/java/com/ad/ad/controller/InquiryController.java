@@ -61,7 +61,7 @@ public class InquiryController {
                 }
             }
             response.put("success", false);
-            response.put("error", "Resend API Key is missing. Active Env Keys: " + safeKeys);
+            response.put("error", "Resend API Key is missing. Current Render Service Name: " + System.getenv("RENDER_SERVICE_NAME") + ". Active Env Keys: " + safeKeys);
             return ResponseEntity.status(500).body(response);
         }
 
