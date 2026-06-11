@@ -3716,6 +3716,8 @@ function App() {
 
   const [contactSuccessShow, setContactSuccessShow] = useState(false);
 
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+
   // Reconstructed Preloader states & logic
 
   const [preloaderActive, setPreloaderActive] = useState(true);
@@ -3764,6 +3766,8 @@ function App() {
 
     }
 
+    setIsSubmittingContact(true);
+
     try {
 
       const response = await fetch(`${API_BASE_URL}/api/inquiry`, {
@@ -3806,11 +3810,14 @@ function App() {
 
       } else {
 
-        const errData = await response.json();
+        let errData = {};
+        try {
+          errData = await response.json();
+        } catch (_) {}
 
         console.error("Failed to send inquiry:", errData);
 
-        alert(lang === 'KO' ? `전송 실패: ${errData.error || '서버 오류'}` : `Failed to send: ${errData.error || 'Server error'}`);
+        alert(lang === 'KO' ? `전송 실패: ${errData.error || '서버 오류가 발생했습니다.'}` : `Failed to send: ${errData.error || 'Server error occurred.'}`);
 
       }
 
@@ -3819,6 +3826,10 @@ function App() {
       console.error("Error sending inquiry:", err);
 
       alert(lang === 'KO' ? '네트워크 오류가 발생했습니다. 백엔드가 실행 중인지 확인하세요.' : 'Network error occurred. Make sure backend is running.');
+
+    } finally {
+
+      setIsSubmittingContact(false);
 
     }
 
@@ -7638,9 +7649,9 @@ ${customConceptText}
 
                     
 
-                    <button type="submit" className="btn-white-fill" style={{ width: '100%', justifyContent: 'center' }}>
+                     <button type="submit" className="btn-white-fill" style={{ width: '100%', justifyContent: 'center' }} disabled={isSubmittingContact}>
 
-                      {translations[lang].contactSubmit} <Sparkles size={16} />
+                       {isSubmittingContact ? (lang === 'KO' ? '제출 중...' : 'Submitting...') : translations[lang].contactSubmit} <Sparkles size={16} />
 
                     </button>
 

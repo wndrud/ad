@@ -29,7 +29,14 @@ public class InquiryController {
                              "Sender Email: " + request.getEmail() + "\n\n" +
                              "Message:\n" + request.getMessage());
             
-            mailSender.send(message);
+            // Send email asynchronously to avoid blocking the HTTP thread
+            java.util.concurrent.CompletableFuture.runAsync(() -> {
+                try {
+                    mailSender.send(message);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
             
             response.put("success", true);
             response.put("message", "Inquiry sent successfully.");
