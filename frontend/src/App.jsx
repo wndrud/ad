@@ -9472,7 +9472,7 @@ ${customConceptText}
 
                   </button>
 
-                  <div className="wizard-actions-group">
+                  <div className="wizard-actions-group" style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
 
                     <button type="button" className="btn-gold-outline" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }} onClick={handleDownloadInfo}>
 

@@ -1383,6 +1383,14 @@ textarea.form-control {
   padding-top: 2rem;
 }
 
+.wizard-actions-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
 /* Concept Cards grid */
 .concepts-container {
   max-width: 1200px;
