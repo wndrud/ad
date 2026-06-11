@@ -2883,18 +2883,88 @@ ${customConceptText}
               {/* Mobile Menu Overlay */}
               {mobileMenuOpen && (
                 <div className="mobile-menu-overlay">
+                  <div className="mobile-menu-header-bar">
+                    <div className="logo" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={(e) => { e.preventDefault(); setView('landing'); setActiveServiceDetail(null); setMobileMenuOpen(false); window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/'); window.scrollTo(0, 0); }}>
+                      VER
+                      <span style={{ 
+                        position: 'relative', 
+                        display: 'inline-flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        color: '#ffffff',
+                        WebkitTextFillColor: '#ffffff',
+                        WebkitTextStroke: '1.2px #ffcc00'
+                      }}>
+                        A
+                        <img 
+                          src="/logo-nv-transparent-hq.png" 
+                          alt="" 
+                          style={{
+                            position: 'absolute',
+                            left: '50%',
+                            top: '52%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '2.0em',
+                            height: '2.0em',
+                            opacity: 0.35,
+                            zIndex: -1,
+                            pointerEvents: 'none',
+                            objectFit: 'contain'
+                          }} 
+                        />
+                      </span>
+                      RVO
+                    </div>
+                    <button className="mobile-menu-close-btn" onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
+                      <X size={24} />
+                    </button>
+                  </div>
+                  
                   <ul className="mobile-nav-links">
-                    <li><a href="#work" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'work'); setMobileMenuOpen(false); }}>{translations[lang].navWork}</a></li>
-                    <li><a href="#services" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'services'); setMobileMenuOpen(false); }}>{translations[lang].navServices}</a></li>
-                    <li><a href="#process" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'process'); setMobileMenuOpen(false); }}>{translations[lang].navProcess}</a></li>
-                    <li><a href="#careers" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'careers'); setMobileMenuOpen(false); }}>{translations[lang].navCareers}</a></li>
-                    <li><a href="#contact" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'contact'); setMobileMenuOpen(false); }}>{translations[lang].navContact}</a></li>
-                    <li style={{ marginTop: '1.5rem', width: '100%' }}>
-                      <button className="btn-gold-outline" style={{ width: '100%', padding: '0.8rem 0', justifyContent: 'center' }} onClick={() => { handleStartProject(); setMobileMenuOpen(false); }}>
-                        {translations[lang].btnStartProject}
-                      </button>
+                    <li>
+                      <a href="#work" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'work'); setMobileMenuOpen(false); }}>
+                        <span>{translations[lang].navWork}</span>
+                        <ArrowRight size={18} className="mobile-nav-arrow" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#services" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'services'); setMobileMenuOpen(false); }}>
+                        <span>{translations[lang].navServices}</span>
+                        <ArrowRight size={18} className="mobile-nav-arrow" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#process" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'process'); setMobileMenuOpen(false); }}>
+                        <span>{translations[lang].navProcess}</span>
+                        <ArrowRight size={18} className="mobile-nav-arrow" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#careers" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'careers'); setMobileMenuOpen(false); }}>
+                        <span>{translations[lang].navCareers}</span>
+                        <ArrowRight size={18} className="mobile-nav-arrow" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#contact" className="mobile-nav-link contact-highlight" onClick={(e) => { handleNavClick(e, 'contact'); setMobileMenuOpen(false); }}>
+                        <span>{translations[lang].navContact}</span>
+                        <ArrowRight size={18} className="mobile-nav-arrow gold-arrow" />
+                      </a>
                     </li>
                   </ul>
+                  
+                  <div className="mobile-menu-footer">
+                    <div className="contact-tag">CONTACT</div>
+                    <a href="mailto:jobsverarvo@gmail.com" className="contact-email">jobsverarvo@gmail.com</a>
+                    
+                    <div className="mobile-lang-selector">
+                      <button className={lang === 'KO' ? 'active' : ''} onClick={() => { setLang('KO'); setMobileMenuOpen(false); }}>KOR</button>
+                      <button className={lang === 'EN' ? 'active' : ''} onClick={() => { setLang('EN'); setMobileMenuOpen(false); }}>ENG</button>
+                      <button className={lang === 'ZH' ? 'active' : ''} onClick={() => { setLang('ZH'); setMobileMenuOpen(false); }}>CHN</button>
+                      <button className={lang === 'JA' ? 'active' : ''} onClick={() => { setLang('JA'); setMobileMenuOpen(false); }}>JPN</button>
+                      <button className={lang === 'VI' ? 'active' : ''} onClick={() => { setLang('VI'); setMobileMenuOpen(false); }}>VIE</button>
+                    </div>
+                  </div>
                 </div>
               )}
             </>
