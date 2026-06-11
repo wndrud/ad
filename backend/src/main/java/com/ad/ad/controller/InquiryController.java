@@ -21,7 +21,16 @@ public class InquiryController {
     @PostMapping
     public ResponseEntity<Map<String, Object>> sendInquiry(@RequestBody InquiryRequest request) {
         Map<String, Object> response = new HashMap<>();
-        String resendApiKey = System.getenv("RESEND_API_KEY");
+        String resendApiKey = null;
+        
+        // Search environment variables case-insensitively and trim spaces
+        for (String key : System.getenv().keySet()) {
+            if (key.trim().equalsIgnoreCase("RESEND_API_KEY")) {
+                resendApiKey = System.getenv(key);
+                break;
+            }
+        }
+
         if (resendApiKey == null || resendApiKey.trim().isEmpty()) {
             resendApiKey = System.getProperty("RESEND_API_KEY");
         }
@@ -43,9 +52,16 @@ public class InquiryController {
                 return ResponseEntity.status(500).body(response);
             }
         } else if (isRender) {
-            // On Render, SMTP is blocked, so Resend is required. If key is missing, show a clear error.
+            // Collect safe environment keys to help diagnose configuration issues
+            java.util.List<String> safeKeys = new java.util.ArrayList<>();
+            for (String key : System.getenv().keySet()) {
+                String lower = key.toLowerCase();
+                if (!lower.contains("password") && !lower.contains("pwd") && !lower.contains("secret") && !lower.contains("mail")) {
+                    safeKeys.add(key);
+                }
+            }
             response.put("success", false);
-            response.put("error", "Resend API Key is missing. Please configure RESEND_API_KEY in the Environment settings of your Render backend service.");
+            response.put("error", "Resend API Key is missing. Active Env Keys: " + safeKeys);
             return ResponseEntity.status(500).body(response);
         }
 
