@@ -23,7 +23,7 @@ public class InquiryController {
         Map<String, Object> response = new HashMap<>();
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo("james42286910@gmail.com");
+            message.setTo("jobsverarvo@gmail.com");
             message.setSubject("New Direct Inquiry from " + request.getName());
             message.setText("Name / Company: " + request.getName() + "\n" +
                              "Sender Email: " + request.getEmail() + "\n\n" +

@@ -160,14 +160,18 @@ const translations = {
     labelMediaShowcase: "크리에이티브 쇼케이스",
     labelWorkflow: "작업 프로세스",
     faqTitle: "자주 하는 질문",
-    faqQ1: "광고는 어떻게 만들어 지나요?",
-    faqA1: "요청하신 내용대로 다양한 AI기술자와 함께 최상급의 사진과 영상을 만들어냅니다.",
-    faqQ2: "제작 시간은 어느정도 걸리나요?",
-    faqA2: "제작물의 경우에 따라 다릅니다. 하지만 최대한 빨리 72시간안에 대부분 만들어 드립니다.",
-    faqQ3: "광고용만 제작하나요?",
-    faqA3: "광고뿐만 아니라 다양한 포스터, 그 외 어떤 AI제작물이든 만듭니다.",
-    faqQ4: "단가는 어떻게 되나요?",
-    faqA4: "최대한 합리적인 가격에 맞춰드립니다. 제작물에 따라 단가가 달라집니다.",
+    faqQ1: "제작 기간은 얼마나 걸리나요?",
+    faqA1: "일반적으로 저희 VERARVO AI 광고 영상은 평균 3일 내 제작 완료됩니다.\n프로젝트 난이도와 수정 횟수에 따라 달라질 수 있습니다.",
+    faqQ2: "가격은 어떻게 결정되나요?",
+    faqA2: "영상 길이, 스타일, 기획 난이도, 수정 횟수에 따라 달라집니다.\n상세 견적은 상담 후 안내드립니다.",
+    faqQ3: "수정은 몇 번 가능한가요?",
+    faqA3: "기본적으로 1~3회 수정이 포함됩니다.\n1차 시안 생성후 고객님의 피드백 반영 후에 2차 시안을 제공해드립니다.",
+    faqQ4: "어떤 자료를 제공해야 하나요?",
+    faqA4: "아래 자료가 있으면 제작이 원활합니다\n제품 이미지 또는 영상, 로고, 브랜드 소개, 참고 광고 레퍼런스",
+    faqQ5: "AI만으로 영상이 만들어지나요?",
+    faqA5: "AI 기술을 활용하여 제작하지만, 기획, 편집, 후반 작업은 사람이 직접 검수하여 완성도를 높입니다.",
+    faqQ6: "저작권은 어떻게 되나요?",
+    faqA6: "기본적으로 납품된 최종 결과물의 사용권은 고객에게 제공됩니다.",
     contactTitle: "직접 문의하기",
     contactSubtitle: "궁금하신 점이 있거나 새로운 프로젝트를 시작하고 싶으신가요? 편하게 문의를 남겨주세요.",
     contactName: "성함 / 회사명",
@@ -335,14 +339,18 @@ const translations = {
     labelMediaShowcase: "Creative Showcase",
     labelWorkflow: "Workflow Steps",
     faqTitle: "Frequently Asked Questions",
-    faqQ1: "How are ads generated?",
-    faqA1: "We create top-tier photos and videos together with various AI engineers as you requested.",
-    faqQ2: "How long does production take?",
-    faqA2: "It depends on the production type, but we deliver most of them within 72 hours.",
-    faqQ3: "Do you only create ads?",
-    faqA3: "We create ads, various posters, and any other AI-generated creative assets.",
-    faqQ4: "What is the pricing?",
-    faqA4: "We adjust to the most reasonable prices. The price varies depending on the specific asset.",
+    faqQ1: "How long does the production take?",
+    faqA1: "In general, our VERARVO AI advertising videos are completed within an average of 3 days. It may vary depending on project difficulty and the number of revisions.",
+    faqQ2: "How is the price determined?",
+    faqA2: "It depends on video length, style, planning difficulty, and the number of revisions. Detailed quotes are provided after consultation.",
+    faqQ3: "How many revisions are allowed?",
+    faqA3: "Basically, 1 to 3 revisions are included. After generating the 1st draft, we will provide the 2nd draft reflecting your feedback.",
+    faqQ4: "What materials do I need to provide?",
+    faqA4: "Production goes smoothly with the following materials: Product images or videos, logo, brand introduction, and reference ads.",
+    faqQ5: "Are videos made entirely by AI?",
+    faqA5: "Although produced using AI technology, planning, editing, and post-production are directly reviewed and refined by humans to ensure high quality.",
+    faqQ6: "How about the copyright?",
+    faqA6: "Basically, the usage rights of the delivered final product are granted to the customer.",
     contactTitle: "Direct Inquiry",
     contactSubtitle: "Have questions or want to launch a new project? Drop us a line.",
     contactName: "Name / Company",
@@ -511,14 +519,18 @@ const translations = {
     labelMediaShowcase: "创意作品展示",
     labelWorkflow: "工作流程",
     faqTitle: "常见问题",
-    faqQ1: "广告是如何制作的？",
-    faqA1: "根据您的要求，我们与多位 AI 工程师携手，创作出顶级的照片与视频。",
-    faqQ2: "制作需要多长时间？",
-    faqA2: "取决于制作类型，但我们通常会在 72 小时内尽快完成。",
-    faqQ3: "只制作广告吗？",
-    faqA3: "不仅制作广告，还制作各种海报以及任何其他 AI 创意作品。",
-    faqQ4: "价格是多少？",
-    faqA4: "我们将提供最合理的价格。具体价格根据制作内容有所不同。",
+    faqQ1: "制作周期是多久？",
+    faqA1: "通常情况下，我们的 VERARVO AI 广告视频平均在 3 天内制作完成。这可能会根据项目难度和修改次数而有所不同。",
+    faqQ2: "价格是如何决定的？",
+    faqA2: "取决于视频长度、风格、策划难度和修改次数。详细报价将在咨询后提供。",
+    faqQ3: "可以修改多少次？",
+    faqA3: "基本上包含 1 到 3 次修改。在生成第一版初稿后，我们将根据您的反馈提供第二版修改稿。",
+    faqQ4: "我需要提供哪些材料？",
+    faqA4: "提供以下材料将使制作更加顺利：产品图片或视频、徽标、品牌介绍、参考广告案例。",
+    faqQ5: "视频是完全由 AI 制作的吗？",
+    faqA5: "虽然使用 AI 技术进行制作，但策划、剪辑和后期制作均由人工直接把关，以提高完成度。",
+    faqQ6: "版权如何归属？",
+    faqA6: "基本上，交付的最终成果物的使用权归客户所有。",
     contactTitle: "直接咨询",
     contactSubtitle: "有任何问题或想启动新项目？请随时与我们联系。",
     contactName: "姓名 / 公司名",
@@ -685,14 +697,18 @@ const translations = {
     labelMediaShowcase: "クリエイティブ・ショーケース",
     labelWorkflow: "制作プロセス",
     faqTitle: "よくある質問",
-    faqQ1: "広告はどのように制作されますか？",
-    faqA1: "ご要望に応じて、複数のAI技術者と共に最高水準の写真や映像を制作します。",
-    faqQ2: "制作期間はどのくらいですか？",
-    faqA2: "制作物によって異なりますが、基本的には72時間以内に迅速に制作いたします。",
-    faqQ3: "広告用のみ制作していますか？",
-    faqA3: "広告だけでなく、各種ポスターやその他あらゆるAIクリエイティブに対応しています。",
-    faqQ4: "料金はいくらですか？",
-    faqA4: "最も合理的な価格でご提供いたします。制作物によって料金は異なります。",
+    faqQ1: "制作期間はどれくらいかかりますか？",
+    faqA1: "一般的に、当社の VERARVO AI 広告映像は平均3日以内に制作完了します。プロジェクトの難易度や修正回数によって異なる場合があります。",
+    faqQ2: "料金はどのように決まりますか？",
+    faqA2: "映像の長さ、スタイル、企画の難易度、修正回数によって異なります。詳細な見積もりはご相談後にご案内いたします。",
+    faqQ3: "修正は何回可能ですか？",
+    faqA3: "基本的に1〜3回の修正が含まれています。第1次案の制作後、お客様のフィードバックを反映した第2次案をご提供いたします。",
+    faqQ4: "どのような資料を提供すればよいですか？",
+    faqA4: "以下の資料をご用意いただくと制作がスムーズになります：製品画像または映像、ロゴ、ブランド紹介、参考広告のリファレンス。",
+    faqQ5: "AIのみで映像が作られるのですか？",
+    faqA5: "AI技術を活用して制作しますが、企画、編集、ポストプロダクションは人間が直接検品し、完成度を高めます。",
+    faqQ6: "著作権はどうなりますか？",
+    faqA6: "基本的に、納品された最終成果物の使用権はお客様に提供されます。",
     contactTitle: "直接お問い合わせ",
     contactSubtitle: "ご質問や新規プロジェクトのご相談など、お気軽にお問い合わせください。",
     contactName: "名前 / 会社名",
@@ -860,14 +876,18 @@ const translations = {
     labelMediaShowcase: "Thành phẩm sáng tạo",
     labelWorkflow: "Quy trình làm việc",
     faqTitle: "Câu hỏi thường gặp (FAQ)",
-    faqQ1: "Quảng cáo được sản xuất như thế nào?",
-    faqA1: "Dựa trên yêu cầu của bạn, chúng tôi làm việc cùng các chuyên gia AI hàng đầu để sản xuất hình ảnh và video chất lượng cao nhất.",
-    faqQ2: "Mất bao lâu để hoàn thành?",
-    faqA2: "Thời gian tùy thuộc vào từng loại sản phẩm sáng tạo. Tuy nhiên, hầu hết đều được bàn giao trong vòng 72 giờ.",
-    faqQ3: "Chỉ làm quảng cáo video thôi sao?",
-    faqA3: "Không chỉ quảng cáo, chúng tôi còn thiết kế poster, banner và bất kỳ sản phẩm sáng tạo AI nào bạn yêu cầu.",
-    faqQ4: "Đơn giá dịch vụ thế nào?",
-    faqA4: "Chúng tôi cam kết mức giá hợp lý nhất có thể. Đơn giá sẽ thay đổi tùy theo yêu cầu của từng sản phẩm sáng tạo.",
+    faqQ1: "Thời gian sản xuất mất bao lâu?",
+    faqA1: "Thông thường, video quảng cáo VERARVO AI của chúng tôi được hoàn thiện trung bình trong vòng 3 ngày. Thời gian có thể thay đổi tùy thuộc vào độ khó của dự án và số lần chỉnh sửa.",
+    faqQ2: "Giá cả được quyết định như thế nào?",
+    faqA2: "Giá cả phụ thuộc vào độ dài video, phong cách, độ khó lập kế hoạch và số lần chỉnh sửa. Báo giá chi tiết sẽ được cung cấp sau khi tư vấn.",
+    faqQ3: "Có thể sửa đổi bao nhiêu lần?",
+    faqA3: "Về cơ bản, dịch vụ đã bao gồm từ 1 đến 3 lần chỉnh sửa. Sau khi tạo bản thảo đầu tiên, chúng tôi sẽ cung cấp bản thảo thứ hai dựa trên phản hồi của bạn.",
+    faqQ4: "Tôi cần cung cấp những tài liệu gì?",
+    faqA4: "Quá trình sản xuất sẽ thuận lợi hơn nếu có các tài liệu sau: Hình ảnh hoặc video sản phẩm, logo, giới thiệu thương hiệu, quảng cáo tham chiếu.",
+    faqQ5: "Video được tạo ra hoàn toàn bằng AI có đúng không?",
+    faqA5: "Mặc dù sản xuất bằng công nghệ AI, các khâu lập kế hoạch, biên tập và hậu kỳ đều được con người trực tiếp kiểm duyệt để nâng cao chất lượng thành phẩm.",
+    faqQ6: "Bản quyền sẽ như thế nào?",
+    faqA6: "Về cơ bản, quyền sử dụng của sản phẩm hoàn thiện cuối cùng sẽ được bàn giao cho khách hàng.",
     contactTitle: "Liên hệ trực tiếp",
     contactSubtitle: "Bạn có thắc mắc hay muốn bắt đầu dự án mới? Hãy để lại lời nhắn, chúng tôi sẽ hỗ trợ ngay.",
     contactName: "Tên / Tên công ty",
@@ -917,8 +937,8 @@ const serviceDetailsData = {
         { title: "직관적인 연출", desc: "시각적 후크와 감각적인 구성을 활용해 제품의 매력을 직관적으로 이해시킵니다." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "가로로 긴 직사각형 영상 (16:9)", placeholderText: "가로로 긴 직사각형 영상 (16:9)", url: "/4215716-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "세로로 긴 직사각형 영상 (9:16)", placeholderText: "세로로 긴 직사각형 영상 (9:16)", url: "/12392266_1080_1920_25fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "가로로 긴 직사각형 영상 (16:9)", placeholderText: "가로로 긴 직사각형 영상 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "세로로 긴 직사각형 영상 (9:16)", placeholderText: "세로로 긴 직사각형 영상 (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
       ]
     },
 
@@ -941,7 +961,7 @@ const serviceDetailsData = {
         { title: "참여를 부르는 강력한 CTA", desc: "얼리버드 마감, 한정 티켓 등 즉각적인 등록과 예매를 촉진하는 유도 연출을 삽입합니다." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "이벤트 하이라이트 홍보 시안 (16:9)", url: "/13548788_3840_2160_24fps.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "이벤트 하이라이트 홍보 시안 (16:9)", url: "/5644237-uhd_4096_2160_25fps.mp4" },
         { type: "video", aspectRatio: "9/16", title: "인스타그램 릴스 전용 쇼츠 시안 (9:16)", url: "/12053133_1080_1920_30fps.mp4", rotate: false }
       ]
     },
@@ -964,8 +984,8 @@ const serviceDetailsData = {
         { title: "직관적인 연출", desc: "모바일에 최적화된 화면 구도와 빠른 컷 전환으로 3초 이내에 시선을 사로잡습니다." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "소셜 브이로그 홍보 시안 (16:9)", url: "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "인플루언서 세로형 쇼츠 시안 (9:16)", url: "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "소셜 UGC 광고 시안 (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "UGC 비디오 시안 (9:16)", url: "/UGC video.mov", rotate: false }
       ]
     },
     4: {
@@ -987,8 +1007,8 @@ const serviceDetailsData = {
         { title: "직관적인 연출", desc: "시공간의 제약이 없는 디지털 환경에서 브랜드 제품을 가장 돋보이게 비주얼화합니다." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "가상 모델 클로즈업 컷 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "디지털 피팅룸 바이럴 비디오 (9:16)", url: "/7957040-uhd_2160_3840_30fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "가상 모델 클로즈업 컷 (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "디지털 피팅룸 바이럴 비디오 (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
       ]
     },
     5: {
@@ -1032,8 +1052,8 @@ const serviceDetailsData = {
         { title: "Intuitive Directing", desc: "Using strong visual hooks and pacing, we instantly communicate your product's appeal without words." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Horizontal Wide Video (16:9)", placeholderText: "Horizontal Wide Video (16:9)", url: "/4215716-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "Vertical Long Video (9:16)", placeholderText: "Vertical Long Video (9:16)", url: "/12392266_1080_1920_25fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "Horizontal Wide Video (16:9)", placeholderText: "Horizontal Wide Video (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "Vertical Long Video (9:16)", placeholderText: "Vertical Long Video (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
       ]
     },
 
@@ -1056,7 +1076,7 @@ const serviceDetailsData = {
         { title: "Urgency-Driven CTAs", desc: "We insert visual prompts for early-bird closings and limited ticket offers to trigger instant bookings." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Event Highlight Promo (16:9)", url: "/13548788_3840_2160_24fps.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "Event Highlight Promo (16:9)", url: "/5644237-uhd_4096_2160_25fps.mp4" },
         { type: "video", aspectRatio: "9/16", title: "Instagram Reels Shortform (9:16)", url: "/12053133_1080_1920_30fps.mp4", rotate: false }
       ]
     },
@@ -1079,8 +1099,8 @@ const serviceDetailsData = {
         { title: "Intuitive Directing", desc: "We capture attention within 3 seconds using mobile-optimized compositions and fast transitions." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Social Vlog Promo (16:9)", url: "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "Influencer Vertical Shorts (9:16)", url: "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "Social UGC Ad Promo (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "UGC Video Promo (9:16)", url: "/UGC video.mov", rotate: false }
       ]
     },
     4: {
@@ -1102,8 +1122,8 @@ const serviceDetailsData = {
         { title: "Intuitive Directing", desc: "We visualize brand products in digital environments free from time or space constraints." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Virtual Ambassador Portrait Cut (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "Digital Fitting Room Viral Video (9:16)", url: "/7957040-uhd_2160_3840_30fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "Virtual Ambassador Portrait Cut (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "Digital Fitting Room Viral Video (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
       ]
     },
     5: {
@@ -1147,8 +1167,8 @@ const serviceDetailsData = {
         { title: "直观的呈现方式", desc: "运用极具视觉冲击力的镜头构图与剪辑节奏，无需言语即刻传递产品魅力。" }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "横屏广告样片 (16:9)", placeholderText: "横屏广告样片 (16:9)", url: "/4215716-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "竖屏广告样片 (9:16)", placeholderText: "竖屏广告样片 (9:16)", url: "/12392266_1080_1920_25fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "横屏广告样片 (16:9)", placeholderText: "横屏广告样片 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "竖屏广告样片 (9:16)", placeholderText: "竖屏广告样片 (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
       ]
     },
     2: {
@@ -1170,7 +1190,7 @@ const serviceDetailsData = {
         { title: "引导参与的强力 CTA", desc: "加入早鸟截止、限量门票等能即时促成注册与购票的引导画面。" }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "活动精彩瞬间宣传样片 (16:9)", url: "/13548788_3840_2160_24fps.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "活动精彩瞬间宣传样片 (16:9)", url: "/5644237-uhd_4096_2160_25fps.mp4" },
         { type: "video", aspectRatio: "9/16", title: "Instagram Reels 专属短视频样片 (9/16)", url: "/12053133_1080_1920_30fps.mp4", rotate: false }
       ]
     },
@@ -1193,8 +1213,8 @@ const serviceDetailsData = {
         { title: "直观的呈现方式", desc: "通过移动端优化的画面构图与快速剪辑，3秒内锁定注意力。" }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "社交视频博客宣传样片 (16:9)", url: "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "网红代言人竖屏短视频 (9:16)", url: "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "社交 UGC 广告样片 (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "UGC 视频样片 (9:16)", url: "/UGC video.mov", rotate: false }
       ]
     },
     4: {
@@ -1216,8 +1236,8 @@ const serviceDetailsData = {
         { title: "直观的呈现方式", desc: "在无时空限制的数字空间中，最完美地展示品牌产品的魅力。" }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "虚拟代言人肖像片段 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "数字试衣间创意视频 (9:16)", url: "/7957040-uhd_2160_3840_30fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "虚拟代言人肖像片段 (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "数字试衣间创意视频 (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
       ]
     },
     5: {
@@ -1261,8 +1281,8 @@ const serviceDetailsData = {
         { title: "直感的な演出", desc: "視聴者の心を掴むカット構成により、言葉がなくても魅力を直感的に伝えます。" }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "横型ワイド動画 (16:9)", placeholderText: "横型ワイド動画 (16:9)", url: "/4215716-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "縦型動画 (9:16)", placeholderText: "縦型動画 (9:16)", url: "/12392266_1080_1920_25fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "横型ワイド動画 (16:9)", placeholderText: "横型ワイド動画 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "縦型動画 (9:16)", placeholderText: "縦型動画 (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
       ]
     },
     2: {
@@ -1284,7 +1304,7 @@ const serviceDetailsData = {
         { title: "行動を促す強力なCTA", desc: "アーリーバード終了、限定チケットなど、即時の登録やチケット購入を促進する誘導演出を挿入します。" }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "イベントハイライトプロモーション試案 (16:9)", url: "/13548788_3840_2160_24fps.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "イベントハイライトプロモーション試案 (16:9)", url: "/5644237-uhd_4096_2160_25fps.mp4" },
         { type: "video", aspectRatio: "9/16", title: "Instagramリール専用ショート試案 (9:16)", url: "/12053133_1080_1920_30fps.mp4", rotate: false }
       ]
     },
@@ -1331,7 +1351,7 @@ const serviceDetailsData = {
       ],
       media: [
         { type: "video", aspectRatio: "16/9", title: "バーチャルモデル ポートレート動画 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "デジタルフィッティング動画 (9:16)", url: "/7957040-uhd_2160_3840_30fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "デジタルフィッティング動画 (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
       ]
     },
     5: {
@@ -1375,8 +1395,8 @@ const serviceDetailsData = {
         { title: "Dàn dựng trực quan", desc: "Dàn dựng trực quan và bắt mắt giúp truyền tải trọn vẹn điểm hấp dẫn của sản phẩm mà không cần thuyết minh." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Video Ngang Rộng (16:9)", placeholderText: "Video Ngang Rộng (16:9)", url: "/4215716-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "Video Dọc Dài (9:16)", placeholderText: "Video Dọc Dài (9:16)", url: "/12392266_1080_1920_25fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "Video Ngang Rộng (16:9)", placeholderText: "Video Ngang Rộng (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "Video Dọc Dài (9:16)", placeholderText: "Video Dọc Dài (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
       ]
     },
     2: {
@@ -1398,7 +1418,7 @@ const serviceDetailsData = {
         { title: "Lời kêu gọi hành động khẩn thiết", desc: "Lồng ghép các ưu đãi có hạn để thúc đẩy khách hàng đưa ra quyết định mua vé hoặc đăng ký ngay lập tức." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Video Điểm nhấn Sự kiện (16:9)", url: "/13548788_3840_2160_24fps.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "Video Điểm nhấn Sự kiện (16:9)", url: "/5644237-uhd_4096_2160_25fps.mp4" },
         { type: "video", aspectRatio: "9/16", title: "Video Ngắn Reels/TikTok (9:16)", url: "/12053133_1080_1920_30fps.mp4", rotate: false }
       ]
     },
@@ -1421,8 +1441,8 @@ const serviceDetailsData = {
         { title: "Dàn dựng trực quan", desc: "Thu hút sự chú ý trong vòng 3 giây với bố cục tối ưu cho di động và chuyển cảnh nhanh." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Vlog mạng xã hội quảng bá (16:9)", url: "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "Video ngắn dọc người ảnh hưởng (9:16)", url: "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "Video Quảng cáo UGC Mạng xã hội (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "Video UGC mẫu (9:16)", url: "/UGC video.mov", rotate: false }
       ]
     },
     4: {
@@ -1444,8 +1464,8 @@ const serviceDetailsData = {
         { title: "Dàn dựng trực quan", desc: "Hiển thị sản phẩm nổi bật nhất trong môi trường kỹ thuật số không giới hạn không gian." }
       ],
       media: [
-        { type: "video", aspectRatio: "16/9", title: "Cảnh cận cảnh đại sứ ảo (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
-        { type: "video", aspectRatio: "9/16", title: "Video phòng thử đồ kỹ thuật số (9:16)", url: "/7957040-uhd_2160_3840_30fps.mp4", rotate: false }
+        { type: "video", aspectRatio: "16/9", title: "Cảnh cận cảnh đại sứ ảo (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "Video phòng thử đồ kỹ thuật số (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
       ]
     },
     5: {
@@ -1475,45 +1495,27 @@ const serviceDetailsData = {
 };
 
 const heroVideos = [
-  "/14887170_1080_1920_30fps.mp4",
-  "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4",
-  "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4",
-  "/11939614_2160_3840_60fps.mp4",
-  "/3917703-uhd_2160_4096_25fps.mp4",
-  "/4650065-uhd_2160_4096_30fps.mp4",
-  "/4752362-hd_1066_1920_25fps.mp4",
-  "/5927742-hd_1080_1920_25fps.mp4",
-  "/5927748-hd_1080_1920_25fps.mp4",
-  "/12681248_2160_3840_60fps.mp4",
-  "/9222816-uhd_2160_4096_25fps.mp4",
-  "/9558207-uhd_2160_4096_25fps.mp4",
-  "/9595210-uhd_2160_4096_25fps.mp4",
-  "/9558193-uhd_2160_4096_25fps.mp4",
-  "/7680441-uhd_2160_4096_25fps.mp4",
-  "/9558200-uhd_2160_4096_25fps.mp4",
-  "/13361127_2160_3840_60fps.mp4",
-  "/14864506_1080_1920_25fps.mp4",
-  "/15079186_1080_1920_30fps.mp4",
-  "/3894693-uhd_2160_4096_25fps.mp4",
-  "/6487454-uhd_2160_4096_25fps.mp4",
+  "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4",
+  "/ai video ugc ads creation.mp4",
+  "/UGC video.mov",
+  "/att.c3Yfx-CAfS6gkGcvWpGBo3pIpb-u_CVZF14gdt_T1nw.mp4",
   "/7569383-uhd_2160_4096_25fps.mp4",
-  "/7599304-uhd_2160_4096_25fps.mp4",
-  "/7957049-uhd_2160_3840_30fps.mp4",
-  "/8042702-uhd_2160_4096_25fps.mp4"
+  "/11698130-hd_1080_1920_60fps.mp4"
 ];
 
 const backgroundVideos = [
   "/6632880-hd_1920_1080_25fps.mp4",
   "/6975809-uhd_2880_2160_25fps.mp4",
   "/5889454-uhd_3840_2160_25fps.mp4",
-  "/4650869-uhd_4096_2160_30fps.mp4",
   "/14815442_3840_2160_30fps.mp4",
-  "/6248334-uhd_3840_2160_25fps.mp4",
   "/8131897-uhd_4096_2160_25fps.mp4",
   "/10097613-hd_3840_2160_30fps.mp4",
   "/4215416-uhd_3840_2160_25fps.mp4",
   "/7727416-hd_1920_1080_25fps.mp4",
-  "/9698783-uhd_3840_2160_25fps.mp4"
+  "/9698783-uhd_3840_2160_25fps.mp4",
+  "/149477-796096126_medium.mp4",
+  "/257945.mp4",
+  "/AQORRylebdZCDNsQGuxKXlt4laYm2fcwPITevdWhtGSP5qxkTYWqJDlsLdAiBDtm56N3zy8btinu6QnZrbPBEN4TNgx2hX5jsyIbABKYKQ.mp4"
 ];
 
 const languageFlags = {
@@ -1540,6 +1542,162 @@ const FlagIcon = ({ code, alt }) => (
     }}
   />
 );
+
+const privacyPolicyTranslations = {
+  KO: {
+    title: "개인정보처리방침",
+    intro: "VERARVO(이하 \"회사\")는 이용자의 개인정보를 중요하게 생각하며 「개인정보 보호법」 등 관련 법령을 준수합니다. 본 개인정보처리방침은 회사 웹사이트를 통해 수집되는 개인정보의 처리에 관한 사항을 설명합니다.",
+    sections: [
+      { title: "제1조 (수집하는 개인정보)", content: "회사는 상담, 견적 문의 및 서비스 제공을 위해 다음 정보를 수집할 수 있습니다.\n\n필수항목\n\n* 이름\n* 이메일 주소\n* 문의 내용\n\n선택항목\n\n* 연락처\n* 회사명\n* 브랜드명" },
+      { title: "제2조 (개인정보 수집 및 이용 목적)", content: "회사는 다음 목적을 위해 개인정보를 수집 및 이용합니다.\n\n* 상담 요청 확인\n* 견적 제공\n* 서비스 문의 응대\n* 프로젝트 진행 관련 연락\n* 계약 및 고객 지원" },
+      { title: "제3조 (보유 및 이용기간)", content: "회사는 개인정보 수집 목적이 달성된 후 지체 없이 파기합니다.\n\n다만 아래의 경우에는 일정 기간 보관할 수 있습니다.\n\n* 일반 문의: 접수일로부터 1년\n* 계약 및 프로젝트 관련 자료: 계약 종료 후 3년" },
+      { title: "제4조 (개인정보 제3자 제공)", content: "회사는 이용자의 개인정보를 외부에 판매하거나 제공하지 않습니다.\n\n다만 법령에 따른 요구가 있는 경우에는 관련 법령에 따라 제공될 수 있습니다." },
+      { title: "제5조 (개인정보 처리 위탁)", content: "회사는 웹사이트 운영, 이메일 서비스, 클라우드 서비스 등을 위하여 일부 업무를 외부 서비스 제공업체에 위탁할 수 있습니다." },
+      { title: "제6조 (이용자의 권리)", content: "이용자는 언제든지 자신의 개인정보에 대한 열람, 정정, 삭제를 요청할 수 있습니다.\n\n회사는 관련 법령에 따라 지체 없이 처리합니다." },
+      { title: "제7조 (쿠키)", content: "회사는 웹사이트 운영 과정에서 쿠키를 사용할 수 있습니다.\n\n이용자는 브라우저 설정을 통해 쿠키 저장을 거부할 수 있습니다." },
+      { title: "제8조 (문의)", content: "개인정보 관련 문의는 아래 이메일로 연락할 수 있습니다.\n\n이메일: jobsverarvo@gmail.com" }
+    ],
+    footerText: "본 방침은 2026년 6월 8일부터 시행됩니다."
+  },
+  EN: {
+    title: "Privacy Policy",
+    intro: "VERARVO (hereinafter referred to as the \"Company\") values the user's personal information and complies with relevant laws and regulations such as the \"Personal Information Protection Act.\" This Privacy Policy explains matters concerning the processing of personal information collected through the Company's website.",
+    sections: [
+      { title: "Article 1 (Personal Information Collected)", content: "The Company may collect the following information for counseling, quote inquiries, and service provision.\n\nRequired Items\n\n* Name\n* Email Address\n* Inquiry Details\n\nOptional Items\n\n* Contact Info\n* Company Name\n* Brand Name" },
+      { title: "Article 2 (Purpose of Collection and Use)", content: "The Company collects and uses personal information for the following purposes:\n\n* Verifying counseling requests\n* Providing quotes\n* Responding to service inquiries\n* Communication regarding project progress\n* Contract and customer support" },
+      { title: "Article 3 (Retention and Use Period)", content: "The Company destroys personal information without delay after the purpose of collection is achieved.\n\nHowever, it may be stored for a certain period in the following cases:\n\n* General Inquiries: 1 year from receipt date\n* Contract and Project Data: 3 years after contract termination" },
+      { title: "Article 4 (Provision of Personal Information to Third Parties)", content: "The Company does not sell or provide the user's personal information to external parties.\n\nHowever, if requested in accordance with laws, it may be provided in compliance with relevant regulations." },
+      { title: "Article 5 (Entrustment of Personal Information Processing)", content: "The Company may entrust some tasks to external service providers for website operations, email services, cloud services, etc." },
+      { title: "Article 6 (User's Rights)", content: "Users may request access to, correction, or deletion of their personal information at any time.\n\nThe Company will process it without delay in accordance with relevant laws." },
+      { title: "Article 7 (Cookies)", content: "The Company may use cookies in the course of operating the website.\n\nUsers can refuse to store cookies through browser settings." },
+      { title: "Article 8 (Inquiries)", content: "Inquiries regarding personal information can be directed to the email below.\n\nEmail: jobsverarvo@gmail.com" }
+    ],
+    footerText: "This policy takes effect on June 8, 2026."
+  },
+  ZH: {
+    title: "隐私政策",
+    intro: "VERARVO（以下简称“公司”）重视用户的个人信息，并遵守《个人信息保护法》等相关法律法规。本隐私政策说明了公司通过网站收集的个人信息的处理事宜。",
+    sections: [
+      { title: "第一条 (收集的个人信息)", content: "公司可能会为咨询、报价查询和提供服务收集以下信息。\n\n必填项\n\n* 姓名\n* 电子邮箱地址\n* 咨询内容\n\n选填项\n\n* 联系方式\n* 公司名称\n* 品牌名称" },
+      { title: "第二条 (个人信息收集及使用目的)", content: "公司出于以下目的收集和使用个人信息：\n\n* 确认咨询请求\n* 提供报价\n* 回复服务咨询\n* 项目进度相关联系\n* 合同及客户支持" },
+      { title: "第三条 (保存及使用期限)", content: "公司在达成个人信息收集目的后会立即销毁。\n\n但在以下情况下可能会保存一定期限：\n\n* 一般咨询：自受理之日起1年\n* 合同及项目相关资料：合同终止后3年" },
+      { title: "第四条 (个人信息向第三方提供)", content: "公司不会向外部销售或提供用户的个人信息。\n\n幕后法律要求，可能会依法提供。" },
+      { title: "第五条 (个人信息处理委托)", content: "公司可能会为网站运营、电子邮件服务、云服务等将部分业务委托给外部服务提供商。" },
+      { title: "第六条 (用户权利)", content: "用户可以随时要求查询、更正或删除其个人信息。\n\n公司将根据相关法律法规立即处理。" },
+      { title: "第七条 (Cookie)", content: "公司在运营网站过程中可能会使用Cookie。\n\n用户可以通过浏览器设置拒绝保存Cookie。" },
+      { title: "第八条 (咨询)", content: "有关个人信息的咨询，可以通过以下电子邮件联系。\n\n电子邮箱：jobsverarvo@gmail.com" }
+    ],
+    footerText: "本政策自2026年6月8日起施行。"
+  },
+  JA: {
+    title: "プライバシーポリシー",
+    intro: "VERARVO（以下「当社」）は、利用者の個人情報を重要に考え、「個人情報保護法」など関連法令を遵守します。本プライバシーポリシーは、当社のウェブサイトを通じて収集される個人情報の処理に関する事項を説明します。",
+    sections: [
+      { title: "第1条 (収集する個人情報)", content: "当社は、相談、見積もりのお問い合わせ、およびサービス提供のために以下の情報を収集することがあります。\n\n必須項目\n\n* お名前\n* メールアドレス\n* お問い合わせ内容\n\n任意項目\n\n* 連絡先\n* 会社名\n* ブランド名" },
+      { title: "第2条 (個人情報の収集および利用目的)", content: "当社は、以下の目的のために個人情報を収集および利用します。\n\n* 相談依頼の確認\n* 見積もりの提供\n* サービスに関するお問い合わせ対応\n* プロジェクト進行に関する連絡\n* 契約および顧客サポート" },
+      { title: "第3条 (保有および利用期間)", content: "当社は、個人情報の収集目的が達成された後、遅滞なく破棄します。\n\nただし、以下の場合には一定期間保管することがあります。\n\n* 一般のお問い合わせ：受付日から1年間\n* 契約およびプロジェクト関連資料：契約終了後3年間" },
+      { title: "第4条 (個人情報の第三者提供)", content: "当社は、利用者の個人情報を外部に販売または提供しません。\n\nただし、法令に基づく要求がある場合は、関連法令に従って提供されることがあります。" },
+      { title: "第5条 (個人情報処理の委託)", content: "当社は、ウェブサイトの運営、メールサービス、クラウドサービスなどのため、一部の業務を外部サービスプロバイダーに委託することがあります。" },
+      { title: "第6条 (利用者の権利)", content: "利用者はいつでも自身の個人情報に対する閲覧、訂正、削除を要求することができます。\n\n当社は関連法令に従って遅滞なく処理します。" },
+      { title: "第7条 (クッキー)", content: "当社はウェブサイト運営の過程でクッキーを使用することがあります。\n\n利用者はブラウザの設定を通じてクッキーの保存を拒否することができます。" },
+      { title: "第8条 (お問い合わせ)", content: "個人情報に関するお問い合わせは、以下のメールアドレスまでご連絡ください。\n\nメールアドレス：jobsverarvo@gmail.com" }
+    ],
+    footerText: "本方針は2026年6月8日から施行されます。"
+  },
+  VI: {
+    title: "Chính sách bảo mật",
+    intro: "VERARVO (sau đây gọi là \"Công ty\") luôn coi trọng thông tin cá nhân của người dùng và tuân thủ các quy định pháp luật liên quan như \"Luật Bảo vệ thông tin cá nhân\". Chính sách bảo mật này giải thích các vấn đề liên quan đến việc xử lý thông tin cá nhân được thu thập thông qua trang web của công ty.",
+    sections: [
+      { title: "Điều 1 (Thông tin cá nhân thu thập)", content: "Công ty có thể thu thập các thông tin sau để tư vấn, yêu cầu báo giá và cung cấp dịch vụ。\n\nMục bắt buộc\n\n* Họ và tên\n* Địa chỉ Email\n* Nội dung yêu cầu\n\nMục tùy chọn\n\n* Số điện thoại\n* Tên công ty\n* Tên thương hiệu" },
+      { title: "Điều 2 (Mục đích thu thập và sử dụng)", content: "Công ty thu thập và sử dụng thông tin cá nhân cho các mục đích sau:\n\n* Xác nhận yêu cầu tư vấn\n* Cung cấp báo giá\n* Phản hồi các câu hỏi về dịch vụ\n* Liên hệ liên quan đến tiến độ dự án\n* Hợp đồng và hỗ trợ khách hàng" },
+      { title: "Điều 3 (Thời hạn lưu trữ và sử dụng)", content: "Công ty sẽ hủy thông tin cá nhân ngay lập tức sau khi đạt được mục đích thu thập。\n\nTuy nhiên, thông tin có thể được lưu trữ trong một khoảng thời gian nhất định trong các trường hợp sau:\n\n* Câu hỏi thông thường: 1 năm kể từ ngày tiếp nhận\n* Tài liệu hợp đồng và dự án: 3 năm sau khi chấm dứt hợp đồng" },
+      { title: "Điều 4 (Cung cấp thông tin cá nhân cho bên thứ ba)", content: "Công ty không bán hoặc cung cấp thông tin cá nhân của người dùng cho bên ngoài。\n\nTuy nhiên, nếu có yêu cầu theo pháp luật, thông tin có thể được cung cấp theo đúng quy định liên quan." },
+      { title: "Điều 5 (Ủy thác xử lý thông tin cá nhân)", content: "Công ty có thể ủy thác một số công việc cho các nhà cung cấp dịch vụ bên ngoài để vận hành trang web, dịch vụ email, dịch vụ đám mây, v.v." },
+      { title: "Điều 6 (Quyền của người dùng)", content: "Người dùng có thể yêu cầu truy cập, chỉnh sửa hoặc xóa thông tin cá nhân của mình bất kỳ lúc nào。\n\nCông ty sẽ xử lý ngay lập tức theo đúng quy định pháp luật liên quan." },
+      { title: "Điều 7 (Cookie)", content: "Công ty có thể sử dụng cookie trong quá trình vận hành trang web。\n\nNgười dùng có thể từ chối lưu trữ cookie thông qua cài đặt trình duyệt." },
+      { title: "Điều 8 (Liên hệ)", content: "Các câu hỏi liên quan đến thông tin cá nhân có thể liên hệ qua email dưới đây。\n\nEmail: jobsverarvo@gmail.com" }
+    ],
+    footerText: "Chính sách này có hiệu lực từ ngày 8 tháng 6 năm 2026."
+  }
+};
+
+const termsOfServiceTranslations = {
+  KO: {
+    title: "이용약관",
+    sections: [
+      { title: "제1조 (목적)", content: "본 약관은 VERARVO가 제공하는 AI 광고 제작 및 디지털 콘텐츠 제작 서비스와 관련된 기본적인 사항을 규정합니다." },
+      { title: "제2조 (서비스 내용)", content: "회사는 다음 서비스를 제공합니다.\n\n* AI 광고 영상 제작\n* AI UGC 콘텐츠 제작\n* AI 제품 홍보 영상 제작\n* 숏폼 콘텐츠 제작\n* 기타 디지털 콘텐츠 제작 서비스" },
+      { title: "제3조 (견적 및 계약)", content: "회사가 제공하는 견적은 별도 명시가 없는 한 참고 금액입니다.\n최종 작업 범위, 납기, 비용 및 수정 횟수는 별도 계약 또는 견적서를 기준으로 합니다." },
+      { title: "제4조 (고객 자료)", content: "고객은 자신이 제공한 이미지, 영상, 로고, 음원, 텍스트 등에 대해 적법한 사용 권한을 보유해야 합니다.\n제공 자료로 인해 발생하는 권리 침해 문제에 대한 책임은 해당 자료를 제공한 당사자에게 있습니다." },
+      { title: "제5조 (지적재산권)", content: "최종 결과물의 권리 귀속은 개별 계약에 따릅니다.\n별도 계약이 없는 경우 회사는 포트폴리오 및 홍보 목적으로 제작 결과물의 일부를 사용할 수 있습니다.\n고객이 포트폴리오 공개를 원하지 않는 경우 계약 시 사전에 요청해야 합니다." },
+      { title: "제6조 (수정 및 납품)", content: "수정 범위와 횟수는 계약 또는 견적서에 따릅니다.\n추가 수정 요청은 별도 비용이 발생할 수 있습니다." },
+      { title: "제7조 (책임 제한)", content: "회사는 천재지변, 서버 장애, 외부 플랫폼 정책 변경, 생성형 AI 서비스 제공사의 장애 등 회사가 통제할 수 없는 사유로 인한 손해에 대해 책임을 지지 않습니다." },
+      { title: "제8조 (약관 변경)", content: "회사는 필요 시 본 약관을 수정할 수 있으며 변경 사항은 웹사이트를 통해 공지합니다." },
+      { title: "제9조 (문의)", content: "이메일: jobsverarvo@gmail.com" }
+    ],
+    footerText: "본 약관은 2026년 6월 8일부터 시행됩니다."
+  },
+  EN: {
+    title: "Terms of Service",
+    sections: [
+      { title: "Article 1 (Purpose)", content: "These Terms prescribe the basic matters related to the AI advertising production and digital content production services provided by VERARVO." },
+      { title: "Article 2 (Service Details)", content: "The Company provides the following services:\n\n* AI promotional video production\n* AI UGC content creation\n* AI product video production\n* Short-form content production\n* Other digital content production services" },
+      { title: "Article 3 (Quotes and Contracts)", content: "Quotes provided by the Company are reference amounts unless stated otherwise.\nThe final work scope, delivery date, cost, and number of revisions are based on individual contracts or quote sheets." },
+      { title: "Article 4 (Client Materials)", content: "Clients must possess legal usage rights for any images, videos, logos, sound sources, texts, etc., they provide.\nResponsibility for rights infringement issues arising from provided materials lies with the party that provided them." },
+      { title: "Article 5 (Intellectual Property)", content: "Ownership of the final product's rights is subject to individual contracts.\nUnless stated otherwise, the Company may use parts of the produced results for portfolio and promotional purposes.\nIf the client does not wish for the portfolio to be public, they must request it in advance during contracting." },
+      { title: "Article 6 (Revisions and Delivery)", content: "The scope and frequency of revisions are subject to the contract or quote.\nRequests for additional revisions may incur separate fees." },
+      { title: "Article 7 (Limitation of Liability)", content: "The Company is not liable for damages caused by reasons beyond the Company's control, such as natural disasters, server outages, external platform policy changes, or outages of generative AI service providers." },
+      { title: "Article 8 (Changes to Terms)", content: "The Company may modify these Terms as necessary, and any changes will be announced on the website." },
+      { title: "Article 9 (Inquiries)", content: "Email: jobsverarvo@gmail.com" }
+    ],
+    footerText: "These terms take effect on June 8, 2026."
+  },
+  ZH: {
+    title: "服务条款",
+    sections: [
+      { title: "第一条 (目的)", content: "本条款旨在规定与 VERARVO 提供的 AI 广告制作及数字内容制作服务相关的基本事项。" },
+      { title: "第二条 (服务内容)", content: "公司提供以下服务：\n• AI 广告视频制作\n• AI UGC 内容制作\n• AI 产品宣传视频制作\n• 短视频内容制作\n• 其他数字内容制作服务" },
+      { title: "第三条 (报价与合同)", content: "除非另有说明，公司提供的报价仅供参考。\n最终工作范围、交货期、费用及修改次数以独立合同或报价单为准。" },
+      { title: "第四条 (客户材料)", content: "客户应对其提供的图片、视频、徽标、声源、文字等拥有合法的权利。\n因所提供材料而引起的权利侵权问题，其责任由提供该材料的当事人承担。" },
+      { title: "第五条 (知识产权)", content: "最终成果的权利归属遵循独立合同。\n未另行约定时，公司可将制作成果的部分内容用于作品集和宣传目的。\n如果客户不希望公开作品集，须在签约时提前提出请求。" },
+      { title: "第六条 (修改与交付)", content: "修改范围和次数以合同或报价单为准。\n追加修改请求可能会产生额外费用。" },
+      { title: "第七条 (免责条款)", content: "对于因自然灾害、服务器故障、外部平台政策变更、生成式 AI 服务商故障等公司无法控制的原因造成的损失，公司概不承担责任。" },
+      { title: "第八条 (条款变更)", content: "公司可根据需要修改本条款，变更事项将通过网站进行公告。" },
+      { title: "第九条 (咨询)", content: "电子邮箱：jobsverarvo@gmail.com" }
+    ],
+    footerText: "本条款自2026年6月8日起施行。"
+  },
+  JA: {
+    title: "利用規約",
+    sections: [
+      { title: "第1条 (目的)", content: "本規約は、VERARVOが提供するAI広告制作およびデジタルコンテンツ制作サービスに関する基本的な事項を規定します。" },
+      { title: "第2条 (サービス内容)", content: "当社は以下のサービスを提供します。\n• AI広告映像制作\n• AI UGCコンテンツ制作\n• AI製品プロモーション映像制作\n• ショートフォームコンテンツ制作\n• その他デジタルコンテンツ制作サービス" },
+      { title: "第3条 (見積もりおよび契約)", content: "当社が提示する見積もりは、別途明記のない限り参考金額です。\n最終的な作業範囲、納期、費用、および修正回数は、別途契約または見積書を基準とします。" },
+      { title: "第4条 (顧客の提供資料)", content: "顧客は、自身が提供した画像、映像、ロゴ、音源、テキストなどについて適法な使用権限を保有している必要があります。\n提供資料に起因する権利侵害の問題に対する责任は、当該資料を提供した当事者にあります。" },
+      { title: "第5条 (知的財産権)", content: "最終成果物の権利帰属は、個別の契約に従います。\n別途契約がない場合、当社はポートフォリオおよびプロモーション目的で制作成果物の一部を使用することができます。\n顧客がポートフォリオへの公開を希望しない場合は、契約時に事前に要求する必要があります。" },
+      { title: "第6条 (修正および納品)", content: "修正範囲と回数は、契約または見積書に従います。\n追加の修正要求は、別途費用が発生する場合があります。" },
+      { title: "第7条 (免責事項)", content: "当社は、天災地変、サーバー障害、外部プラットフォームのポリシー変更、生成AIサービス提供会社の障害など、当社の管理が及ばない事由による損害について責任を負いません。" },
+      { title: "第8条 (規約の変更)", content: "当社は必要に応じて本規約を修正することができ、変更事項はウェブサイトを通じて公表します。" },
+      { title: "第9条 (お問い合わせ)", content: "メールアドレス：jobsverarvo@gmail.com" }
+    ],
+    footerText: "本規約は2026年6月8日から施行されます。"
+  },
+  VI: {
+    title: "Điều khoản dịch vụ",
+    sections: [
+      { title: "Điều 1 (Mục đích)", content: "Các Điều khoản này quy định các vấn đề cơ bản liên quan đến dịch vụ sản xuất quảng cáo AI và sản xuất nội dung kỹ thuật số do VERARVO cung cấp." },
+      { title: "Điều 2 (Nội dung dịch vụ)", content: "Công ty cung cấp các dịch vụ sau:\n• Sản xuất video quảng cáo AI\n• Sản xuất nội dung UGC AI\n• Sản xuất video quảng bá sản phẩm AI\n• Sản xuất nội dung video ngắn (Short-form)\n• Các dịch vụ sản xuất nội dung kỹ thuật số khác" },
+      { title: "Điều 3 (Báo giá và Hợp đồng)", content: "Báo giá do Công ty cung cấp là số tiền tham khảo trừ khi có quy định khác。\nPhạm vi công việc cuối cùng, thời hạn bàn giao, chi phí và số lần chỉnh sửa sẽ dựa trên hợp đồng riêng hoặc bảng báo giá." },
+      { title: "Điều 4 (Tài liệu của khách hàng)", content: "Khách hàng phải có quyền sử dụng hợp pháp đối với hình ảnh, video, logo, âm thanh, văn bản, v.v. do mình cung cấp。\nTrách nhiệm giải quyết các vấn đề xâm phạm quyền lợi phát sinh từ tài liệu cung cấp thuộc về bên cung cấp tài liệu đó." },
+      { title: "Điều 5 (Quyền sở hữu trí tuệ)", content: "Quyền sở hữu đối với sản phẩm bàn giao cuối cùng tuân theo hợp đồng riêng。\nTrừ khi có thỏa thuận khác, Công ty có thể sử dụng một phần sản phẩm đã sản xuất cho mục đích giới thiệu năng lực (portfolio) và quảng bá thương hiệu。\nNếu khách hàng không muốn công khai portfolio, vui lòng yêu cầu trước khi ký hợp đồng." },
+      { title: "Điều 6 (Chỉnh sửa và Bàn giao)", content: "Phạm vi và số lần chỉnh sửa tuân theo hợp đồng hoặc bảng báo giá。\nYêu cầu chỉnh sửa thêm ngoài quy định có thể phát sinh chi phí riêng." },
+      { title: "Điều 7 (Giới hạn trách nhiệm)", content: "Công ty không chịu trách nhiệm đối với các thiệt hại do các nguyên nhân bất khả kháng nằm ngoài tầm kiểm soát của Công ty, chẳng hạn như thiên tai, sự cố máy chủ, thay đổi chính sách nền tảng bên ngoài hoặc sự cố của nhà cung cấp dịch vụ AI tạo sinh." },
+      { title: "Điều 8 (Thay đổi điều khoản)", content: "Công ty có thể sửa đổi các Điều khoản này khi cần thiết và các thay đổi sẽ được thông báo thông qua trang web." },
+      { title: "Điều 9 (Liên hệ)", content: "Email: jobsverarvo@gmail.com" }
+    ],
+    footerText: "Điều khoản này có hiệu lực từ ngày 8 tháng 6 năm 2026."
+  }
+};
 
 const processStepsData = {
   KO: [
@@ -1934,6 +2092,33 @@ function App() {
 
   const [customConceptText, setCustomConceptText] = useState('');
 
+  // States and Handlers for Related Materials Upload (Step 2)
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+    
+    const newFiles = files.map(file => ({
+      name: file.name,
+      size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',
+      type: file.type
+    }));
+    
+    setUploadedFiles(prev => [...prev, ...newFiles]);
+  };
+
+  const handleRemoveFile = (index) => {
+    setUploadedFiles(prev => prev.filter((_, idx) => idx !== index));
+  };
+
+  const handleUploadClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   const togglePreset = (currentList, setList, val) => {
     if (currentList.includes(val)) {
       setList(currentList.filter(item => item !== val));
@@ -1958,6 +2143,29 @@ function App() {
   const [cursorTransform, setCursorTransform] = useState({ scaleX: 1, scaleY: 1, angle: 0 });
   const [hovering, setHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
+  const [termsModalOpen, setTermsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#privacy') {
+        setPrivacyModalOpen(true);
+        setTermsModalOpen(false);
+      } else if (hash === '#terms') {
+        setTermsModalOpen(true);
+        setPrivacyModalOpen(false);
+      } else {
+        setPrivacyModalOpen(false);
+        setTermsModalOpen(false);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // run on initial mount
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const targetPosRef = useRef({ x: -100, y: -100 });
   const currentPosRef = useRef({ x: -100, y: -100 });
@@ -2204,7 +2412,6 @@ function App() {
     const categories = categoryPreset.map(item => item === 'CUSTOM' ? customCategory : item).join(', ');
     const goals = goalPreset.map(item => item === 'CUSTOM' ? customGoal : item).join(', ');
     const placements = placementsPreset.map(item => item === 'CUSTOM' ? customPlacements : item).join(', ');
-    const audiences = audiencePreset.map(item => item === 'CUSTOM' ? customAudience : item).join(', ');
     const moods = moodPreset.map(item => item === 'CUSTOM' ? customMood : item).join(', ');
     const budgets = budgetPreset.map(item => item === 'CUSTOM' ? customBudget : item).join(', ');
     const timelines = timelinePreset.map(item => item === 'CUSTOM' ? customTimeline : item).join(', ');
@@ -2225,7 +2432,6 @@ ${customConceptText}
 - 프로젝트 카테고리: ${categories}
 - 프로젝트 목적: ${goals}
 - 배포 채널: ${placements}
-- 타겟 오디언스: ${audiences}
 - 광고 무드 & 톤: ${moods}
 - 예산 범위: ${budgets}
 - 희망 완료 일정: ${timelines}
@@ -2245,7 +2451,6 @@ ${customConceptText}
 - Project Category: ${categories}
 - Project Goal: ${goals}
 - Distribution Channels: ${placements}
-- Target Audience: ${audiences}
 - Ad Mood & Tone: ${moods}
 - Budget Range: ${budgets}
 - Target Timeline: ${timelines}
@@ -2340,11 +2545,7 @@ ${customConceptText}
       errors.placements = translations[lang].errCustomPlacements || 'Please specify your custom channels.';
     }
 
-    if (audiencePreset.length === 0) {
-      errors.audience = lang === 'KO' ? '타겟 오디언스를 최소 하나 이상 선택해 주세요.' : 'Please select at least one target audience.';
-    } else if (audiencePreset.includes('CUSTOM') && !customAudience.trim()) {
-      errors.audience = translations[lang].errCustomAudience || 'Please specify your custom target audience.';
-    }
+    // Target audience selection removed by user request
 
     if (moodPreset.length === 0) {
       errors.mood = lang === 'KO' ? '광고 무드를 최소 하나 이상 선택해 주세요.' : 'Please select at least one ad mood & tone.';
@@ -2781,7 +2982,7 @@ ${customConceptText}
                           )}
                         </div>
                       </div>
-                      {item.aspectRatio === '9/16' && (
+                      {item.aspectRatio === '9/16' && !(Number(activeServiceDetail) === 3 && idx === 0) && (
                         <div style={{ 
                           fontSize: '0.85rem', 
                           color: '#FACC15', 
@@ -3436,7 +3637,9 @@ ${customConceptText}
                       { q: translations[lang].faqQ1, a: translations[lang].faqA1 },
                       { q: translations[lang].faqQ2, a: translations[lang].faqA2 },
                       { q: translations[lang].faqQ3, a: translations[lang].faqA3 },
-                      { q: translations[lang].faqQ4, a: translations[lang].faqA4 }
+                      { q: translations[lang].faqQ4, a: translations[lang].faqA4 },
+                      { q: translations[lang].faqQ5, a: translations[lang].faqA5 },
+                      { q: translations[lang].faqQ6, a: translations[lang].faqA6 }
                     ].map((item, index) => (
                       <div 
                         key={index} 
@@ -3858,56 +4061,7 @@ ${customConceptText}
                       )}
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">{translations[lang].labelAudience}</label>
-                      <div className="grid-select" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                        {['2030 Career Professionals', 'Gen Z Trendsetters', 'Parents & Families'].map((aud) => (
-                          <div 
-                            key={aud}
-                            className={`select-card ${audiencePreset.includes(aud) ? 'active' : ''}`}
-                            onClick={() => {
-                              togglePreset(audiencePreset, setAudiencePreset, aud);
-                              if (formErrors.audience) {
-                                setFormErrors(prev => ({ ...prev, audience: '' }));
-                              }
-                            }}
-                          >
-                            <span className="select-card-title" style={{ fontSize: '0.85rem' }}>{aud}</span>
-                          </div>
-                        ))}
-                        <div 
-                          className={`select-card ${audiencePreset.includes('CUSTOM') ? 'active' : ''}`}
-                          onClick={() => {
-                            togglePreset(audiencePreset, setAudiencePreset, 'CUSTOM');
-                            if (formErrors.audience) {
-                              setFormErrors(prev => ({ ...prev, audience: '' }));
-                            }
-                          }}
-                        >
-                          <span className="select-card-title" style={{ fontSize: '0.85rem', color: 'var(--gold)' }}>{translations[lang].optionOther}</span>
-                        </div>
-                      </div>
-                      {audiencePreset.includes('CUSTOM') && (
-                        <input 
-                          type="text" 
-                          className={`form-control ${formErrors.audience ? 'is-invalid' : ''}`} 
-                          placeholder="Type your custom target audience..." 
-                          value={customAudience}
-                          onChange={(e) => {
-                            setCustomAudience(e.target.value);
-                            if (formErrors.audience) {
-                              setFormErrors(prev => ({ ...prev, audience: '' }));
-                            }
-                          }}
-                          required
-                        />
-                      )}
-                      {formErrors.audience && (
-                        <div style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                          {formErrors.audience}
-                        </div>
-                      )}
-                    </div>
+                    {/* Target Audience selection removed by user request */}
 
                     <div className="form-group">
                       <label className="form-label">{translations[lang].labelMood}</label>
@@ -4113,12 +4267,116 @@ ${customConceptText}
                       {formErrors.concept}
                     </div>
                   )}
+
+                  {/* Uploaded Files Preview List */}
+                  {uploadedFiles.length > 0 && (
+                    <div style={{
+                      marginTop: '1.5rem',
+                      background: 'rgba(255, 255, 255, 0.02)',
+                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      borderRadius: '8px',
+                      padding: '1rem'
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '0.75rem',
+                        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                        paddingBottom: '0.5rem'
+                      }}>
+                        <span style={{ fontSize: '0.9rem', color: 'var(--gold)', fontWeight: '600' }}>
+                          {lang === 'KO' ? '첨부된 자료 목록' : 'Attached Materials'} ({uploadedFiles.length})
+                        </span>
+                        <button 
+                          type="button"
+                          style={{
+                            background: 'transparent',
+                            border: 'none',
+                            color: 'rgba(255,255,255,0.4)',
+                            fontSize: '0.8rem',
+                            cursor: 'pointer',
+                            textDecoration: 'underline'
+                          }}
+                          onClick={() => setUploadedFiles([])}
+                        >
+                          {lang === 'KO' ? '모두 삭제' : 'Clear All'}
+                        </button>
+                      </div>
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.5rem',
+                        maxHeight: '120px',
+                        overflowY: 'auto'
+                      }}>
+                        {uploadedFiles.map((file, idx) => (
+                          <div 
+                            key={idx}
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              padding: '0.4rem 0.75rem',
+                              background: 'rgba(255, 255, 255, 0.03)',
+                              borderRadius: '4px',
+                              fontSize: '0.82rem'
+                            }}
+                          >
+                            <span style={{ color: 'var(--white)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '80%', textAlign: 'left' }}>
+                              📎 {file.name} <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>({file.size})</span>
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveFile(idx)}
+                              style={{
+                                background: 'transparent',
+                                border: 'none',
+                                color: '#ef4444',
+                                cursor: 'pointer',
+                                fontSize: '1rem',
+                                padding: '0 0.25rem'
+                              }}
+                            >
+                              &times;
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="wizard-footer" style={{ marginTop: '2.5rem' }}>
                   <button type="button" className="btn-gold-outline" onClick={() => setStep(1)}>
                     <ArrowLeft size={16} style={{ marginRight: '8px' }} /> {translations[lang].btnBack}
                   </button>
+
+                  {/* Hidden File Input for Materials Upload */}
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                    multiple
+                    accept="image/*,video/*"
+                  />
+
+                  {/* Related Materials Upload Button */}
+                  <button
+                    type="button"
+                    className="btn-gold-outline"
+                    style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}
+                    onClick={handleUploadClick}
+                  >
+                    <Upload size={16} />
+                    {lang === 'KO' ? '관련 자료 업로드' : 
+                     lang === 'ZH' ? '上传相关材料' :
+                     lang === 'JA' ? '関連資料アップロード' :
+                     lang === 'VI' ? 'Tải lên tài liệu liên quan' :
+                     'Upload Related Materials'}
+                  </button>
+
                   <button 
                     type="button" 
                     className="btn-white-fill" 
@@ -4277,7 +4535,7 @@ ${customConceptText}
                         borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
                         paddingBottom: '0.5rem'
                       }}>
-                        {lang === 'KO' ? '✍️ 신청자 작성 정보' : '✍️ Applicant Details'}
+                        {lang === 'KO' ? '신청자 작성 정보' : 'Applicant Details'}
                       </h5>
                       <div style={{
                         display: 'grid',
@@ -4348,7 +4606,7 @@ ${customConceptText}
                         borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
                         paddingBottom: '0.5rem'
                       }}>
-                        {lang === 'KO' ? '☑️ 선택 및 체크한 항목' : '☑️ Selected & Checked Options'}
+                        {lang === 'KO' ? '선택 및 체크한 항목' : 'Selected & Checked Options'}
                       </h5>
                       <div style={{
                         display: 'flex',
@@ -4359,7 +4617,6 @@ ${customConceptText}
                           { label: lang === 'KO' ? '프로젝트 카테고리' : 'Project Category', preset: categoryPreset, custom: customCategory },
                           { label: lang === 'KO' ? '프로젝트 목적' : 'Project Goal', preset: goalPreset, custom: customGoal },
                           { label: lang === 'KO' ? '배포 채널' : 'Distribution Channels', preset: placementsPreset, custom: customPlacements },
-                          { label: lang === 'KO' ? '타겟 오디언스' : 'Target Audience', preset: audiencePreset, custom: customAudience },
                           { label: lang === 'KO' ? '광고 무드 & 톤' : 'Ad Mood & Tone', preset: moodPreset, custom: customMood },
                           { label: lang === 'KO' ? '예산 범위' : 'Budget Range', preset: budgetPreset, custom: customBudget },
                           { label: lang === 'KO' ? '희망 완료 일정' : 'Target Timeline', preset: timelinePreset, custom: customTimeline },
@@ -4425,23 +4682,191 @@ ${customConceptText}
       </main>
 
       {/* Footer bar */}
-      <footer className="footer">
-        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ fontSize: '1.1rem', color: 'rgba(255, 255, 255, 0.85)' }}>
-            {lang === 'KO' ? (
-              <span>모든 문의 이메일은 <a href="mailto:james42286910@gmail.com" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>james42286910@gmail.com</a> 으로 보내주시기 바랍니다.</span>
-            ) : lang === 'ZH' ? (
-              <span>所有咨询请发送电子邮件至 <a href="mailto:james42286910@gmail.com" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>james42286910@gmail.com</a>。</span>
-            ) : lang === 'JA' ? (
-              <span>すべてのお問い合わせは <a href="mailto:james42286910@gmail.com" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>james42286910@gmail.com</a> までメールでお送りください。</span>
-            ) : lang === 'VI' ? (
-              <span>Mọi thắc mắc vui lòng gửi email đến <a href="mailto:james42286910@gmail.com" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>james42286910@gmail.com</a>.</span>
-            ) : (
-              <span>For all inquiries, please send an email to <a href="mailto:james42286910@gmail.com" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>james42286910@gmail.com</a>.</span>
-            )}
+      <footer className="footer" style={{ background: 'transparent', borderTop: 'none', padding: '2rem 0' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '2rem' }}>
+          <div style={{ transform: 'translate(-15px, -35px)', display: 'flex', flexDirection: 'column', gap: '0.4rem', color: 'rgba(255, 255, 255, 0.85)', textAlign: 'left' }}>
+            <h4 style={{ color: 'var(--gold)', margin: 0, fontSize: '1.3rem', fontWeight: '700', letterSpacing: '0.05em' }}>CONTACT</h4>
+            <p style={{ margin: '0.2rem 0', fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.4', fontWeight: 300 }}>
+              Contact us today to discuss your next campaign<br />
+              and turn bold ideas into powerful AI-driven advertising.
+            </p>
+            <span style={{ fontSize: '0.9rem', marginTop: '0.4rem', fontWeight: 400 }}>
+              {lang === 'KO' ? '담당 매니저' : (lang === 'ZH' ? '项目经理' : (lang === 'JA' ? '担当マネージャー' : (lang === 'VI' ? 'Quản lý phụ trách' : 'Manager')))} : <a href="mailto:jobsverarvo@gmail.com" style={{ color: '#fff', textDecoration: 'underline' }}>jobsverarvo@gmail.com</a>
+            </span>
+            <div style={{ display: 'flex', gap: '1.2rem', marginTop: '0.6rem' }}>
+              {/* KakaoTalk */}
+              <a href="https://pf.kakao.com/_xhxiBnX" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s', display: 'flex', alignItems: 'center' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FACC15'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.125 0H1.875C.839 0 0 .84 0 1.875v20.25C0 23.161.84 24 1.875 24h20.25C23.161 24 24 23.16 24 22.125V1.875C24 .839 23.16 0 22.125 0zM12 18.75c-.591 0-1.17-.041-1.732-.12-.562.396-3.813 2.679-4.12 2.722 0 0-.125.049-.232-.014s-.088-.229-.088-.229c.032-.22.843-3.018.992-3.533-2.745-1.36-4.57-3.769-4.57-6.513 0-4.246 4.365-7.688 9.75-7.688s9.75 3.442 9.75 7.688c0 4.245-4.365 7.687-9.75 7.687zM8.05 9.867h-.878v3.342c0 .296-.252.537-.563.537s-.562-.24-.562-.537V9.867h-.878a.552.552 0 0 1 0-1.101h2.88a.552.552 0 0 1 0 1.101zm10.987 2.957a.558.558 0 0 1 .109.417.559.559 0 0 1-.219.37.557.557 0 0 1-.338.114.558.558 0 0 1-.45-.224l-1.319-1.747-.195.195v1.227a.564.564 0 0 1-.562.563.563.563 0 0 1-.563-.563V9.328a.563.563 0 0 1 1.125 0v1.21l1.57-1.57a.437.437 0 0 1 .311-.126c.14 0 .282.061.388.167a.555.555 0 0 1 .165.356.438.438 0 0 1-.124.343l-1.282 1.281 1.385 1.835zm-8.35-3.502c-.095-.27-.383-.548-.75-.556-.366.008-.654.286-.749.555l-1.345 3.541c-.171.53-.022.728.133.8a.857.857 0 0 0 .357.077c.235 0 .414-.095.468-.248l.279-.73h1.715l.279.73c.054.153.233.248.468.248a.86.86 0 0 0 .357-.078c.155-.071.304-.268.133-.8l-1.345-3.54zm-1.311 2.443.562-1.596.561 1.596H9.376zm5.905 1.383a.528.528 0 0 1-.539.516h-1.804a.528.528 0 0 1-.54-.516v-3.82c0-.31.258-.562.575-.562s.574.252.574.562v3.305h1.195c.297 0 .54.231.54.515z" />
+                </svg>
+              </a>
+              {/* X */}
+              <a href="https://x.com/VERARVO" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s', display: 'flex', alignItems: 'center' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FACC15'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              {/* Instagram */}
+              <a href="https://www.instagram.com/verarvo/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s', display: 'flex', alignItems: 'center' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FACC15'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              {/* Facebook */}
+              <a href="https://www.facebook.com/profile.php?id=61590815180891" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s', display: 'flex', alignItems: 'center' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FACC15'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.95rem', marginTop: '0.5rem' }}>
+            <a href="#privacy" onClick={() => { window.location.hash = '#privacy'; }} style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'var(--gold)'} onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.6)'}>
+              {lang === 'KO' ? '개인정보처리방침' : (lang === 'ZH' ? '隐私政策' : (lang === 'JA' ? 'プライバシーポリシー' : (lang === 'VI' ? 'Chính sách bảo mật' : 'Privacy Policy')))}
+            </a>
+            <a href="#terms" onClick={() => { window.location.hash = '#terms'; }} style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'var(--gold)'} onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.6)'}>
+              {lang === 'KO' ? '이용약관' : (lang === 'ZH' ? '服务条款' : (lang === 'JA' ? '利用規約' : (lang === 'VI' ? 'Điều khoản dịch vụ' : 'Terms of Service')))}
+            </a>
           </div>
         </div>
-        </footer>
+      </footer>
+
+      {/* Privacy Policy Modal */}
+      {privacyModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          backdropFilter: 'blur(10px)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999,
+          padding: '2rem'
+        }} onClick={() => { if (window.location.hash === '#privacy') { window.history.back(); } else { setPrivacyModalOpen(false); } }}>
+          <div style={{
+            background: 'linear-gradient(135deg, #111 0%, #070707 100%)',
+            border: '1px solid rgba(250, 204, 21, 0.25)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(250, 204, 21, 0.05)',
+            borderRadius: '16px',
+            width: '100%',
+            maxWidth: '750px',
+            maxHeight: '80vh',
+            overflowY: 'auto',
+            padding: '3rem',
+            position: 'relative'
+          }} onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => { if (window.location.hash === '#privacy') { window.history.back(); } else { setPrivacyModalOpen(false); } }}
+              style={{
+                position: 'absolute',
+                top: '1.5rem',
+                right: '1.5rem',
+                background: 'transparent',
+                border: 'none',
+                color: 'rgba(255, 255, 255, 0.5)',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                transition: 'color 0.2s'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#FACC15'}
+              onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
+            >
+              &times;
+            </button>
+            <div style={{ color: '#fff', fontFamily: 'Inter, sans-serif', lineHeight: '1.8' }}>
+              <h1 style={{ fontSize: '2rem', color: 'var(--gold)', marginBottom: '1.5rem', fontWeight: '700', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
+                {privacyPolicyTranslations[lang]?.title || privacyPolicyTranslations['EN'].title}
+              </h1>
+              <div style={{ fontSize: '1rem', color: 'rgba(255, 255, 255, 0.85)', fontWeight: '300' }}>
+                <p style={{ marginBottom: '1.5rem' }}>
+                  {privacyPolicyTranslations[lang]?.intro || privacyPolicyTranslations['EN'].intro}
+                </p>
+                {(privacyPolicyTranslations[lang]?.sections || privacyPolicyTranslations['EN'].sections).map((sec, idx) => (
+                  <div key={idx}>
+                    <h3 style={{ fontSize: '1.25rem', color: '#fff', marginTop: '2rem', marginBottom: '1rem', fontWeight: '600' }}>
+                      {sec.title}
+                    </h3>
+                    <div style={{ marginBottom: '1rem', whiteSpace: 'pre-line' }}>
+                      {sec.content}
+                    </div>
+                  </div>
+                ))}
+                <p style={{ marginTop: '2.5rem', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem' }}>
+                  {privacyPolicyTranslations[lang]?.footerText || privacyPolicyTranslations['EN'].footerText}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Terms of Service Modal */}
+      {termsModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          backdropFilter: 'blur(10px)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999,
+          padding: '2rem'
+        }} onClick={() => { if (window.location.hash === '#terms') { window.history.back(); } else { setTermsModalOpen(false); } }}>
+          <div style={{
+            background: 'linear-gradient(135deg, #111 0%, #070707 100%)',
+            border: '1px solid rgba(250, 204, 21, 0.25)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(250, 204, 21, 0.05)',
+            borderRadius: '16px',
+            width: '100%',
+            maxWidth: '750px',
+            maxHeight: '80vh',
+            overflowY: 'auto',
+            padding: '3rem',
+            position: 'relative'
+          }} onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => { if (window.location.hash === '#terms') { window.history.back(); } else { setTermsModalOpen(false); } }}
+              style={{
+                position: 'absolute',
+                top: '1.5rem',
+                right: '1.5rem',
+                background: 'transparent',
+                border: 'none',
+                color: 'rgba(255, 255, 255, 0.5)',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                transition: 'color 0.2s'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#FACC15'}
+              onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
+            >
+              &times;
+            </button>
+            <div style={{ color: '#fff', fontFamily: 'Inter, sans-serif', lineHeight: '1.8' }}>
+              <h1 style={{ fontSize: '2rem', color: 'var(--gold)', marginBottom: '1.5rem', fontWeight: '700', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
+                {termsOfServiceTranslations[lang]?.title || termsOfServiceTranslations['EN'].title}
+              </h1>
+              <div style={{ fontSize: '1rem', color: 'rgba(255, 255, 255, 0.85)', fontWeight: '300' }}>
+                {(termsOfServiceTranslations[lang]?.sections || termsOfServiceTranslations['EN'].sections).map((sec, idx) => (
+                  <div key={idx}>
+                    <h3 style={{ fontSize: '1.25rem', color: '#fff', marginTop: '2rem', marginBottom: '1rem', fontWeight: '600' }}>
+                      {sec.title}
+                    </h3>
+                    <div style={{ marginBottom: '1rem', whiteSpace: 'pre-line' }}>
+                      {sec.content}
+                    </div>
+                  </div>
+                ))}
+                <p style={{ marginTop: '2.5rem', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem' }}>
+                  {termsOfServiceTranslations[lang]?.footerText || termsOfServiceTranslations['EN'].footerText}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Custom Cursor */}
       <div 
