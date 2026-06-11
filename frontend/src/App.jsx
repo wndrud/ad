@@ -18,7 +18,9 @@ import {
   Globe,
   Printer,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Menu,
+  X
 } from 'lucide-react';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
@@ -2058,6 +2060,7 @@ function App() {
   const [currentBgVideoIndex, setCurrentBgVideoIndex] = useState(() => Math.floor(Math.random() * backgroundVideos.length));
   const [lang, setLang] = useState('KO');
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeServiceDetail, setActiveServiceDetail] = useState(initialUrlState.service);
   
   // Wizard states
@@ -2867,6 +2870,33 @@ ${customConceptText}
               <button className="btn-gold-outline btn-header-project" onClick={handleStartProject}>
                 {translations[lang].btnStartProject}
               </button>
+
+              {/* Hamburger Button for Mobile */}
+              <button 
+                className="mobile-menu-toggle" 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+
+              {/* Mobile Menu Overlay */}
+              {mobileMenuOpen && (
+                <div className="mobile-menu-overlay">
+                  <ul className="mobile-nav-links">
+                    <li><a href="#work" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'work'); setMobileMenuOpen(false); }}>{translations[lang].navWork}</a></li>
+                    <li><a href="#services" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'services'); setMobileMenuOpen(false); }}>{translations[lang].navServices}</a></li>
+                    <li><a href="#process" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'process'); setMobileMenuOpen(false); }}>{translations[lang].navProcess}</a></li>
+                    <li><a href="#careers" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'careers'); setMobileMenuOpen(false); }}>{translations[lang].navCareers}</a></li>
+                    <li><a href="#contact" className="mobile-nav-link" onClick={(e) => { handleNavClick(e, 'contact'); setMobileMenuOpen(false); }}>{translations[lang].navContact}</a></li>
+                    <li style={{ marginTop: '1.5rem', width: '100%' }}>
+                      <button className="btn-gold-outline" style={{ width: '100%', padding: '0.8rem 0', justifyContent: 'center' }} onClick={() => { handleStartProject(); setMobileMenuOpen(false); }}>
+                        {translations[lang].btnStartProject}
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </>
           ) : (
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
