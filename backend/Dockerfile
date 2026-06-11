@@ -1,5 +1,5 @@
 # Build stage
-FROM openjdk:19-jdk-slim AS build
+FROM eclipse-temurin:19-jdk AS build
 WORKDIR /app
 
 # Copy gradle wrapper and configuration files
@@ -19,7 +19,7 @@ RUN chmod +x ./gradlew
 RUN ./gradlew build -x test --no-daemon
 
 # Package stage
-FROM openjdk:19-slim
+FROM eclipse-temurin:19-jre
 EXPOSE 8080
 COPY --from=build /app/build/libs/ad-0.0.1-SNAPSHOT.jar ad.jar
 ENTRYPOINT ["java", "-jar", "/ad.jar"]
