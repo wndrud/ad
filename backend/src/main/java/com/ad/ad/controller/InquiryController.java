@@ -107,7 +107,7 @@ public class InquiryController {
 
             String json = "{"
                 + "\"from\":\"VERARVO Inquiry <onboarding@resend.dev>\","
-                + "\"to\":[\"jobsverarvo@gmail.com\"],"
+                + "\"to\":[\"james42286910@gmail.com\"],"
                 + "\"subject\":\"New Direct Inquiry from " + escapedName + "\","
                 + "\"html\":\"<p><strong>Name / Company:</strong> " + escapedName + "</p>"
                 + "<p><strong>Sender Email:</strong> " + escapedEmail + "</p>"
