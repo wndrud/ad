@@ -511,8 +511,8 @@ a {
 
 /* Glass card mockup on main page */
 .glass-reel {
-  width: 266px;
-  height: 336px;
+  width: 380px;
+  height: 480px;
   background: linear-gradient(135deg, rgba(20, 20, 24, 0.4) 0%, rgba(6, 6, 8, 0.8) 100%);
   border: 1.5px solid var(--card-border);
   border-radius: 12px;
@@ -579,8 +579,8 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   color: var(--white);
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -766,6 +766,21 @@ a {
   font-weight: 900;
   font-style: normal !important;
   -webkit-text-stroke: 0.7px rgba(255, 255, 255, 0.55);
+}
+
+.about-header .section-title {
+  --about-title-transform: translate(4.5rem, 3.5rem);
+}
+
+.about-header .hero-tag {
+  margin-bottom: 1.5rem;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  --about-content-pt: 1.5rem;
 }
 
 .about-content-col {
