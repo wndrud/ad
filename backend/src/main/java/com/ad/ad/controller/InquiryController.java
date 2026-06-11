@@ -29,15 +29,21 @@ public class InquiryController {
         boolean sent = false;
         String errorMessage = "";
 
-        // Use Resend HTTP API if the API key is configured (avoids port blocks on platforms like Render Free tier)
+        // Use Resend HTTP API if the API key is configured
         if (resendApiKey != null && !resendApiKey.trim().isEmpty()) {
-            sent = sendViaResend(resendApiKey, request.getName(), request.getEmail(), request.getMessage());
-            if (!sent) {
-                errorMessage = "Resend API call failed. Check server logs.";
+            ResendResult result = sendViaResend(resendApiKey, request.getName(), request.getEmail(), request.getMessage());
+            if (result.isSuccess()) {
+                response.put("success", true);
+                response.put("message", "Inquiry sent successfully.");
+                return ResponseEntity.ok(response);
+            } else {
+                response.put("success", false);
+                response.put("error", "Resend API Error: " + result.getErrorMessage());
+                return ResponseEntity.status(500).body(response);
             }
         }
 
-        // Fallback to SMTP if Resend is not configured or fails
+        // Fallback to SMTP only if Resend API key is NOT configured
         if (!sent) {
             try {
                 SimpleMailMessage message = new SimpleMailMessage();
@@ -66,7 +72,7 @@ public class InquiryController {
         }
     }
 
-    private boolean sendViaResend(String apiKey, String name, String email, String messageBody) {
+    private ResendResult sendViaResend(String apiKey, String name, String email, String messageBody) {
         try {
             String escapedName = escapeJson(name);
             String escapedEmail = escapeJson(email);
@@ -91,14 +97,13 @@ public class InquiryController {
 
             java.net.http.HttpResponse<String> response = client.send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() >= 200 && response.statusCode() < 300) {
-                return true;
+                return new ResendResult(true, null);
             } else {
-                System.err.println("Resend API failed: " + response.statusCode() + " - " + response.body());
-                return false;
+                return new ResendResult(false, "Status " + response.statusCode() + " - " + response.body());
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return new ResendResult(false, e.getClass().getSimpleName() + ": " + e.getMessage());
         }
     }
 
@@ -110,6 +115,24 @@ public class InquiryController {
                      .replace("\f", "\\f")
                      .replace("\r", "\\r")
                      .replace("\t", "\\t");
+    }
+}
+
+class ResendResult {
+    private final boolean success;
+    private final String errorMessage;
+
+    public ResendResult(boolean success, String errorMessage) {
+        this.success = success;
+        this.errorMessage = errorMessage;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }
 
