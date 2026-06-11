@@ -2794,8 +2794,8 @@ select.form-control-line option {
   
   /* Glass Reel Mobile Size Override (Proportionally small and centered) */
   .glass-reel {
-    width: 220px !important;
-    height: 280px !important;
+    width: 250px !important;
+    height: 315px !important;
     margin: 0 auto !important;
   }
   
@@ -2804,41 +2804,58 @@ select.form-control-line option {
     height: 32px !important;
   }
 
+  /* Ensure tag lines are visible and correctly styled on mobile */
+  .hero-tag::before {
+    display: inline-block !important;
+    width: 24px !important;
+  }
+
   /* About Section Mobile layout overrides */
   .about-sec {
-    padding: 4.5rem 0 !important;
+    padding: 4rem 0 !important;
   }
   
   .about-grid {
     grid-template-columns: 1fr !important;
-    gap: 2.5rem !important;
+    gap: 2rem !important;
   }
 
   .about-header-col {
-    text-align: center !important;
+    text-align: left !important;
   }
 
   .about-tag-top {
     margin-top: 0 !important;
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
   }
 
+  /* Hide the huge gold-outlined title on mobile to match the wireframe */
+  .about-title-text {
+    display: none !important;
+  }
+
+  /* Small left-aligned watermark logo on mobile */
   .about-emblem-wrapper {
-    height: 120px !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    height: auto !important;
     margin-left: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 1.5rem !important;
+    margin-top: 1.2rem !important;
+    margin-bottom: 1.2rem !important;
   }
 
   .about-emblem-watermark {
-    width: 240px !important;
-    transform: translate(-50%, -50%) !important;
-    opacity: 0.15 !important;
-  }
-
-  .about-title-span {
-    font-size: 1.25em !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 90px !important;
+    height: auto !important;
+    opacity: 0.55 !important;
+    display: block !important;
+    margin: 0 !important;
   }
 
   .about-content-col {
@@ -2846,9 +2863,10 @@ select.form-control-line option {
   }
 
   .about-text {
-    font-size: 0.95rem !important;
+    font-size: 0.92rem !important;
     line-height: 1.8 !important;
     text-align: left !important;
+    color: rgba(255, 255, 255, 0.75) !important;
   }
 
   /* About Metrics 3개 가로 1열 정렬 */
@@ -2859,8 +2877,8 @@ select.form-control-line option {
   }
   
   .stat-card {
-    padding: 1.2rem 0.5rem !important;
-    min-height: 110px !important;
+    padding: 1rem 0.3rem !important;
+    min-height: 90px !important;
   }
   
   .stat-val {
