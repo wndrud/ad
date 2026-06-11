@@ -29,14 +29,8 @@ public class InquiryController {
                              "Sender Email: " + request.getEmail() + "\n\n" +
                              "Message:\n" + request.getMessage());
             
-            // Send email asynchronously to avoid blocking the HTTP thread
-            java.util.concurrent.CompletableFuture.runAsync(() -> {
-                try {
-                    mailSender.send(message);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
+            // Diagnostic: send synchronously to capture the exact error and send it back to the client
+            mailSender.send(message);
             
             response.put("success", true);
             response.put("message", "Inquiry sent successfully.");
@@ -44,7 +38,7 @@ public class InquiryController {
         } catch (Exception e) {
             e.printStackTrace();
             response.put("success", false);
-            response.put("error", e.getMessage());
+            response.put("error", e.getClass().getSimpleName() + ": " + e.getMessage());
             return ResponseEntity.status(500).body(response);
         }
     }
