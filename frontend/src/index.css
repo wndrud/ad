@@ -513,8 +513,8 @@ a {
 
 /* Glass card mockup on main page */
 .glass-reel {
-  width: 380px;
-  height: 480px;
+  width: 266px;
+  height: 336px;
   background: linear-gradient(135deg, rgba(20, 20, 24, 0.4) 0%, rgba(6, 6, 8, 0.8) 100%);
   border: 1.5px solid var(--card-border);
   border-radius: 12px;
@@ -581,8 +581,8 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   color: var(--white);
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -678,16 +678,67 @@ a {
   gap: 5rem;
 }
 
-
-
-
-
-.about-header .section-title {
-  --about-title-transform: translate(4.5rem, 3.5rem);
+/* New About Section Layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 4rem;
+  align-items: flex-start;
 }
 
-.about-header .hero-tag {
+.about-header-col {
+  position: relative;
+}
+
+.about-tag-top {
+  margin-top: -1.5rem;
   margin-bottom: 1.5rem;
+}
+
+.about-emblem-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 240px;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.about-emblem-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: brightness(0.95) contrast(1.4);
+}
+
+.about-title-text {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.about-title-span {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35em;
+  font-weight: 900;
+  display: inline-block;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px #eab308;
+}
+
+.about-content-col {
+  position: relative;
+  padding-top: 0;
 }
 
 .section-title {
@@ -721,11 +772,11 @@ a {
 
 
 
-.about-content {
+.about-content-col {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  --about-content-pt: 1.5rem;
+  padding-top: 1.5rem;
 }
 
 .about-text {
@@ -1767,15 +1818,16 @@ textarea.form-control {
   .bg-video-arrow-right {
     right: 1rem;
   }
-  .section-grid {
+  .section-grid,
+  .about-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  .about-header .section-title {
-    --about-title-transform: none;
+  .about-header-col {
+    text-align: center;
   }
-  .about-content {
-    --about-content-pt: 0;
+  .about-content-col {
+    padding-top: 0;
   }
   .service-row {
     grid-template-columns: 0.1fr 1fr;
@@ -2739,6 +2791,66 @@ select.form-control-line option {
     padding: 0.8rem 0 !important;
   }
   
+  
+  /* Glass Reel Mobile Size Override (Proportionally small and centered) */
+  .glass-reel {
+    width: 220px !important;
+    height: 280px !important;
+    margin: 0 auto !important;
+  }
+  
+  .reel-arrow-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* About Section Mobile layout overrides */
+  .about-sec {
+    padding: 4.5rem 0 !important;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  .about-header-col {
+    text-align: center !important;
+  }
+
+  .about-tag-top {
+    margin-top: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .about-emblem-wrapper {
+    height: 120px !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .about-emblem-watermark {
+    width: 240px !important;
+    transform: translate(-50%, -50%) !important;
+    opacity: 0.15 !important;
+  }
+
+  .about-title-span {
+    font-size: 1.25em !important;
+  }
+
+  .about-content-col {
+    margin-top: 0 !important;
+  }
+
+  .about-text {
+    font-size: 0.95rem !important;
+    line-height: 1.8 !important;
+    text-align: left !important;
+  }
+
   /* About Metrics 3개 가로 1열 정렬 */
   .stats-grid {
     grid-template-columns: repeat(3, 1fr) !important;
