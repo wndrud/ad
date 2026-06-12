@@ -5729,21 +5729,21 @@ ${customConceptText}
 
                     <div className="contact-tag">CONTACT</div>
 
-                    <a href="mailto:jobsverarvo@gmail.com" className="contact-email">jobsverarvo@gmail.com</a>
+                    <a href="mailto:contact@verarvo.com" className="contact-email">contact@verarvo.com</a>
 
                     
 
                     <div className="mobile-lang-selector">
 
-                      <button className={lang === 'KO' ? 'active' : ''} onClick={() => { setLang('KO'); setMobileMenuOpen(false); }}>KOR</button>
+                      <button className={lang === 'KO' ? 'active' : ''} onClick={() => { setLang('KO'); setMobileMenuOpen(false); }}><span className="lang-prefix">KR</span> KOR</button>
 
-                      <button className={lang === 'EN' ? 'active' : ''} onClick={() => { setLang('EN'); setMobileMenuOpen(false); }}>ENG</button>
+                      <button className={lang === 'EN' ? 'active' : ''} onClick={() => { setLang('EN'); setMobileMenuOpen(false); }}><span className="lang-prefix">US</span> ENG</button>
 
-                      <button className={lang === 'ZH' ? 'active' : ''} onClick={() => { setLang('ZH'); setMobileMenuOpen(false); }}>CHN</button>
+                      <button className={lang === 'ZH' ? 'active' : ''} onClick={() => { setLang('ZH'); setMobileMenuOpen(false); }}><span className="lang-prefix">CN</span> CHN</button>
 
-                      <button className={lang === 'JA' ? 'active' : ''} onClick={() => { setLang('JA'); setMobileMenuOpen(false); }}>JPN</button>
+                      <button className={lang === 'JA' ? 'active' : ''} onClick={() => { setLang('JA'); setMobileMenuOpen(false); }}><span className="lang-prefix">JP</span> JPN</button>
 
-                      <button className={lang === 'VI' ? 'active' : ''} onClick={() => { setLang('VI'); setMobileMenuOpen(false); }}>VIE</button>
+                      <button className={lang === 'VI' ? 'active' : ''} onClick={() => { setLang('VI'); setMobileMenuOpen(false); }}><span className="lang-prefix">VN</span> VIE</button>
 
                     </div>
 
@@ -6585,9 +6585,9 @@ ${customConceptText}
 
                 <video
 
-                  key={currentBgVideoIndex}
+                  key={isMobile ? currentVideoIndex : currentBgVideoIndex}
 
-                  src={backgroundVideos[currentBgVideoIndex]}
+                  src={isMobile ? heroVideos[currentVideoIndex] : backgroundVideos[currentBgVideoIndex]}
 
                   autoPlay
 
@@ -6613,7 +6613,11 @@ ${customConceptText}
 
                   e.stopPropagation();
 
-                  setCurrentBgVideoIndex((prev) => (prev === 0 ? backgroundVideos.length - 1 : prev - 1));
+                  if (isMobile) {
+                    setCurrentVideoIndex((prev) => (prev === 0 ? heroVideos.length - 1 : prev - 1));
+                  } else {
+                    setCurrentBgVideoIndex((prev) => (prev === 0 ? backgroundVideos.length - 1 : prev - 1));
+                  }
 
                 }}
 
@@ -6633,7 +6637,11 @@ ${customConceptText}
 
                   e.stopPropagation();
 
-                  setCurrentBgVideoIndex((prev) => (prev === backgroundVideos.length - 1 ? 0 : prev + 1));
+                  if (isMobile) {
+                    setCurrentVideoIndex((prev) => (prev === heroVideos.length - 1 ? 0 : prev + 1));
+                  } else {
+                    setCurrentBgVideoIndex((prev) => (prev === backgroundVideos.length - 1 ? 0 : prev + 1));
+                  }
 
                 }}
 
@@ -6693,9 +6701,16 @@ ${customConceptText}
 
                     </p>
 
+                    {isMobile && (
+                      <div className="hero-actions mobile-only" style={{ display: 'flex', gap: '0.8rem', width: '100%', marginTop: '2rem' }}>
+                        <button className="btn-gold-fill" style={{ flex: 1, padding: '1rem', background: 'var(--gold)', color: '#000', border: 'none', fontWeight: 'bold', fontSize: '1rem' }} onClick={() => setView('wizard')}>프로젝트 시작</button>
+                        <button className="btn-dark-outline" style={{ flex: 1, padding: '1rem', background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', fontWeight: 'bold', fontSize: '1rem' }} onClick={(e) => handleNavClick(e, 'services')}>서비스 보기</button>
+                      </div>
+                    )}
+
                   </div>
 
-                  <div className="hero-visual">
+                  <div className={`hero-visual ${isMobile ? 'mobile-hidden' : ''}`}>
 
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem', width: '100%' }}>
 
@@ -7127,7 +7142,7 @@ ${customConceptText}
 
               </div>
 
-              <div className="services-list desktop-only">
+              <div className="services-list">
 
                 <div className="service-row" onClick={() => { setActiveServiceDetail(1); console.log('[History] Pushing service detail 1'); window.history.pushState({ view: 'landing', activeServiceDetail: 1 }, '', '/?service=1'); }}>
 
@@ -7193,199 +7208,9 @@ ${customConceptText}
 
               </div>
 
-              {/* Mobile Swipe Slider View */}
 
-              <div 
 
-                className="services-mobile-slider mobile-only"
-
-                onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; touchEndX.current = e.touches[0].clientX; }}
-
-                onTouchMove={(e) => { touchEndX.current = e.touches[0].clientX; }}
-
-                onTouchEnd={() => {
-
-                  const diff = touchStartX.current - touchEndX.current;
-
-                  if (diff > 55) {
-
-                    nextServiceSlide();
-
-                  } else if (diff < -55) {
-
-                    prevServiceSlide();
-
-                  }
-
-                }}
-
-              >
-
-                <div className="slider-viewport">
-
-                  <div 
-
-                    className="slider-track"
-
-                    style={{ transform: `translateX(-${activeServiceSlide * 100}%)` }}
-
-                  >
-
-                    {[
-
-                      { id: 1, name: translations[lang].service1Name, desc: translations[lang].service1Desc, badge: "PRODUCT AD", video: "/3763027-uhd_3840_2160_25fps.mp4" },
-
-                      { id: 2, name: translations[lang].service2Name, desc: translations[lang].service2Desc, badge: "EVENT · FESTIVAL", video: "/5644237-uhd_4096_2160_25fps.mp4" },
-
-                      { id: 3, name: translations[lang].service3Name, desc: translations[lang].service3Desc, badge: "SHORT-FORM", video: "/ai video ugc ads creation.mp4" },
-
-                      { id: 4, name: translations[lang].service4Name, desc: translations[lang].service4Desc, badge: "VIRTUAL INFLUENCER", video: "/257945.mp4" },
-
-                      { id: 5, name: translations[lang].service5Name, desc: translations[lang].service5Desc, badge: "INTERIOR", video: "/6632880-hd_1920_1080_25fps.mp4" }
-
-                    ].map((item, idx) => (
-
-                      <div 
-
-                        key={item.id} 
-
-                        className={`service-slide-card ${activeServiceSlide === idx ? 'active' : ''}`}
-
-                        onClick={() => { 
-
-                          setActiveServiceDetail(item.id); 
-
-                          console.log(`[History] Pushing service detail ${item.id}`); 
-
-                          window.history.pushState({ view: 'landing', activeServiceDetail: item.id }, '', `/?service=${item.id}`); 
-
-                        }}
-
-                      >
-
-                        <div className="slide-video-wrapper">
-
-                          <video 
-
-                            src={item.video} 
-
-                            autoPlay 
-
-                            loop 
-
-                            muted 
-
-                            playsInline 
-
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-
-                          />
-
-                          <div className="slide-video-overlay"></div>
-
-                          <span className="slide-badge">{item.badge}</span>
-
-                        </div>
-
-                        <div className="slide-details">
-
-                          <div className="slide-header-row">
-
-                            <span className="slide-num">0{item.id}</span>
-
-                            <h3 className="slide-title">{item.name}</h3>
-
-                          </div>
-
-                          <p className="slide-desc">{item.desc}</p>
-
-                        </div>
-
-                      </div>
-
-                    ))}
-
-                  </div>
-
-                </div>
-
-                {/* Slider Navigation & Pill Indicator */}
-
-                <div className="slider-nav-controls">
-
-                  <button 
-
-                    className="slider-arrow prev" 
-
-                    onClick={prevServiceSlide} 
-
-                    disabled={activeServiceSlide === 0}
-
-                  >
-
-                    ‹
-
-                  </button>
-
-                  <div className="slider-pill-badge">
-
-                    <span className="slider-pill-text">
-
-                      {[
-
-                        "PRODUCT AD",
-
-                        "EVENT · FESTIVAL",
-
-                        "SHORT-FORM",
-
-                        "VIRTUAL INFLUENCER",
-
-                        "INTERIOR"
-
-                      ][activeServiceSlide]}
-
-                    </span>
-
-                  </div>
-
-                  <button 
-
-                    className="slider-arrow next" 
-
-                    onClick={nextServiceSlide} 
-
-                    disabled={activeServiceSlide === 4}
-
-                  >
-
-                    ›
-
-                  </button>
-
-                </div>
-
-                {/* Pagination Dots */}
-
-                <div className="slider-pagination-dots">
-
-                  {[0, 1, 2, 3, 4].map((dotIndex) => (
-
-                    <button
-
-                      key={dotIndex}
-
-                      className={`pagination-dot ${activeServiceSlide === dotIndex ? 'active' : ''}`}
-
-                      onClick={(e) => { e.stopPropagation(); setActiveServiceSlide(dotIndex); }}
-
-                    />
-
-                  ))}
-
-                </div>
-
-              </div>
+  
 
             </section>
 
@@ -7503,7 +7328,7 @@ ${customConceptText}
 
                             <li key={dIdx} className="timeline-detail-item">
 
-                              <span className="timeline-dot">•</span>
+                              <span className="timeline-dot">▪</span>
 
                               <span className="timeline-detail-text">{detail}</span>
 
