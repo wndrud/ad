@@ -6703,7 +6703,7 @@ ${customConceptText}
 
                     {isMobile && (
                       <div className="hero-actions mobile-only" style={{ display: 'flex', gap: '0.8rem', width: '100%', marginTop: '2rem' }}>
-                        <button className="btn-gold-fill" style={{ flex: 1, padding: '1rem', background: 'var(--gold)', color: '#000', border: 'none', fontWeight: 'bold', fontSize: '1rem' }} onClick={() => setView('wizard')}>프로젝트 시작</button>
+                        <button className="btn-gold-fill" style={{ flex: 1, padding: '1rem', background: 'var(--gold)', color: '#000', border: 'none', fontWeight: 'bold', fontSize: '1rem' }} onClick={handleCreateNewProject}>프로젝트 시작</button>
                         <button className="btn-dark-outline" style={{ flex: 1, padding: '1rem', background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', fontWeight: 'bold', fontSize: '1rem' }} onClick={(e) => handleNavClick(e, 'services')}>서비스 보기</button>
                       </div>
                     )}
