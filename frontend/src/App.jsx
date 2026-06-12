@@ -7349,9 +7349,10 @@ ${customConceptText}
               </div>
 
             </section>
+            )}
 
             {/* CONTACT & FAQ SECTION */}
-
+            {(!isMobile || mobileActiveSection === 'contact') && (
             <section id="contact" className="contact-sec container">
 
               <div className="contact-grid">
@@ -9385,7 +9386,7 @@ ${customConceptText}
       </main>
 
       {/* Footer bar */}
-
+      {(!isMobile || mobileActiveSection === 'contact') && (
       <footer className="footer" style={{ background: 'transparent', borderTop: 'none', padding: '2rem 0' }}>
 
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '2rem' }}>
@@ -9469,6 +9470,7 @@ ${customConceptText}
         </div>
 
       </footer>
+      )}
 
       {/* Privacy Policy Modal */}
 

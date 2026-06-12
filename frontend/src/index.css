@@ -2900,12 +2900,15 @@ select.form-control-line option {
     padding: 0 1.5rem !important;
   }
   
-  /* 영웅(Hero) 섹션 100% 왼쪽 정렬로 구성 및 PC 밸런스 유지 */
   .hero-sec {
     justify-content: flex-start !important;
     text-align: left !important;
-    padding-top: 6rem !important;
-    padding-bottom: 4rem !important;
+    padding-top: 7rem !important;
+    padding-bottom: 2rem !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
   }
   
   .hero-content {
