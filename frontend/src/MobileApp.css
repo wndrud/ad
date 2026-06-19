@@ -39,13 +39,13 @@
 }
 
 .mobile-logo-text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Plus Jakarta Sans', 'Pretendard', sans-serif;
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
-  letter-spacing: 0.05em;
-  -webkit-text-stroke: 0.6px #EAB308;
-  text-shadow: 0 0 6px rgba(234, 179, 8, 0.7), 0 0 12px rgba(234, 179, 8, 0.4);
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
 }
 
 .mobile-header-right {
@@ -563,11 +563,11 @@
 }
 
 .mobile-menu-logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Plus Jakarta Sans', 'Pretendard', sans-serif;
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #EAB308;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.5px;
 }
 
 .mobile-menu-close {
@@ -769,7 +769,7 @@
 .metric-value {
   font-family: 'Outfit', sans-serif;
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 500;
   color: #EAB308;
   text-shadow: 0 0 8px rgba(234, 179, 8, 0.2);
 }

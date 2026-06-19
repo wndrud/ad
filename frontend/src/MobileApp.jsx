@@ -225,8 +225,38 @@ const MobileApp = () => {
     <div className={`mobile-app-container lang-${language.toLowerCase()}`}>
       {/* 1. Header (Only show when menu is closed) */}
       <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
-        <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
-          <span className="mobile-logo-text">VERARVO</span>
+        <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <div className="mobile-logo-text">
+            VER
+            <span style={{ 
+              position: 'relative', 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              color: '#ffffff',
+              WebkitTextFillColor: '#ffffff',
+              WebkitTextStroke: '0.8px #ffcc00'
+            }}>
+              A
+              <img 
+                src="/logo-nv-transparent-hq.png" 
+                alt="" 
+                style={{
+                  position: 'absolute',
+                  left: '52%',
+                  top: '52%',
+                  transform: 'translate(-50%, -50%)',
+                  width: '2.0em',
+                  height: '2.0em',
+                  opacity: 0.35,
+                  zIndex: -1,
+                  pointerEvents: 'none',
+                  objectFit: 'contain'
+                }} 
+              />
+            </span>
+            RVO
+          </div>
         </div>
         <div className="mobile-header-right">
           {/* Transparent Language Switcher Button */}
