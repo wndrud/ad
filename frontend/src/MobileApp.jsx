@@ -140,6 +140,59 @@ const MobileApp = () => {
     }
   ];
 
+  const servicesText = {
+    KO: {
+      aboutTag: "ABOUT VERARVO",
+      aboutText1: "기존 광고 제작은 많은 시간과 비용이 필요했습니다. 촬영 장소를 섭외하고, 모델을 섭외하며, 촬영과 편집 과정을 거쳐야 했습니다. 하나의 광고를 완성하기 위해 수일에서 수주가 소요되고 높은 제작 비용이 발생하는 것이 일반적이었습니다.",
+      aboutText2: "는 이러한 과정을 새롭게 바꿉니다. 우리는 생성형 AI 기술을 활용하여 제품 사진 한 장만으로 광고 이미지와 영상 콘텐츠를 제작합니다. 복잡한 촬영 과정 없이도 다양한 컨셉과 스타일을 빠르게 구현할 수 있으며, 브랜드가 원하는 크리에이티브를 짧은 시간 안에 제공합니다.",
+      aboutText3: "광고는 단순히 보기 좋은 영상이 아닙니다. 고객의 시선을 사로잡고 행동을 이끌어내는 강력한 도구입니다.",
+      aboutText4: "는 AI 크리에이터와 마케팅 전문가가 함께 협업하여 단순한 결과물이 아닌 성과를 위한 광고 콘텐츠를 제작합니다.",
+      statTime: "평균 제작 시간",
+      statCostSaving: "제작 비용 절감",
+      statSatisfaction: "고객 만족도"
+    },
+    EN: {
+      aboutTag: "ABOUT VERARVO",
+      aboutText1: "Traditional ad production required a lot of time and money. It involved scouting shooting locations, casting models, and going through filming and editing processes. It was common for a single ad to take days to weeks to complete and incur high production costs.",
+      aboutText2: " changes this process. We leverage generative AI technology to create ad images and video content from just a single product photo. Various concepts and styles can be implemented quickly without complex filming processes, delivering the brand's desired creative in a short period.",
+      aboutText3: "Advertising is not just a nice-looking video. It is a powerful tool that captures customer attention and drives action.",
+      aboutText4: "'s AI creators and marketing experts collaborate to produce ad content that drives performance, not just simple output.",
+      statTime: "Average Production Time",
+      statCostSaving: "Cost Reduction",
+      statSatisfaction: "Client Satisfaction"
+    },
+    ZH: {
+      aboutTag: "ABOUT VERARVO",
+      aboutText1: "传统的广告制作需要耗费大量的时间和资金。它涉及物色拍摄场地、招募模特，以及经历拍摄和编辑过程。通常，一个广告需要几天到几周的时间才能完成，并且制作成本高昂。",
+      aboutText2: " 改变了这一流程。我们利用生成式 AI 技术，仅凭一张产品照片即可制作广告图片和视频内容。无需复杂的拍摄流程即可快速实现各种概念和风格，在短时间内交付品牌所需的创意。",
+      aboutText3: "广告不仅仅是好看的视频。它是吸引客户注意并促进行动的强大工具。",
+      aboutText4: " 汇集了 AI 创作者和营销专家，共同协作，生产旨在实现业绩而非单纯产出的广告内容。",
+      statTime: "平均制作时间",
+      statCostSaving: "制作成本节省",
+      statSatisfaction: "客户满意度"
+    },
+    JA: {
+      aboutTag: "ABOUT VERARVO",
+      aboutText1: "従来の広告制作は、多くの時間と費用が必要でした。撮影場所を手配し、モデルをキャスティングし、撮影と編集のプロセスを経る必要がありました。1つの広告を完成させるために数日から数週間がかかり、高い制作費が発生するのが一般的でした。",
+      aboutText2: "はこのようなプロセスを新しく変えます。私たちは生成AI技術を活用し、製品写真1枚だけで広告画像や映像コンテンツを制作します。複雑な撮影プロセスなしで多様なコンセプトとスタイルを迅速に実現でき、ブランドが求めるクリエイティブを短時間で提供します。",
+      aboutText3: "広告は単に見栄えの良い映像ではありません。顧客の視線を引きつけ、行動を促す強力なツールです。",
+      aboutText4: "は、AIクリエイターとマーケティングの専門家が連携し、単なる成果物ではなく成果を出すための広告コンテンツを制作します。",
+      statTime: "平均制作時間",
+      statCostSaving: "制作コスト削減",
+      statSatisfaction: "顧客満足度"
+    },
+    VI: {
+      aboutTag: "ABOUT VERARVO",
+      aboutText1: "Sản xuất quảng cáo truyền thống đòi hỏi rất nhiều thời gian và chi phí. Quy trình này bao gồm việc khảo sát địa điểm quay, tuyển chọn người mẫu, thực hiện ghi hình và biên tập. Việc hoàn thiện một quảng cáo thường mất từ vài ngày đến vài tuần và phát sinh chi phí sản xuất cao là điều phổ biến.",
+      aboutText2: " thay đổi hoàn toàn quy trình này. Chúng tôi tận dụng công nghệ AI tạo sinh để sản xuất hình ảnh quảng cáo và nội dung video chỉ từ một bức ảnh sản phẩm duy nhất. Các ý tưởng và phong cách đa dạng có thể được thực hiện nhanh chóng mà không cần quy trình quay phim phức tạp, mang lại hiệu quả sáng tạo như thương hiệu mong muốn trong thời gian ngắn.",
+      aboutText3: "Quảng cáo không chỉ là một video đẹp mắt. Đó là một công cụ mạnh mẽ thu hút sự chú ý của khách hàng và thúc đẩy hành động.",
+      aboutText4: " là sự hợp tác giữa các nhà sáng tạo AI và chuyên gia tiếp thị để sản xuất nội dung quảng cáo mang lại hiệu suất thực tế chứ không chỉ là những sản phẩm đơn thuần.",
+      statTime: "Thời gian sản xuất trung bình",
+      statCostSaving: "Tiết kiệm chi phí sản xuất",
+      statSatisfaction: "Sự hài lòng của khách hàng"
+    }
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
     if (langDropdownOpen) setLangDropdownOpen(false);
@@ -149,6 +202,8 @@ const MobileApp = () => {
     setMenuOpen(false);
     if (item === 'WORK') {
       setCurrentView('works');
+    } else if (item === 'SERVICES') {
+      setCurrentView('services');
     } else {
       setCurrentView('home');
     }
@@ -215,7 +270,7 @@ const MobileApp = () => {
       )}
 
       {/* 2. Page Views */}
-      {currentView === 'home' ? (
+      {currentView === 'home' && (
         /* ================= HOME VIEW ================= */
         <main className="mobile-main">
           {/* Faint Background interlocking NV Logo */}
@@ -232,7 +287,9 @@ const MobileApp = () => {
             </button>
           </div>
         </main>
-      ) : (
+      )}
+
+      {currentView === 'works' && (
         /* ================= WORKS VIEW (Mockup style) ================= */
         <main className="mobile-works-view">
           <div className="mobile-works-header">
@@ -263,6 +320,62 @@ const MobileApp = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </main>
+      )}
+
+      {currentView === 'services' && (
+        /* ================= SERVICES VIEW (About Verarvo) ================= */
+        <main className="mobile-services-view">
+          <div className="mobile-services-header">
+            <button className="mobile-back-btn" onClick={() => setCurrentView('home')}>
+              <ArrowLeft size={18} />
+              <span>Back</span>
+            </button>
+            <h2 className="mobile-services-title">ABOUT</h2>
+          </div>
+
+          <div className="services-section">
+            <div className="services-tag-line">
+              <span className="services-tag-line-bar"></span>
+              <span className="services-tag-text">{servicesText[language]?.aboutTag || servicesText['EN'].aboutTag}</span>
+            </div>
+
+            {/* Interlocking NV Logo & outlined VERARVO text */}
+            <div className="services-hero-visual">
+              <div className="services-nv-logo-container">
+                <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="services-nv-logo-img" />
+                <div className="services-outlined-text">VERARVO</div>
+              </div>
+            </div>
+
+            {/* Texts */}
+            <div className="services-description-container">
+              <p className="services-desc-p">{servicesText[language]?.aboutText1 || servicesText['EN'].aboutText1}</p>
+              <p className="services-desc-p">
+                <span className="highlight-gold">VERARVO</span>{servicesText[language]?.aboutText2 || servicesText['EN'].aboutText2}
+              </p>
+              <p className="services-desc-p">{servicesText[language]?.aboutText3 || servicesText['EN'].aboutText3}</p>
+              <p className="services-desc-p">
+                <span className="highlight-gold">VERARVO</span>{servicesText[language]?.aboutText4 || servicesText['EN'].aboutText4}
+              </p>
+            </div>
+
+            {/* Metrics cards */}
+            <div className="services-metrics-container">
+              <div className="services-metric-card">
+                <div className="metric-value">24h~72h</div>
+                <div className="metric-label">{servicesText[language]?.statTime || servicesText['EN'].statTime}</div>
+              </div>
+              <div className="services-metric-card">
+                <div className="metric-value">80%↓</div>
+                <div className="metric-label">{servicesText[language]?.statCostSaving || servicesText['EN'].statCostSaving}</div>
+              </div>
+              <div className="services-metric-card">
+                <div className="metric-value">98%</div>
+                <div className="metric-label">{servicesText[language]?.statSatisfaction || servicesText['EN'].statSatisfaction}</div>
+              </div>
+            </div>
           </div>
         </main>
       )}
