@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Globe, ArrowLeft, Play, Upload, Send } from 'lucide-react';
 import './MobileApp.css';
 
@@ -30,6 +30,7 @@ const MobileApp = () => {
 
   // Background video state & ended handler for mobile
   const [bgVideoSrc, setBgVideoSrc] = useState(() => targetVideos[Math.floor(Math.random() * targetVideos.length)]);
+  const bgVideoRef = useRef(null);
 
   const handleBgVideoEnded = () => {
     let nextIndex;
@@ -38,6 +39,18 @@ const MobileApp = () => {
     } while (targetVideos[nextIndex] === bgVideoSrc && targetVideos.length > 1);
     setBgVideoSrc(targetVideos[nextIndex]);
   };
+
+  useEffect(() => {
+    if (bgVideoRef.current && currentView === 'home') {
+      bgVideoRef.current.load();
+      const playPromise = bgVideoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay was prevented on mobile:", error);
+        });
+      }
+    }
+  }, [bgVideoSrc, currentView]);
 
   // Careers Form States
   const [careerForm, setCareerForm] = useState({
@@ -600,7 +613,7 @@ const MobileApp = () => {
       {currentView === 'home' && (
         <div className="mobile-video-bg-container">
           <video
-            key={bgVideoSrc}
+            ref={bgVideoRef}
             src={bgVideoSrc}
             autoPlay
             muted
