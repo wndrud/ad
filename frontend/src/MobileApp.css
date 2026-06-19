@@ -122,7 +122,7 @@
 .mobile-lang-dropdown {
   position: absolute;
   top: 4.3rem;
-  right: 4.2rem; /* aligned near the language switcher pill */
+  right: 4.2rem;
   background-color: #0c0c0e;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
@@ -164,14 +164,14 @@
   font-family: 'Outfit', sans-serif;
 }
 
-/* Active language state (Highlighted in gold, matching mockup) */
+/* Active language state */
 .mobile-lang-dropdown-item.active {
   color: #EAB308 !important;
   font-weight: 700;
   background-color: rgba(234, 179, 8, 0.05);
 }
 
-/* Main content area */
+/* Main content area (HOME VIEW) */
 .mobile-main {
   flex: 1;
   display: flex;
@@ -183,7 +183,7 @@
   z-index: 10;
 }
 
-/* Faint Background NV Logo (mockup 2) styling */
+/* Faint Background NV Logo styling */
 .mobile-bg-logo-container {
   position: absolute;
   top: 50%;
@@ -197,7 +197,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.12; /* Faint and transparent behind text */
+  opacity: 0.12;
 }
 
 .mobile-bg-logo-img {
@@ -246,7 +246,7 @@
   border: none;
   padding: 0.7rem 2.8rem;
   cursor: pointer;
-  transform: skewX(-15deg); /* Slanted style */
+  transform: skewX(-15deg);
   box-shadow: 0 4px 15px rgba(234, 179, 8, 0.25);
   transition: transform 0.2s ease, background-color 0.2s ease;
   display: inline-block;
@@ -258,7 +258,7 @@
   font-weight: 700;
   color: #000000;
   display: inline-block;
-  transform: skewX(15deg); /* Counter-skew the text to keep it straight */
+  transform: skewX(15deg);
   letter-spacing: 0.02em;
 }
 
@@ -267,7 +267,249 @@
   background-color: #CA8A04;
 }
 
-/* Full Screen Menu Overlay */
+/* ==============================================
+   WORKS SUBVIEW (Mockup style)
+   ============================================== */
+.mobile-works-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.2rem 2.5rem 1.2rem;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.mobile-works-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.8rem;
+}
+
+.mobile-back-btn {
+  background: transparent;
+  border: none;
+  color: #EAB308;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  padding: 0.4rem 0.2rem;
+}
+
+.mobile-back-btn:active {
+  opacity: 0.7;
+}
+
+.mobile-works-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Categories List */
+.mobile-works-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-works-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem 0.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-works-item:active {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.works-item-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #EAB308;
+  opacity: 0.85;
+  margin-top: 0.2rem;
+}
+
+.works-item-content {
+  flex: 1;
+  text-align: left;
+}
+
+.works-item-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+}
+
+.works-item-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.works-item-action {
+  align-self: center;
+}
+
+.works-item-pill-btn {
+  background: transparent;
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  border-radius: 4px;
+  color: #EAB308;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 0.4rem 0.6rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ==============================================
+   VIDEO PLAYER MODAL (Premium overlay drawer)
+   ============================================== */
+.mobile-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1500;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.mobile-video-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 90vh;
+  background-color: #0c0c0e;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px 20px 0 0;
+  z-index: 1501;
+  padding: 1.5rem 1.2rem 2.5rem 1.2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.9);
+  
+  /* Slide-up transition */
+  animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.mobile-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.mobile-modal-close {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Aspect ratio tab selector */
+.mobile-ratio-tab-container {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobile-ratio-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.6rem 0;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.mobile-ratio-tab.active {
+  color: #EAB308;
+  border-color: #EAB308;
+}
+
+/* Responsive Player container */
+.mobile-video-player-container {
+  width: 100%;
+  background-color: #000000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-video-player-container.aspect-16-9 {
+  aspect-ratio: 16/9;
+}
+
+.mobile-video-player-container.aspect-9-16 {
+  aspect-ratio: 9/16;
+  max-height: 48vh;
+  margin: 0 auto;
+}
+
+.mobile-modal-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==============================================
+   FULL SCREEN MENU OVERLAY
+   ============================================== */
 .mobile-menu-overlay {
   position: fixed;
   top: 0;
@@ -275,11 +517,11 @@
   width: 100%;
   height: 100vh;
   background-color: #000000;
-  z-index: 1000;
+  z-index: 2000;
   display: flex;
   flex-direction: column;
   
-  /* Initial hidden state (modern fade + scale down) */
+  /* Initial hidden state */
   opacity: 0;
   pointer-events: none;
   transform: scale(1.05);
