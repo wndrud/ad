@@ -14,6 +14,46 @@ const MobileApp = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeVideoType, setActiveVideoType] = useState('16:9'); // '16:9' or '9:16'
 
+  // Process timeline states & scroll handling
+  const [activeStep, setActiveStep] = useState(0);
+
+  const handleProcessScroll = (e) => {
+    const container = e.currentTarget;
+    const cards = container.querySelectorAll('.process-card-item');
+    if (!cards.length) return;
+    
+    const containerRect = container.getBoundingClientRect();
+    const containerTop = containerRect.top;
+    
+    let closestStep = 0;
+    let minDiff = Infinity;
+    
+    cards.forEach((card, idx) => {
+      const cardRect = card.getBoundingClientRect();
+      const diff = Math.abs(cardRect.top - containerTop - 120);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestStep = idx;
+      }
+    });
+    
+    if (closestStep !== activeStep) {
+      setActiveStep(closestStep);
+    }
+  };
+
+  const scrollToStep = (idx, stepNum) => {
+    setActiveStep(idx);
+    const element = document.getElementById(`process-card-${stepNum}`);
+    const container = document.querySelector('.process-scroll-content');
+    if (element && container) {
+      const containerTop = container.getBoundingClientRect().top;
+      const elementTop = element.getBoundingClientRect().top;
+      const scrollOffset = elementTop - containerTop + container.scrollTop - 90;
+      container.scrollTo({ top: scrollOffset, behavior: 'smooth' });
+    }
+  };
+
   const langOptions = [
     { code: 'KO', name: '한국어', flag: '🇰🇷' },
     { code: 'EN', name: 'English', flag: '🇺🇸' },
@@ -193,6 +233,69 @@ const MobileApp = () => {
     }
   };
 
+  const processText = {
+    KO: {
+      tag: "작업 방식",
+      titlePre: "VERARVO",
+      titlePost: "프로세스",
+      subtitle: "기획서 제출부터 최종 전달까지, 투명하고 신속한 4단계 워크플로우를 제공합니다.",
+      steps: [
+        { num: "01", letter: "B", label: "의뢰", title: "작업 의뢰", details: ["예산 및 일정 상담", "브랜드 분석 및 광고 목표 설계", "타겟 오디언스 및 배포 채널 선정"] },
+        { num: "02", letter: "P", label: "기획", title: "작업 기획", details: ["AI 기반 프로젝트 컨셉 기획", "크리에이티브 메시지 및 슬로건 도출", "4컷 스토리보드 / 스크립트 설계"] },
+        { num: "03", letter: "D", label: "시안", title: "시안 공유 및 수정", details: ["초고화질 AI 비디오 1차 시안 생성", "피드백 반영 및 2차 시안 디테일 보정", "최종 고해상도 이미지/영상 미세 조정"] },
+        { num: "04", letter: "F", label: "납품", title: "최종 검토 및 납품", details: ["최종 완성본 4K 광고 영상 검토", "플랫폼별 멀티 포맷 가이드라인 제공", "라이선스 이전 및 최종 납품 패키지(.zip) 전달"] }
+      ]
+    },
+    EN: {
+      tag: "WORKFLOW",
+      titlePre: "VERARVO",
+      titlePost: "Process",
+      subtitle: "A transparent and fast 4-step workflow, from brief submission to final delivery.",
+      steps: [
+        { num: "01", letter: "B", label: "Brief", title: "Brief & Strategy", details: ["Budget & timeline consultation", "Brand analysis & ad goal design", "Target audience & channel selection"] },
+        { num: "02", letter: "P", label: "Plan", title: "Concept & Planning", details: ["AI-driven project concept planning", "Creative messaging & slogan design", "4-panel storyboard & script drafting"] },
+        { num: "03", letter: "D", label: "Draft", title: "AI Production & Polish", details: ["1st draft generation of AI video ads", "Feedback integration & 2nd draft polishing", "Final fine-tuning of high-res image & video assets"] },
+        { num: "04", letter: "F", label: "Final", title: "Review & Delivery", details: ["Final review of completed 4K ad videos", "Multi-format guidelines per platform", "License transfer & final package delivery (.zip)"] }
+      ]
+    },
+    ZH: {
+      tag: "工作方式",
+      titlePre: "VERARVO",
+      titlePost: "工作流程",
+      subtitle: "从简报提交到最终交付，提供透明、快速的4步法工作流。",
+      steps: [
+        { num: "01", letter: "B", label: "需求", title: "项目委托", details: ["预算及日程咨询", "品牌分析及广告目标设定", "目标受众及分发渠道选择"] },
+        { num: "02", letter: "P", label: "策划", title: "方案策划", details: ["基于AI的项目创意策划", "创意文案与广告标语提炼", "4格分镜故事板与脚本设计"] },
+        { num: "03", letter: "D", label: "设计", title: "样片确认与修改", details: ["生成超高清 AI 视频第一版初稿", "整合反馈并进行第二版润色修改", "最终高分辨率图像与视频资产微调"] },
+        { num: "04", letter: "F", label: "交付", title: "最终交付", details: ["审核完成的 4K 广告视频", "提供符合各平台规格的素材指南", "版权移交及最终交付包 (.zip) 发送"] }
+      ]
+    },
+    JA: {
+      tag: "制作プロセス",
+      titlePre: "VERARVO",
+      titlePost: "プロセス",
+      subtitle: "ヒアリングから最終納品まで、透明性が高く迅速な4ステップのワークフローを提供します。",
+      steps: [
+        { num: "01", letter: "B", label: "依頼", title: "作業依頼", details: ["予算および日程のコンサルティング", "ブランド分析および広告ゴールの設計", "ターゲット層と配信チャネルの選定"] },
+        { num: "02", letter: "P", label: "企画", title: "企画立案", details: ["AI基盤のプロジェクトコンセプト企画", "クリエイティブメッセージとスローガンの導出", "4コマストーリーボード・スクリプト設計"] },
+        { num: "03", letter: "D", label: "試案", title: "試案共有・修正", details: ["超高画質AIビデオ第1次試案の生成", "フィードバック反映＆第2次試案의 磨き上げ", "最終高解像度画像・映像アセット의 微調整"] },
+        { num: "04", letter: "F", label: "納品", title: "最終検品・納品", details: ["完成した4K広告動画の最終確認", "プラットフォーム別マルチフォーマットガイドの提供", "ライセンス移転および最終納品パッケージ（.zip）の引き渡し"] }
+      ]
+    },
+    VI: {
+      tag: "Quy trình",
+      titlePre: "Quy trình",
+      titlePost: "VERARVO",
+      subtitle: "Quy trình làm việc 4 bước nhanh chóng và minh bạch từ gửi brief đến bàn giao sản phẩm.",
+      steps: [
+        { num: "01", letter: "B", label: "Brief", title: "Yêu cầu Dự án", details: ["Tư vấn về ngân sách và lộ trình", "Phân tích thương hiệu & thiết lập mục tiêu", "Lựa chọn đối tượng mục tiêu & kênh phân phối"] },
+        { num: "02", letter: "P", label: "Plan", title: "Lập Kế hoạch", details: ["Lập kế hoạch ý tưởng dự án dựa trên AI", "Xây dựng thông điệp sáng tạo & slogan", "Thiết kế kịch bản & phân cảnh 4 khung hình"] },
+        { num: "03", letter: "D", label: "Draft", title: "Duyệt & Chỉnh sửa", details: ["Tạo bản nháp video AI chất lượng siêu cao", "Tiếp thu phản hồi & tối ưu hóa bản nháp thứ 2", "Chỉnh sửa chi tiết tài nguyên hình ảnh & video cuối cùng"] },
+        { num: "04", letter: "F", label: "Final", title: "Bàn giao & Nghiệm thu", details: ["Đánh giá video quảng cáo 4K hoàn thiện cuối cùng", "Cung cấp gói hướng dẫn định dạng đa kênh", "Chuyển giao bản quyền & bàn giao gói sản phẩm (.zip)"] }
+      ]
+    }
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
     if (langDropdownOpen) setLangDropdownOpen(false);
@@ -204,6 +307,9 @@ const MobileApp = () => {
       setCurrentView('works');
     } else if (item === 'SERVICES') {
       setCurrentView('services');
+    } else if (item === 'PROCESS') {
+      setCurrentView('process');
+      setActiveStep(0);
     } else {
       setCurrentView('home');
     }
@@ -376,9 +482,77 @@ const MobileApp = () => {
                 <div className="metric-label">{servicesText[language]?.statSatisfaction || servicesText['EN'].statSatisfaction}</div>
               </div>
             </div>
+        </main>
+      )}
+
+      {currentView === 'process' && (
+        /* ================= PROCESS VIEW (Workflow) ================= */
+        <main className="mobile-process-view">
+          <div className="mobile-process-header">
+            <button className="mobile-back-btn" onClick={() => setCurrentView('home')}>
+              <ArrowLeft size={18} />
+              <span>Back</span>
+            </button>
+            <h2 className="mobile-process-title">PROCESS</h2>
+          </div>
+
+          <div className="process-scroll-content" onScroll={handleProcessScroll}>
+            <div className="process-section">
+              <div className="process-tag-line">
+                <span className="process-tag-line-bar"></span>
+                <span className="process-tag-text">{processText[language]?.tag || processText['EN'].tag}</span>
+              </div>
+
+              <h1 className="process-main-title">
+                <span className="highlight-gold">{processText[language]?.titlePre || processText['EN'].titlePre}</span> {processText[language]?.titlePost || processText['EN'].titlePost}
+              </h1>
+              <p className="process-subtitle-text">{processText[language]?.subtitle || processText['EN'].subtitle}</p>
+
+              {/* Horizontal timeline stepper */}
+              <div className="process-horizontal-timeline-container">
+                <div className="process-horizontal-line"></div>
+                <div className="process-horizontal-steps">
+                  {(processText[language]?.steps || processText['EN'].steps).map((step, idx) => (
+                    <div
+                      key={step.num}
+                      className={`process-horizontal-step ${activeStep === idx ? 'active' : ''}`}
+                      onClick={() => scrollToStep(idx, step.num)}
+                    >
+                      <span className="process-step-node-label">{step.label}</span>
+                      <div className="process-step-node-circle">
+                        <span className="process-step-node-letter">{step.letter}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Vertical Cards Stack */}
+              <div className="process-cards-container">
+                {(processText[language]?.steps || processText['EN'].steps).map((step, idx) => (
+                  <div
+                    key={step.num}
+                    id={`process-card-${step.num}`}
+                    className={`process-card-item ${activeStep === idx ? 'active' : ''}`}
+                  >
+                    <div className="process-card-num">{step.num}</div>
+                    <h3 className="process-card-title">{step.title}</h3>
+                    <ul className="process-card-details">
+                      {step.details.map((detail, dIdx) => (
+                        <li key={dIdx} className="process-detail-item">
+                          <span className="bullet-sq">■</span>
+                          <span className="detail-text">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </main>
       )}
+
 
       {/* 3. Video Player Slide-Up Modal */}
       {activeCategory && (
