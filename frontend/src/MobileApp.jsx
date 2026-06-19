@@ -29,7 +29,7 @@ const MobileApp = () => {
       label: "PRODUCT AD",
       videos: [
         { type: "16:9", url: "/3763027-uhd_3840_2160_25fps.mp4", title: { KO: "가로 광고 시안", EN: "Horizontal Ad Preview" } },
-        { type: "9:16", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", title: { KO: "세로 광고 시안", EN: "Vertical Ad Preview" } }
+        { type: "9:16", url: "/lv_0_20260502175511.mp4", title: { KO: "세로 광고 시안", EN: "Vertical Ad Preview" } }
       ],
       title: {
         KO: "제품 광고",
