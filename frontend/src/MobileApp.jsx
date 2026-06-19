@@ -596,6 +596,21 @@ const MobileApp = () => {
 
   return (
     <div className={`mobile-app-container lang-${language.toLowerCase()}`}>
+      {/* Background Video for the ENTIRE screen on Home view */}
+      {currentView === 'home' && (
+        <div className="mobile-video-bg-container">
+          <video
+            key={bgVideoSrc}
+            src={bgVideoSrc}
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleBgVideoEnded}
+          />
+          <div className="mobile-video-bg-overlay"></div>
+        </div>
+      )}
+
       {/* 1. Header (Only show when menu is closed) */}
       <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
         <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
@@ -646,19 +661,6 @@ const MobileApp = () => {
       {currentView === 'home' && (
         /* ================= HOME VIEW ================= */
         <main className="mobile-main">
-          {/* Background Video */}
-          <div className="mobile-video-bg-container">
-            <video
-              key={bgVideoSrc}
-              src={bgVideoSrc}
-              autoPlay
-              muted
-              playsInline
-              onEnded={handleBgVideoEnded}
-            />
-            <div className="mobile-video-bg-overlay"></div>
-          </div>
-
           {/* Faint Background interlocking NV Logo */}
           <div className="mobile-bg-logo-container">
             <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-bg-logo-img" />

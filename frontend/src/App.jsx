@@ -6553,45 +6553,25 @@ ${customConceptText}
 
         ) : view === 'landing' ? (
 
-          
-
-          /* ========================================================
-
-             LANDING PAGE VIEW (Matching reference screenshots)
-
-             ======================================================== */
-
           <>
+            {/* Background Video */}
+            <div className="hero-video-bg">
+              <video
+                key={isMobile ? currentVideoIndex : currentBgVideoIndex}
+                src={isMobile ? heroVideos[currentVideoIndex] : backgroundVideos[currentBgVideoIndex]}
+                autoPlay
+                muted
+                playsInline
+                onEnded={handleBgVideoEnded}
+              />
+              <div className="hero-video-overlay"></div>
+            </div>
 
             {/* HERO SECTION */}
 
             {(!isMobile || mobileActiveSection === 'hero') && (
 
             <section className="hero-sec">
-
-              {/* Background Video */}
-
-              <div className="hero-video-bg">
-
-                <video
-
-                  key={isMobile ? currentVideoIndex : currentBgVideoIndex}
-
-                  src={isMobile ? heroVideos[currentVideoIndex] : backgroundVideos[currentBgVideoIndex]}
-
-                  autoPlay
-
-                  muted
-
-                  playsInline
-
-                  onEnded={handleBgVideoEnded}
-
-                />
-
-                <div className="hero-video-overlay"></div>
-
-              </div>
 
               {/* Background Video Arrow Controls on screen edges */}
 
