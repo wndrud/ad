@@ -13,12 +13,39 @@
   box-sizing: border-box;
 }
 
+/* Background Video and Overlay */
+.mobile-video-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mobile-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobile-bg-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
+}
+
 /* Header styling */
 .mobile-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1.5rem;
+  padding: 1.2rem 1.2rem;
   z-index: 100;
   background: transparent;
   transition: opacity 0.3s ease;
@@ -29,19 +56,35 @@
   pointer-events: none;
 }
 
-.mobile-logo-placeholder {
-  width: 50px;
+.mobile-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-logo-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.mobile-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
 }
 
 .mobile-header-right {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .mobile-lang-btn {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #ffffff;
   letter-spacing: 0.05em;
@@ -49,15 +92,21 @@
   opacity: 0.9;
 }
 
-.mobile-menu-toggle {
-  background: transparent;
+.mobile-menu-toggle-box {
+  background-color: #EAB308;
   border: none;
-  color: #ffffff;
-  padding: 0;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.mobile-menu-toggle-box:active {
+  background-color: #CA8A04;
+  transform: scale(0.95);
 }
 
 /* Main content area */
@@ -69,6 +118,7 @@
   align-items: center;
   position: relative;
   padding: 0 2rem 4rem 2rem;
+  z-index: 10;
 }
 
 /* Background Logo styling */
@@ -76,21 +126,21 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   width: 90%;
-  max-width: 320px;
+  max-width: 310px;
   height: auto;
   z-index: 1;
   pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0.14; /* Faint and transparent behind text */
 }
 
 .mobile-bg-logo-svg {
   width: 100%;
   height: auto;
-  opacity: 0.85;
 }
 
 /* Foreground content styling */
@@ -107,44 +157,51 @@
 
 .mobile-hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: 3.2rem;
+  font-size: 3.5rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: 0.08em;
   margin: 0 0 0.5rem 0;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
   user-select: none;
 }
 
 .mobile-hero-subtitle {
   font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.05em;
-  margin: 0 0 2rem 0;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  margin: 0 0 2.2rem 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
   user-select: none;
 }
 
+/* Slanted button style */
 .mobile-works-btn {
   background-color: #EAB308;
-  color: #000000;
   border: none;
+  padding: 0.7rem 2.8rem;
+  cursor: pointer;
+  transform: skewX(-15deg); /* Slanted style */
+  box-shadow: 0 4px 15px rgba(234, 179, 8, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  display: inline-block;
+}
+
+.mobile-works-btn-text {
   font-family: 'Outfit', sans-serif;
   font-size: 0.95rem;
-  font-weight: 600;
-  padding: 0.6rem 2.2rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 700;
+  color: #000000;
+  display: inline-block;
+  transform: skewX(15deg); /* Counter-skew the text to keep it straight */
+  letter-spacing: 0.02em;
 }
 
 .mobile-works-btn:active {
-  transform: scale(0.96);
+  transform: skewX(-15deg) scale(0.96);
   background-color: #CA8A04;
-  box-shadow: 0 2px 8px rgba(234, 179, 8, 0.2);
 }
 
 /* Full Screen Menu Overlay */
@@ -176,7 +233,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1.5rem;
+  padding: 1.2rem 1.2rem;
 }
 
 .mobile-menu-logo {

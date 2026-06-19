@@ -17,20 +17,36 @@ const MobileApp = () => {
 
   return (
     <div className="mobile-app-container">
-      {/* 1. Header (Only show KOR / Menu button when menu is closed) */}
+      {/* Background Video with Dark Overlay */}
+      <div className="mobile-video-bg-container">
+        <video 
+          className="mobile-bg-video" 
+          src="/11698130-hd_1080_1920_60fps.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+        />
+        <div className="mobile-bg-video-overlay"></div>
+      </div>
+
+      {/* 1. Header (Only show when menu is closed) */}
       <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
-        <div className="mobile-logo-placeholder"></div>
+        <div className="mobile-header-left">
+          <img src="/logo-emblem.png" alt="VERARVO Logo" className="mobile-logo-img" />
+          <span className="mobile-logo-text">VERARVO</span>
+        </div>
         <div className="mobile-header-right">
           <span className="mobile-lang-btn">KOR</span>
-          <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label="Open Menu">
-            <Menu size={24} />
+          <button className="mobile-menu-toggle-box" onClick={toggleMenu} aria-label="Open Menu">
+            <Menu size={20} color="#000000" />
           </button>
         </div>
       </header>
 
       {/* 2. Main Content Screen */}
       <main className="mobile-main">
-        {/* Background interlocking NV Logo */}
+        {/* Faint Background interlocking NV Logo */}
         <div className="mobile-bg-logo-container">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="mobile-bg-logo-svg">
             <defs>
@@ -39,16 +55,12 @@ const MobileApp = () => {
                 <stop offset="50%" stopColor="#EAB308" />
                 <stop offset="100%" stopColor="#CA8A04" />
               </linearGradient>
-              <filter id="mobileGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="2" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
             </defs>
-            {/* Gray N */}
+            {/* White N */}
             <text 
               x="20" 
               y="155" 
-              fill="#262626" 
+              fill="#ffffff" 
               style={{
                 fontFamily: "'Playfair Display', serif", 
                 fontSize: '155px', 
@@ -57,12 +69,11 @@ const MobileApp = () => {
             >
               N
             </text>
-            {/* Glowing Gold V */}
+            {/* Gold V */}
             <text 
               x="85" 
               y="155" 
               fill="url(#mobileGoldGradient)" 
-              filter="url(#mobileGlow)"
               style={{
                 fontFamily: "'Playfair Display', serif", 
                 fontSize: '155px', 
@@ -79,7 +90,7 @@ const MobileApp = () => {
           <h1 className="mobile-hero-title">VERARVO</h1>
           <p className="mobile-hero-subtitle">Think new, Feel real</p>
           <button className="mobile-works-btn" onClick={() => handleMenuClick('WORK')}>
-            see works
+            <span className="mobile-works-btn-text">see works</span>
           </button>
         </div>
       </main>
