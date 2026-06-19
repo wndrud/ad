@@ -1,9 +1,13 @@
 /* Mobile View Stylesheet */
 
-/* Main Container */
+/* Main Container with Static Dark Architectural Background */
 .mobile-app-container {
   min-height: 100vh;
-  background-color: #000000;
+  background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.88)), 
+              url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #ffffff;
   font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   position: relative;
@@ -11,33 +15,6 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-}
-
-/* Background Video and Overlay */
-.mobile-video-bg-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.mobile-bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.mobile-bg-video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.7) 100%);
-  z-index: 1;
 }
 
 /* Header styling */
@@ -121,7 +98,7 @@
   z-index: 10;
 }
 
-/* Background Logo styling */
+/* Faint Background NV Logo (mockup 2) styling */
 .mobile-bg-logo-container {
   position: absolute;
   top: 50%;
@@ -135,12 +112,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.14; /* Faint and transparent behind text */
+  opacity: 0.12; /* Faint and transparent behind text */
 }
 
-.mobile-bg-logo-svg {
+.mobile-bg-logo-img {
   width: 100%;
   height: auto;
+  object-fit: contain;
 }
 
 /* Foreground content styling */

@@ -17,19 +17,6 @@ const MobileApp = () => {
 
   return (
     <div className="mobile-app-container">
-      {/* Background Video with Dark Overlay */}
-      <div className="mobile-video-bg-container">
-        <video 
-          className="mobile-bg-video" 
-          src="/11698130-hd_1080_1920_60fps.mp4" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-        />
-        <div className="mobile-bg-video-overlay"></div>
-      </div>
-
       {/* 1. Header (Only show when menu is closed) */}
       <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
         <div className="mobile-header-left">
@@ -46,43 +33,9 @@ const MobileApp = () => {
 
       {/* 2. Main Content Screen */}
       <main className="mobile-main">
-        {/* Faint Background interlocking NV Logo */}
+        {/* Faint Background interlocking NV Logo (matching mockup 2) */}
         <div className="mobile-bg-logo-container">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="mobile-bg-logo-svg">
-            <defs>
-              <linearGradient id="mobileGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FACC15" />
-                <stop offset="50%" stopColor="#EAB308" />
-                <stop offset="100%" stopColor="#CA8A04" />
-              </linearGradient>
-            </defs>
-            {/* White N */}
-            <text 
-              x="20" 
-              y="155" 
-              fill="#ffffff" 
-              style={{
-                fontFamily: "'Playfair Display', serif", 
-                fontSize: '155px', 
-                fontWeight: '900'
-              }}
-            >
-              N
-            </text>
-            {/* Gold V */}
-            <text 
-              x="85" 
-              y="155" 
-              fill="url(#mobileGoldGradient)" 
-              style={{
-                fontFamily: "'Playfair Display', serif", 
-                fontSize: '155px', 
-                fontWeight: '900'
-              }}
-            >
-              V
-            </text>
-          </svg>
+          <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-bg-logo-img" />
         </div>
 
         {/* Foreground Content */}
