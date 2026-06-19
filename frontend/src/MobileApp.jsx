@@ -74,7 +74,7 @@ const MobileApp = () => {
       num: "03",
       label: "SHORT-FORM",
       videos: [
-        { type: "16:9", url: "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4", title: { KO: "숏폼 가로 시안", EN: "Short-Form Horizontal Preview" } },
+        { type: "16:9", url: "/hf_20260422_001333_36103dd7-9f8a-414f-9b5f-23683f07f703.mp4", title: { KO: "숏폼 가로 시안", EN: "Short-Form Horizontal Preview" } },
         { type: "9:16", url: "/ai video ugc ads creation.mp4", title: { KO: "숏폼 세로 시안", EN: "Short-Form Vertical Preview" } }
       ],
       title: {

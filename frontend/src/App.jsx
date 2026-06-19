@@ -2654,7 +2654,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "16/9", title: "ソーシャルVlogプロモーション試案 (16:9)", url: "/mixkit-man-being-recorded-himself-for-a-blog-on-the-street-34469-full-hd.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "ソーシャルVlogプロモーション試案 (16:9)", url: "/hf_20260422_001333_36103dd7-9f8a-414f-9b5f-23683f07f703.mp4" },
 
         { type: "video", aspectRatio: "9/16", title: "インフルエンサー縦型ショート試案 (9:16)", url: "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4", rotate: false }
 
