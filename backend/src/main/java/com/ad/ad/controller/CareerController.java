@@ -35,7 +35,7 @@ public class CareerController {
             // Enable multipart mode for attachments
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-            helper.setTo("james42286910@gmail.com");
+            helper.setTo("jobsverarvo@gmail.com");
             helper.setSubject("New Career Application from " + name + " [" + roles + "]");
 
             StringBuilder text = new StringBuilder();

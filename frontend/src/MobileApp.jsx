@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Menu, X, Globe, ArrowLeft, Play } from 'lucide-react';
+import { Menu, X, Globe, ArrowLeft, Play, Upload, Send } from 'lucide-react';
 import './MobileApp.css';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 const MobileApp = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +18,109 @@ const MobileApp = () => {
 
   // Process timeline states & scroll handling
   const [activeStep, setActiveStep] = useState(0);
+
+  // Careers Form States
+  const [careerForm, setCareerForm] = useState({
+    roles: [],
+    customRole: '',
+    name: '',
+    nationality: 'Korea',
+    email: '',
+    portfolio: null,
+    resume: null,
+    notes: ''
+  });
+  const [careerSubmitting, setCareerSubmitting] = useState(false);
+  const [careerSuccessShow, setCareerSuccessShow] = useState(false);
+  const [careerError, setCareerError] = useState('');
+
+  const handleFileChange = (e, field) => {
+    const file = e.target.files[0];
+    if (file) {
+      setCareerForm(prev => ({ ...prev, [field]: file }));
+    }
+  };
+
+  const handleCareerSubmit = async (e) => {
+    e.preventDefault();
+    if (careerForm.roles.length === 0 && (!careerForm.customRole || !careerForm.customRole.trim())) {
+      alert(language === 'KO' ? "지원하실 직무를 선택하거나 직접 입력해 주세요." : "Please select a role or enter one.");
+      return;
+    }
+    if (!careerForm.name || !careerForm.name.trim()) {
+      alert(language === 'KO' ? "이름을 입력해 주세요." : "Please enter your name.");
+      return;
+    }
+    if (!careerForm.email || !careerForm.email.trim()) {
+      alert(language === 'KO' ? "이메일을 입력해 주세요." : "Please enter your email.");
+      return;
+    }
+    if (!careerForm.portfolio) {
+      alert(language === 'KO' ? "포트폴리오 파일을 첨부해 주세요." : "Please upload your portfolio.");
+      return;
+    }
+    if (!careerForm.resume) {
+      alert(language === 'KO' ? "이력서 파일을 첨부해 주세요." : "Please upload your resume.");
+      return;
+    }
+
+    setCareerSubmitting(true);
+    setCareerError('');
+
+    try {
+      const finalRoles = [...careerForm.roles];
+      if (careerForm.customRole && careerForm.customRole.trim()) {
+        finalRoles.push(careerForm.customRole.trim());
+      }
+
+      const formData = new FormData();
+      formData.append('roles', finalRoles.join(', '));
+      formData.append('name', careerForm.name.trim());
+      formData.append('nationality', careerForm.nationality);
+      formData.append('email', careerForm.email.trim());
+      if (careerForm.notes) {
+        formData.append('notes', careerForm.notes.trim());
+      }
+      if (careerForm.portfolio) {
+        formData.append('portfolio', careerForm.portfolio);
+      }
+      if (careerForm.resume) {
+        formData.append('resume', careerForm.resume);
+      }
+
+      const response = await fetch(`${API_BASE_URL}/api/careers`, {
+        method: 'POST',
+        body: formData
+      });
+
+      const resData = await response.json();
+
+      if (response.ok && resData.success) {
+        setCareerSuccessShow(true);
+        setCareerForm({
+          roles: [],
+          customRole: '',
+          name: '',
+          nationality: 'Korea',
+          email: '',
+          portfolio: null,
+          resume: null,
+          notes: ''
+        });
+        setTimeout(() => {
+          setCareerSuccessShow(false);
+        }, 6000);
+      } else {
+        console.error("Failed to submit career application:", resData);
+        setCareerError(language === 'KO' ? `제출 실패: ${resData.error || '서버 오류'}` : `Failed to submit: ${resData.error || 'Server error'}`);
+      }
+    } catch (err) {
+      console.error("Error submitting career application:", err);
+      setCareerError(language === 'KO' ? "네트워크 오류가 발생했습니다." : "A network error occurred.");
+    } finally {
+      setCareerSubmitting(false);
+    }
+  };
 
   const handleProcessScroll = (e) => {
     const container = e.currentTarget;
@@ -296,6 +401,134 @@ const MobileApp = () => {
     }
   };
 
+  const careersText = {
+    KO: {
+      tag: "채용 안내",
+      titlePre: "당신은 새로운 감각을 가진 인재입니다",
+      titlePost: "VERARVO와 함께 합시다",
+      subtitle: "포트폴리오와 이력서를 함께 보내주세요.",
+      applyHeader: "지원하기",
+      jobsLabel: "직무",
+      nameLabel: "이름",
+      nationalityLabel: "국적",
+      emailLabel: "이메일",
+      portfolioLabel: "포트폴리오 - PDF",
+      resumeLabel: "이력서 - PDF",
+      notesLabel: "기타 붙임말",
+      notesPlaceholder: "기타 지원동기나 하실 말씀을 입력해 주세요...",
+      submitBtn: "지원서 제출하기",
+      customRoleLabel: "기타 직무 (직접 입력)",
+      successMsg: "지원서가 성공적으로 전달되었습니다. 검토 후 연락드리겠습니다.",
+      submittingText: "제출 중...",
+      jobsList: [
+        "AI 비디오 크리에이터",
+        "영상 편집 & 모션 디자이너",
+        "AI 프롬프트 엔지니어",
+        "크리에이티브 프로젝트 매니저 (PM)"
+      ]
+    },
+    EN: {
+      tag: "CAREERS",
+      titlePre: "We are waiting for creators with",
+      titlePost: "New Senses & Perspectives",
+      subtitle: "Please submit your portfolio and resume together.",
+      applyHeader: "Apply Now",
+      jobsLabel: "Position / Role",
+      nameLabel: "Name",
+      nationalityLabel: "Nationality",
+      emailLabel: "Email",
+      portfolioLabel: "Portfolio - PDF",
+      resumeLabel: "Resume - PDF",
+      notesLabel: "Additional Notes",
+      notesPlaceholder: "Enter your statement or other details here...",
+      submitBtn: "Submit Application",
+      customRoleLabel: "Other Role (Direct Entry)",
+      successMsg: "Your application has been submitted successfully. We will review and contact you.",
+      submittingText: "Submitting...",
+      jobsList: [
+        "AI Video Creator",
+        "Video Editor & Motion Designer",
+        "AI Prompt Engineer",
+        "Creative Project Manager (PM)"
+      ]
+    },
+    ZH: {
+      tag: "招贤纳士",
+      titlePre: "我们一直在等待拥有",
+      titlePost: "全新感官与视角的创意人才",
+      subtitle: "请同时提交您的作品集和简历。",
+      applyHeader: "申请职位",
+      jobsLabel: "职位",
+      nameLabel: "姓名",
+      nationalityLabel: "国籍",
+      emailLabel: "邮箱",
+      portfolioLabel: "作品集 - PDF",
+      resumeLabel: "个人简历 - PDF",
+      notesLabel: "备注说明",
+      notesPlaceholder: "请输入您的求职动机或其他要说的话...",
+      submitBtn: "提交申请",
+      customRoleLabel: "其他职位 (直接输入)",
+      successMsg: "您的申请已成功提交。我们将进行评估并与您联系。",
+      submittingText: "正在提交...",
+      jobsList: [
+        "AI 视频创作者",
+        "视频编辑与动态设计师",
+        "AI 提示词工程师",
+        "创意项目经理 (PM)"
+      ]
+    },
+    JA: {
+      tag: "CAREERS",
+      titlePre: "新しい感覚と視点を持ったクリエイターを",
+      titlePost: "常にお待ちしております",
+      subtitle: "ポートフォリオと履歴書を一緒にご送付ください。",
+      applyHeader: "応募する",
+      jobsLabel: "職種",
+      nameLabel: "お名前",
+      nationalityLabel: "国籍",
+      emailLabel: "メールアドレス",
+      portfolioLabel: "ポートフォリオ - PDF",
+      resumeLabel: "履歴書 - PDF",
+      notesLabel: "その他メッセージ",
+      notesPlaceholder: "志望動機やメッセージを自由に入力してください...",
+      submitBtn: "応募書類を提出する",
+      customRoleLabel: "その他の職種 (直接入力)",
+      successMsg: "応募書類が正常に送信されました。確認後、ご連絡いたします。",
+      submittingText: "送信中...",
+      jobsList: [
+        "AIビデオクリエイター",
+        "映像編集＆モーションデザイナー",
+        "AIプロンプトエンジニア",
+        "クリエイティブプロジェクトマネージャー (PM)"
+      ]
+    },
+    VI: {
+      tag: "TUYỂN DỤNG",
+      titlePre: "Chúng tôi luôn chào đón các nhà sáng tạo có",
+      titlePost: "Góc nhìn & Cảm quan mới",
+      subtitle: "Vui lòng gửi kèm CV và Portfolio (PDF) của bạn.",
+      applyHeader: "Ứng tuyển ngay",
+      jobsLabel: "Vị trí ứng tuyển",
+      nameLabel: "Họ và Tên",
+      nationalityLabel: "Quốc tịch",
+      emailLabel: "Địa chỉ Email",
+      portfolioLabel: "Portfolio - PDF",
+      resumeLabel: "CV - PDF",
+      notesLabel: "Lời nhắn thêm",
+      notesPlaceholder: "Vui lòng nhập lý do ứng tuyển hoặc lời nhắn khác...",
+      submitBtn: "Nộp hồ sơ",
+      customRoleLabel: "Vị trí khác (Nhập trực tiếp)",
+      successMsg: "Hồ sơ của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại.",
+      submittingText: "Đang nộp...",
+      jobsList: [
+        "Nhà sáng tạo video AI",
+        "Biên tập video & Thiết kế chuyển động",
+        "Kỹ sư Prompt AI",
+        "Quản lý dự án sáng tạo (PM)"
+      ]
+    }
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
     if (langDropdownOpen) setLangDropdownOpen(false);
@@ -310,6 +543,20 @@ const MobileApp = () => {
     } else if (item === 'PROCESS') {
       setCurrentView('process');
       setActiveStep(0);
+    } else if (item === 'CAREERS') {
+      setCurrentView('careers');
+      setCareerForm({
+        roles: [],
+        customRole: '',
+        name: '',
+        nationality: 'Korea',
+        email: '',
+        portfolio: null,
+        resume: null,
+        notes: ''
+      });
+      setCareerError('');
+      setCareerSuccessShow(false);
     } else {
       setCurrentView('home');
     }
@@ -549,6 +796,258 @@ const MobileApp = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </main>
+      )}
+
+      {currentView === 'careers' && (
+        /* ================= CAREERS VIEW (Job Application) ================= */
+        <main className="mobile-careers-view">
+          <div className="mobile-careers-header">
+            <button className="mobile-back-btn" onClick={() => setCurrentView('home')}>
+              <ArrowLeft size={18} />
+              <span>Back</span>
+            </button>
+            <h2 className="mobile-careers-title">CAREERS</h2>
+          </div>
+
+          <div className="careers-scroll-content">
+            <div className="careers-section">
+              {/* Header Tag */}
+              <div className="careers-tag-line">
+                <span className="careers-tag-line-bar"></span>
+                <span className="careers-tag-text">{careersText[language]?.tag || careersText['EN'].tag}</span>
+              </div>
+
+              {/* Main Title */}
+              <h1 className="careers-main-title">
+                {careersText[language]?.titlePre || careersText['EN'].titlePre}<br />
+                <span className="highlight-gold">{careersText[language]?.titlePost || careersText['EN'].titlePost}</span>
+              </h1>
+              <p className="careers-subtitle-text">{careersText[language]?.subtitle || careersText['EN'].subtitle}</p>
+
+              {/* Application Form Card */}
+              <form className="careers-form-card" onSubmit={handleCareerSubmit}>
+                {/* Gold ring icon at the top of card */}
+                <div className="careers-form-card-top-icon">
+                  <div className="gold-ring-glow"></div>
+                </div>
+
+                <h2 className="careers-form-header">{careersText[language]?.applyHeader || careersText['EN'].applyHeader}</h2>
+
+                {/* Job Checkboxes */}
+                <div className="careers-form-group">
+                  <label className="careers-field-label">
+                    {careersText[language]?.jobsLabel || careersText['EN'].jobsLabel} <span className="req-star">*</span>
+                  </label>
+                  <div className="careers-checkbox-list">
+                    {(careersText[language]?.jobsList || careersText['EN'].jobsList).map((job, idx) => {
+                      const isChecked = careerForm.roles.includes(job);
+                      return (
+                        <label key={idx} className="careers-checkbox-label">
+                          <input
+                            type="checkbox"
+                            className="careers-checkbox-input"
+                            checked={isChecked}
+                            onChange={() => {
+                              const newRoles = isChecked
+                                ? careerForm.roles.filter(r => r !== job)
+                                : [...careerForm.roles, job];
+                              setCareerForm({ ...careerForm, roles: newRoles });
+                            }}
+                          />
+                          <span className="checkbox-custom"></span>
+                          <span className="checkbox-text">{job}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                  {/* Custom Job entry */}
+                  <div className="careers-custom-job-input-wrapper">
+                    <input
+                      type="text"
+                      className="form-control-line"
+                      placeholder={careersText[language]?.customRoleLabel || careersText['EN'].customRoleLabel}
+                      value={careerForm.customRole}
+                      onChange={(e) => setCareerForm({ ...careerForm, customRole: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                {/* Name */}
+                <div className="careers-form-group">
+                  <label className="careers-field-label">
+                    {careersText[language]?.nameLabel || careersText['EN'].nameLabel} <span className="req-star">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control-line"
+                    placeholder={careersText[language]?.nameLabel || careersText['EN'].nameLabel}
+                    value={careerForm.name}
+                    onChange={(e) => setCareerForm({ ...careerForm, name: e.target.value })}
+                    required
+                  />
+                </div>
+
+                {/* Nationality */}
+                <div className="careers-form-group">
+                  <label className="careers-field-label">
+                    {careersText[language]?.nationalityLabel || careersText['EN'].nationalityLabel} <span className="req-star">*</span>
+                  </label>
+                  <div className="careers-select-wrapper">
+                    <select
+                      className="form-control-line select-arrow"
+                      value={careerForm.nationality}
+                      onChange={(e) => setCareerForm({ ...careerForm, nationality: e.target.value })}
+                      required
+                    >
+                      <option value="Korea">Korea</option>
+                      <option value="United States">United States</option>
+                      <option value="China">China</option>
+                      <option value="Japan">Japan</option>
+                      <option value="Vietnam">Vietnam</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="careers-form-group">
+                  <label className="careers-field-label">
+                    {careersText[language]?.emailLabel || careersText['EN'].emailLabel} <span className="req-star">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control-line"
+                    placeholder="example@verarvo.com"
+                    value={careerForm.email}
+                    onChange={(e) => setCareerForm({ ...careerForm, email: e.target.value })}
+                    required
+                  />
+                </div>
+
+                {/* Portfolio File Upload */}
+                <div className="careers-form-group">
+                  <label className="careers-field-label">
+                    {careersText[language]?.portfolioLabel || careersText['EN'].portfolioLabel} <span className="req-star">*</span>
+                  </label>
+                  <div
+                    className={`mobile-file-upload-zone ${careerForm.portfolio ? 'has-file' : ''}`}
+                    onClick={() => document.getElementById('portfolio-file-input').click()}
+                  >
+                    <input
+                      type="file"
+                      id="portfolio-file-input"
+                      style={{ display: 'none' }}
+                      accept="application/pdf, image/*"
+                      onChange={(e) => handleFileChange(e, 'portfolio')}
+                    />
+                    {careerForm.portfolio ? (
+                      <div className="selected-file-container">
+                        <div className="file-info-text">
+                          <span className="file-name-text">{careerForm.portfolio.name}</span>
+                          <span className="file-size-text">({(careerForm.portfolio.size / 1024 / 1024).toFixed(2)} MB)</span>
+                        </div>
+                        <button
+                          type="button"
+                          className="file-remove-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCareerForm({ ...careerForm, portfolio: null });
+                          }}
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="upload-prompt">
+                        <Upload size={24} className="upload-arrow-icon" />
+                        <div className="upload-title">Upload</div>
+                        <div className="upload-subtitle">Drag and drop file here</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Resume File Upload */}
+                <div className="careers-form-group">
+                  <label className="careers-field-label">
+                    {careersText[language]?.resumeLabel || careersText['EN'].resumeLabel} <span className="req-star">*</span>
+                  </label>
+                  <div
+                    className={`mobile-file-upload-zone ${careerForm.resume ? 'has-file' : ''}`}
+                    onClick={() => document.getElementById('resume-file-input').click()}
+                  >
+                    <input
+                      type="file"
+                      id="resume-file-input"
+                      style={{ display: 'none' }}
+                      accept="application/pdf, image/*"
+                      onChange={(e) => handleFileChange(e, 'resume')}
+                    />
+                    {careerForm.resume ? (
+                      <div className="selected-file-container">
+                        <div className="file-info-text">
+                          <span className="file-name-text">{careerForm.resume.name}</span>
+                          <span className="file-size-text">({(careerForm.resume.size / 1024 / 1024).toFixed(2)} MB)</span>
+                        </div>
+                        <button
+                          type="button"
+                          className="file-remove-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCareerForm({ ...careerForm, resume: null });
+                          }}
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="upload-prompt">
+                        <Upload size={24} className="upload-arrow-icon" />
+                        <div className="upload-title">Upload</div>
+                        <div className="upload-subtitle">Drag and drop file here</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Additional Notes */}
+                <div className="careers-form-group">
+                  <label className="careers-field-label">
+                    {careersText[language]?.notesLabel || careersText['EN'].notesLabel}
+                  </label>
+                  <textarea
+                    className="form-control-textarea"
+                    placeholder={careersText[language]?.notesPlaceholder || careersText['EN'].notesPlaceholder}
+                    value={careerForm.notes}
+                    onChange={(e) => setCareerForm({ ...careerForm, notes: e.target.value })}
+                  />
+                </div>
+
+                {/* Submit Feedback */}
+                {careerError && <div className="careers-error-msg">{careerError}</div>}
+                {careerSuccessShow && (
+                  <div className="careers-success-msg">
+                    {careersText[language]?.successMsg || careersText['EN'].successMsg}
+                  </div>
+                )}
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  className="careers-submit-btn"
+                  disabled={careerSubmitting}
+                >
+                  <span className="submit-btn-text">
+                    {careerSubmitting
+                      ? (careersText[language]?.submittingText || careersText['EN'].submittingText)
+                      : (careersText[language]?.submitBtn || careersText['EN'].submitBtn)}
+                  </span>
+                  {!careerSubmitting && <Send size={14} className="submit-btn-rocket" />}
+                </button>
+              </form>
             </div>
           </div>
         </main>
