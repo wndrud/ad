@@ -51,6 +51,8 @@
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 0.05em;
+  -webkit-text-stroke: 0.6px #EAB308;
+  text-shadow: 0 0 6px rgba(234, 179, 8, 0.7), 0 0 12px rgba(234, 179, 8, 0.4);
 }
 
 .mobile-header-right {
