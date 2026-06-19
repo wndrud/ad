@@ -3452,17 +3452,6 @@ p, h1, h2, h3, h4, h5, h6, .service-name, .service-desc, .timeline-card-title, .
   text-transform: uppercase;
 }
 
-    font-size: 2.3rem !important;
-  }
-  
-  .section-title {
-    font-size: 2.1rem !important;
-  }
-  
-  .visual-card-wrap {
-    max-width: 220px !important;
-  }
-}
 
 /* Global text-wrap normalization to prevent word splitting in Korean */
 p, h1, h2, h3, h4, h5, h6, .service-name, .service-desc, .timeline-card-title, .timeline-detail-text, .faq-answer {
