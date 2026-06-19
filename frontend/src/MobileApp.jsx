@@ -4,6 +4,15 @@ import './MobileApp.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
+const targetVideos = [
+  "/UGC video1.mov",
+  "/lv_0_20260502175511.mp4",
+  "/For Hazlo.mov",
+  "/video-output-A4BEB786-5168-4899-9C24-35EE2EB1110E-2.mov",
+  "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mov",
+  "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mov"
+];
+
 const MobileApp = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState('KO');
@@ -18,6 +27,17 @@ const MobileApp = () => {
 
   // Process timeline states & scroll handling
   const [activeStep, setActiveStep] = useState(0);
+
+  // Background video state & ended handler for mobile
+  const [bgVideoSrc, setBgVideoSrc] = useState(() => targetVideos[Math.floor(Math.random() * targetVideos.length)]);
+
+  const handleBgVideoEnded = () => {
+    let nextIndex;
+    do {
+      nextIndex = Math.floor(Math.random() * targetVideos.length);
+    } while (targetVideos[nextIndex] === bgVideoSrc && targetVideos.length > 1);
+    setBgVideoSrc(targetVideos[nextIndex]);
+  };
 
   // Careers Form States
   const [careerForm, setCareerForm] = useState({
@@ -626,6 +646,19 @@ const MobileApp = () => {
       {currentView === 'home' && (
         /* ================= HOME VIEW ================= */
         <main className="mobile-main">
+          {/* Background Video */}
+          <div className="mobile-video-bg-container">
+            <video
+              key={bgVideoSrc}
+              src={bgVideoSrc}
+              autoPlay
+              muted
+              playsInline
+              onEnded={handleBgVideoEnded}
+            />
+            <div className="mobile-video-bg-overlay"></div>
+          </div>
+
           {/* Faint Background interlocking NV Logo */}
           <div className="mobile-bg-logo-container">
             <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-bg-logo-img" />
