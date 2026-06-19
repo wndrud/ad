@@ -55,17 +55,17 @@ const MobileApp = () => {
         { type: "9:16", url: "/12053133_1080_1920_30fps.mp4", title: { KO: "이벤트 숏폼 시안", EN: "Event Short-Form Preview" } }
       ],
       title: {
-        KO: "이벤트 · 전시 홍보",
-        EN: "Event & Exhibition",
+        KO: "이벤트 ·\n전시 홍보",
+        EN: "Event &\nExhibition",
         ZH: "活动与展览宣传",
-        JA: "イベント・展示プロモーション",
-        VI: "Quảng bá sự kiện & Triển lãm"
+        JA: "イベント・\n展示プロモーション",
+        VI: "Quảng bá sự kiện\n& Triển lãm"
       },
       desc: {
         KO: "박람회, 축제, 브랜드 팝업스토어 및 전시회 등 다양한 오프라인·온라인 이벤트를 위한 최적의 홍보 영상을 제작합니다",
         EN: "We create optimal promotional videos for various offline and online events such as fairs, festivals, and pop-ups.",
         ZH: "为博览会、节日、品牌快闪店和展览等各种线下及线上活动制作最佳宣传视频",
-        JA: "博覧会、フェスティバル、ポップアップストア、展示会など、多様なオフライン・オンラインイベント에最適な広報動画を制作します",
+        JA: "博覧会、フェスティバル、ポップアップストア、展示会など、多様なオフライン・オンラインイベントに最適なプロモーション動画を制作します",
         VI: "Sản xuất video quảng bá tối ưu cho các sự kiện offline & online như hội chợ, lễ hội, cửa hàng pop-up"
       }
     },
@@ -79,10 +79,10 @@ const MobileApp = () => {
       ],
       title: {
         KO: "소셜 숏폼 콘텐츠",
-        EN: "Social Short-Form",
+        EN: "Social\nShort-Form",
         ZH: "社交短视频内容",
-        JA: "ソーシャル縦型ショート",
-        VI: "Nội dung ngắn mạng xã hội"
+        JA: "ソーシャル\n縦型ショート",
+        VI: "Nội dung ngắn\nmạng xã hội"
       },
       desc: {
         KO: "인스타그램 릴스, 틱톡, 유튜브 쇼츠 등 숏폼에 최적화된 트렌디한 세로형 비디오 광고를 제작합니다",
@@ -101,11 +101,11 @@ const MobileApp = () => {
         { type: "9:16", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", title: { KO: "바이럴 모델 영상", EN: "Viral Model Preview" } }
       ],
       title: {
-        KO: "가상 모델 & 인플루언서",
-        EN: "Virtual Model & Influencer",
+        KO: "가상 모델\n인플루언서 &",
+        EN: "Virtual Model &\nInfluencer",
         ZH: "虚拟模特与网红",
-        JA: "バーチャลモデル＆인플루언서",
-        VI: "Người mẫu & Người ảnh hưởng ảo"
+        JA: "バーチャルモデル\nインフルエンサー＆",
+        VI: "Người mẫu &\nNgười ảnh hưởng ảo"
       },
       desc: {
         KO: "고객님의 요청에 따른 가상 인물을 만들어 냅니다",
@@ -124,11 +124,11 @@ const MobileApp = () => {
         { type: "9:16", url: "/12681248_2160_3840_60fps.mp4", title: { KO: "가구 비주얼 영상", EN: "Furniture Visual Preview" } }
       ],
       title: {
-        KO: "인테리어 · 가구 프로젝트",
-        EN: "Interior & Furniture",
+        KO: "인테리어 ·\n가구 프로젝트",
+        EN: "Interior &\nFurniture",
         ZH: "室内与家具项目",
-        JA: "インテリア・家具プロジェクト",
-        VI: "Dự án nội thất & đồ gỗ"
+        JA: "インテリア・\n家具プロジェクト",
+        VI: "Dự án nội thất\n& đồ gỗ"
       },
       desc: {
         KO: "공간의 가치를 극대화하는 하이엔드 인테리어 및 가구 비주얼 솔루션을 제공합니다",
@@ -167,7 +167,7 @@ const MobileApp = () => {
   const activeVideo = activeCategory ? activeCategory.videos.find(v => v.type === activeVideoType) : null;
 
   return (
-    <div className="mobile-app-container">
+    <div className={`mobile-app-container lang-${language.toLowerCase()}`}>
       {/* 1. Header (Only show when menu is closed) */}
       <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
         <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>

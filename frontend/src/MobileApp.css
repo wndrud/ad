@@ -355,6 +355,8 @@
   font-weight: 700;
   color: #ffffff;
   margin: 0 0 0.4rem 0;
+  white-space: pre-line;
+  word-break: keep-all;
 }
 
 .works-item-desc {
@@ -365,6 +367,16 @@
   color: rgba(255, 255, 255, 0.55);
   margin: 0;
   word-break: keep-all;
+}
+
+/* CJK line wrapping overrides on mobile to avoid overflow and clipping */
+.mobile-app-container:not(.lang-ko) .works-item-title {
+  word-break: break-all;
+}
+
+.mobile-app-container:not(.lang-ko) .works-item-desc {
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .works-item-action {
@@ -433,6 +445,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .mobile-modal-title {
@@ -441,6 +454,14 @@
   font-weight: 700;
   color: #ffffff;
   margin: 0;
+  flex: 1;
+  text-align: left;
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
+.mobile-app-container:not(.lang-ko) .mobile-modal-title {
+  word-break: break-all;
 }
 
 .mobile-modal-close {
