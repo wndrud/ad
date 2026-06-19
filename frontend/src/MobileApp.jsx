@@ -482,6 +482,7 @@ const MobileApp = () => {
                 <div className="metric-label">{servicesText[language]?.statSatisfaction || servicesText['EN'].statSatisfaction}</div>
               </div>
             </div>
+          </div>
         </main>
       )}
 
