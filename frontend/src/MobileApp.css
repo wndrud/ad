@@ -1186,25 +1186,12 @@
   margin-bottom: 1.2rem;
 }
 
-.gold-ring-glow {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid #EAB308;
-  box-shadow: 0 0 10px rgba(234, 179, 8, 0.6);
-  position: relative;
-}
-
-.gold-ring-glow::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 6px;
-  height: 6px;
-  background-color: #EAB308;
-  border-radius: 50%;
+.careers-company-logo-img {
+  width: 32px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.45));
 }
 
 .careers-form-header {

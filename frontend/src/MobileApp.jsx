@@ -829,9 +829,9 @@ const MobileApp = () => {
 
               {/* Application Form Card */}
               <form className="careers-form-card" onSubmit={handleCareerSubmit}>
-                {/* Gold ring icon at the top of card */}
+                {/* Company Logo at the top of card */}
                 <div className="careers-form-card-top-icon">
-                  <div className="gold-ring-glow"></div>
+                  <img src="/logo-nv-transparent-hq.png" alt="VERARVO" className="careers-company-logo-img" />
                 </div>
 
                 <h2 className="careers-form-header">{careersText[language]?.applyHeader || careersText['EN'].applyHeader}</h2>
