@@ -1676,5 +1676,91 @@
   white-space: pre-line;
 }
 
+/* Mobile Home Footer Contact Section */
+.mobile-home-contact {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  z-index: 15;
+}
+
+.mobile-contact-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #EAB308;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.4rem 0;
+}
+
+.mobile-contact-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.45;
+  font-weight: 300;
+  margin: 0 0 0.8rem 0;
+}
+
+.mobile-contact-manager {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 1rem 0;
+}
+
+.mobile-contact-email {
+  color: #ffffff;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.mobile-contact-email:active {
+  opacity: 0.7;
+}
+
+.mobile-contact-socials {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.mobile-social-icon-btn {
+  color: rgba(255, 255, 255, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.mobile-social-icon-btn:active {
+  color: #EAB308;
+  transform: scale(0.92);
+}
+
+/* Make sure container doesn't overflow on tiny mobile screens */
+@media (max-height: 720px) {
+  .mobile-main {
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    overflow-y: auto;
+  }
+  .mobile-home-contact {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    margin-top: 2.5rem;
+    padding: 0 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 
 
