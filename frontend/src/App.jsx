@@ -2987,21 +2987,47 @@ const serviceDetailsData = {
 };
 
 const heroVideos = [
-  "/UGC video1.mov",
-  "/lv_0_20260502175511.mp4",
-  "/For Hazlo.mov",
-  "/video-output-A4BEB786-5168-4899-9C24-35EE2EB1110E-2.mov",
-  "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mov",
-  "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mov"
+
+  "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4",
+
+  "/ai video ugc ads creation.mp4",
+
+  "/UGC video.mov",
+
+  "/att.c3Yfx-CAfS6gkGcvWpGBo3pIpb-u_CVZF14gdt_T1nw.mp4",
+
+  "/7569383-uhd_2160_4096_25fps.mp4",
+
+  "/11698130-hd_1080_1920_60fps.mp4"
+
 ];
 
 const backgroundVideos = [
-  "/UGC video1.mov",
-  "/lv_0_20260502175511.mp4",
-  "/For Hazlo.mov",
-  "/video-output-A4BEB786-5168-4899-9C24-35EE2EB1110E-2.mov",
-  "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mov",
-  "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mov"
+
+  "/6632880-hd_1920_1080_25fps.mp4",
+
+  "/6975809-uhd_2880_2160_25fps.mp4",
+
+  "/5889454-uhd_3840_2160_25fps.mp4",
+
+  "/14815442_3840_2160_30fps.mp4",
+
+  "/8131897-uhd_4096_2160_25fps.mp4",
+
+  "/10097613-hd_3840_2160_30fps.mp4",
+
+  "/4215416-uhd_3840_2160_25fps.mp4",
+
+  "/7727416-hd_1920_1080_25fps.mp4",
+
+  "/9698783-uhd_3840_2160_25fps.mp4",
+
+  "/149477-796096126_medium.mp4",
+
+  "/257945.mp4",
+
+  "/AQORRylebdZCDNsQGuxKXlt4laYm2fcwPITevdWhtGSP5qxkTYWqJDlsLdAiBDtm56N3zy8btinu6QnZrbPBEN4TNgx2hX5jsyIbABKYKQ.mp4"
+
 ];
 
 const languageFlags = {
@@ -4051,21 +4077,7 @@ function App() {
 
   const [currentBgVideoIndex, setCurrentBgVideoIndex] = useState(() => Math.floor(Math.random() * backgroundVideos.length));
 
-  const handleBgVideoEnded = () => {
-    if (isMobile) {
-      let nextIndex;
-      do {
-        nextIndex = Math.floor(Math.random() * heroVideos.length);
-      } while (nextIndex === currentVideoIndex && heroVideos.length > 1);
-      setCurrentVideoIndex(nextIndex);
-    } else {
-      let nextIndex;
-      do {
-        nextIndex = Math.floor(Math.random() * backgroundVideos.length);
-      } while (nextIndex === currentBgVideoIndex && backgroundVideos.length > 1);
-      setCurrentBgVideoIndex(nextIndex);
-    }
-  };
+
 
   const [lang, setLang] = useState('KO');
 
@@ -6554,24 +6566,36 @@ ${customConceptText}
         ) : view === 'landing' ? (
 
           <>
-            {/* Background Video */}
-            <div className="hero-video-bg">
-              <video
-                key={isMobile ? currentVideoIndex : currentBgVideoIndex}
-                src={isMobile ? heroVideos[currentVideoIndex] : backgroundVideos[currentBgVideoIndex]}
-                autoPlay
-                muted
-                playsInline
-                onEnded={handleBgVideoEnded}
-              />
-              <div className="hero-video-overlay"></div>
-            </div>
 
             {/* HERO SECTION */}
 
             {(!isMobile || mobileActiveSection === 'hero') && (
 
             <section className="hero-sec">
+
+              {/* Background Video */}
+
+              <div className="hero-video-bg">
+
+                <video
+
+                  key={isMobile ? currentVideoIndex : currentBgVideoIndex}
+
+                  src={isMobile ? heroVideos[currentVideoIndex] : backgroundVideos[currentBgVideoIndex]}
+
+                  autoPlay
+
+                  loop
+
+                  muted
+
+                  playsInline
+
+                />
+
+                <div className="hero-video-overlay"></div>
+
+              </div>
 
               {/* Background Video Arrow Controls on screen edges */}
 

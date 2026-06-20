@@ -37,18 +37,50 @@ const MobileApp = () => {
     do {
       nextIndex = Math.floor(Math.random() * targetVideos.length);
     } while (targetVideos[nextIndex] === bgVideoSrc && targetVideos.length > 1);
-    setBgVideoSrc(targetVideos[nextIndex]);
-  };
-
-  useEffect(() => {
-    if (bgVideoRef.current && currentView === 'home') {
+    const nextVideo = targetVideos[nextIndex];
+    setBgVideoSrc(nextVideo);
+    
+    if (bgVideoRef.current) {
+      bgVideoRef.current.src = nextVideo;
       bgVideoRef.current.load();
       const playPromise = bgVideoRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch(error => {
-          console.log("Autoplay was prevented on mobile:", error);
+          console.log("Autoplay failed on transition:", error);
         });
       }
+    }
+  };
+
+  useEffect(() => {
+    const video = bgVideoRef.current;
+    if (video && currentView === 'home') {
+      const playVideo = () => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Autoplay was prevented on mobile:", error);
+          });
+        }
+      };
+
+      video.load();
+      playVideo();
+
+      // Bulletproof mobile autoplay on interaction
+      const handleTouchOrClick = () => {
+        playVideo();
+        window.removeEventListener('touchstart', handleTouchOrClick);
+        window.removeEventListener('click', handleTouchOrClick);
+      };
+
+      window.addEventListener('touchstart', handleTouchOrClick, { passive: true });
+      window.addEventListener('click', handleTouchOrClick, { passive: true });
+
+      return () => {
+        window.removeEventListener('touchstart', handleTouchOrClick);
+        window.removeEventListener('click', handleTouchOrClick);
+      };
     }
   }, [bgVideoSrc, currentView]);
 
@@ -618,7 +650,9 @@ const MobileApp = () => {
             autoPlay
             muted
             playsInline
+            preload="auto"
             onEnded={handleBgVideoEnded}
+            style={{ pointerEvents: 'none' }}
           />
           <div className="mobile-video-bg-overlay"></div>
         </div>
