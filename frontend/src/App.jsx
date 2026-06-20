@@ -1972,7 +1972,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "9/16", title: "소셜 UGC 광고 시안 (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
 
-        { type: "video", aspectRatio: "9/16", title: "UGC 비디오 시안 (9:16)", url: "/UGC video.mov", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "UGC 비디오 시안 (9:16)", url: "/1.mp4", rotate: false }
 
       ]
 
@@ -2200,7 +2200,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "9/16", title: "Social UGC Ad Promo (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
 
-        { type: "video", aspectRatio: "9/16", title: "UGC Video Promo (9:16)", url: "/UGC video.mov", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "UGC Video Promo (9:16)", url: "/1.mp4", rotate: false }
 
       ]
 
@@ -2428,7 +2428,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "9/16", title: "社交 UGC 广告样片 (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
 
-        { type: "video", aspectRatio: "9/16", title: "UGC 视频样片 (9:16)", url: "/UGC video.mov", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "UGC 视频样片 (9:16)", url: "/1.mp4", rotate: false }
 
       ]
 
@@ -2884,7 +2884,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "9/16", title: "Video Quảng cáo UGC Mạng xã hội (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
 
-        { type: "video", aspectRatio: "9/16", title: "Video UGC mẫu (9:16)", url: "/UGC video.mov", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "Video UGC mẫu (9:16)", url: "/1.mp4", rotate: false }
 
       ]
 
@@ -2992,7 +2992,7 @@ const heroVideos = [
 
   "/ai video ugc ads creation.mp4",
 
-  "/UGC video.mov",
+  "/1.mp4",
 
   "/att.c3Yfx-CAfS6gkGcvWpGBo3pIpb-u_CVZF14gdt_T1nw.mp4",
 
