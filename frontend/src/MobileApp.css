@@ -591,11 +591,16 @@
 }
 
 .mobile-menu-logo {
+  position: relative;
+  z-index: 2;
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  color: #EAB308;
+  color: #ffffff;
   letter-spacing: 0.05em;
+  -webkit-text-stroke: 0.8px #EAB308;
+  text-shadow: 0 0 8px rgba(234, 179, 8, 0.85), 0 0 16px rgba(234, 179, 8, 0.5);
+  user-select: none;
 }
 
 .mobile-menu-close {
