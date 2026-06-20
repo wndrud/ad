@@ -4487,6 +4487,23 @@ function App() {
 
     window.history.replaceState({ view: initialView, activeServiceDetail: initialService }, '', initialUrl);
 
+    if (initialView === 'landing') {
+      setTimeout(() => {
+        let targetId = null;
+        if (path === '/about') {
+          targetId = 'work';
+        } else if (path === '/services') {
+          targetId = 'services';
+        }
+        if (targetId) {
+          const element = document.getElementById(targetId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }, 500);
+    }
+
   }, []);
 
   useEffect(() => {
@@ -4502,6 +4519,24 @@ function App() {
         setView(state.view || 'landing');
 
         setActiveServiceDetail(state.activeServiceDetail !== undefined ? state.activeServiceDetail : null);
+
+        const path = window.location.pathname;
+        if (state.view === 'landing') {
+          let targetId = null;
+          if (path === '/about') {
+            targetId = 'work';
+          } else if (path === '/services') {
+            targetId = 'services';
+          }
+          if (targetId) {
+            setTimeout(() => {
+              const element = document.getElementById(targetId);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 100);
+          }
+        }
 
       } else {
 
@@ -4532,6 +4567,21 @@ function App() {
           setView('landing');
 
           setActiveServiceDetail(null);
+
+          let targetId = null;
+          if (path === '/about') {
+            targetId = 'work';
+          } else if (path === '/services') {
+            targetId = 'services';
+          }
+          if (targetId) {
+            setTimeout(() => {
+              const element = document.getElementById(targetId);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 100);
+          }
 
         }
 
@@ -4715,9 +4765,16 @@ function App() {
 
     setBriefStage(1);
 
-    console.log('[History] Pushing landing state (handleNavClick)');
+    let path = '/';
+    if (targetId === 'work') {
+      path = '/about';
+    } else if (targetId === 'services') {
+      path = '/services';
+    }
 
-    window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/');
+    console.log('[History] Pushing landing state (handleNavClick):', path);
+
+    window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', path);
 
     setTimeout(() => {
 
@@ -7130,7 +7187,7 @@ ${customConceptText}
 
               <div className="services-list">
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(1); console.log('[History] Pushing service detail 1'); window.history.pushState({ view: 'landing', activeServiceDetail: 1 }, '', '/service/1'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(1); console.log('[History] Pushing service detail 1'); window.history.pushState({ view: 'landing', activeServiceDetail: 1 }, '', '/services'); }}>
 
                   <span className="service-num">01</span>
 
@@ -7144,7 +7201,7 @@ ${customConceptText}
 
                 
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(2); console.log('[History] Pushing service detail 2'); window.history.pushState({ view: 'landing', activeServiceDetail: 2 }, '', '/service/2'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(2); console.log('[History] Pushing service detail 2'); window.history.pushState({ view: 'landing', activeServiceDetail: 2 }, '', '/services'); }}>
 
                   <span className="service-num">02</span>
 
@@ -7156,7 +7213,7 @@ ${customConceptText}
 
                 </div>
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(3); console.log('[History] Pushing service detail 3'); window.history.pushState({ view: 'landing', activeServiceDetail: 3 }, '', '/service/3'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(3); console.log('[History] Pushing service detail 3'); window.history.pushState({ view: 'landing', activeServiceDetail: 3 }, '', '/services'); }}>
 
                   <span className="service-num">03</span>
 
@@ -7168,7 +7225,7 @@ ${customConceptText}
 
                 </div>
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(4); console.log('[History] Pushing service detail 4'); window.history.pushState({ view: 'landing', activeServiceDetail: 4 }, '', '/service/4'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(4); console.log('[History] Pushing service detail 4'); window.history.pushState({ view: 'landing', activeServiceDetail: 4 }, '', '/services'); }}>
 
                   <span className="service-num">04</span>
 
@@ -7180,7 +7237,7 @@ ${customConceptText}
 
                 </div>
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(5); console.log('[History] Pushing service detail 5'); window.history.pushState({ view: 'landing', activeServiceDetail: 5 }, '', '/service/5'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(5); console.log('[History] Pushing service detail 5'); window.history.pushState({ view: 'landing', activeServiceDetail: 5 }, '', '/services'); }}>
 
                   <span className="service-num">05</span>
 

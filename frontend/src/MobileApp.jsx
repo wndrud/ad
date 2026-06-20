@@ -92,9 +92,9 @@ const MobileApp = () => {
     
     if (path === '/careers') {
       initialView = 'careers';
-    } else if (path === '/works') {
-      initialView = 'works';
     } else if (path === '/services') {
+      initialView = 'works';
+    } else if (path === '/about') {
       initialView = 'services';
     } else if (path === '/process') {
       initialView = 'process';
@@ -117,9 +117,9 @@ const MobileApp = () => {
         let view = 'home';
         if (path === '/careers') {
           view = 'careers';
-        } else if (path === '/works') {
-          view = 'works';
         } else if (path === '/services') {
+          view = 'works';
+        } else if (path === '/about') {
           view = 'services';
         } else if (path === '/process') {
           view = 'process';
@@ -140,8 +140,8 @@ const MobileApp = () => {
     }
     const pathMap = {
       home: '/',
-      works: '/works',
-      services: '/services',
+      works: '/services',
+      services: '/about',
       process: '/process',
       careers: '/careers',
       faq: '/faq'
