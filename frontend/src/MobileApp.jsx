@@ -1344,7 +1344,7 @@ const MobileApp = () => {
         <nav className="mobile-menu-nav">
           <ul className="mobile-menu-list">
             <li>
-              <button onClick={() => handleMenuClick('WORK')}>WORK</button>
+              <button onClick={() => handleMenuClick('WORK')}>WORKS</button>
             </li>
             <li>
               <button onClick={() => handleMenuClick('SERVICES')}>ABOUT</button>
@@ -1353,7 +1353,7 @@ const MobileApp = () => {
               <button onClick={() => handleMenuClick('PROCESS')}>PROCESS</button>
             </li>
             <li>
-              <button onClick={() => handleMenuClick('CAREERS')}>CAREERS</button>
+              <button onClick={() => handleMenuClick('CAREERS')}>CAREER</button>
             </li>
             <li>
               <button onClick={() => handleMenuClick('FAQ')}>FAQ</button>
