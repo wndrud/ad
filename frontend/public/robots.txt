@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://verarvo.com/sitemap.xml
