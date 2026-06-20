@@ -762,15 +762,12 @@ const MobileApp = () => {
       {currentView === 'home' && (
         /* ================= HOME VIEW ================= */
         <main className="mobile-main">
-          {/* Faint Background interlocking NV Logo */}
-          <div className="mobile-bg-logo-container">
-            <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-bg-logo-img" />
-          </div>
-
           {/* Foreground Content */}
           <div className="mobile-hero-content">
             <div className="mobile-hero-title-wrapper">
-              <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-hero-watermark" />
+              <div className="mobile-bg-logo-container">
+                <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-bg-logo-img" />
+              </div>
               <h1 className="mobile-hero-title">VERARVO</h1>
             </div>
             <p className="mobile-hero-subtitle">Think new, Feel real</p>
