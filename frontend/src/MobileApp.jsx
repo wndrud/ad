@@ -78,6 +78,11 @@ const MobileApp = () => {
   const [currentBgVideoIndex, setCurrentBgVideoIndex] = useState(0);
   const bgVideoRefs = useRef([]);
 
+  // Mobile Preloader states
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isFadeOut, setIsFadeOut] = useState(false);
+
   // Initialize refs matching the size of targetVideos
   if (bgVideoRefs.current.length !== targetVideos.length) {
     bgVideoRefs.current = Array(targetVideos.length).fill(null);
@@ -124,6 +129,29 @@ const MobileApp = () => {
       };
     }
   }, [currentBgVideoIndex, currentView]);
+
+  // Preloader progress animation logic
+  useEffect(() => {
+    let progress = 0;
+    const interval = setInterval(() => {
+      // Dynamic random increment to feel organic (ranges 1 to 4)
+      const increment = Math.floor(Math.random() * 4) + 1;
+      progress = Math.min(progress + increment, 100);
+      setLoadingProgress(progress);
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setIsFadeOut(true);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 600);
+        }, 600);
+      }
+    }, 35); // ~2 seconds total reveal duration
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Careers Form States
   const [careerForm, setCareerForm] = useState({
@@ -685,6 +713,21 @@ const MobileApp = () => {
 
   return (
     <div className={`mobile-app-container lang-${language.toLowerCase()}`}>
+      {/* 0. Mobile Loading Preloader */}
+      {isLoading && (
+        <div className={`mobile-preloader ${isFadeOut ? 'fade-out' : ''}`}>
+          <div className="mobile-preloader-content">
+            <div className="mobile-preloader-logo-wrapper">
+              <div className="mobile-preloader-logo-container" style={{ clipPath: `inset(0 ${100 - loadingProgress}% 0 0)` }}>
+                <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="preloader-bg-logo" />
+                <h1 className="preloader-title">VERARVO</h1>
+              </div>
+              <div className="mobile-preloader-glow-line" style={{ left: `${loadingProgress}%` }}></div>
+            </div>
+            <div className="mobile-preloader-percentage">{loadingProgress}%</div>
+          </div>
+        </div>
+      )}
       {/* Background Video for the ENTIRE screen on Home view */}
       {currentView === 'home' && (
         <div className="mobile-video-bg-container">

@@ -1778,5 +1778,103 @@
   transform: scale(0.92);
 }
 
+/* Mobile Preloader overlay styling */
+.mobile-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #101012 0%, #070708 100%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.mobile-preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mobile-preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-preloader-logo-wrapper {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-preloader-logo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: clip-path 0.03s linear;
+}
+
+.preloader-bg-logo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.12;
+  pointer-events: none;
+  filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.15));
+}
+
+.preloader-title {
+  position: relative;
+  z-index: 2;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  margin: 0;
+  -webkit-text-stroke: 1px #EAB308;
+  text-shadow: 0 0 10px rgba(234, 179, 8, 0.65), 0 4px 20px rgba(0, 0, 0, 0.8);
+  user-select: none;
+}
+
+.mobile-preloader-glow-line {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #EAB308, #EAB308, transparent);
+  box-shadow: 0 0 12px #EAB308, 0 0 24px #EAB308;
+  transition: left 0.03s linear;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.mobile-preloader-percentage {
+  margin-top: 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.15em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
 
 
