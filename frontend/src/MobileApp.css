@@ -195,7 +195,7 @@
 /* Faint Background NV Logo styling (watermark centered behind VERARVO text) */
 .mobile-bg-logo-container {
   position: absolute;
-  top: 54%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
