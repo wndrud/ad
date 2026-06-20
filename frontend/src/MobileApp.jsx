@@ -713,7 +713,10 @@ const MobileApp = () => {
       {/* 1. Header (Only show when menu is closed) */}
       <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
         <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
-          <span className="mobile-logo-text">VERARVO</span>
+          <div className="mobile-logo-wrapper">
+            <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-logo-watermark" />
+            <span className="mobile-logo-text">VERARVO</span>
+          </div>
         </div>
         <div className="mobile-header-right">
           {/* Transparent Language Switcher Button */}
