@@ -28,47 +28,42 @@ const MobileApp = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   // Background video state & ended handler for mobile
-  const [bgVideoSrc, setBgVideoSrc] = useState(() => targetVideos[Math.floor(Math.random() * targetVideos.length)]);
-  const bgVideoRef = useRef(null);
+  const [currentBgVideoIndex, setCurrentBgVideoIndex] = useState(0);
+  const bgVideoRefs = useRef([]);
+
+  // Initialize refs matching the size of targetVideos
+  if (bgVideoRefs.current.length !== targetVideos.length) {
+    bgVideoRefs.current = Array(targetVideos.length).fill(null);
+  }
 
   const handleBgVideoEnded = () => {
-    let nextIndex;
-    do {
-      nextIndex = Math.floor(Math.random() * targetVideos.length);
-    } while (targetVideos[nextIndex] === bgVideoSrc && targetVideos.length > 1);
-    const nextVideo = targetVideos[nextIndex];
-    setBgVideoSrc(nextVideo);
-    
-    if (bgVideoRef.current) {
-      bgVideoRef.current.src = nextVideo;
-      bgVideoRef.current.load();
-      const playPromise = bgVideoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay failed on transition:", error);
-        });
-      }
-    }
+    setCurrentBgVideoIndex(prev => (prev + 1) % targetVideos.length);
   };
 
   useEffect(() => {
-    const video = bgVideoRef.current;
-    if (video && currentView === 'home') {
-      const playVideo = () => {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.log("Autoplay was prevented on mobile:", error);
-          });
+    if (currentView === 'home') {
+      bgVideoRefs.current.forEach((video, idx) => {
+        if (video) {
+          if (idx === currentBgVideoIndex) {
+            video.currentTime = 0;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(error => {
+                console.log("Autoplay was prevented on mobile:", error);
+              });
+            }
+          } else {
+            video.pause();
+          }
         }
-      };
-
-      video.load();
-      playVideo();
+      });
 
       // Bulletproof mobile autoplay on interaction
       const handleTouchOrClick = () => {
-        playVideo();
+        const activeVideo = bgVideoRefs.current[currentBgVideoIndex];
+        if (activeVideo) {
+          activeVideo.play().catch(() => {});
+        }
         window.removeEventListener('touchstart', handleTouchOrClick);
         window.removeEventListener('click', handleTouchOrClick);
       };
@@ -81,7 +76,7 @@ const MobileApp = () => {
         window.removeEventListener('click', handleTouchOrClick);
       };
     }
-  }, [bgVideoSrc, currentView]);
+  }, [currentBgVideoIndex, currentView]);
 
   // Careers Form States
   const [careerForm, setCareerForm] = useState({
@@ -643,16 +638,24 @@ const MobileApp = () => {
       {/* Background Video for the ENTIRE screen on Home view */}
       {currentView === 'home' && (
         <div className="mobile-video-bg-container">
-          <video
-            ref={bgVideoRef}
-            src={bgVideoSrc}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            onEnded={handleBgVideoEnded}
-            style={{ pointerEvents: 'none' }}
-          />
+          {targetVideos.map((src, index) => (
+            <video
+              key={src}
+              ref={el => bgVideoRefs.current[index] = el}
+              src={src}
+              muted
+              playsInline
+              preload="auto"
+              onEnded={handleBgVideoEnded}
+              style={{
+                display: index === currentBgVideoIndex ? 'block' : 'none',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                pointerEvents: 'none'
+              }}
+            />
+          ))}
           <div className="mobile-video-bg-overlay"></div>
         </div>
       )}
