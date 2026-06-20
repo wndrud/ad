@@ -172,11 +172,13 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   position: relative;
-  padding: 0 2rem 4rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
   z-index: 10;
+  height: calc(100vh - 60px);
 }
 
 /* Faint Background NV Logo styling */
@@ -212,6 +214,9 @@
   align-items: center;
   justify-content: center;
   pointer-events: auto;
+  min-height: calc(100vh - 120px);
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .mobile-hero-title {
@@ -1678,14 +1683,17 @@
 
 /* Mobile Home Footer Contact Section */
 .mobile-home-contact {
-  position: absolute;
-  left: 1.5rem;
-  bottom: 2rem;
+  position: relative;
+  align-self: flex-start;
+  margin-left: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
   z-index: 15;
+  flex-shrink: 0;
 }
 
 .mobile-contact-title {
@@ -1741,25 +1749,6 @@
 .mobile-social-icon-btn:active {
   color: #EAB308;
   transform: scale(0.92);
-}
-
-/* Make sure container doesn't overflow on tiny mobile screens */
-@media (max-height: 720px) {
-  .mobile-main {
-    justify-content: flex-start;
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-    overflow-y: auto;
-  }
-  .mobile-home-contact {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    margin-top: 2.5rem;
-    padding: 0 0.5rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
 }
 
 
