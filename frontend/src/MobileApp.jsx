@@ -714,7 +714,6 @@ const MobileApp = () => {
       <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
         <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
           <div className="mobile-logo-wrapper">
-            <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-logo-watermark" />
             <span className="mobile-logo-text">VERARVO</span>
           </div>
         </div>
@@ -770,7 +769,10 @@ const MobileApp = () => {
 
           {/* Foreground Content */}
           <div className="mobile-hero-content">
-            <h1 className="mobile-hero-title">VERARVO</h1>
+            <div className="mobile-hero-title-wrapper">
+              <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="mobile-hero-watermark" />
+              <h1 className="mobile-hero-title">VERARVO</h1>
+            </div>
             <p className="mobile-hero-subtitle">Think new, Feel real</p>
             <button className="mobile-works-btn" onClick={() => setCurrentView('works')}>
               <span className="mobile-works-btn-text">see works</span>

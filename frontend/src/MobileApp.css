@@ -40,19 +40,7 @@
   align-items: center;
   justify-content: center;
   padding: 0.3rem 0.5rem;
-}
-
-.mobile-logo-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -52%);
-  height: 2.3rem;
-  width: auto;
-  opacity: 0.45;
-  pointer-events: none;
-  z-index: 1;
-}
+}/* Watermark was removed from top-left header logo */
 
 .mobile-logo-text {
   position: relative;
@@ -244,14 +232,38 @@
   width: 100%;
 }
 
+.mobile-hero-title-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-hero-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 6rem; /* A nice large size that extends above and below the center title */
+  width: auto;
+  opacity: 0.45; /* Clean and visible watermark like the screenshot */
+  pointer-events: none;
+  z-index: 1;
+}
+
 .mobile-hero-title {
+  position: relative;
+  z-index: 2; /* Sit in front of the watermark */
   font-family: 'Playfair Display', serif;
   font-size: 3.5rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: 0.08em;
-  margin: 0 0 0.5rem 0;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  margin: 0;
+  -webkit-text-stroke: 1px #EAB308; /* Premium golden outline stroke matching the screenshot */
+  text-shadow: 0 0 10px rgba(234, 179, 8, 0.65), 0 4px 20px rgba(0, 0, 0, 0.8);
   user-select: none;
 }
 
