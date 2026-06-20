@@ -813,7 +813,7 @@ const MobileApp = () => {
               </div>
               <h1 className="mobile-hero-title">VERARVO</h1>
             </div>
-            <p className="mobile-hero-subtitle">Think new, Feel real</p>
+            <p className="mobile-hero-subtitle">REIMAGINING THE VALUE OF BRANDS</p>
             <button className="mobile-works-btn" onClick={() => setCurrentView('works')}>
               <span className="mobile-works-btn-text">see works</span>
             </button>
