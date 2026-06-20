@@ -237,7 +237,9 @@
   align-items: center;
   justify-content: center;
   pointer-events: auto;
-  min-height: calc(100vh - 120px);
+  height: calc(100vh - 60px);
+  padding: 0 2rem 4rem 2rem;
+  box-sizing: border-box;
   flex-shrink: 0;
   width: 100%;
 }
