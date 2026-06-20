@@ -534,7 +534,7 @@ const MobileApp = () => {
       ]
     },
     EN: {
-      tag: "CAREERS",
+      tag: "CAREER",
       titlePre: "We are waiting for creators with",
       titlePost: "New Senses & Perspectives",
       subtitle: "Please submit your portfolio and resume together.",
@@ -584,7 +584,7 @@ const MobileApp = () => {
       ]
     },
     JA: {
-      tag: "CAREERS",
+      tag: "CAREER",
       titlePre: "新しい感覚と視点を持ったクリエイターを",
       titlePost: "常にお待ちしております",
       subtitle: "ポートフォリオと履歴書を一緒にご送付ください。",
@@ -995,7 +995,7 @@ const MobileApp = () => {
               <ArrowLeft size={18} />
               <span>Back</span>
             </button>
-            <h2 className="mobile-careers-title">CAREERS</h2>
+            <h2 className="mobile-careers-title">CAREER</h2>
           </div>
 
           <div className="careers-scroll-content">
