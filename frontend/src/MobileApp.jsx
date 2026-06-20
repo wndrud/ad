@@ -83,6 +83,76 @@ const MobileApp = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isFadeOut, setIsFadeOut] = useState(false);
 
+  // Pathname routing integration
+  const isFirstMount = useRef(true);
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    let initialView = 'home';
+    
+    if (path === '/careers') {
+      initialView = 'careers';
+    } else if (path === '/works') {
+      initialView = 'works';
+    } else if (path === '/services') {
+      initialView = 'services';
+    } else if (path === '/process') {
+      initialView = 'process';
+    } else if (path === '/faq') {
+      initialView = 'faq';
+    }
+    
+    setCurrentView(initialView);
+    window.history.replaceState({ view: initialView }, '', path);
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = (e) => {
+      const state = e.state;
+      console.log('[Mobile History] popstate event fired. State:', state);
+      if (state && state.view) {
+        setCurrentView(state.view);
+      } else {
+        const path = window.location.pathname;
+        let view = 'home';
+        if (path === '/careers') {
+          view = 'careers';
+        } else if (path === '/works') {
+          view = 'works';
+        } else if (path === '/services') {
+          view = 'services';
+        } else if (path === '/process') {
+          view = 'process';
+        } else if (path === '/faq') {
+          view = 'faq';
+        }
+        setCurrentView(view);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
+    const pathMap = {
+      home: '/',
+      works: '/works',
+      services: '/services',
+      process: '/process',
+      careers: '/careers',
+      faq: '/faq'
+    };
+    const path = pathMap[currentView] || '/';
+    if (window.location.pathname !== path) {
+      console.log('[Mobile History] Pushing view state:', currentView, path);
+      window.history.pushState({ view: currentView }, '', path);
+    }
+  }, [currentView]);
+
   // Initialize refs matching the size of targetVideos
   if (bgVideoRefs.current.length !== targetVideos.length) {
     bgVideoRefs.current = Array(targetVideos.length).fill(null);

@@ -4455,35 +4455,31 @@ function App() {
 
   useEffect(() => {
 
-    const params = new URLSearchParams(window.location.search);
-
-    const viewParam = params.get('view');
-
-    const serviceParam = params.get('service');
-
-    
+    const path = window.location.pathname;
 
     let initialView = 'landing';
 
     let initialService = null;
 
-    
+    if (path.startsWith('/service/')) {
 
-    if (serviceParam) {
+      const serviceId = parseInt(path.split('/service/')[1], 10);
 
-      initialService = parseInt(serviceParam, 10);
+      if (!isNaN(serviceId)) {
 
-    } else if (viewParam === 'careers') {
+        initialService = serviceId;
+
+      }
+
+    } else if (path === '/careers') {
 
       initialView = 'careers';
 
-    } else if (viewParam === 'wizard') {
+    } else if (path === '/wizard') {
 
       initialView = 'wizard';
 
     }
-
-    
 
     const initialUrl = window.location.pathname + window.location.search;
 
@@ -4499,7 +4495,7 @@ function App() {
 
       const state = e.state;
 
-      console.log('[History] popstate event fired. State:', state, 'Location:', window.location.search);
+      console.log('[History] popstate event fired. State:', state, 'Location:', window.location.pathname);
 
       if (state) {
 
@@ -4509,27 +4505,23 @@ function App() {
 
       } else {
 
-        const params = new URLSearchParams(window.location.search);
+        const path = window.location.pathname;
 
-        const viewParam = params.get('view');
+        if (path.startsWith('/service/')) {
 
-        const serviceParam = params.get('service');
-
-        
-
-        if (serviceParam) {
+          const serviceId = parseInt(path.split('/service/')[1], 10);
 
           setView('landing');
 
-          setActiveServiceDetail(parseInt(serviceParam, 10));
+          setActiveServiceDetail(!isNaN(serviceId) ? serviceId : null);
 
-        } else if (viewParam === 'careers') {
+        } else if (path === '/careers') {
 
           setView('careers');
 
           setActiveServiceDetail(null);
 
-        } else if (viewParam === 'wizard') {
+        } else if (path === '/wizard') {
 
           setView('wizard');
 
@@ -4647,7 +4639,7 @@ function App() {
 
     console.log('[History] Pushing wizard state (handleStartProject)');
 
-    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/?view=wizard');
+    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/wizard');
 
   };
 
@@ -4686,7 +4678,7 @@ function App() {
         setView('careers');
         setActiveServiceDetail(null);
         setMobileActiveSection('careers');
-        window.history.pushState({ view: 'careers', activeServiceDetail: null }, '', '/?view=careers');
+        window.history.pushState({ view: 'careers', activeServiceDetail: null }, '', '/careers');
       } else {
         setView('landing');
         setActiveServiceDetail(null);
@@ -4709,7 +4701,7 @@ function App() {
 
       console.log('[History] Pushing careers state (handleNavClick)');
 
-      window.history.pushState({ view: 'careers', activeServiceDetail: null }, '', '/?view=careers');
+      window.history.pushState({ view: 'careers', activeServiceDetail: null }, '', '/careers');
 
       return;
 
@@ -4877,7 +4869,7 @@ ${customConceptText}
 
     console.log('[History] Pushing wizard state (handleCreateNewProject)');
 
-    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/?view=wizard');
+    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/wizard');
 
   };
 
@@ -6085,7 +6077,7 @@ ${customConceptText}
 
                       console.log('[History] Pushing wizard state (Service Detail CTA)');
 
-                      window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/?view=wizard');
+                      window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/wizard');
 
                       setActiveServiceDetail(null);
 
@@ -7138,7 +7130,7 @@ ${customConceptText}
 
               <div className="services-list">
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(1); console.log('[History] Pushing service detail 1'); window.history.pushState({ view: 'landing', activeServiceDetail: 1 }, '', '/?service=1'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(1); console.log('[History] Pushing service detail 1'); window.history.pushState({ view: 'landing', activeServiceDetail: 1 }, '', '/service/1'); }}>
 
                   <span className="service-num">01</span>
 
@@ -7152,7 +7144,7 @@ ${customConceptText}
 
                 
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(2); console.log('[History] Pushing service detail 2'); window.history.pushState({ view: 'landing', activeServiceDetail: 2 }, '', '/?service=2'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(2); console.log('[History] Pushing service detail 2'); window.history.pushState({ view: 'landing', activeServiceDetail: 2 }, '', '/service/2'); }}>
 
                   <span className="service-num">02</span>
 
@@ -7164,7 +7156,7 @@ ${customConceptText}
 
                 </div>
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(3); console.log('[History] Pushing service detail 3'); window.history.pushState({ view: 'landing', activeServiceDetail: 3 }, '', '/?service=3'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(3); console.log('[History] Pushing service detail 3'); window.history.pushState({ view: 'landing', activeServiceDetail: 3 }, '', '/service/3'); }}>
 
                   <span className="service-num">03</span>
 
@@ -7176,7 +7168,7 @@ ${customConceptText}
 
                 </div>
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(4); console.log('[History] Pushing service detail 4'); window.history.pushState({ view: 'landing', activeServiceDetail: 4 }, '', '/?service=4'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(4); console.log('[History] Pushing service detail 4'); window.history.pushState({ view: 'landing', activeServiceDetail: 4 }, '', '/service/4'); }}>
 
                   <span className="service-num">04</span>
 
@@ -7188,7 +7180,7 @@ ${customConceptText}
 
                 </div>
 
-                <div className="service-row" onClick={() => { setActiveServiceDetail(5); console.log('[History] Pushing service detail 5'); window.history.pushState({ view: 'landing', activeServiceDetail: 5 }, '', '/?service=5'); }}>
+                <div className="service-row" onClick={() => { setActiveServiceDetail(5); console.log('[History] Pushing service detail 5'); window.history.pushState({ view: 'landing', activeServiceDetail: 5 }, '', '/service/5'); }}>
 
                   <span className="service-num">05</span>
 
