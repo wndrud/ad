@@ -6,7 +6,6 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 const targetVideos = [
   "/UGC video1.mov",
-  "/lv_0_20260502175511.mp4",
   "/For Hazlo.mov",
   "/video-output-A4BEB786-5168-4899-9C24-35EE2EB1110E-2.mov",
   "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mov",
