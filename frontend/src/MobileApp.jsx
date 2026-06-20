@@ -15,6 +15,49 @@ const targetVideos = [
   "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mov"
 ];
 
+const faqData = {
+  KO: [
+    { q: "Q1. 제작 기간은 얼마나 걸리나요?", a: "A. 일반적으로 저희 VERARVO AI 광고 영상은 평균 3일 내 제작 완료됩니다. 프로젝트 난이도와 수정 횟수에 따라 달라질 수 있습니다." },
+    { q: "Q2. 가격은 어떻게 결정되나요?", a: "A. 영상 길이, 스타일, 기획 난이도, 수정 횟수에 따라 달라집니다. 상세 견적은 상담 후 안내드립니다." },
+    { q: "Q3. 수정은 몇 번 가능한가요?", a: "A. 기본적으로 1~3회 수정이 포함됩니다. 1차 시안 생성후 고객님의 피드백 반영 후에 2차 시안을 제공해드립니다." },
+    { q: "Q4. 어떤 자료를 제공해야 하나요?", a: "A. 아래 자료가 있으면 제작이 원활합니다 제품 이미지 또는 영상, 로고, 브랜드 소개, 참고 광고 레퍼런스" },
+    { q: "Q5. AI만으로 영상이 만들어지나요?", a: "A. AI 기술을 활용하여 제작하지만, 기획, 편집, 후반 작업은 사람이 직접 검수하여 완성도를 높입니다." },
+    { q: "Q6. 저작권은 어떻게 되나요?", a: "A. 기본적으로 납품된 최종 결과물의 사용권은 고객에게 제공됩니다." }
+  ],
+  EN: [
+    { q: "Q1. How long does the production take?", a: "A. In general, our VERARVO AI advertising videos are completed within an average of 3 days. It may vary depending on project difficulty and the number of revisions." },
+    { q: "Q2. How is the price determined?", a: "A. It depends on video length, style, planning difficulty, and the number of revisions. Detailed quotes are provided after consultation." },
+    { q: "Q3. How many revisions are allowed?", a: "A. Basically, 1 to 3 revisions are included. After generating the 1st draft, we will provide the 2nd draft reflecting your feedback." },
+    { q: "Q4. What materials do I need to provide?", a: "A. Production goes smoothly with the following materials: Product images or videos, logo, brand introduction, and reference ads." },
+    { q: "Q5. Are videos made entirely by AI?", a: "A. Although produced using AI technology, planning, editing, and post-production are directly reviewed and refined by humans to ensure high quality." },
+    { q: "Q6. How about the copyright?", a: "A. Basically, the usage rights of the delivered final product are granted to the customer." }
+  ],
+  ZH: [
+    { q: "Q1. 制作周期是多久？", a: "A. 通常情况下，我们的 VERARVO AI 广告视频平均在 3 天内制作完成。这可能会根据项目难度和修改次数而有所不同。" },
+    { q: "Q2. 价格是如何决定的？", a: "A. 取决于视频长度、风格、策划难度和修改次数。详细报价将在咨询后提供。" },
+    { q: "Q3. 可以修改多少次？", a: "A. 基本上包含 1 到 3 次修改。在生成第一版初稿后，我们将根据您的反馈提供第二版修改稿。" },
+    { q: "Q4. 我需要提供哪些材料？", a: "A. 提供以下材料将使制作更加顺利：产品图片或视频、徽标、品牌介绍、参考广告案例。" },
+    { q: "Q5. 视频是完全由 AI 制作的吗？", a: "A. 虽然使用 AI 技术进行制作，但策划、剪辑和后期制作均由人工直接把关，以提高完成度。" },
+    { q: "Q6. 版权如何归属？", a: "A. 基本上，交付的最终成果物的使用权归客户所有。" }
+  ],
+  JA: [
+    { q: "Q1. 制作期間はどれくらいかかりますか？", a: "A. 一般的に、当社の VERARVO AI 広告映像は平均3日以内に制作完了します。プロジェクトの難易度や修正回数によって異なる場合があります。" },
+    { q: "Q2. 料金はどのように決まりますか？", a: "A. 映像の長さ、スタイル、企画の難易度、修正回数によって異なります。詳細な見積もりはご相談後にご案内いたします。" },
+    { q: "Q3. 修正は何回可能ですか？", a: "A. 基本的に1〜3回の修正が含まれています。第1次案の制作後、お客様のフィードバックを反映した第2次案をご提供いたします。" },
+    { q: "Q4. どのような資料を提供すればよいですか？", a: "A. 以下の資料をご用意いただくと制作がスムーズになります：製品画像または映像、ロゴ、ブランド紹介、参考広告のリファレンス。" },
+    { q: "Q5. AIのみで映像が作られるのですか？", a: "A. AI技術を活用して制作しますが、企画、編集、ポストプロダクションは人間が直接検品し、完成度を高めます。" },
+    { q: "Q6. 著作権はどうなりますか？", a: "A. 基本的に、納品された最終成果物の使用権は顧客に提供されます。" }
+  ],
+  VI: [
+    { q: "Q1. Thời gian sản xuất mất bao lâu?", a: "A. Thông thường, video quảng cáo VERARVO AI của chúng tôi được hoàn thiện trung bình trong vòng 3 ngày. Thời gian có thể thay đổi tùy thuộc vào độ khó của dự án và số lần chỉnh sửa." },
+    { q: "Q2. Giá cả được quyết định như thế nào?", a: "A. Giá cả phụ thuộc vào độ dài video, phong cách, độ khó lập kế hoạch và số lần chỉnh sửa. Báo giá chi tiết sẽ được cung cấp sau khi tư vấn." },
+    { q: "Q3. Có thể chỉnh sửa tối đa bao nhiêu lần?", a: "A. Cơ bản bao gồm từ 1 đến 3 lần chỉnh sửa. Sau khi tạo bản nháp đầu tiên, chúng tôi sẽ cung cấp bản nháp thứ hai dựa trên phản hồi của bạn." },
+    { q: "Q4. Tôi cần cung cấp những tài liệu nào?", a: "A. Quá trình sản xuất sẽ thuận lợi hơn nếu có các tài liệu sau: Hình ảnh hoặc video sản phẩm, logo, giới thiệu thương hiệu, quảng cáo tham chiếu." },
+    { q: "Q5. Video có được tạo hoàn toàn bằng AI không?", a: "A. Mặc dù được sản xuất bằng công nghệ AI, các khâu lập kế hoạch, biên tập và hậu kỳ đều được con người trực tiếp kiểm duyệt để nâng cao độ hoàn thiện." },
+    { q: "Q6. Bản quyền thì thế nào?", a: "A. Về cơ bản, quyền sử dụng sản phẩm cuối cùng được bàn giao sẽ được cung cấp cho khách hàng." }
+  ]
+};
+
 const MobileApp = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState('KO');
@@ -22,6 +65,7 @@ const MobileApp = () => {
   
   // Navigation: 'home' or 'works'
   const [currentView, setCurrentView] = useState('home');
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
   
   // Video player modal states
   const [activeCategory, setActiveCategory] = useState(null);
@@ -619,6 +663,9 @@ const MobileApp = () => {
       });
       setCareerError('');
       setCareerSuccessShow(false);
+    } else if (item === 'FAQ') {
+      setCurrentView('faq');
+      setOpenFaqIndex(null);
     } else {
       setCurrentView('home');
     }
@@ -1140,6 +1187,51 @@ const MobileApp = () => {
         </main>
       )}
 
+      {currentView === 'faq' && (
+        /* ================= FAQ VIEW ================= */
+        <main className="mobile-faq-view">
+          <div className="mobile-faq-header">
+            <button className="mobile-back-btn" onClick={() => setCurrentView('home')}>
+              <ArrowLeft size={18} />
+              <span>Back</span>
+            </button>
+            <h2 className="mobile-faq-title">
+              {language === 'KO' ? '자주 하는 질문' :
+               language === 'ZH' ? '常见问题' :
+               language === 'JA' ? 'よくある質問' :
+               language === 'VI' ? 'Câu hỏi thường gặp' :
+               'FAQ'}
+            </h2>
+          </div>
+
+          <div className="mobile-faq-list">
+            {faqData[language]?.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div 
+                  key={index} 
+                  className={`mobile-faq-item ${isOpen ? 'open' : ''}`}
+                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                >
+                  <div className="mobile-faq-question-row">
+                    <span className="mobile-faq-question">{item.q}</span>
+                    <span className="mobile-faq-toggle">
+                      {isOpen ? '—' : '+'}
+                    </span>
+                  </div>
+                  <div className="mobile-faq-answer-wrapper">
+                    <div className="mobile-faq-answer-inner">
+                      <div className="mobile-faq-divider"></div>
+                      <p className="mobile-faq-answer">{item.a}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </main>
+      )}
+
 
       {/* 3. Video Player Slide-Up Modal */}
       {activeCategory && (
@@ -1212,7 +1304,7 @@ const MobileApp = () => {
               <button onClick={() => handleMenuClick('CAREERS')}>CAREERS</button>
             </li>
             <li>
-              <button onClick={() => handleMenuClick('CONTACT')}>CONTACT</button>
+              <button onClick={() => handleMenuClick('FAQ')}>FAQ</button>
             </li>
           </ul>
         </nav>
