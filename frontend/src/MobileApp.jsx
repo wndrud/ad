@@ -1347,7 +1347,7 @@ const MobileApp = () => {
               <button onClick={() => handleMenuClick('WORK')}>WORK</button>
             </li>
             <li>
-              <button onClick={() => handleMenuClick('SERVICES')}>SERVICES</button>
+              <button onClick={() => handleMenuClick('SERVICES')}>ABOUT</button>
             </li>
             <li>
               <button onClick={() => handleMenuClick('PROCESS')}>PROCESS</button>
