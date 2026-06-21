@@ -4670,7 +4670,7 @@ function App() {
 
     if (ogDesc) ogDesc.setAttribute('content', description);
 
-  }, [view]);
+  });
 
   // State synchronization is handled explicitly in navigation event handlers to prevent timing issues.
 
@@ -4810,7 +4810,16 @@ function App() {
         setStep(1);
         setBriefStage(1);
         setMobileActiveSection(targetId);
-        window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', '/');
+        
+        let path = '/';
+        if (targetId === 'work') {
+          path = '/about';
+        } else if (targetId === 'services') {
+          path = '/services';
+        } else if (targetId === 'process') {
+          path = '/process';
+        }
+        window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', path);
       }
       window.scrollTo(0, 0);
       return;
@@ -4845,6 +4854,8 @@ function App() {
       path = '/about';
     } else if (targetId === 'services') {
       path = '/services';
+    } else if (targetId === 'process') {
+      path = '/process';
     }
 
     console.log('[History] Pushing landing state (handleNavClick):', path);
