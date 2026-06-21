@@ -4611,6 +4611,61 @@ function App() {
 
   }, []);
 
+  // Dynamic SEO metadata updates based on current view/route
+  useEffect(() => {
+
+    let title = "VERARVO | AI 크리에이터와 마케팅 전문가가 함께하는 광고 대행사";
+
+    let description = "AI 기술과 인간의 감각을 결합하여, 단순한 영상 제작을 넘어 성과를 창출하는 트렌디한 광고 비디오 콘텐츠를 제공합니다.";
+
+    const path = window.location.pathname;
+
+    if (view === 'careers' || path === '/careers') {
+
+      title = "채용 안내 | VERARVO와 함께할 새로운 감각의 인재를 모십니다";
+
+      description = "AI 비디오 크리에이터, 영상 편집 및 모션 디자이너, 프롬프트 엔지니어 등 미래의 마케팅 크리에이티브를 선도할 인재를 기다립니다.";
+
+    } else if (view === 'wizard' || path === '/project') {
+
+      title = "프로젝트 신청 | 비즈니스 광고 기획 및 에셋 생성";
+
+      description = "브랜드명과 타겟을 입력하여 맞춤형 광고 컨셉 제안 및 고품질 스토리보드 시안을 즉시 확인하고 프로젝트를 의뢰해 보세요.";
+
+    } else if (path === '/process') {
+
+      title = "제작 프로세스 | VERARVO 광고 제작 및 최적화 단계";
+
+      description = "기획 및 전략 수립부터 AI 에셋 생성, 최종 최적화까지 VERARVO만의 투명하고 신속한 광고 제작 과정을 소개합니다.";
+
+    }
+
+    document.title = title;
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+
+    if (!metaDesc) {
+
+      metaDesc = document.createElement('meta');
+
+      metaDesc.setAttribute('name', 'description');
+
+      document.head.appendChild(metaDesc);
+
+    }
+
+    metaDesc.setAttribute('content', description);
+
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+
+    if (ogTitle) ogTitle.setAttribute('content', title);
+
+    let ogDesc = document.querySelector('meta[property="og:description"]');
+
+    if (ogDesc) ogDesc.setAttribute('content', description);
+
+  }, [view]);
+
   // State synchronization is handled explicitly in navigation event handlers to prevent timing issues.
 
   // Reset wizard state when leaving the wizard view
