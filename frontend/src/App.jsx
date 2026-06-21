@@ -3652,6 +3652,8 @@ const getInitialUrlState = () => {
 
   if (typeof window === 'undefined') return { view: 'landing', service: null };
 
+  const path = window.location.pathname;
+
   const params = new URLSearchParams(window.location.search);
 
   const viewParam = params.get('view');
@@ -3660,15 +3662,21 @@ const getInitialUrlState = () => {
 
   
 
-  if (serviceParam) {
+  if (path.startsWith('/service/')) {
+
+    const serviceId = parseInt(path.split('/service/')[1], 10);
+
+    return { view: 'landing', service: !isNaN(serviceId) ? serviceId : null };
+
+  } else if (serviceParam) {
 
     return { view: 'landing', service: parseInt(serviceParam, 10) };
 
-  } else if (viewParam === 'careers') {
+  } else if (path === '/careers' || viewParam === 'careers') {
 
     return { view: 'careers', service: null };
 
-  } else if (viewParam === 'wizard' || viewParam === 'project') {
+  } else if (path === '/wizard' || path === '/project' || viewParam === 'wizard' || viewParam === 'project') {
 
     return { view: 'wizard', service: null };
 
