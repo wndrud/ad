@@ -3668,7 +3668,7 @@ const getInitialUrlState = () => {
 
     return { view: 'careers', service: null };
 
-  } else if (viewParam === 'wizard') {
+  } else if (viewParam === 'wizard' || viewParam === 'project') {
 
     return { view: 'wizard', service: null };
 
@@ -4475,7 +4475,7 @@ function App() {
 
       initialView = 'careers';
 
-    } else if (path === '/wizard') {
+    } else if (path === '/wizard' || path === '/project') {
 
       initialView = 'wizard';
 
@@ -4556,7 +4556,7 @@ function App() {
 
           setActiveServiceDetail(null);
 
-        } else if (path === '/wizard') {
+        } else if (path === '/wizard' || path === '/project') {
 
           setView('wizard');
 
@@ -4689,7 +4689,7 @@ function App() {
 
     console.log('[History] Pushing wizard state (handleStartProject)');
 
-    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/wizard');
+    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/project');
 
   };
 
@@ -4926,7 +4926,7 @@ ${customConceptText}
 
     console.log('[History] Pushing wizard state (handleCreateNewProject)');
 
-    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/wizard');
+    window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/project');
 
   };
 
@@ -6134,7 +6134,7 @@ ${customConceptText}
 
                       console.log('[History] Pushing wizard state (Service Detail CTA)');
 
-                      window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/wizard');
+                      window.history.pushState({ view: 'wizard', activeServiceDetail: null }, '', '/project');
 
                       setActiveServiceDetail(null);
 
