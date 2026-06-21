@@ -98,7 +98,7 @@ const MobileApp = () => {
       initialView = 'services';
     } else if (path === '/process') {
       initialView = 'process';
-    } else if (path === '/faq') {
+    } else if (path === '/faq' || path === '/inquiry') {
       initialView = 'faq';
     }
     
@@ -123,7 +123,7 @@ const MobileApp = () => {
           view = 'services';
         } else if (path === '/process') {
           view = 'process';
-        } else if (path === '/faq') {
+        } else if (path === '/faq' || path === '/inquiry') {
           view = 'faq';
         }
         setCurrentView(view);
@@ -144,13 +144,52 @@ const MobileApp = () => {
       services: '/about',
       process: '/process',
       careers: '/careers',
-      faq: '/faq'
+      faq: '/inquiry'
     };
     const path = pathMap[currentView] || '/';
     if (window.location.pathname !== path) {
       console.log('[Mobile History] Pushing view state:', currentView, path);
       window.history.pushState({ view: currentView }, '', path);
     }
+  }, [currentView]);
+
+  // Dynamic SEO metadata updates based on current view/route on mobile
+  useEffect(() => {
+    let title = "VERARVO | AI 크리에이터와 마케팅 전문가가 함께하는 광고 대행사";
+    let description = "AI 기술과 인간의 감각을 결합하여, 단순한 영상 제작을 넘어 성과를 창출하는 트렌디한 광고 비디오 콘텐츠를 제공합니다.";
+    const path = window.location.pathname;
+
+    if (path === '/about' || currentView === 'services') {
+      title = "VERARVO | 회사 소개";
+    } else if (currentView === 'careers' || path === '/careers') {
+      title = "VERARVO | 직원 채용";
+      description = "AI 비디오 크리에이터, 영상 편집 및 모션 디자이너, 프롬프트 엔지니어 등 미래의 마케팅 크리에이티브를 선도할 인재를 기다립니다.";
+    } else if (currentView === 'process' || path === '/process') {
+      title = "VERARVO | 제작 과정";
+      description = "기획 및 전략 수립부터 AI 에셋 생성, 최종 최적화까지 VERARVO만의 투명하고 신속한 광고 제작 과정을 소개합니다.";
+    } else if (currentView === 'works' || path === '/services') {
+      title = "VERARVO | 회사 서비스";
+      description = "제품 광고, 이벤트 및 전시 홍보, 소셜 숏폼 콘텐츠 등 VERARVO가 선사하는 차세대 AI 기반 영상 광고 서비스를 확인하세요.";
+    } else if (currentView === 'faq' || path === '/inquiry') {
+      title = "VERARVO | 문의하기";
+      description = "AI 영상 광고 제작 및 마케팅 협업 의뢰에 대한 문의사항을 남겨주시면, 담당 매니저가 신속하게 안내해 드립니다.";
+    }
+
+    document.title = title;
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', description);
+
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', title);
+
+    let ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', description);
   }, [currentView]);
 
   // Initialize refs matching the size of targetVideos
@@ -587,7 +626,7 @@ const MobileApp = () => {
       steps: [
         { num: "01", letter: "B", label: "依頼", title: "作業依頼", details: ["予算および日程のコンサルティング", "ブランド分析および広告ゴールの設計", "ターゲット層と配信チャネルの選定"] },
         { num: "02", letter: "P", label: "企画", title: "企画立案", details: ["AI基盤のプロジェクトコンセプト企画", "クリエイティブメッセージとスローガンの導出", "4コマストーリーボード・スクリプト設計"] },
-        { num: "03", letter: "D", label: "試案", title: "試案共有・修正", details: ["超高画質AIビデオ第1次試案の生成", "フィードバック反映＆第2次試案의 磨き上げ", "最終高解像度画像・映像アセット의 微調整"] },
+        { num: "03", letter: "D", label: "試案", title: "試案共有・修正", details: ["超高画質AIビデオ第1次試案の生成", "フィードバック反映＆第2次試案の磨き上げ", "最終高解像度画像・映像アセットの微調整"] },
         { num: "04", letter: "F", label: "納品", title: "最終検品・納品", details: ["完成した4K広告動画の最終確認", "プラットフォーム別マルチフォーマットガイドの提供", "ライセンス移転および最終納品パッケージ（.zip）の引き渡し"] }
       ]
     },

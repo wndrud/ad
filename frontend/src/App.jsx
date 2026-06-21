@@ -1196,7 +1196,7 @@ const translations = {
 
     servicesTag: "制作物",
 
-    servicesTitlePre: "VERARVO가",
+    servicesTitlePre: "VERARVOが",
 
     servicesTitleSpan: "創り出すもの",
 
@@ -2416,9 +2416,9 @@ const serviceDetailsData = {
 
       features: [
 
-        { title: "广告传递的商业信息", desc: "利用潮流创意 and 文案，激发社媒用户的即时共鸣与互动。" },
+        { title: "广告传递的商业信息", desc: "利用潮流创意和文案，激发社媒用户的即时共鸣与互动。" },
 
-        { title: "合理的价格", desc: "采用适合短视频의 轻量化流程，低成本量产大批视频素材。" },
+        { title: "合理的价格", desc: "采用适合短视频的轻量化流程，低成本量产大批视频素材。" },
 
         { title: "直观的呈现方式", desc: "通过移动端优化的画面构图与快速剪辑，3秒内锁定注意力。" }
 
@@ -3536,7 +3536,7 @@ const processStepsData = {
 
       title: "最终交付",
 
-      details: ["审核完成 of 4K 广告视频", "提供符合各平台规格的素材指南", "版权移交及最终交付包 (.zip) 发送"] // Wait, in ZH details 4: '审核完成的 4K 广告视频'
+      details: ["审核完成的 4K 广告视频", "提供符合各平台规格的素材指南", "版权移交及最终交付包 (.zip) 发送"] // Wait, in ZH details 4: '审核完成的 4K 广告视频'
 
     }
 
@@ -3588,7 +3588,7 @@ const processStepsData = {
 
       title: "最終検品・納品",
 
-      details: ["完成した4K広告動画の最終確認", "プラットフォーム별 멀티 포맷 가이드라인 제공", "라이선스 이전 및 최종 납품 패키지(.zip) 전달"] // Wait, JA in bundle used Japanese: 'プラットフォーム別マルチフォーマットガイドの提供', 'ライセンス移転および最終納品パッケージ（.zip）の引き渡し'
+      details: ["完成した4K広告動画の最終確認", "プラットフォーム別マルチフォーマットガイドの提供", "ライセンス移転および最終納品パッケージ（.zip）の引き渡し"]
 
     }
 
@@ -4504,6 +4504,8 @@ function App() {
           targetId = 'services';
         } else if (path === '/process') {
           targetId = 'process';
+        } else if (path === '/inquiry') {
+          targetId = 'contact';
         }
         if (targetId) {
           const element = document.getElementById(targetId);
@@ -4539,6 +4541,8 @@ function App() {
             targetId = 'services';
           } else if (path === '/process') {
             targetId = 'process';
+          } else if (path === '/inquiry') {
+            targetId = 'contact';
           }
           if (targetId) {
             setTimeout(() => {
@@ -4587,6 +4591,8 @@ function App() {
             targetId = 'services';
           } else if (path === '/process') {
             targetId = 'process';
+          } else if (path === '/inquiry') {
+            targetId = 'contact';
           }
           if (targetId) {
             setTimeout(() => {
@@ -4647,6 +4653,12 @@ function App() {
       title = "VERARVO | 회사 서비스";
 
       description = "제품 광고, 이벤트 및 전시 홍보, 소셜 숏폼 콘텐츠 등 VERARVO가 선사하는 차세대 AI 기반 영상 광고 서비스를 확인하세요.";
+
+    } else if (path === '/inquiry') {
+
+      title = "VERARVO | 문의하기";
+
+      description = "AI 영상 광고 제작 및 마케팅 협업 의뢰에 대한 문의사항을 남겨주시면, 담당 매니저가 신속하게 안내해 드립니다.";
 
     }
 
@@ -4822,6 +4834,8 @@ function App() {
           path = '/services';
         } else if (targetId === 'process') {
           path = '/process';
+        } else if (targetId === 'contact') {
+          path = '/inquiry';
         }
         window.history.pushState({ view: 'landing', activeServiceDetail: null }, '', path);
       }
@@ -4860,6 +4874,8 @@ function App() {
       path = '/services';
     } else if (targetId === 'process') {
       path = '/process';
+    } else if (targetId === 'contact') {
+      path = '/inquiry';
     }
 
     console.log('[History] Pushing landing state (handleNavClick):', path);
