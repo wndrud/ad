@@ -1276,7 +1276,7 @@
   user-select: none;
 }
 
-.careers-checkbox-input {
+.mobile-app-container .careers-checkbox-input {
   display: none;
 }
 
@@ -1292,12 +1292,12 @@
   flex-shrink: 0;
 }
 
-.careers-checkbox-input:checked + .checkbox-custom {
+.mobile-app-container .careers-checkbox-input:checked + .checkbox-custom {
   border-color: #EAB308;
   background-color: rgba(234, 179, 8, 0.1);
 }
 
-.careers-checkbox-input:checked + .checkbox-custom::after {
+.mobile-app-container .careers-checkbox-input:checked + .checkbox-custom::after {
   content: '';
   position: absolute;
   left: 6px;

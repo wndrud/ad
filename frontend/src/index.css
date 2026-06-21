@@ -2316,6 +2316,8 @@ select.form-control-line option {
 }
 
 .careers-checkbox-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   width: 16px;
   height: 16px;
