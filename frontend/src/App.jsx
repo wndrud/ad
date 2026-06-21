@@ -4502,6 +4502,8 @@ function App() {
           targetId = 'work';
         } else if (path === '/services') {
           targetId = 'services';
+        } else if (path === '/process') {
+          targetId = 'process';
         }
         if (targetId) {
           const element = document.getElementById(targetId);
@@ -4535,6 +4537,8 @@ function App() {
             targetId = 'work';
           } else if (path === '/services') {
             targetId = 'services';
+          } else if (path === '/process') {
+            targetId = 'process';
           }
           if (targetId) {
             setTimeout(() => {
@@ -4581,6 +4585,8 @@ function App() {
             targetId = 'work';
           } else if (path === '/services') {
             targetId = 'services';
+          } else if (path === '/process') {
+            targetId = 'process';
           }
           if (targetId) {
             setTimeout(() => {
