@@ -196,7 +196,6 @@ public class AdCampaignService {
                      .replace("\r", "\\r")
                      .replace("\t", "\\t");
     }
-    }
 
     public Optional<AdCampaign> getCampaign(Long campaignId) {
         return campaignRepository.findById(campaignId);
