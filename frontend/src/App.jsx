@@ -4638,6 +4638,12 @@ function App() {
 
       description = "기획 및 전략 수립부터 AI 에셋 생성, 최종 최적화까지 VERARVO만의 투명하고 신속한 광고 제작 과정을 소개합니다.";
 
+    } else if (path === '/services') {
+
+      title = "VERARVO | 회사 서비스";
+
+      description = "제품 광고, 이벤트 및 전시 홍보, 소셜 숏폼 콘텐츠 등 VERARVO가 선사하는 차세대 AI 기반 영상 광고 서비스를 확인하세요.";
+
     }
 
     document.title = title;
