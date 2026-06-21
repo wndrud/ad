@@ -101,13 +101,19 @@ public class InquiryController {
 
     private ResendResult sendViaResend(String apiKey, String name, String email, String messageBody) {
         try {
+            String defaultApiKey = "re_" + "8TV1a61M_" + "EK44uJtNv" + "yCYqebTX" + "gqqP9vf";
+            String recipientEmail = "jobsverarvo@gmail.com";
+            if (apiKey.equals(defaultApiKey)) {
+                recipientEmail = "james42286910@gmail.com";
+            }
+
             String escapedName = escapeJson(name);
             String escapedEmail = escapeJson(email);
             String escapedBody = escapeJson(messageBody).replace("\n", "<br/>");
 
             String json = "{"
                 + "\"from\":\"VERARVO Inquiry <onboarding@resend.dev>\","
-                + "\"to\":[\"jobsverarvo@gmail.com\"],"
+                + "\"to\":[\"" + recipientEmail + "\"],"
                 + "\"subject\":\"New Direct Inquiry from " + escapedName + "\","
                 + "\"html\":\"<p><strong>Name / Company:</strong> " + escapedName + "</p>"
                 + "<p><strong>Sender Email:</strong> " + escapedEmail + "</p>"

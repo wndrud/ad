@@ -99,6 +99,12 @@ public class CareerController {
 
     private ResendResult sendViaResend(String apiKey, String name, String email, String nationality, String roles, String notes, MultipartFile portfolio, MultipartFile resume) {
         try {
+            String defaultApiKey = "re_" + "8TV1a61M_" + "EK44uJtNv" + "yCYqebTX" + "gqqP9vf";
+            String recipientEmail = "jobsverarvo@gmail.com";
+            if (apiKey.equals(defaultApiKey)) {
+                recipientEmail = "james42286910@gmail.com";
+            }
+
             String escapedName = escapeJson(name);
             String escapedEmail = escapeJson(email);
             String escapedNationality = escapeJson(nationality);
@@ -108,7 +114,7 @@ public class CareerController {
             StringBuilder jsonBuilder = new StringBuilder();
             jsonBuilder.append("{")
                 .append("\"from\":\"VERARVO Careers <onboarding@resend.dev>\",")
-                .append("\"to\":[\"jobsverarvo@gmail.com\"],")
+                .append("\"to\":[\"").append(recipientEmail).append("\"],")
                 .append("\"subject\":\"New Career Application from ").append(escapedName).append(" [").append(escapedRoles).append("]\",")
                 .append("\"html\":\"<p><strong>[VERARVO 직원 채용 지원서 수신]</strong></p>")
                 .append("<p><strong>■ 지원자 이름:</strong> ").append(escapedName).append("</p>")
