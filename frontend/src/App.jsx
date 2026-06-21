@@ -4614,13 +4614,17 @@ function App() {
   // Dynamic SEO metadata updates based on current view/route
   useEffect(() => {
 
-    let title = "VERARVO | 회사 소개";
+    let title = "VERARVO | AI 크리에이터와 마케팅 전문가가 함께하는 광고 대행사";
 
     let description = "AI 기술과 인간의 감각을 결합하여, 단순한 영상 제작을 넘어 성과를 창출하는 트렌디한 광고 비디오 콘텐츠를 제공합니다.";
 
     const path = window.location.pathname;
 
-    if (view === 'careers' || path === '/careers') {
+    if (path === '/about') {
+
+      title = "VERARVO | 회사 소개";
+
+    } else if (view === 'careers' || path === '/careers') {
 
       title = "VERARVO | 직원 채용";
 
