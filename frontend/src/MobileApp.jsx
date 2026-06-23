@@ -160,7 +160,7 @@ const MobileApp = () => {
     const path = window.location.pathname;
 
     if (path === '/about' || currentView === 'services') {
-      title = "차세대 AI 광고대행사 VERARVO 회사 소개";
+      title = "VERARVO | 회사 소개";
     } else if (currentView === 'careers' || path === '/careers') {
       title = "VERARVO 직원 채용";
       description = "AI 비디오 크리에이터, 영상 편집 및 모션 디자이너, 프롬프트 엔지니어 등 미래의 마케팅 크리에이티브를 선도할 인재를 기다립니다.";

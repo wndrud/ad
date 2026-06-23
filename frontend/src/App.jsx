@@ -4628,7 +4628,7 @@ function App() {
 
     if (path === '/about') {
 
-      title = "차세대 AI 광고대행사 VERARVO 회사 소개";
+      title = "VERARVO | 회사 소개";
 
     } else if (view === 'careers' || path === '/careers') {
 
