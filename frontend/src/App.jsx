@@ -4369,7 +4369,7 @@ function App() {
 
       if (hasMovedRef.current) {
 
-        const speed = 0.15; // interpolation speed
+        const speed = 0.35; // interpolation speed
 
         const dx = targetPosRef.current.x - currentPosRef.current.x;
 
