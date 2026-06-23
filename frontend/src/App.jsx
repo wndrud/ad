@@ -4620,7 +4620,7 @@ function App() {
   // Dynamic SEO metadata updates based on current view/route
   useEffect(() => {
 
-    let title = "VERARVO | AI 크리에이터와 마케팅 전문가가 함께하는 광고 대행사";
+    let title = "VERARVO | AI전문가와 함께하는 광고대행사";
 
     let description = "AI 기술과 인간의 감각을 결합하여, 단순한 영상 제작을 넘어 성과를 창출하는 트렌디한 광고 비디오 콘텐츠를 제공합니다.";
 
@@ -4628,11 +4628,11 @@ function App() {
 
     if (path === '/about') {
 
-      title = "VERARVO | 회사 소개";
+      title = "차세대 AI 광고대행사 VERARVO 회사 소개";
 
     } else if (view === 'careers' || path === '/careers') {
 
-      title = "VERARVO | 직원 채용";
+      title = "VERARVO 직원 채용";
 
       description = "AI 비디오 크리에이터, 영상 편집 및 모션 디자이너, 프롬프트 엔지니어 등 미래의 마케팅 크리에이티브를 선도할 인재를 기다립니다.";
 
