@@ -442,31 +442,35 @@
 
 .mobile-video-modal {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 480px;
   max-height: 90vh;
   background-color: #0c0c0e;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px 20px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   z-index: 1501;
-  padding: 1.5rem 1.2rem 2.5rem 1.2rem;
+  padding: 1.5rem 1.2rem 1.5rem 1.2rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
   
-  /* Slide-up transition */
-  animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Zoom/fade transition */
+  animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes modalSlideUp {
+@keyframes modalFadeIn {
   from {
-    transform: translateY(100%);
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
 
