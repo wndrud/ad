@@ -106,7 +106,7 @@ const translations = {
 
     aboutText1: "기존 광고 제작은 많은 시간과 비용이 필요했습니다. 촬영 장소를 섭외하고, 모델을 섭외하며, 촬영과 편집 과정을 거쳐야 했습니다. 하나의 광고를 완성하기 위해 수일에서 수주가 소요되고 높은 제작 비용이 발생하는 것이 일반적이었습니다.",
 
-    aboutText2: <><span style={{ color: '#FACC15' }}>VERARVO</span>는 이러한 과정을 새롭게 바꿉니다. 우리는 생성형 AI 기술을 활용하여 제품 사진 한 장만으로 광고 이미지와 영상 콘텐츠를 제작합니다. 복잡한 촬영 과정 없이도 다양한 컨셉과 스타일을 빠르게 구현할 수 있으며, 브랜드가 원하는 크리에이티브를 짧은 시간 안에 제공합니다.</>,
+    aboutText2: <><span style={{ color: '#FACC15' }}>VERARVO</span>は、こうしたプロセスを革新します。私たちは生成AI技術を活用し、わずか1枚の製品写真から高品質な広告画像や動画コンテンツを制作します。複雑な撮影プロセスを経ることなく、多様なコンセプトやスタイルを迅速に実現し、ブランドが求めるクリエイティブを短時間で提供します。</>,
 
     aboutText3: "광고는 단순히 보기 좋은 영상이 아닙니다. 고객의 시선을 사로잡고 행동을 이끌어내는 강력한 도구입니다.",
 
@@ -906,7 +906,7 @@ const translations = {
 
     errProductDescRequired: "请输入产品 / 服务详细描述。",
 
-    errEmailRequired: "请输入您的电子邮箱地址以接收完成的资产。",
+    errEmailRequired: "请输入以便接收制作完成的广告文件。",
 
     errEmailInvalid: "请输入有效的电子邮箱地址。",
 
@@ -946,7 +946,7 @@ const translations = {
 
     placeholderBrandName: "例如：Vespera, Nike, Stripe",
 
-    placeholderProductDesc: "描述您的产品优势、核心价值主张以及关键特征...",
+    placeholderProductDesc: "请描述您的产品优势、核心价值主张以及关键特征...",
 
     labelAudience: "目标受众群体",
 
@@ -976,7 +976,7 @@ const translations = {
 
     labelEstimatedCTR: "预估点击率",
 
-    labelEstimatedROAS: "预估回报率",
+    labelEstimatedROAS: "预估广告支出回报率 (ROAS)",
 
     btnBack: "返回",
 
@@ -998,7 +998,7 @@ const translations = {
 
     loadStep4: "正在生成旁白配音脚本...",
 
-    loadStep5: "正在打包最终项目资产及媒体规范指南...",
+    loadStep5: "正在打包项目最终成果及媒体发布指南...",
 
     step4Title: "项目资产交付与投放优化",
 
@@ -1073,6 +1073,8 @@ const translations = {
     contactSubtitle: "有任何问题或想启动新项目？请随时与我们联系。",
 
     contactName: "姓名 / 公司名",
+
+    contactNamePlaceholder: "张三 / 纽维拉创意",
 
     contactEmail: "邮箱地址",
 
@@ -1178,13 +1180,13 @@ const translations = {
 
     aboutTitlePost: "VERARVO",
 
-    aboutText1: "従来の広告制作は、多くの時間と費用が必要でした。撮影場所を手配し、モデルをキャスティングし、撮影と編集のプロセスを経る必要がありました。1つの広告を完成させるために数日から数週間がかかり、高い制作費が発生するのが一般的でした。",
+    aboutText1: "従来の広告制作には、多大な時間とコストを要していました。ロケーションの選定やモデルのキャスティング、撮影、そして編集といった多くのプロセスを経る必要があったためです。1本の広告を完成させるまでに数日から数週間を要し、高い制作コストが発生するのが一般的でした。",
 
     aboutText2: <><span style={{ color: '#FACC15' }}>VERARVO</span>はこのようなプロセスを新しく変えます。私たちは生成AI技術を活用し、製品写真1枚だけで広告画像や映像コンテンツを制作します。複雑な撮影プロセスなしで多様なコンセプトとスタイルを迅速に実現でき、ブランドが求めるクリエイティブを短時間で提供します。</>,
 
     aboutText3: "広告は単に見栄えの良い映像ではありません。顧客の視線を引きつけ、行動を促す強力なツールです。",
 
-    aboutText4: <><span style={{ color: '#FACC15' }}>VERARVO</span>は、AIクリエイターとマーケティングの専門家が連携し、単なる成果物ではなく成果を出すための広告コンテンツを制作します。</>,
+    aboutText4: <><span style={{ color: '#FACC15' }}>VERARVO</span>は、AIクリエイターとマーケティングの専門家が連携し、単なる制作物の提供にとどまらず、成果を生み出すための広告コンテンツを制作します。</>,
 
     statProjects: "完了プロジェクト数",
 
@@ -1252,9 +1254,9 @@ const translations = {
 
     step1: "戦略と構成",
 
-    step2: "コンセプト設定",
+    step2: "クリエイティブコンセプト設定",
 
-    step3: "最終提出",
+    step3: "最終確認",
 
     errFillRequired: "ブランド名と製品説明を入力してください。",
 
@@ -1262,7 +1264,7 @@ const translations = {
 
     errProductDescRequired: "製品 / サービスの説明を入力してください。",
 
-    errEmailRequired: "完成したアセットを受け取るメールアドレスを入力してください。",
+    errEmailRequired: "成果物を受け取るメールアドレスを入力してください。",
 
     errEmailInvalid: "有効なメールアドレスを入力してください。",
 
@@ -1312,9 +1314,9 @@ const translations = {
 
     labelTimeline: "ご希望の納期",
 
-    btnPrevStrategy: "基本戦略へ戻る",
+    btnPrevStrategy: "前のステップへ",
 
-    btnGenerateConcepts: "コンセプト設定",
+    btnGenerateConcepts: "コンセプトを生成する",
 
     optionOther: "その他 (直接入力...)",
 
@@ -1610,9 +1612,9 @@ const translations = {
 
     step1: "Kế hoạch & Chiến lược",
 
-    step2: "Thiết lập ý tưởng",
+    step2: "Thiết lập ý tưởng sáng tạo",
 
-    step3: "Nộp cuối cùng",
+    step3: "Hoàn tất đăng ký",
 
     errFillRequired: "Vui lòng nhập tên thương hiệu và mô tả sản phẩm.",
 
@@ -1620,7 +1622,7 @@ const translations = {
 
     errProductDescRequired: "Vui lòng nhập mô tả sản phẩm / dịch vụ.",
 
-    errEmailRequired: "Vui lòng nhập địa chỉ email của bạn để nhận tài nguyên hoàn thiện.",
+    errEmailRequired: "Vui lòng nhập địa chỉ email để nhận sản phẩm quảng cáo hoàn thiện.",
 
     errEmailInvalid: "Vui lòng nhập địa chỉ email hợp lệ.",
 
@@ -1670,9 +1672,9 @@ const translations = {
 
     labelTimeline: "Thời gian hoàn thành mong muốn",
 
-    btnPrevStrategy: "Quay lại",
+    btnPrevStrategy: "Quay lại bước trước",
 
-    btnGenerateConcepts: "Thiết lập ý tưởng",
+    btnGenerateConcepts: "Tiến hành tạo ý tưởng",
 
     optionOther: "Khác (Nhập thủ công...)",
 
@@ -3564,7 +3566,7 @@ const processStepsData = {
 
       title: "企画立案",
 
-      details: ["AI基盤のプロジェクトコンセプト企画", "クリエイティブメッセージとスローガンの導出", "4コマストーリーボード・スクリプト設計"]
+      details: ["AI基盤のプロジェクトコンセプト企画", "クリエイティブメッセージとスローガンの導出", "4カットストーリーボード・スクリプト設計"]
 
     },
 
