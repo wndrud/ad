@@ -1157,6 +1157,7 @@
 .careers-tag-line {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   margin-bottom: 0.8rem;
 }
@@ -1185,6 +1186,7 @@
   color: #ffffff;
   margin: 0 0 0.6rem 0;
   letter-spacing: 0.01em;
+  text-align: center;
 }
 
 .careers-main-title .highlight-gold {
@@ -1203,6 +1205,7 @@
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.55);
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .careers-form-card {
