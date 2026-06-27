@@ -1882,5 +1882,13 @@
   user-select: none;
 }
 
+/* Multilingual text wrap adjustments for non-Korean languages in FAQ */
+.mobile-app-container:not(.lang-ko) .mobile-faq-question,
+.mobile-app-container:not(.lang-ko) .mobile-faq-answer {
+  word-break: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
 
 
