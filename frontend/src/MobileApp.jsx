@@ -417,7 +417,7 @@ const MobileApp = () => {
       label: "PRODUCT AD",
       videos: [
         { type: "16:9", url: "/3763027-uhd_3840_2160_25fps.mp4", title: { KO: "가로 광고 시안", EN: "Horizontal Ad Preview" } },
-        { type: "9:16", url: "/1.mp4", title: { KO: "세로 광고 시안", EN: "Vertical Ad Preview" } }
+        { type: "9:16", url: "/A.mp4", title: { KO: "세로 광고 시안", EN: "Vertical Ad Preview" } }
       ],
       title: {
         KO: "제품 광고",
@@ -486,7 +486,7 @@ const MobileApp = () => {
       label: "VIRTUAL INFLUENCER",
       videos: [
         { type: "16:9", url: "/257945.mp4", title: { KO: "가상 모델 영상", EN: "Virtual Model Preview" } },
-        { type: "9:16", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", title: { KO: "바이럴 모델 영상", EN: "Viral Model Preview" } }
+        { type: "9:16", url: "/B.mp4", title: { KO: "바이럴 모델 영상", EN: "Viral Model Preview" } }
       ],
       title: {
         KO: "가상 모델 & 인플루언서",

@@ -1882,7 +1882,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "가로로 긴 직사각형 영상 (16:9)", placeholderText: "가로로 긴 직사각형 영상 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "세로로 긴 직사각형 영상 (9:16)", placeholderText: "세로로 긴 직사각형 영상 (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "세로로 긴 직사각형 영상 (9:16)", placeholderText: "세로로 긴 직사각형 영상 (9:16)", url: "/A.mp4", rotate: false }
 
       ]
 
@@ -2020,7 +2020,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "가상 모델 클로즈업 컷 (16:9)", url: "/257945.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "디지털 피팅룸 바이럴 비디오 (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "디지털 피팅룸 바이럴 비디오 (9:16)", url: "/B.mp4", rotate: false }
 
       ]
 
@@ -2110,7 +2110,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "Horizontal Wide Video (16:9)", placeholderText: "Horizontal Wide Video (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "Vertical Long Video (9:16)", placeholderText: "Vertical Long Video (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "Vertical Long Video (9:16)", placeholderText: "Vertical Long Video (9:16)", url: "/A.mp4", rotate: false }
 
       ]
 
@@ -2248,7 +2248,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "Virtual Ambassador Portrait Cut (16:9)", url: "/257945.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "Digital Fitting Room Viral Video (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "Digital Fitting Room Viral Video (9:16)", url: "/B.mp4", rotate: false }
 
       ]
 
@@ -2338,7 +2338,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "横屏广告样片 (16:9)", placeholderText: "横屏广告样片 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "竖屏广告样片 (9:16)", placeholderText: "竖屏广告样片 (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "竖屏广告样片 (9:16)", placeholderText: "竖屏广告样片 (9:16)", url: "/A.mp4", rotate: false }
 
       ]
 
@@ -2476,7 +2476,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "虚拟代言人肖像片段 (16:9)", url: "/257945.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "数字试衣间创意视频 (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "数字试衣间创意视频 (9:16)", url: "/B.mp4", rotate: false }
 
       ]
 
@@ -2566,7 +2566,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "横型ワイド動画 (16:9)", placeholderText: "横型ワイド動画 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "縦型動画 (9:16)", placeholderText: "縦型動画 (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "縦型動画 (9:16)", placeholderText: "縦型動画 (9:16)", url: "/A.mp4", rotate: false }
 
       ]
 
@@ -2704,7 +2704,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "バーチャルモデル ポートレート動画 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "デジタルフィッティング動画 (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "デジタルフィッティング動画 (9:16)", url: "/B.mp4", rotate: false }
 
       ]
 
@@ -2794,7 +2794,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "Video Ngang Rộng (16:9)", placeholderText: "Video Ngang Rộng (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "Video Dọc Dài (9:16)", placeholderText: "Video Dọc Dài (9:16)", url: "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "Video Dọc Dài (9:16)", placeholderText: "Video Dọc Dài (9:16)", url: "/A.mp4", rotate: false }
 
       ]
 
@@ -2932,7 +2932,7 @@ const serviceDetailsData = {
 
         { type: "video", aspectRatio: "16/9", title: "Cảnh cận cảnh đại sứ ảo (16:9)", url: "/257945.mp4" },
 
-        { type: "video", aspectRatio: "9/16", title: "Video phòng thử đồ kỹ thuật số (9:16)", url: "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4", rotate: false }
+        { type: "video", aspectRatio: "9/16", title: "Video phòng thử đồ kỹ thuật số (9:16)", url: "/B.mp4", rotate: false }
 
       ]
 
