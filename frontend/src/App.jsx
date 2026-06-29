@@ -62,7 +62,7 @@ const translations = {
 
     navContact: "문의하기",
 
-    btnStartProject: "프로젝트 시작",
+    btnStartProject: "프로젝트 신청",
 
     btnLandingPage: "홈화면으로 돌아가기",
 
@@ -420,7 +420,7 @@ const translations = {
 
     navContact: "Contact",
 
-    btnStartProject: "Start a Project",
+    btnStartProject: "Request a Project",
 
     btnLandingPage: "Back to Home",
 
@@ -780,7 +780,7 @@ const translations = {
 
     navContact: "联系我们",
 
-    btnStartProject: "开始项目",
+    btnStartProject: "申请项目",
 
     btnLandingPage: "返回主页",
 
@@ -1138,7 +1138,7 @@ const translations = {
 
     navContact: "お問い合わせ",
 
-    btnStartProject: "プロジェクト開始",
+    btnStartProject: "プロジェクト申請",
 
     btnLandingPage: "ホーム画面に戻る",
 
@@ -1496,7 +1496,7 @@ const translations = {
 
     navContact: "Liên hệ",
 
-    btnStartProject: "Bắt đầu dự án",
+    btnStartProject: "Đăng ký dự án",
 
     btnLandingPage: "Quay lại trang chủ",
 
