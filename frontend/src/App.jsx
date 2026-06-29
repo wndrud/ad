@@ -9112,13 +9112,13 @@ ${customConceptText}
 
                       {lang === 'KO' ? '프로젝트 최종 전달 완료' : 
 
-                       lang === 'ZH' ? '项目最终交付完成！' :
+                       lang === 'ZH' ? '项目最终交付完成' :
 
-                       lang === 'JA' ? 'プロジェクト最終納品完了！' :
+                       lang === 'JA' ? 'プロジェクト最終納品完了' :
 
-                       lang === 'VI' ? 'Bàn giao dự án hoàn tất!' :
+                       lang === 'VI' ? 'Bàn giao dự án hoàn tất' :
 
-                       'Project Delivery Confirmed!'}
+                       'Project Delivery Confirmed'}
 
                     </h4>
 
