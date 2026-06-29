@@ -9012,12 +9012,6 @@ ${customConceptText}
 
               <div className="concepts-container animate-fade">
 
-                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', textAlign: 'center', marginBottom: '1.5rem', color: 'var(--white)' }}>
-
-                  {translations[lang].step4Title}
-
-                </h3>
-
                 {/* Grand Confirmation Banner */}
 
                 <div style={{
@@ -9098,7 +9092,7 @@ ${customConceptText}
 
                     }}>
 
-                      <img src="/logo-nv-transparent.png" alt="NV logo" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '40px', height: '40px', objectFit: 'contain' }} />
+                      <img src="/logo-nv-transparent.png" alt="NV logo" style={{ position: 'absolute', top: '53%', left: '50%', transform: 'translate(-50%, -50%)', width: '40px', height: '40px', objectFit: 'contain' }} />
 
                     </div>
 
@@ -9116,7 +9110,7 @@ ${customConceptText}
 
                     }}>
 
-                      {lang === 'KO' ? '프로젝트 최종 전달 완료!' : 
+                      {lang === 'KO' ? '프로젝트 최종 전달 완료' : 
 
                        lang === 'ZH' ? '项目最终交付完成！' :
 
