@@ -4249,7 +4249,7 @@ function App() {
 
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
 
-  const [cursorTransform, setCursorTransform] = useState({ scaleX: 1, scaleY: 1, angle: 0 });
+  const [cursorTransform, setCursorTransform] = useState({ scaleX: 1, scaleY: 1, angle: 0, dotX: 0 });
 
   const [hovering, setHovering] = useState(false);
 
@@ -4403,6 +4403,8 @@ function App() {
 
         
 
+        const dotX = Math.min(distance * 0.12, 6); // Max 6px shift to keep it inside the circle
+
         setCursorPos({ x: currentPosRef.current.x, y: currentPosRef.current.y });
 
         setCursorTransform({
@@ -4411,7 +4413,9 @@ function App() {
 
           scaleY: 1 - stretch * 0.5,
 
-          angle: angle
+          angle: angle,
+
+          dotX: dotX
 
         });
 
@@ -9927,7 +9931,13 @@ ${customConceptText}
 
       >
 
-        <div className="custom-cursor-dot" style={{ pointerEvents: 'none' }}></div>
+        <div 
+          className="custom-cursor-dot" 
+          style={{ 
+            pointerEvents: 'none',
+            transform: `translateX(${cursorTransform.dotX || 0}px) scale(${isClicked ? 2.2 : hovering ? 1.3 : 1})`
+          }}
+        ></div>
 
       </div>
 

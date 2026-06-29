@@ -52,7 +52,7 @@ html {
   height: 6px;
   background-color: var(--gold);
   border-radius: 50%;
-  transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.22s ease;
+  transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.22s ease;
 }
 
 .custom-cursor.hovering {
