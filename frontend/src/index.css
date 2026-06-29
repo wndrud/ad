@@ -21,16 +21,9 @@
 }
 
 /* Custom Cursor styling */
-* {
-  cursor: none !important;
-}
-
+/* The default OS cursor is shown to prevent lag, and the custom cursor acts as a smooth trailing follower. */
 html {
   scroll-behavior: smooth;
-}
-
-html, body {
-  cursor: none;
 }
 
 .custom-cursor {
