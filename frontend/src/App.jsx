@@ -3026,17 +3026,13 @@ const backgroundVideos = [
 
   "/10097613-hd_3840_2160_30fps.mp4",
 
-  "/4215416-uhd_3840_2160_25fps.mp4",
-
   "/7727416-hd_1920_1080_25fps.mp4",
 
   "/9698783-uhd_3840_2160_25fps.mp4",
 
   "/149477-796096126_medium.mp4",
 
-  "/257945.mp4",
-
-  "/AQORRylebdZCDNsQGuxKXlt4laYm2fcwPITevdWhtGSP5qxkTYWqJDlsLdAiBDtm56N3zy8btinu6QnZrbPBEN4TNgx2hX5jsyIbABKYKQ.mp4"
+  "/257945.mp4"
 
 ];
 
