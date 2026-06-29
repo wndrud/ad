@@ -698,7 +698,7 @@ const translations = {
 
     faqQ4: "What materials do I need to provide?",
 
-    faqA4: "Production goes smoothly with the following materials: Product images or videos, logo, brand introduction, and reference ads.",
+    faqA4: "Production will go smoothly if you provide product images or videos, a logo, brand introduction, and reference advertising materials.",
 
     faqQ5: "Are videos made entirely by AI?",
 
@@ -1058,7 +1058,7 @@ const translations = {
 
     faqQ4: "我需要提供哪些材料？",
 
-    faqA4: "提供以下材料将使制作更加顺利：产品图片或视频、徽标、品牌介绍、参考广告案例。",
+    faqA4: "如有产品图片或视频、徽标、品牌介绍以及参考广告案例等资料，制作将会更加顺利。",
 
     faqQ5: "视频是完全由 AI 制作的吗？",
 
@@ -1416,7 +1416,7 @@ const translations = {
 
     faqQ4: "どのような資料を提供すればよいですか？",
 
-    faqA4: "以下の資料をご用意いただくと制作がスムーズになります：製品画像または映像、ロゴ、ブランド紹介、参考広告のリファレンス。",
+    faqA4: "製品の画像または映像、ロゴ、ブランド紹介、参考広告リファレンスなどの資料をご用意いただくと、制作がスムーズになります。",
 
     faqQ5: "AIのみで映像が作られるのですか？",
 
@@ -1774,7 +1774,7 @@ const translations = {
 
     faqQ4: "Tôi cần cung cấp những tài liệu gì?",
 
-    faqA4: "Quá trình sản xuất sẽ thuận lợi hơn nếu có các tài liệu sau: Hình ảnh hoặc video sản phẩm, logo, giới thiệu thương hiệu, quảng cáo tham chiếu.",
+    faqA4: "Quá trình sản xuất sẽ diễn ra thuận lợi hơn nếu bạn cung cấp các tài liệu như hình ảnh/video sản phẩm, logo, giới thiệu thương hiệu và tài liệu quảng cáo tham khảo.",
 
     faqQ5: "Video được tạo ra hoàn toàn bằng AI có đúng không?",
 
