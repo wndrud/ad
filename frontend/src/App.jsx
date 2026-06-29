@@ -2990,6 +2990,18 @@ const serviceDetailsData = {
 
 const heroVideos = [
 
+  "/AQMMSbNYLwO1wOwPZfodWMlN_VVGuoTQzKrQenl4bgpdUDEWS-TGQPNcTLtgD_SZ4-p1s9RZ6HYggFlKNHS9Yi7rX_wLDaw0nqH0jI1TgQ.mp4",
+
+  "/ai video ugc ads creation.mp4",
+
+  "/1.mp4",
+
+  "/att.c3Yfx-CAfS6gkGcvWpGBo3pIpb-u_CVZF14gdt_T1nw.mp4",
+
+  "/7569383-uhd_2160_4096_25fps.mp4",
+
+  "/11698130-hd_1080_1920_60fps.mp4",
+
   "/A.mp4",
 
   "/B.mp4",
