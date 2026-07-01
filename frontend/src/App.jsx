@@ -5219,66 +5219,39 @@ ${customConceptText}
     }
 
     setFormErrors({});
-
+    setErrorMsg('');
+    setStep(2);
     setLoading(true);
 
-    setErrorMsg('');
-
-    try {
-
-      const response = await fetch(`${API_BASE_URL}/api/ads/campaign`, {
-
-        method: 'POST',
-
-        headers: { 'Content-Type': 'application/json' },
-
-        body: JSON.stringify({
-
-          brandName,
-
-          productDescription: productDesc,
-
-          email,
-
-          targetAudience: finalAudience,
-
-          campaignGoal: finalGoal,
-
-          mood: finalMood,
-
-          projectCategory: finalCategory,
-
-          placements: finalPlacements,
-
-          budgetRange: finalBudget,
-
-          targetTimeline: finalTimeline
-
-        })
-
-      });
-
+    fetch(`${API_BASE_URL}/api/ads/campaign`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        brandName,
+        productDescription: productDesc,
+        email,
+        targetAudience: finalAudience,
+        campaignGoal: finalGoal,
+        mood: finalMood,
+        projectCategory: finalCategory,
+        placements: finalPlacements,
+        budgetRange: finalBudget,
+        targetTimeline: finalTimeline
+      })
+    })
+    .then(async (response) => {
       if (!response.ok) throw new Error('Failed to connect to backend server');
-
       const data = await response.json();
-
       setCampaignId(data.campaign.id);
-
       setConcepts(data.concepts);
-
-      setStep(2);
-
-    } catch (err) {
-
-      console.error(err);
-
-      setErrorMsg('Unable to connect to the backend server. Please make sure the backend is running.');
-
-    } finally {
-
       setLoading(false);
-
-    }
+    })
+    .catch((err) => {
+      console.error(err);
+      setErrorMsg('Unable to connect to the backend server. Please make sure the backend is running.');
+      setLoading(false);
+      setStep(1);
+    });
 
   };
 

@@ -24,10 +24,10 @@ public class AdAsset {
     @Column(nullable = false)
     private Long conceptId;
 
-    @Column(nullable = false, length = 3000)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String scriptJson; // Storyboard scenes JSON string
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String primaryCopy;
 
     @Column(nullable = false)

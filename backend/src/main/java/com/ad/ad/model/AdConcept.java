@@ -24,7 +24,7 @@ public class AdConcept {
     @Column(nullable = false)
     private String slogan;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String coreMessage;
 
     @Column(nullable = false)

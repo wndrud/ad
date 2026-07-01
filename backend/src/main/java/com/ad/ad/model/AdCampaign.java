@@ -22,7 +22,7 @@ public class AdCampaign {
     @Column(nullable = false)
     private String brandName;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String productDescription;
 
     @Column(nullable = false)
