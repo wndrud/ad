@@ -266,7 +266,7 @@ const translations = {
 
     errSelectConcept: "진행하려면 컨셉을 설정해 주세요.",
 
-    loadingSelectConcept: "컨셉 설정 중...",
+    loadingSelectConcept: "최종 제출 중...",
 
     loadingTitle: "AI가 비디오 및 스토리보드를 생성하는 중입니다",
 
@@ -624,7 +624,7 @@ const translations = {
 
     errSelectConcept: "Please set your concept to proceed.",
 
-    loadingSelectConcept: "Setting Concept...",
+    loadingSelectConcept: "Submitting Final...",
 
     loadingTitle: "AI is generating video & storyboards",
 
@@ -984,7 +984,7 @@ const translations = {
 
     errSelectConcept: "请设置一个概念以继续项目。",
 
-    loadingSelectConcept: "概念设置中...",
+    loadingSelectConcept: "最终提交中...",
 
     loadingTitle: "AI 正在生成视频及分镜脚本",
 
@@ -1342,7 +1342,7 @@ const translations = {
 
     errSelectConcept: "進めるにはコンセプトを設定してください。",
 
-    loadingSelectConcept: "コンセプト設定中...",
+    loadingSelectConcept: "最終提出中...",
 
     loadingTitle: "AIが動画とストーリーボードを生成しています",
 
@@ -1700,7 +1700,7 @@ const translations = {
 
     errSelectConcept: "Vui lòng thiết lập ý tưởng để tiếp tục.",
 
-    loadingSelectConcept: "Đang thiết lập ý tưởng...",
+    loadingSelectConcept: "Đang nộp yêu cầu cuối cùng...",
 
     loadingTitle: "AI đang tạo video và kịch bản phân cảnh",
 
