@@ -2996,8 +2996,6 @@ const heroVideos = [
 
   "/1.mp4",
 
-  "/att.c3Yfx-CAfS6gkGcvWpGBo3pIpb-u_CVZF14gdt_T1nw.mp4",
-
   "/7569383-uhd_2160_4096_25fps.mp4",
 
   "/11698130-hd_1080_1920_60fps.mp4",
