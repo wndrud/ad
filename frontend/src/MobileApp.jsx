@@ -827,16 +827,53 @@ const MobileApp = () => {
         <div className={`mobile-preloader ${isFadeOut ? 'fade-out' : ''}`}>
           <div className="mobile-preloader-content">
             <div className="mobile-preloader-logo-wrapper">
-              <div className="mobile-preloader-logo-container" style={{ clipPath: `inset(0 ${100 - loadingProgress}% 0 0)` }}>
-                <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="preloader-bg-logo" />
-                <h1 className="preloader-title">VERARVO</h1>
-              </div>
-              <div className="mobile-preloader-glow-line" style={{ left: `${loadingProgress}%` }}></div>
+              <svg viewBox="0 0 200 200" className="mobile-preloader-svg-logo">
+                <text 
+                  x="20" 
+                  y="155" 
+                  className="logo-letter-n"
+                  style={{
+                    strokeDashoffset: 1000 - (1000 * loadingProgress) / 100,
+                    fill: loadingProgress >= 100 ? '#ffffff' : 'rgba(255,255,255,0)'
+                  }}
+                >N</text>
+                <text 
+                  x="95" 
+                  y="155" 
+                  className="logo-letter-v"
+                  style={{
+                    strokeDashoffset: 1000 - (1000 * loadingProgress) / 100,
+                    fill: loadingProgress >= 100 ? '#eab308' : 'rgba(234, 179, 8, 0)'
+                  }}
+                >V</text>
+              </svg>
+              <h1 
+                className="preloader-title"
+                style={{
+                  opacity: loadingProgress / 100,
+                  letterSpacing: `${0.15 + (loadingProgress / 100) * 0.15}em`,
+                  transform: `scale(${0.92 + (loadingProgress / 100) * 0.08})`,
+                  transition: 'opacity 0.05s linear, letter-spacing 0.05s linear, transform 0.05s linear'
+                }}
+              >
+                VERARVO
+              </h1>
             </div>
-            <div className="mobile-preloader-percentage">{loadingProgress}%</div>
+            
+            <div className="mobile-preloader-progress-bar-container">
+              <div 
+                className="mobile-preloader-progress-bar-fill" 
+                style={{ width: `${loadingProgress}%` }}
+              ></div>
+            </div>
+            
+            <div className="mobile-preloader-percentage">
+              {String(loadingProgress).padStart(3, '0')}
+            </div>
           </div>
         </div>
       )}
+
       {/* Background Video for the ENTIRE screen on Home view */}
       {currentView === 'home' && (
         <div className="mobile-video-bg-container">
