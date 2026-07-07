@@ -827,112 +827,16 @@ const MobileApp = () => {
         <div className={`mobile-preloader ${isFadeOut ? 'fade-out' : ''}`}>
           <div className="mobile-preloader-content">
             <div className="mobile-preloader-logo-wrapper">
-              {/* Background Logo Image: Fades in to 0.12 opacity when loading is done */}
-              <img 
-                src="/logo-nv-transparent-hq.png" 
-                alt="NV Logo" 
-                className="preloader-bg-logo"
-                style={{
-                  opacity: loadingProgress >= 100 ? 0.12 : 0,
-                  transition: 'opacity 0.8s ease-in-out',
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  top: 0,
-                  left: 0,
-                  objectFit: 'contain'
-                }}
-              />
-              
-              {/* Stroke drawing SVG logo: overlayed perfectly on top */}
-              <svg 
-                viewBox="0 0 200 200" 
-                className="mobile-preloader-svg-logo"
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  top: 0,
-                  left: 0,
-                  zIndex: 2,
-                  pointerEvents: 'none'
-                }}
-              >
-                <style>
-                  {`
-                    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&display=swap');
-                    .logo-letter-n {
-                      font-family: 'Playfair Display', serif;
-                      font-size: 160px;
-                      font-weight: 900;
-                      stroke: rgba(255, 255, 255, 0.85);
-                      stroke-width: 1.5px;
-                      stroke-dasharray: 1000;
-                      fill: none;
-                      transition: fill 0.8s ease-in-out;
-                    }
-                    .logo-letter-v {
-                      font-family: 'Playfair Display', serif;
-                      font-size: 160px;
-                      font-weight: 900;
-                      stroke: rgba(234, 179, 8, 0.85);
-                      stroke-width: 1.5px;
-                      stroke-dasharray: 1000;
-                      fill: none;
-                      transition: fill 0.8s ease-in-out;
-                    }
-                  `}
-                </style>
-                <text 
-                  x="25" 
-                  y="160" 
-                  className="logo-letter-n"
-                  style={{
-                    strokeDashoffset: 1000 - (1000 * loadingProgress) / 100,
-                    fill: loadingProgress >= 100 ? '#ffffff' : 'rgba(255,255,255,0)'
-                  }}
-                >N</text>
-                <text 
-                  x="56" 
-                  y="160" 
-                  className="logo-letter-v"
-                  style={{
-                    strokeDashoffset: 1000 - (1000 * loadingProgress) / 100,
-                    fill: loadingProgress >= 100 ? '#eab308' : 'rgba(234, 179, 8, 0)'
-                  }}
-                >V</text>
-              </svg>
-              
-              {/* VERARVO Title centered on top */}
-              <h1 
-                className="preloader-title"
-                style={{
-                  position: 'relative',
-                  zIndex: 3,
-                  opacity: loadingProgress / 100,
-                  letterSpacing: `${0.08 + (loadingProgress / 100) * 0.12}em`,
-                  transform: `scale(${0.92 + (loadingProgress / 100) * 0.08})`,
-                  transition: 'opacity 0.05s linear, letter-spacing 0.05s linear, transform 0.05s linear'
-                }}
-              >
-                VERARVO
-              </h1>
+              <div className="mobile-preloader-logo-container" style={{ clipPath: `inset(0 ${100 - loadingProgress}% 0 0)` }}>
+                <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="preloader-bg-logo" />
+                <h1 className="preloader-title">VERARVO</h1>
+              </div>
+              <div className="mobile-preloader-glow-line" style={{ left: `${loadingProgress}%` }}></div>
             </div>
-            
-            <div className="mobile-preloader-progress-bar-container">
-              <div 
-                className="mobile-preloader-progress-bar-fill" 
-                style={{ width: `${loadingProgress}%` }}
-              ></div>
-            </div>
-            
-            <div className="mobile-preloader-percentage">
-              {String(loadingProgress).padStart(3, '0')}
-            </div>
+            <div className="mobile-preloader-percentage">{loadingProgress}%</div>
           </div>
         </div>
       )}
-
       {/* Background Video for the ENTIRE screen on Home view */}
       {currentView === 'home' && (
         <div className="mobile-video-bg-container">
