@@ -827,17 +827,52 @@ const MobileApp = () => {
         <div className={`mobile-preloader ${isFadeOut ? 'fade-out' : ''}`}>
           <div className="mobile-preloader-content">
             <div className="mobile-preloader-logo-wrapper">
-              {/* Logo Container (Bottom-Left to Top-Right reveal) */}
+              {/* Logo Container (Custom SVG Path Drawing Mask) */}
               <div 
                 className="mobile-preloader-logo-container" 
                 style={{ 
                   position: 'absolute', 
-                  top: 0, left: 0, 
-                  clipPath: `circle(${loadingProgress * 1.5}% at 0% 100%)`,
-                  WebkitClipPath: `circle(${loadingProgress * 1.5}% at 0% 100%)`
+                  top: 0, left: 0
                 }}
               >
-                <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="preloader-bg-logo" />
+                <svg viewBox="0 0 280 280" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
+                  <defs>
+                    <mask id="drawing-mask">
+                      <path 
+                        d="M 42 238 L 42 42 L 182 238 L 238 42" 
+                        stroke="white" 
+                        strokeWidth="85" 
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeDasharray="650" 
+                        style={{
+                          strokeDashoffset: 650 - (650 * loadingProgress) / 100,
+                          transition: 'stroke-dashoffset 0.1s linear'
+                        }}
+                      />
+                    </mask>
+                  </defs>
+                  <image 
+                    href="/logo-nv-transparent-hq.png" 
+                    width="100%" 
+                    height="100%" 
+                    mask="url(#drawing-mask)" 
+                    preserveAspectRatio="xMidYMid meet"
+                  />
+                </svg>
+                
+                {/* Full logo fades in at the end to ensure perfect quality */}
+                <img 
+                  src="/logo-nv-transparent-hq.png" 
+                  alt="NV Logo" 
+                  className="preloader-bg-logo"
+                  style={{
+                    opacity: loadingProgress >= 100 ? 1 : 0,
+                    transition: 'opacity 0.6s ease-in-out',
+                    zIndex: 2
+                  }}
+                />
               </div>
 
               {/* Text Container (Left-to-Right horizontal reveal) */}
