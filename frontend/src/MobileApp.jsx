@@ -827,13 +827,35 @@ const MobileApp = () => {
         <div className={`mobile-preloader ${isFadeOut ? 'fade-out' : ''}`}>
           <div className="mobile-preloader-content">
             <div className="mobile-preloader-logo-wrapper">
-              <div className="mobile-preloader-logo-container" style={{ clipPath: `inset(0 ${100 - loadingProgress}% 0 0)` }}>
+              {/* Logo Container (Bottom-Left to Top-Right reveal) */}
+              <div 
+                className="mobile-preloader-logo-container" 
+                style={{ 
+                  position: 'absolute', 
+                  top: 0, left: 0, 
+                  clipPath: `circle(${loadingProgress * 1.5}% at 0% 100%)`,
+                  WebkitClipPath: `circle(${loadingProgress * 1.5}% at 0% 100%)`
+                }}
+              >
                 <img src="/logo-nv-transparent-hq.png" alt="NV Logo" className="preloader-bg-logo" />
+              </div>
+
+              {/* Text Container (Left-to-Right horizontal reveal) */}
+              <div 
+                className="mobile-preloader-logo-container" 
+                style={{ 
+                  position: 'absolute', 
+                  top: 0, left: 0, 
+                  clipPath: `inset(0 ${100 - loadingProgress}% 0 0)`,
+                  WebkitClipPath: `inset(0 ${100 - loadingProgress}% 0 0)`
+                }}
+              >
                 <h1 className="preloader-title">VERARVO</h1>
               </div>
+              
               <div className="mobile-preloader-glow-line" style={{ left: `${loadingProgress}%` }}></div>
             </div>
-            <div className="mobile-preloader-percentage">{loadingProgress}%</div>
+            <div className="mobile-preloader-percentage">{loadingProgress}</div>
           </div>
         </div>
       )}
