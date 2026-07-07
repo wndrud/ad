@@ -1088,12 +1088,12 @@ const MobileApp = () => {
           </div>
           <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingBottom: '60px' }}>
             {[
-              '/a (1).jpeg', 
-              '/a (2).jpeg', 
-              '/a (3).jpeg', 
-              '/a (4).jpeg', 
-              '/a (5).jpeg', 
-              '/a (6).jpeg'
+              '/a%20(1).PNG', '/a%20(1).jpeg', '/a%20(1).jpg',
+              '/a%20(2).jpeg', '/a%20(2).jpg',
+              '/a%20(3).jpeg', '/a%20(3).jpg',
+              '/a%20(4).jpeg', '/a%20(4).jpg',
+              '/a%20(5).jpeg', '/a%20(5).jpg',
+              '/a%20(6).jpeg', '/a%20(6).jpg'
             ].map((src, idx) => (
               <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
             ))}
