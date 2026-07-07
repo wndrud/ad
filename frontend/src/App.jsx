@@ -72,7 +72,7 @@ const translations = {
 
     heroTitleSpan: "새로운 광고",
 
-    heroTitlePost: "VERARVO (베라르보)",
+    heroTitlePost: "VERARVO",
 
     heroSubtitleMain: <>새로운 AI 기술로 새로운 시대를 만듭니다<br />더 이상 광고 제작에 큰 돈을 쓰지 마세요</>,
 
@@ -90,7 +90,7 @@ const translations = {
 
     btnExploreServices: "서비스 탐색",
 
-    reelText: "베라르보 verarvo — AI로 새롭게 만들다 — 2026",
+    reelText: "verarvo — AI로 새롭게 만들다 — 2026",
 
     reelStartCampaign: "프로젝트 시작",
 
@@ -102,15 +102,15 @@ const translations = {
 
     aboutTitleSpan: "현실을 만듭니다,",
 
-    aboutTitlePost: "VERARVO (베라르보)",
+    aboutTitlePost: "VERARVO",
 
     aboutText1: "기존 광고 제작은 많은 시간과 비용이 필요했습니다. 촬영 장소를 섭외하고, 모델을 섭외하며, 촬영과 편집 과정을 거쳐야 했습니다. 하나의 광고를 완성하기 위해 수일에서 수주가 소요되고 높은 제작 비용이 발생하는 것이 일반적이었습니다.",
 
-    aboutText2: <><span style={{ color: '#FACC15' }}>베라르보 (VERARVO)</span>는 이러한 과정을 새롭게 바꿉니다. 우리는 생성형 AI 기술을 활용하여 제품 사진 한 장만으로 광고 이미지와 영상 콘텐츠를 제작합니다. 복잡한 촬영 과정 없이도 다양한 컨셉과 스타일을 빠르게 구현할 수 있으며, 브랜드가 원하는 크리에이티브를 짧은 시간 안에 제공합니다.</>,
+    aboutText2: <><span style={{ color: '#FACC15' }}>VERARVO</span>는 이러한 과정을 새롭게 바꿉니다. 우리는 생성형 AI 기술을 활용하여 제품 사진 한 장만으로 광고 이미지와 영상 콘텐츠를 제작합니다. 복잡한 촬영 과정 없이도 다양한 컨셉과 스타일을 빠르게 구현할 수 있으며, 브랜드가 원하는 크리에이티브를 짧은 시간 안에 제공합니다.</>,
 
     aboutText3: "광고는 단순히 보기 좋은 영상이 아닙니다. 고객의 시선을 사로잡고 행동을 이끌어내는 강력한 도구입니다.",
 
-    aboutText4: <><span style={{ color: '#FACC15' }}>베라르보 (VERARVO)</span>는 AI 크리에이터와 마케팅 전문가가 함께 협업하여 단순한 결과물이 아닌 성과를 위한 광고 콘텐츠를 제작합니다.</>,
+    aboutText4: <><span style={{ color: '#FACC15' }}>VERARVO</span>는 AI 크리에이터와 마케팅 전문가가 함께 협업하여 단순한 결과물이 아닌 성과를 위한 광고 콘텐츠를 제작합니다.</>,
 
     statProjects: "완료된 프로젝트",
 
