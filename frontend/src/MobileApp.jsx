@@ -1086,14 +1086,14 @@ const MobileApp = () => {
               <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>Back</span>
             </button>
           </div>
-          <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingBottom: '60px' }}>
             {[
-              '/a (1).PNG', '/a (1).jpeg', '/a (1).jpg',
-              '/a (2).jpeg', '/a (2).jpg',
-              '/a (3).jpeg', '/a (3).jpg',
-              '/a (4).jpeg', '/a (4).jpg',
-              '/a (5).jpeg', '/a (5).jpg',
-              '/a (6).jpeg', '/a (6).jpg'
+              '/a (1).jpeg', 
+              '/a (2).jpeg', 
+              '/a (3).jpeg', 
+              '/a (4).jpeg', 
+              '/a (5).jpeg', 
+              '/a (6).jpeg'
             ].map((src, idx) => (
               <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
             ))}
