@@ -832,10 +832,12 @@ const MobileApp = () => {
                 className="mobile-preloader-logo-container" 
                 style={{ 
                   position: 'absolute', 
-                  top: 0, left: 0
+                  top: 0, left: 0,
+                  opacity: 0.12,
+                  zIndex: 1
                 }}
               >
-                <svg viewBox="0 0 280 280" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
+                <svg viewBox="0 0 280 280" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
                   <defs>
                     <mask id="drawing-mask">
                       <path 
@@ -862,7 +864,7 @@ const MobileApp = () => {
                   />
                 </svg>
                 
-                {/* Full logo fades in at the end to ensure perfect quality */}
+                {/* Full logo overlay to fill any anti-aliasing gaps smoothly */}
                 <img 
                   src="/logo-nv-transparent-hq.png" 
                   alt="NV Logo" 
@@ -870,7 +872,10 @@ const MobileApp = () => {
                   style={{
                     opacity: loadingProgress >= 100 ? 1 : 0,
                     transition: 'opacity 0.6s ease-in-out',
-                    zIndex: 2
+                    position: 'absolute',
+                    top: 0, left: 0,
+                    width: '100%', height: '100%',
+                    objectFit: 'contain'
                   }}
                 />
               </div>
@@ -882,7 +887,8 @@ const MobileApp = () => {
                   position: 'absolute', 
                   top: 0, left: 0, 
                   clipPath: `inset(0 ${100 - loadingProgress}% 0 0)`,
-                  WebkitClipPath: `inset(0 ${100 - loadingProgress}% 0 0)`
+                  WebkitClipPath: `inset(0 ${100 - loadingProgress}% 0 0)`,
+                  zIndex: 10
                 }}
               >
                 <h1 className="preloader-title">VERARVO</h1>
