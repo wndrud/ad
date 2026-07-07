@@ -780,7 +780,7 @@ const MobileApp = () => {
   const handleMenuClick = (item) => {
     setMenuOpen(false);
     if (item === 'WORK') {
-      setCurrentView('works');
+      setCurrentView('works-category');
     } else if (item === 'SERVICES') {
       setCurrentView('services');
     } else if (item === 'PROCESS') {
@@ -986,7 +986,7 @@ const MobileApp = () => {
               <h1 className="mobile-hero-title">VERARVO</h1>
             </div>
             <p className="mobile-hero-subtitle">REIMAGINING THE VALUE OF BRANDS</p>
-            <button className="mobile-works-btn" onClick={() => setCurrentView('works')}>
+            <button className="mobile-works-btn" onClick={() => setCurrentView('works-category')}>
               <span className="mobile-works-btn-text">see works</span>
             </button>
           </div>
@@ -1043,11 +1043,67 @@ const MobileApp = () => {
         </main>
       )}
 
+      {currentView === 'works-category' && (
+        <main className="mobile-works-category-view" style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 100 }}>
+            <button className="mobile-back-btn" onClick={() => setCurrentView('home')} style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: '8px 12px', borderRadius: '4px' }}>
+              <ArrowLeft size={18} color="#fff" />
+              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px' }}>Back</span>
+            </button>
+          </div>
+          
+          <div 
+            className="category-half" 
+            onClick={() => setCurrentView('works-image')} 
+            style={{ flex: 1, position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
+          >
+            <img src="/a (1).jpeg" alt="Image Category" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 700, letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>IMAGE</h2>
+            </div>
+          </div>
+
+          <div 
+            className="category-half" 
+            onClick={() => setCurrentView('works')} 
+            style={{ flex: 1, position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
+          >
+            <video src="/12681248_2160_3840_60fps.mp4" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 700, letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>CINEMATIC</h2>
+            </div>
+          </div>
+        </main>
+      )}
+
+      {currentView === 'works-image' && (
+        <main className="mobile-works-image-view" style={{ width: '100vw', height: '100vh', overflowY: 'auto', backgroundColor: '#111' }}>
+          <div style={{ position: 'fixed', top: 20, left: 20, zIndex: 100 }}>
+            <button className="mobile-back-btn" onClick={() => setCurrentView('works-category')} style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: '8px 12px', borderRadius: '4px' }}>
+              <ArrowLeft size={18} color="#fff" />
+              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px' }}>Back</span>
+            </button>
+          </div>
+          <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            {[
+              '/a (1).PNG', '/a (1).jpeg', '/a (1).jpg',
+              '/a (2).jpeg', '/a (2).jpg',
+              '/a (3).jpeg', '/a (3).jpg',
+              '/a (4).jpeg', '/a (4).jpg',
+              '/a (5).jpeg', '/a (5).jpg',
+              '/a (6).jpeg', '/a (6).jpg'
+            ].map((src, idx) => (
+              <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
+            ))}
+          </div>
+        </main>
+      )}
+
       {currentView === 'works' && (
         /* ================= WORKS VIEW (Mockup style) ================= */
         <main className="mobile-works-view">
           <div className="mobile-works-header">
-            <button className="mobile-back-btn" onClick={() => setCurrentView('home')}>
+            <button className="mobile-back-btn" onClick={() => setCurrentView('works-category')}>
               <ArrowLeft size={18} />
               <span>Back</span>
             </button>
