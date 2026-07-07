@@ -925,31 +925,33 @@ const MobileApp = () => {
         </div>
       )}
 
-      {/* 1. Header (Only show when menu is closed) */}
-      <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
-        <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
-          <div className="mobile-logo-wrapper">
-            <span className="mobile-logo-text">VERARVO</span>
+      {/* 1. Header (Only show when menu is closed and not on full-screen works views) */}
+      {currentView !== 'works-category' && currentView !== 'works-image' && (
+        <header className={`mobile-header ${menuOpen ? 'header-hidden' : ''}`}>
+          <div className="mobile-header-left" onClick={() => setCurrentView('home')} style={{ cursor: 'pointer' }}>
+            <div className="mobile-logo-wrapper">
+              <span className="mobile-logo-text">VERARVO</span>
+            </div>
           </div>
-        </div>
-        <div className="mobile-header-right">
-          {/* Transparent Language Switcher Button */}
-          <button 
-            className="mobile-lang-pill" 
-            onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-            aria-label="Change Language"
-          >
-            <Globe size={14} color="#ffffff" className="mobile-globe-icon" />
-            <span className="mobile-lang-flag">{currentLangOpt.flag}</span>
-            <span className="mobile-lang-code">{currentLangOpt.code}</span>
-          </button>
+          <div className="mobile-header-right">
+            {/* Transparent Language Switcher Button */}
+            <button 
+              className="mobile-lang-pill" 
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              aria-label="Change Language"
+            >
+              <Globe size={14} color="#ffffff" className="mobile-globe-icon" />
+              <span className="mobile-lang-flag">{currentLangOpt.flag}</span>
+              <span className="mobile-lang-code">{currentLangOpt.code}</span>
+            </button>
 
-          {/* Menu Toggle button */}
-          <button className="mobile-menu-toggle-box" onClick={toggleMenu} aria-label="Open Menu">
-            <Menu size={20} color="#000000" />
-          </button>
-        </div>
-      </header>
+            {/* Menu Toggle button */}
+            <button className="mobile-menu-toggle-box" onClick={toggleMenu} aria-label="Open Menu">
+              <Menu size={20} color="#000000" />
+            </button>
+          </div>
+        </header>
+      )}
 
       {/* Language Switcher Floating Dropdown Menu */}
       {langDropdownOpen && (
