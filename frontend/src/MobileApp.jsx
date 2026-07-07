@@ -893,7 +893,7 @@ const MobileApp = () => {
                   }}
                 >N</text>
                 <text 
-                  x="100" 
+                  x="56" 
                   y="160" 
                   className="logo-letter-v"
                   style={{
