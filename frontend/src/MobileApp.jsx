@@ -1046,9 +1046,9 @@ const MobileApp = () => {
       {currentView === 'works-category' && (
         <main className="mobile-works-category-view" style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
           <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 100 }}>
-            <button className="mobile-back-btn" onClick={() => setCurrentView('home')} style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: '8px 12px', borderRadius: '4px' }}>
-              <ArrowLeft size={18} color="#fff" />
-              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px' }}>Back</span>
+            <button className="mobile-back-btn" onClick={() => setCurrentView('home')} style={{ backgroundColor: 'transparent', padding: '8px 12px' }}>
+              <ArrowLeft size={18} color="#fff" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} />
+              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>Back</span>
             </button>
           </div>
           
@@ -1058,8 +1058,8 @@ const MobileApp = () => {
             style={{ flex: 1, position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
           >
             <img src="/a (1).jpeg" alt="Image Category" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 700, letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>IMAGE</h2>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 700, letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.5)' }}>IMAGE</h2>
             </div>
           </div>
 
@@ -1069,8 +1069,8 @@ const MobileApp = () => {
             style={{ flex: 1, position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
           >
             <video src="/12681248_2160_3840_60fps.mp4" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 700, letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>CINEMATIC</h2>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 700, letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.5)' }}>CINEMATIC</h2>
             </div>
           </div>
         </main>
@@ -1079,9 +1079,9 @@ const MobileApp = () => {
       {currentView === 'works-image' && (
         <main className="mobile-works-image-view" style={{ width: '100vw', height: '100vh', overflowY: 'auto', backgroundColor: '#111' }}>
           <div style={{ position: 'fixed', top: 20, left: 20, zIndex: 100 }}>
-            <button className="mobile-back-btn" onClick={() => setCurrentView('works-category')} style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: '8px 12px', borderRadius: '4px' }}>
-              <ArrowLeft size={18} color="#fff" />
-              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px' }}>Back</span>
+            <button className="mobile-back-btn" onClick={() => setCurrentView('works-category')} style={{ backgroundColor: 'transparent', padding: '8px 12px' }}>
+              <ArrowLeft size={18} color="#fff" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} />
+              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>Back</span>
             </button>
           </div>
           <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
