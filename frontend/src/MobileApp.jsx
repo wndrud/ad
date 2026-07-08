@@ -1048,9 +1048,9 @@ const MobileApp = () => {
       {currentView === 'works-category' && (
         <main className="mobile-works-category-view" style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
           <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 100 }}>
-            <button className="mobile-back-btn" onClick={() => setCurrentView('home')} style={{ backgroundColor: 'transparent', padding: '8px 12px' }}>
-              <ArrowLeft size={18} color="#fff" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} />
-              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>Back</span>
+            <button className="mobile-back-btn" onClick={() => setCurrentView('home')} style={{ background: 'none', padding: 0 }}>
+              <ArrowLeft size={18} color="#fff" />
+              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px' }}>Back</span>
             </button>
           </div>
           
@@ -1081,9 +1081,9 @@ const MobileApp = () => {
       {currentView === 'works-image' && (
         <main className="mobile-works-image-view" style={{ width: '100vw', height: '100vh', overflowY: 'auto', backgroundColor: '#111' }}>
           <div style={{ position: 'fixed', top: 20, left: 20, zIndex: 100 }}>
-            <button className="mobile-back-btn" onClick={() => setCurrentView('works-category')} style={{ backgroundColor: 'transparent', padding: '8px 12px' }}>
-              <ArrowLeft size={18} color="#fff" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} />
-              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>Back</span>
+            <button className="mobile-back-btn" onClick={() => setCurrentView('works-category')} style={{ background: 'none', padding: 0 }}>
+              <ArrowLeft size={18} color="#fff" />
+              <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px' }}>Back</span>
             </button>
           </div>
           <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingBottom: '60px' }}>
@@ -1093,9 +1093,7 @@ const MobileApp = () => {
               '/a (3).jpeg', '/a (3).jpg',
               '/a (4).jpeg', '/a (4).jpg',
               '/a (5).jpeg', '/a (5).jpg',
-              '/a (6).jpeg', '/a (6).jpg',
-              '/IMG_8909.PNG',
-              '/Three-quarter_side_profile_202603181648.jpeg'
+              '/a (6).jpeg', '/a (6).jpg'
             ].map((src, idx) => (
               <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
             ))}
