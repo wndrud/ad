@@ -1110,7 +1110,7 @@ const MobileApp = () => {
               <ArrowLeft size={18} />
               <span>Back</span>
             </button>
-            <h2 className="mobile-works-title">OUR WORKS</h2>
+            <h2 className="mobile-works-title">비디오 샘플</h2>
           </div>
 
           {/* Categories List */}
