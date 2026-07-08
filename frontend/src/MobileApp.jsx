@@ -1614,7 +1614,16 @@ const MobileApp = () => {
       {/* 4. Full Screen Menu Overlay */}
       <div className={`mobile-menu-overlay ${menuOpen ? 'menu-open' : ''}`}>
         <header className="mobile-menu-header">
-          <span className="mobile-menu-logo">VERARVO</span>
+          <span 
+            className="mobile-menu-logo" 
+            onClick={() => {
+              setCurrentView('home');
+              setMenuOpen(false);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            VERARVO
+          </span>
           <button className="mobile-menu-close" onClick={toggleMenu} aria-label="Close Menu">
             <X size={24} />
           </button>
