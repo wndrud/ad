@@ -641,10 +641,11 @@
   background: transparent;
   border: none;
   color: #EAB308;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.7rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.85rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  font-style: italic;
+  letter-spacing: 0.15em;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
   padding: 0.5rem 1rem;
