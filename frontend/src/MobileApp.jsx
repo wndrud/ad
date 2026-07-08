@@ -385,6 +385,11 @@ const MobileApp = () => {
       }
     });
     
+    // Check if scrolled to the absolute bottom
+    if (Math.ceil(container.scrollTop + container.clientHeight) >= container.scrollHeight) {
+      closestStep = cards.length - 1;
+    }
+    
     if (closestStep !== activeStep) {
       setActiveStep(closestStep);
     }
