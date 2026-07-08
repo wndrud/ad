@@ -893,8 +893,6 @@ const MobileApp = () => {
               >
                 <h1 className="preloader-title">VERARVO</h1>
               </div>
-              
-              <div className="mobile-preloader-glow-line" style={{ left: `${loadingProgress}%` }}></div>
             </div>
             <div className="mobile-preloader-percentage">{loadingProgress}</div>
           </div>
