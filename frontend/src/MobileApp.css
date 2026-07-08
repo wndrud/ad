@@ -641,11 +641,12 @@
   background: transparent;
   border: none;
   color: #EAB308;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.85rem;
-  font-weight: 500;
-  font-style: italic;
-  letter-spacing: 0.15em;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
   padding: 0.5rem 1rem;
