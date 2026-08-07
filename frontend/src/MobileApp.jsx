@@ -1115,7 +1115,18 @@ const MobileApp = () => {
               '/IMG_9300.PNG',
               '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg',
               '/file_000000002ad881f4b02295613fc8c996~2.png',
-              '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG'
+              '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG',
+              '/11FA9EAF-0D4F-4BEE-9670-4F2473094321.jpg',
+              '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg',
+              '/408471063_1784275816512842~2.jpeg',
+              '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg',
+              '/549789471_1784276133887554~2.jpeg',
+              '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg',
+              '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg',
+              '/IMG_5329.jpeg',
+              '/file_00000000755c8243957ad3597b01b9a8.png',
+              '/file_00000000dd5082469b53d340a3770d19.png',
+              '/pale_blush_pink_(#F6D6DC)_seamless_202605201550 (1)_Original.JPG'
             ].map((src, idx) => (
               <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
             ))}
