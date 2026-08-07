@@ -1673,13 +1673,6 @@ const MobileApp = () => {
                 />
               )}
             </div>
-            {activeVideo && (
-              <div className="mobile-modal-video-info">
-                <span className="mobile-video-info-title">
-                  ▶ {activeVideo.title[language] || activeVideo.title['EN']}
-                </span>
-              </div>
-            )}
           </div>
         </>
       )}
