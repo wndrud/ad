@@ -344,47 +344,33 @@
   margin: 0;
 }
 
-/* Categories List - ANGULAR CHAMFERED & SLANTED */
+/* Categories List */
 .mobile-works-list {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  padding: 0.5rem 0 2.5rem 0;
 }
 
 .mobile-works-item {
   display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  padding: 1.25rem 1.1rem;
-  background: linear-gradient(135deg, #111116 0%, #08080b 100%);
-  border: 1px solid rgba(234, 179, 8, 0.3);
-  border-left: 4px solid #EAB308;
-  /* Diagonal cut corners: Top-Right & Bottom-Left cut off */
-  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 1.5rem 0.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   cursor: pointer;
-  transition: all 0.25s ease;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7));
-  position: relative;
+  transition: background-color 0.2s ease;
 }
 
 .mobile-works-item:active {
-  transform: translateX(4px) scale(0.99);
-  background: linear-gradient(135deg, #1c1c24 0%, #0f0f14 100%);
-  border-color: #ffe600;
-  filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.4));
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .works-item-num {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 0.85rem;
-  font-weight: 900;
-  color: #000000;
-  background: #EAB308;
-  padding: 0.3rem 0.6rem;
-  /* Slanted parallelogram tag */
-  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-  letter-spacing: 1.5px;
+  font-weight: 800;
+  color: #EAB308;
+  opacity: 0.85;
+  margin-top: 0.2rem;
 }
 
 .works-item-content {
@@ -395,20 +381,18 @@
 .works-item-title {
   font-family: 'Outfit', sans-serif;
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #ffffff;
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.4rem 0;
   white-space: pre-line;
   word-break: keep-all;
-  letter-spacing: -0.2px;
-  text-transform: uppercase;
 }
 
 .works-item-desc {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 300;
-  line-height: 1.4;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.55);
   margin: 0;
   word-break: keep-all;
@@ -429,23 +413,21 @@
 }
 
 .works-item-pill-btn {
-  background: rgba(234, 179, 8, 0.12);
-  border: 1px solid #EAB308;
+  background: transparent;
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  border-radius: 4px;
   color: #EAB308;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  padding: 0.45rem 0.85rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 0.3rem 0.5rem;
   text-transform: uppercase;
   white-space: nowrap;
-  /* Slanted slash button */
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  transition: all 0.2s ease;
 }
 
 /* ==============================================
-   VIDEO PLAYER MODAL (ANGULAR CHAMFERED & CUTS)
+   VIDEO PLAYER MODAL (Premium overlay drawer)
    ============================================== */
 .mobile-modal-backdrop {
   position: fixed;
@@ -454,15 +436,8 @@
   width: 100vw;
   height: 100vh;
   z-index: 1500;
-  background-color: rgba(0, 0, 0, 0.94);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  animation: backdropFadeIn 0.25s ease forwards;
-}
-
-@keyframes backdropFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
 }
 
 .mobile-video-modal {
@@ -470,28 +445,27 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 95vw;
-  max-width: 520px;
-  max-height: 94vh;
-  background: linear-gradient(180deg, #0d0d12 0%, #030305 100%);
-  border: 1px solid #EAB308;
-  /* Sharp Diagonal Cut Corners: Top-Left & Bottom-Right Cut */
-  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  width: 90%;
+  max-width: 480px;
+  max-height: 90vh;
+  background-color: #0c0c0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   z-index: 1501;
-  padding: 1.2rem 1.1rem 1.2rem 1.1rem;
+  padding: 1.5rem 1.2rem 1.5rem 1.2rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  filter: drop-shadow(0 0 35px rgba(234, 179, 8, 0.35)) drop-shadow(0 30px 80px rgba(0, 0, 0, 0.98));
-  overflow-y: auto;
+  gap: 1.2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
   
-  animation: modalAngularAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Zoom/fade transition */
+  animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes modalAngularAppear {
+@keyframes modalFadeIn {
   from {
-    transform: translate(-50%, -48%) scale(0.95);
+    transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
   }
   to {
@@ -504,36 +478,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0.1rem 0.8rem 0.1rem;
-  border-bottom: 1px solid rgba(234, 179, 8, 0.25);
-}
-
-.mobile-modal-badge {
-  display: inline-block;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 900;
-  color: #000000;
-  letter-spacing: 2px;
-  background: #EAB308;
-  padding: 0.2rem 0.6rem;
-  /* Slanted badge */
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 0 100%);
-  margin-bottom: 0.35rem;
-  text-transform: uppercase;
+  gap: 1rem;
 }
 
 .mobile-modal-title {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #ffffff;
   margin: 0;
+  flex: 1;
   text-align: left;
   white-space: pre-line;
   word-break: keep-all;
-  letter-spacing: -0.3px;
-  text-transform: uppercase;
 }
 
 .mobile-app-container:not(.lang-ko) .mobile-modal-title {
@@ -541,90 +498,60 @@
 }
 
 .mobile-modal-close {
-  background: rgba(234, 179, 8, 0.08);
-  border: 1px solid #EAB308;
-  width: 38px;
-  height: 38px;
-  /* Slanted sharp close box */
-  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
-.mobile-modal-close:active {
-  background: #EAB308;
-}
-
-.mobile-modal-close:active svg {
-  stroke: #000000 !important;
-}
-
-/* Aspect ratio tab selector - SLANTED PARALLELOGRAM TABS */
+/* Aspect ratio tab selector */
 .mobile-ratio-tab-container {
   display: flex;
   width: 100%;
-  gap: 8px;
-  background: transparent;
-  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .mobile-ratio-tab {
   flex: 1;
-  background: #111116;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  border: none;
   color: rgba(255, 255, 255, 0.5);
   font-family: 'Outfit', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  padding: 0.65rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.6rem 0;
   cursor: pointer;
-  /* Slanted parallelogram cut */
-  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .mobile-ratio-tab.active {
-  color: #000000;
-  background: linear-gradient(135deg, #FFE600 0%, #EAB308 100%);
-  border-color: #ffe600;
-  font-weight: 900;
-  filter: drop-shadow(0 2px 8px rgba(234, 179, 8, 0.5));
+  color: #EAB308;
+  border-color: #EAB308;
 }
 
-/* Responsive Player container - ANGULAR CHAMFERED VIEWPORT */
+/* Responsive Player container */
 .mobile-video-player-container {
   width: 100%;
   background-color: #000000;
-  /* Chamfered 45-degree corner cuts for video container */
-  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #EAB308;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.95));
 }
 
 .mobile-video-player-container.aspect-16-9 {
-  aspect-ratio: 16 / 9;
-  width: 100%;
+  aspect-ratio: 16/9;
 }
 
 .mobile-video-player-container.aspect-9-16 {
-  aspect-ratio: 9 / 16;
-  width: 100%;
-  max-height: 65vh;
+  aspect-ratio: 9/16;
+  max-height: 48vh;
   margin: 0 auto;
 }
 
