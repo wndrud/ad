@@ -1097,7 +1097,25 @@ const MobileApp = () => {
               '/a (3).jpeg', '/a (3).jpg',
               '/a (4).jpeg', '/a (4).jpg',
               '/a (5).jpeg', '/a (5).jpg',
-              '/a (6).jpeg', '/a (6).jpg'
+              '/a (6).jpeg', '/a (6).jpg',
+              '/092755CE-0A63-49ED-8180-A30EF8687056.jpg',
+              '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg',
+              '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg',
+              '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg',
+              '/80811198-6082-461B-A227-DFC81D2EA772.jpg',
+              '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg',
+              '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg',
+              '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg',
+              '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg',
+              '/DECD6E41-38D0-4BB6-A9D4-7847BA2F0705.jpg',
+              '/IMG_5315.jpeg',
+              '/IMG_9116.JPG',
+              '/IMG_9117.JPG',
+              '/IMG_9296.PNG',
+              '/IMG_9300.PNG',
+              '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg',
+              '/file_000000002ad881f4b02295613fc8c996~2.png',
+              '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG'
             ].map((src, idx) => (
               <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
             ))}
