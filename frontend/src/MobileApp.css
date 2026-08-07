@@ -344,11 +344,11 @@
   margin: 0;
 }
 
-/* Categories List - SHARP & EDGY */
+/* Categories List - ANGULAR CHAMFERED & SLANTED */
 .mobile-works-list {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.9rem;
   padding: 0.5rem 0 2.5rem 0;
 }
 
@@ -356,38 +356,35 @@
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  padding: 1.2rem 1rem;
-  background: #0d0d11;
-  border-left: 3px solid #EAB308;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0px;
+  padding: 1.25rem 1.1rem;
+  background: linear-gradient(135deg, #111116 0%, #08080b 100%);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  border-left: 4px solid #EAB308;
+  /* Diagonal cut corners: Top-Right & Bottom-Left cut off */
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s ease;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7));
   position: relative;
 }
 
 .mobile-works-item:active {
-  transform: translateX(3px);
-  background: #14141c;
-  border-left-color: #ffe600;
-  border-top-color: rgba(234, 179, 8, 0.4);
-  border-right-color: rgba(234, 179, 8, 0.4);
-  border-bottom-color: rgba(234, 179, 8, 0.4);
+  transform: translateX(4px) scale(0.99);
+  background: linear-gradient(135deg, #1c1c24 0%, #0f0f14 100%);
+  border-color: #ffe600;
+  filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.4));
 }
 
 .works-item-num {
   font-family: 'Outfit', sans-serif;
   font-size: 0.85rem;
   font-weight: 900;
-  color: #EAB308;
-  background: rgba(234, 179, 8, 0.08);
-  padding: 0.35rem 0.55rem;
-  border-radius: 0px;
-  border: 1px solid rgba(234, 179, 8, 0.4);
-  letter-spacing: 1px;
+  color: #000000;
+  background: #EAB308;
+  padding: 0.3rem 0.6rem;
+  /* Slanted parallelogram tag */
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  letter-spacing: 1.5px;
 }
 
 .works-item-content {
@@ -398,12 +395,13 @@
 .works-item-title {
   font-family: 'Outfit', sans-serif;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
   margin: 0 0 0.25rem 0;
   white-space: pre-line;
   word-break: keep-all;
   letter-spacing: -0.2px;
+  text-transform: uppercase;
 }
 
 .works-item-desc {
@@ -431,22 +429,23 @@
 }
 
 .works-item-pill-btn {
-  background: transparent;
+  background: rgba(234, 179, 8, 0.12);
   border: 1px solid #EAB308;
-  border-radius: 0px;
   color: #EAB308;
   font-family: 'Outfit', sans-serif;
   font-size: 0.65rem;
   font-weight: 800;
-  letter-spacing: 1px;
-  padding: 0.4rem 0.75rem;
+  letter-spacing: 1.5px;
+  padding: 0.45rem 0.85rem;
   text-transform: uppercase;
   white-space: nowrap;
+  /* Slanted slash button */
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
   transition: all 0.2s ease;
 }
 
 /* ==============================================
-   VIDEO PLAYER MODAL (Sharp, Edgy & Futuristic)
+   VIDEO PLAYER MODAL (ANGULAR CHAMFERED & CUTS)
    ============================================== */
 .mobile-modal-backdrop {
   position: fixed;
@@ -455,9 +454,9 @@
   width: 100vw;
   height: 100vh;
   z-index: 1500;
-  background-color: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   animation: backdropFadeIn 0.25s ease forwards;
 }
 
@@ -474,24 +473,25 @@
   width: 95vw;
   max-width: 520px;
   max-height: 94vh;
-  background: #050507;
+  background: linear-gradient(180deg, #0d0d12 0%, #030305 100%);
   border: 1px solid #EAB308;
-  border-radius: 0px;
+  /* Sharp Diagonal Cut Corners: Top-Left & Bottom-Right Cut */
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
   z-index: 1501;
-  padding: 1.1rem 1rem 1.1rem 1rem;
+  padding: 1.2rem 1.1rem 1.2rem 1.1rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  box-shadow: 0 0 45px rgba(234, 179, 8, 0.25), 0 25px 70px rgba(0, 0, 0, 0.98);
+  gap: 1rem;
+  filter: drop-shadow(0 0 35px rgba(234, 179, 8, 0.35)) drop-shadow(0 30px 80px rgba(0, 0, 0, 0.98));
   overflow-y: auto;
   
-  animation: modalSharpAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: modalAngularAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes modalSharpAppear {
+@keyframes modalAngularAppear {
   from {
-    transform: translate(-50%, -48%) scale(0.96);
+    transform: translate(-50%, -48%) scale(0.95);
     opacity: 0;
   }
   to {
@@ -504,22 +504,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0.1rem;
-  border-bottom: 1px solid rgba(234, 179, 8, 0.2);
-  padding-bottom: 0.8rem;
+  padding: 0 0.1rem 0.8rem 0.1rem;
+  border-bottom: 1px solid rgba(234, 179, 8, 0.25);
 }
 
 .mobile-modal-badge {
   display: inline-block;
   font-family: 'Outfit', sans-serif;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 900;
   color: #000000;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   background: #EAB308;
-  padding: 0.15rem 0.45rem;
-  border-radius: 0px;
-  margin-bottom: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  /* Slanted badge */
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 0 100%);
+  margin-bottom: 0.35rem;
   text-transform: uppercase;
 }
 
@@ -541,11 +541,12 @@
 }
 
 .mobile-modal-close {
-  background: transparent;
-  border: 1px solid rgba(234, 179, 8, 0.5);
-  width: 36px;
-  height: 36px;
-  border-radius: 0px;
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid #EAB308;
+  width: 38px;
+  height: 38px;
+  /* Slanted sharp close box */
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -562,29 +563,29 @@
   stroke: #000000 !important;
 }
 
-/* Aspect ratio tab selector - SHARP TABS */
+/* Aspect ratio tab selector - SLANTED PARALLELOGRAM TABS */
 .mobile-ratio-tab-container {
   display: flex;
   width: 100%;
-  background: #000000;
-  border-radius: 0px;
+  gap: 8px;
+  background: transparent;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .mobile-ratio-tab {
   flex: 1;
-  background: transparent;
-  border: none;
+  background: #111116;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.5);
   font-family: 'Outfit', sans-serif;
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 1px;
-  padding: 0.6rem 0;
+  letter-spacing: 1.5px;
+  padding: 0.65rem 0;
   cursor: pointer;
-  border-radius: 0px;
-  transition: all 0.2s ease;
+  /* Slanted parallelogram cut */
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  transition: all 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -594,22 +595,25 @@
 
 .mobile-ratio-tab.active {
   color: #000000;
-  background: #EAB308;
+  background: linear-gradient(135deg, #FFE600 0%, #EAB308 100%);
+  border-color: #ffe600;
   font-weight: 900;
+  filter: drop-shadow(0 2px 8px rgba(234, 179, 8, 0.5));
 }
 
-/* Responsive Player container - ENLARGED & SHARP */
+/* Responsive Player container - ANGULAR CHAMFERED VIEWPORT */
 .mobile-video-player-container {
   width: 100%;
   background-color: #000000;
-  border-radius: 0px;
+  /* Chamfered 45-degree corner cuts for video container */
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
   overflow: hidden;
-  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.95);
-  border: 1px solid rgba(234, 179, 8, 0.3);
+  border: 1px solid #EAB308;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
+  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.95));
 }
 
 .mobile-video-player-container.aspect-16-9 {
@@ -628,7 +632,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 0px;
 }
 
 /* ==============================================
