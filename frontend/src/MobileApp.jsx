@@ -1062,7 +1062,7 @@ const MobileApp = () => {
             onClick={() => setCurrentView('works-image')} 
             style={{ flex: 1, position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
           >
-            <img src="/a.jpeg" alt="Image Category" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src="/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG" alt="Image Category" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <h2 style={{ color: '#fff', fontSize: '3rem', fontWeight: 700, letterSpacing: '4px', margin: 0, textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.5)' }}>IMAGE</h2>
             </div>
