@@ -1089,7 +1089,7 @@ const MobileApp = () => {
               <span style={{ color: '#fff', marginLeft: '6px', fontSize: '14px' }}>Back</span>
             </button>
           </div>
-          <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingBottom: '60px' }}>
+          <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingBottom: '90px' }}>
             {[
               '/a.jpeg',
               '/a (1).PNG', '/a (1).jpg',
@@ -1130,6 +1130,38 @@ const MobileApp = () => {
             ].map((src, idx) => (
               <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
             ))}
+          </div>
+
+          <div style={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            padding: '14px 16px',
+            textAlign: 'center',
+            zIndex: 100,
+            borderTop: '1px solid rgba(255, 230, 0, 0.2)'
+          }}>
+            <p style={{
+              color: '#ffe600',
+              fontSize: '13px',
+              fontWeight: 600,
+              margin: 0,
+              wordBreak: 'keep-all',
+              letterSpacing: '-0.2px',
+              textShadow: '0 1px 4px rgba(0,0,0,0.8)'
+            }}>
+              {
+                language === 'KO' ? "VERARVO와 함께 하고 있는 AI 크리에이터들의 작품입니다" :
+                language === 'ZH' ? "这是与 VERARVO 合作的 AI 创作者的作品" :
+                language === 'JA' ? "VERARVOと共に活動しているAIクリエイターの作品です" :
+                language === 'VI' ? "Đây là tác phẩm của các nhà sáng tạo AI đang làm việc cùng VERARVO" :
+                "These are works of AI creators working with VERARVO"
+              }
+            </p>
           </div>
         </main>
       )}
