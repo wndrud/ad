@@ -1631,11 +1631,16 @@ const MobileApp = () => {
           <div className="mobile-modal-backdrop" onClick={handleCloseVideo}></div>
           <div className="mobile-video-modal">
             <header className="mobile-modal-header">
-              <h3 className="mobile-modal-title">
-                {activeCategory.title[language] || activeCategory.title['EN']}
-              </h3>
-              <button className="mobile-modal-close" onClick={handleCloseVideo}>
-                <X size={22} color="#EAB308" />
+              <div>
+                <span className="mobile-modal-badge">
+                  {activeCategory.label}
+                </span>
+                <h3 className="mobile-modal-title">
+                  {activeCategory.title[language] || activeCategory.title['EN']}
+                </h3>
+              </div>
+              <button className="mobile-modal-close" onClick={handleCloseVideo} aria-label="Close">
+                <X size={18} color="#EAB308" />
               </button>
             </header>
 
@@ -1668,6 +1673,13 @@ const MobileApp = () => {
                 />
               )}
             </div>
+            {activeVideo && (
+              <div className="mobile-modal-video-info">
+                <span className="mobile-video-info-title">
+                  ▶ {activeVideo.title[language] || activeVideo.title['EN']}
+                </span>
+              </div>
+            )}
           </div>
         </>
       )}
