@@ -1126,7 +1126,7 @@ const MobileApp = () => {
               '/IMG_5329.jpeg',
               '/file_00000000755c8243957ad3597b01b9a8.png',
               '/file_00000000dd5082469b53d340a3770d19.png',
-              '/pale_blush_pink_(#F6D6DC)_seamless_202605201550 (1)_Original.JPG'
+              '/pale_blush_pink_seamless_202605201550_1_Original.JPG'
             ].map((src, idx) => (
               <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
             ))}
