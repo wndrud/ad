@@ -1169,7 +1169,14 @@ const MobileApp = () => {
               '/file_00000000dd5082469b53d340a3770d19.png',
               '/pale_blush_pink_seamless_202605201550_1_Original.JPG'
             ].map((src, idx) => (
-              <img key={idx} src={src} style={{ width: '100%', height: 'auto', display: 'block' }} alt={`Work Image ${idx + 1}`} loading="lazy" />
+              <div key={idx} className="mobile-image-item-wrapper">
+                <img 
+                  src={src} 
+                  className={`mobile-image-item ${idx % 2 === 0 ? 'pan-left' : 'pan-right'}`}
+                  alt={`Work Image ${idx + 1}`} 
+                  loading="lazy" 
+                />
+              </div>
             ))}
           </div>
 

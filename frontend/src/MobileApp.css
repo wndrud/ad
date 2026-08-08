@@ -1903,5 +1903,61 @@
   word-wrap: break-word;
 }
 
+/* ==============================================
+   WORKS IMAGE FEED (Slow Alternating Pan Motion)
+   ============================================== */
+.mobile-image-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 95px;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+.mobile-image-item-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: #0c0c0e;
+}
+
+.mobile-image-item {
+  width: 114%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  margin-left: -7%;
+  will-change: transform;
+}
+
+/* 1st, 3rd, 5th... (even idx): Pan Left slowly */
+.mobile-image-item.pan-left {
+  animation: slowPanLeft 15s ease-in-out infinite alternate;
+}
+
+/* 2nd, 4th, 6th... (odd idx): Pan Right slowly */
+.mobile-image-item.pan-right {
+  animation: slowPanRight 15s ease-in-out infinite alternate;
+}
+
+@keyframes slowPanLeft {
+  0% {
+    transform: translateX(5%) scale(1.03);
+  }
+  100% {
+    transform: translateX(-5%) scale(1.03);
+  }
+}
+
+@keyframes slowPanRight {
+  0% {
+    transform: translateX(-5%) scale(1.03);
+  }
+  100% {
+    transform: translateX(5%) scale(1.03);
+  }
+}
+
 
 
