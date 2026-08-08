@@ -8,8 +8,8 @@ const targetVideos = [
   "/111.mov",
   "/222.mov",
   "/333.mov",
-  "/UGC video1.mov",
-  "/For Hazlo.mov",
+  "/UGC_video1.mov",
+  "/For_Hazlo.mov",
   "/video-output-A4BEB786-5168-4899-9C24-35EE2EB1110E-2.mov",
   "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mov",
   "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mov",
@@ -210,30 +210,44 @@ const MobileApp = () => {
 
   useEffect(() => {
     if (currentView === 'home') {
+      const activeVid = bgVideoRefs.current[currentBgVideoIndex];
+      const nextIdx = (currentBgVideoIndex + 1) % targetVideos.length;
+      const nextVid = bgVideoRefs.current[nextIdx];
+
+      // Play current active video
+      if (activeVid) {
+        activeVid.muted = true;
+        activeVid.playsInline = true;
+        activeVid.currentTime = 0;
+        const playPromise = activeVid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Autoplay was prevented on mobile:", error);
+          });
+        }
+      }
+
+      // Pre-warm the next video so it transitions with zero delay
+      if (nextVid) {
+        nextVid.muted = true;
+        nextVid.playsInline = true;
+        nextVid.load();
+      }
+
+      // Pause other inactive videos to save CPU/battery
       bgVideoRefs.current.forEach((video, idx) => {
-        if (video) {
-          if (idx === currentBgVideoIndex) {
-            video.currentTime = 0;
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-              playPromise.catch(error => {
-                console.log("Autoplay was prevented on mobile:", error);
-              });
-            }
-          } else {
-            video.pause();
-          }
+        if (video && idx !== currentBgVideoIndex && idx !== nextIdx) {
+          video.pause();
         }
       });
 
-      // Bulletproof mobile autoplay on interaction
+      // Touch / click handler for mobile autoplay permission unlock
       const handleTouchOrClick = () => {
-        const activeVideo = bgVideoRefs.current[currentBgVideoIndex];
-        if (activeVideo) {
-          activeVideo.play().catch(() => {});
+        const currentV = bgVideoRefs.current[currentBgVideoIndex];
+        if (currentV) {
+          currentV.muted = true;
+          currentV.play().catch(() => {});
         }
-        window.removeEventListener('touchstart', handleTouchOrClick);
-        window.removeEventListener('click', handleTouchOrClick);
       };
 
       window.addEventListener('touchstart', handleTouchOrClick, { passive: true });
@@ -912,25 +926,43 @@ const MobileApp = () => {
       )}
       {/* Background Video for the ENTIRE screen on Home view */}
       {currentView === 'home' && (
-        <div className="mobile-video-bg-container">
-          {targetVideos.map((src, index) => (
-            <video
-              key={src}
-              ref={el => bgVideoRefs.current[index] = el}
-              src={src}
-              muted
-              playsInline
-              preload="auto"
-              onEnded={handleBgVideoEnded}
-              style={{
-                display: index === currentBgVideoIndex ? 'block' : 'none',
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                pointerEvents: 'none'
-              }}
-            />
-          ))}
+        <div className="mobile-video-bg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', overflow: 'hidden', zIndex: 0 }}>
+          {targetVideos.map((src, index) => {
+            const isActive = index === currentBgVideoIndex;
+            return (
+              <video
+                key={src}
+                ref={el => {
+                  bgVideoRefs.current[index] = el;
+                  if (el) {
+                    el.muted = true;
+                    el.playsInline = true;
+                  }
+                }}
+                src={src}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={handleBgVideoEnded}
+                onError={() => {
+                  console.warn(`Background video failed to load: ${src}`);
+                  if (isActive) handleBgVideoEnded();
+                }}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  pointerEvents: 'none',
+                  opacity: isActive ? 1 : 0,
+                  transition: 'opacity 0.8s ease-in-out',
+                  zIndex: isActive ? 2 : 1
+                }}
+              />
+            );
+          })}
           <div className="mobile-video-bg-overlay"></div>
         </div>
       )}
