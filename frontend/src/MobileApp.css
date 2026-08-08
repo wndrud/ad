@@ -1933,12 +1933,12 @@
 
 /* 1st, 3rd, 5th... (even idx): Pan Left slowly */
 .mobile-image-item.pan-left {
-  animation: slowPanLeft 15s ease-in-out infinite alternate;
+  animation: slowPanLeft 8s ease-in-out infinite alternate;
 }
 
 /* 2nd, 4th, 6th... (odd idx): Pan Right slowly */
 .mobile-image-item.pan-right {
-  animation: slowPanRight 15s ease-in-out infinite alternate;
+  animation: slowPanRight 8s ease-in-out infinite alternate;
 }
 
 @keyframes slowPanLeft {
