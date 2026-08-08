@@ -1132,8 +1132,7 @@ const MobileApp = () => {
           </div>
           <div className="mobile-image-feed" style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingBottom: '90px' }}>
             {[
-              '/a.jpeg',
-              '/a (1).PNG', '/a (1).jpg',
+              '/a (1).jpg',
               '/a (2).jpeg', '/a (2).jpg',
               '/a (3).jpeg', '/a (3).jpg',
               '/a (4).jpeg', '/a (4).jpg',
