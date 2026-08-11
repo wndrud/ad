@@ -1958,6 +1958,10 @@
     transform: translateX(5%) scale(1.03);
   }
 }
-
-
-
+/* Hide native video controls/playback overlays on mobile */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}

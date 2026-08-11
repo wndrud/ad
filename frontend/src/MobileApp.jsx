@@ -224,6 +224,11 @@ const MobileApp = () => {
         }
       }
 
+      // Rotate strictly every 3 seconds as requested
+      const rotateTimer = setTimeout(() => {
+        handleBgVideoEnded();
+      }, 3000);
+
       // Pause other inactive videos without triggering network fetch
       bgVideoRefs.current.forEach((video, idx) => {
         if (video && idx !== currentBgVideoIndex) {
@@ -252,6 +257,7 @@ const MobileApp = () => {
       window.addEventListener('scroll', handleTouchOrClick, { passive: true });
 
       return () => {
+        clearTimeout(rotateTimer);
         window.removeEventListener('touchstart', handleTouchOrClick);
         window.removeEventListener('touchend', handleTouchOrClick);
         window.removeEventListener('click', handleTouchOrClick);
