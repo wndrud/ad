@@ -213,7 +213,8 @@ const MobileApp = () => {
         activeVid.muted = true;
         activeVid.defaultMuted = true;
         activeVid.playsInline = true;
-        if (activeVid.paused) {
+        if (activeVid.paused || activeVid.ended) {
+          activeVid.currentTime = 0;
           const playPromise = activeVid.play();
           if (playPromise !== undefined) {
             playPromise.catch(error => {
@@ -223,11 +224,10 @@ const MobileApp = () => {
         }
       }
 
-      // Pause and reset other inactive videos to ensure smooth rotation
+      // Pause other inactive videos without triggering network fetch
       bgVideoRefs.current.forEach((video, idx) => {
         if (video && idx !== currentBgVideoIndex) {
           video.pause();
-          video.currentTime = 0;
         }
       });
 
@@ -929,6 +929,10 @@ const MobileApp = () => {
         <div className="mobile-video-bg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', overflow: 'hidden', zIndex: 0 }}>
           {targetVideos.map((src, index) => {
             const isActive = index === currentBgVideoIndex;
+            const isNext = index === (currentBgVideoIndex + 1) % targetVideos.length;
+            
+            // Only mount/preload aggressively for active and next video to save mobile resources
+            // For others, set preload to none and do not autoPlay
             return (
               <video
                 key={src}
@@ -941,11 +945,11 @@ const MobileApp = () => {
                   }
                 }}
                 src={src}
-                autoPlay
+                autoPlay={isActive}
                 muted
                 defaultMuted
                 playsInline
-                preload="auto"
+                preload={isActive || isNext ? "auto" : "none"}
                 onEnded={handleBgVideoEnded}
                 onError={() => {
                   console.warn(`Background video failed to load: ${src}`);
