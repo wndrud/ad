@@ -213,19 +213,22 @@ const MobileApp = () => {
       // Play current active video
       if (activeVid) {
         activeVid.muted = true;
+        activeVid.defaultMuted = true;
         activeVid.playsInline = true;
-        activeVid.currentTime = 0;
-        const playPromise = activeVid.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.log("Autoplay was prevented on mobile:", error);
-          });
+        if (activeVid.paused) {
+          const playPromise = activeVid.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.log("Autoplay was prevented on mobile:", error);
+            });
+          }
         }
       }
 
       // Pre-warm the next video so it transitions with zero delay
       if (nextVid) {
         nextVid.muted = true;
+        nextVid.defaultMuted = true;
         nextVid.playsInline = true;
         nextVid.load();
       }
@@ -242,22 +245,32 @@ const MobileApp = () => {
         }
       });
 
-      // Touch / click handler for mobile autoplay permission unlock
+      // Touch / click / scroll handler for bulletproof mobile autoplay unlock
       const handleTouchOrClick = () => {
+        bgVideoRefs.current.forEach(v => {
+          if (v) {
+            v.muted = true;
+            v.defaultMuted = true;
+            v.playsInline = true;
+          }
+        });
         const currentV = bgVideoRefs.current[currentBgVideoIndex];
-        if (currentV) {
-          currentV.muted = true;
+        if (currentV && currentV.paused) {
           currentV.play().catch(() => {});
         }
       };
 
       window.addEventListener('touchstart', handleTouchOrClick, { passive: true });
+      window.addEventListener('touchend', handleTouchOrClick, { passive: true });
       window.addEventListener('click', handleTouchOrClick, { passive: true });
+      window.addEventListener('scroll', handleTouchOrClick, { passive: true });
 
       return () => {
         clearTimeout(rotateTimer);
         window.removeEventListener('touchstart', handleTouchOrClick);
+        window.removeEventListener('touchend', handleTouchOrClick);
         window.removeEventListener('click', handleTouchOrClick);
+        window.removeEventListener('scroll', handleTouchOrClick);
       };
     }
   }, [currentBgVideoIndex, currentView]);
@@ -938,11 +951,14 @@ const MobileApp = () => {
                   bgVideoRefs.current[index] = el;
                   if (el) {
                     el.muted = true;
+                    el.defaultMuted = true;
                     el.playsInline = true;
                   }
                 }}
                 src={src}
+                autoPlay
                 muted
+                defaultMuted
                 playsInline
                 preload="auto"
                 onEnded={handleBgVideoEnded}
