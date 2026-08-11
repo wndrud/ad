@@ -207,8 +207,6 @@ const MobileApp = () => {
   useEffect(() => {
     if (currentView === 'home') {
       const activeVid = bgVideoRefs.current[currentBgVideoIndex];
-      const nextIdx = (currentBgVideoIndex + 1) % targetVideos.length;
-      const nextVid = bgVideoRefs.current[nextIdx];
 
       // Play current active video
       if (activeVid) {
@@ -225,23 +223,11 @@ const MobileApp = () => {
         }
       }
 
-      // Pre-warm the next video so it transitions with zero delay
-      if (nextVid) {
-        nextVid.muted = true;
-        nextVid.defaultMuted = true;
-        nextVid.playsInline = true;
-        nextVid.load();
-      }
-
-      // Auto-rotate every 8 seconds so all new videos cycle dynamically
-      const rotateTimer = setTimeout(() => {
-        handleBgVideoEnded();
-      }, 8000);
-
-      // Pause other inactive videos to save CPU/battery
+      // Pause and reset other inactive videos to ensure smooth rotation
       bgVideoRefs.current.forEach((video, idx) => {
-        if (video && idx !== currentBgVideoIndex && idx !== nextIdx) {
+        if (video && idx !== currentBgVideoIndex) {
           video.pause();
+          video.currentTime = 0;
         }
       });
 
@@ -266,7 +252,6 @@ const MobileApp = () => {
       window.addEventListener('scroll', handleTouchOrClick, { passive: true });
 
       return () => {
-        clearTimeout(rotateTimer);
         window.removeEventListener('touchstart', handleTouchOrClick);
         window.removeEventListener('touchend', handleTouchOrClick);
         window.removeEventListener('click', handleTouchOrClick);
