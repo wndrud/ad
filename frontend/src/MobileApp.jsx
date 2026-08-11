@@ -262,22 +262,17 @@ const MobileApp = () => {
     }
   }, [currentBgVideoIndex, currentView]);
 
-  // Preloader progress animation logic (60fps frame synchronization for smooth count-up)
+  // Preloader progress animation logic
   useEffect(() => {
-    let animationFrameId;
-    let startTime = null;
-    const duration = 2000; // ~2 seconds total duration (matches original)
-
-    const step = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progress = Math.min(100, Math.floor((elapsed / duration) * 100));
-
+    let progress = 0;
+    const interval = setInterval(() => {
+      // Dynamic random increment to feel organic (ranges 1 to 4)
+      const increment = Math.floor(Math.random() * 4) + 1;
+      progress = Math.min(progress + increment, 100);
       setLoadingProgress(progress);
 
-      if (progress < 100) {
-        animationFrameId = requestAnimationFrame(step);
-      } else {
+      if (progress >= 100) {
+        clearInterval(interval);
         setTimeout(() => {
           setIsFadeOut(true);
           setTimeout(() => {
@@ -285,13 +280,9 @@ const MobileApp = () => {
           }, 600);
         }, 600);
       }
-    };
+    }, 35); // ~2 seconds total reveal duration
 
-    animationFrameId = requestAnimationFrame(step);
-
-    return () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   // Careers Form States
