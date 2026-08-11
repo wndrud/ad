@@ -936,9 +936,16 @@ const MobileApp = () => {
           {targetVideos.map((src, index) => {
             const isActive = index === currentBgVideoIndex;
             const isNext = index === (currentBgVideoIndex + 1) % targetVideos.length;
+            const isPrev = index === (currentBgVideoIndex - 1 + targetVideos.length) % targetVideos.length;
             
-            // Only mount/preload aggressively for active and next video to save mobile resources
-            // For others, set preload to none and do not autoPlay
+            // Render only active, next, and previous to drastically save mobile resources 
+            // without causing the "blank/black screen" cold-start issues of preload="none".
+            if (!isActive && !isNext && !isPrev) {
+              // Ensure we clear the ref when unmounting
+              if (bgVideoRefs.current[index]) bgVideoRefs.current[index] = null;
+              return null;
+            }
+
             return (
               <video
                 key={src}
@@ -955,7 +962,7 @@ const MobileApp = () => {
                 muted
                 defaultMuted
                 playsInline
-                preload={isActive || isNext ? "auto" : "none"}
+                preload="auto"
                 onEnded={handleBgVideoEnded}
                 onError={() => {
                   console.warn(`Background video failed to load: ${src}`);
