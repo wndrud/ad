@@ -958,7 +958,7 @@ const MobileApp = () => {
                   }
                 }}
                 src={src}
-                autoPlay={isActive}
+                autoPlay
                 muted
                 defaultMuted
                 playsInline
