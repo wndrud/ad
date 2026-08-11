@@ -262,27 +262,39 @@ const MobileApp = () => {
     }
   }, [currentBgVideoIndex, currentView]);
 
-  // Preloader progress animation logic
+  // Preloader progress animation logic (60fps requestAnimationFrame for silky smooth motion)
   useEffect(() => {
-    let progress = 0;
-    const interval = setInterval(() => {
-      // Dynamic random increment to feel organic (ranges 1 to 4)
-      const increment = Math.floor(Math.random() * 4) + 1;
-      progress = Math.min(progress + increment, 100);
-      setLoadingProgress(progress);
+    let animationFrameId;
+    let startTime = null;
+    const duration = 1400; // 1.4 seconds smooth total reveal duration
 
-      if (progress >= 100) {
-        clearInterval(interval);
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progressRatio = Math.min(elapsed / duration, 1);
+      
+      // Smooth ease-out curve: 1 - (1 - x)^2.2
+      const easeProgress = Math.min(100, Math.round((1 - Math.pow(1 - progressRatio, 2.2)) * 100));
+
+      setLoadingProgress(easeProgress);
+
+      if (progressRatio < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      } else {
         setTimeout(() => {
           setIsFadeOut(true);
           setTimeout(() => {
             setIsLoading(false);
-          }, 600);
-        }, 600);
+          }, 450);
+        }, 250);
       }
-    }, 35); // ~2 seconds total reveal duration
+    };
 
-    return () => clearInterval(interval);
+    animationFrameId = requestAnimationFrame(step);
+
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   // Careers Form States
@@ -878,7 +890,7 @@ const MobileApp = () => {
                         strokeDasharray="650" 
                         style={{
                           strokeDashoffset: 650 - (650 * loadingProgress) / 100,
-                          transition: 'stroke-dashoffset 0.1s linear'
+                          willChange: 'stroke-dashoffset'
                         }}
                       />
                     </mask>
@@ -899,7 +911,7 @@ const MobileApp = () => {
                   className="preloader-bg-logo"
                   style={{
                     opacity: loadingProgress >= 100 ? 1 : 0,
-                    transition: 'opacity 0.6s ease-in-out',
+                    transition: 'opacity 0.5s ease-in-out',
                     position: 'absolute',
                     top: 0, left: 0,
                     width: '100%', height: '100%',
@@ -916,6 +928,8 @@ const MobileApp = () => {
                   top: 0, left: 0, 
                   clipPath: `inset(0 ${100 - loadingProgress}% 0 0)`,
                   WebkitClipPath: `inset(0 ${100 - loadingProgress}% 0 0)`,
+                  willChange: 'clip-path',
+                  transform: 'translateZ(0)',
                   zIndex: 10
                 }}
               >
