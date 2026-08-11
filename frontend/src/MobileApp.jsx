@@ -77,9 +77,12 @@ const MobileApp = () => {
   // Process timeline states & scroll handling
   const [activeStep, setActiveStep] = useState(0);
 
-  // Background video state & ended handler for mobile
-  const [currentBgVideoIndex, setCurrentBgVideoIndex] = useState(0);
-  const bgVideoRefs = useRef([]);
+  // Dual-slot background video architecture for mobile (zero hitch, zero black screen)
+  const videoARef = useRef(null);
+  const videoBRef = useRef(null);
+  const [activeSlot, setActiveSlot] = useState('A');
+  const [slotAVideoIndex, setSlotAVideoIndex] = useState(0);
+  const [slotBVideoIndex, setSlotBVideoIndex] = useState(1);
 
   // Mobile Preloader states
   const [isLoading, setIsLoading] = useState(true);
@@ -195,57 +198,49 @@ const MobileApp = () => {
     if (ogDesc) ogDesc.setAttribute('content', description);
   }, [currentView]);
 
-  // Initialize refs matching the size of targetVideos
-  if (bgVideoRefs.current.length !== targetVideos.length) {
-    bgVideoRefs.current = Array(targetVideos.length).fill(null);
-  }
-
-  const handleBgVideoEnded = () => {
-    setCurrentBgVideoIndex(prev => (prev + 1) % targetVideos.length);
-  };
-
   useEffect(() => {
     if (currentView === 'home') {
-      const activeVid = bgVideoRefs.current[currentBgVideoIndex];
+      const activeVid = activeSlot === 'A' ? videoARef.current : videoBRef.current;
+      const inactiveVid = activeSlot === 'A' ? videoBRef.current : videoARef.current;
 
-      // Play current active video
       if (activeVid) {
         activeVid.muted = true;
         activeVid.defaultMuted = true;
         activeVid.playsInline = true;
-        if (activeVid.paused || activeVid.ended) {
-          activeVid.currentTime = 0;
-          const playPromise = activeVid.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(error => {
-              console.log("Autoplay was prevented on mobile:", error);
-            });
-          }
+        if (activeVid.paused) {
+          activeVid.play().catch(() => {});
         }
       }
 
-      // Rotate strictly every 3 seconds as requested
-      const rotateTimer = setTimeout(() => {
-        handleBgVideoEnded();
-      }, 3000);
+      if (inactiveVid) {
+        inactiveVid.muted = true;
+        inactiveVid.defaultMuted = true;
+        inactiveVid.playsInline = true;
+      }
 
-      // Pause other inactive videos without triggering network fetch
-      bgVideoRefs.current.forEach((video, idx) => {
-        if (video && idx !== currentBgVideoIndex) {
-          video.pause();
+      // Rotate strictly every 4 seconds as requested by the user
+      const rotateTimer = setTimeout(() => {
+        if (activeSlot === 'A') {
+          const nextIndex = (slotAVideoIndex + 1) % targetVideos.length;
+          setSlotBVideoIndex(nextIndex);
+          setActiveSlot('B');
+        } else {
+          const nextIndex = (slotBVideoIndex + 1) % targetVideos.length;
+          setSlotAVideoIndex(nextIndex);
+          setActiveSlot('A');
         }
-      });
+      }, 4000);
 
       // Touch / click / scroll handler for bulletproof mobile autoplay unlock
       const handleTouchOrClick = () => {
-        bgVideoRefs.current.forEach(v => {
+        [videoARef.current, videoBRef.current].forEach(v => {
           if (v) {
             v.muted = true;
             v.defaultMuted = true;
             v.playsInline = true;
           }
         });
-        const currentV = bgVideoRefs.current[currentBgVideoIndex];
+        const currentV = activeSlot === 'A' ? videoARef.current : videoBRef.current;
         if (currentV && currentV.paused) {
           currentV.play().catch(() => {});
         }
@@ -264,7 +259,7 @@ const MobileApp = () => {
         window.removeEventListener('scroll', handleTouchOrClick);
       };
     }
-  }, [currentBgVideoIndex, currentView]);
+  }, [currentView, activeSlot, slotAVideoIndex, slotBVideoIndex]);
 
   // Preloader progress animation logic
   useEffect(() => {
@@ -930,59 +925,66 @@ const MobileApp = () => {
           </div>
         </div>
       )}
-      {/* Background Video for the ENTIRE screen on Home view */}
+      {/* Background Video for the ENTIRE screen on Home view (Dual-Slot Engine) */}
       {currentView === 'home' && (
         <div className="mobile-video-bg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', overflow: 'hidden', zIndex: 0 }}>
-          {targetVideos.map((src, index) => {
-            const isActive = index === currentBgVideoIndex;
-            const isNext = index === (currentBgVideoIndex + 1) % targetVideos.length;
-            const isPrev = index === (currentBgVideoIndex - 1 + targetVideos.length) % targetVideos.length;
-            
-            // Render only active, next, and previous to drastically save mobile resources 
-            // without causing the "blank/black screen" cold-start issues of preload="none".
-            if (!isActive && !isNext && !isPrev) {
-              // Ensure we clear the ref when unmounting
-              if (bgVideoRefs.current[index]) bgVideoRefs.current[index] = null;
-              return null;
-            }
+          {/* Video Slot A */}
+          <video
+            ref={videoARef}
+            src={targetVideos[slotAVideoIndex]}
+            autoPlay
+            muted
+            defaultMuted
+            playsInline
+            controls={false}
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            preload="auto"
+            onError={() => {
+              console.warn(`Background video A failed: ${targetVideos[slotAVideoIndex]}`);
+            }}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              pointerEvents: 'none',
+              opacity: activeSlot === 'A' ? 1 : 0,
+              transition: 'opacity 0.8s ease-in-out',
+              zIndex: activeSlot === 'A' ? 2 : 1
+            }}
+          />
 
-            return (
-              <video
-                key={src}
-                ref={el => {
-                  bgVideoRefs.current[index] = el;
-                  if (el) {
-                    el.muted = true;
-                    el.defaultMuted = true;
-                    el.playsInline = true;
-                  }
-                }}
-                src={src}
-                autoPlay
-                muted
-                defaultMuted
-                playsInline
-                preload="auto"
-                onEnded={handleBgVideoEnded}
-                onError={() => {
-                  console.warn(`Background video failed to load: ${src}`);
-                  if (isActive) handleBgVideoEnded();
-                }}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  pointerEvents: 'none',
-                  opacity: isActive ? 1 : 0,
-                  transition: 'opacity 0.8s ease-in-out',
-                  zIndex: isActive ? 2 : 1
-                }}
-              />
-            );
-          })}
+          {/* Video Slot B */}
+          <video
+            ref={videoBRef}
+            src={targetVideos[slotBVideoIndex]}
+            autoPlay
+            muted
+            defaultMuted
+            playsInline
+            controls={false}
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            preload="auto"
+            onError={() => {
+              console.warn(`Background video B failed: ${targetVideos[slotBVideoIndex]}`);
+            }}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              pointerEvents: 'none',
+              opacity: activeSlot === 'B' ? 1 : 0,
+              transition: 'opacity 0.8s ease-in-out',
+              zIndex: activeSlot === 'B' ? 2 : 1
+            }}
+          />
           <div className="mobile-video-bg-overlay"></div>
         </div>
       )}
