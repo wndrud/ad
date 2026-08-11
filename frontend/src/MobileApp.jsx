@@ -5,16 +5,17 @@ import './MobileApp.css';
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 const targetVideos = [
-  "/257945.mp4",
-  "/B.mp4",
-  "/C.mp4",
-  "/ai video ugc ads creation.mp4",
-  "/talking_avatar_ugc_video.mp4",
-  "/14887170_1080_1920_30fps.mp4",
+  "/Lumiere_Project.mp4",
+  "/Motors_Test_Project.mp4",
+  "/Orvelle_Project.mp4",
   "/hf_20260422_004431_4f68bd77-ca2b-4483-8619-185621e4d2b6.mp4",
   "/hf_20260702_185634_cbb4702d-c436-45dc-bcf9-6f441d464ca4.mp4",
-  "/AQORRylebdZCDNsQGuxKXlt4laYm2fcwPITevdWhtGSP5qxkTYWqJDlsLdAiBDtm56N3zy8btinu6QnZrbPBEN4TNgx2hX5jsyIbABKYKQ.mp4",
-  "/att.9Eg5FlwgDSrYU8ZwPNf4__bbq5hRFEivAkdwupNZzCE.mp4"
+  "/sun_block.mp4",
+  "/talking_avatar_ugc_video.mp4",
+  "/UGC_video1.mov",
+  "/For_Hazlo.mov",
+  "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mov",
+  "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mov"
 ];
 
 const faqData = {
