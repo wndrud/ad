@@ -262,39 +262,27 @@ const MobileApp = () => {
     }
   }, [currentBgVideoIndex, currentView]);
 
-  // Preloader progress animation logic (60fps requestAnimationFrame for silky smooth motion)
+  // Preloader progress animation logic
   useEffect(() => {
-    let animationFrameId;
-    let startTime = null;
-    const duration = 1400; // 1.4 seconds smooth total reveal duration
+    let progress = 0;
+    const interval = setInterval(() => {
+      // Dynamic random increment to feel organic (ranges 1 to 4)
+      const increment = Math.floor(Math.random() * 4) + 1;
+      progress = Math.min(progress + increment, 100);
+      setLoadingProgress(progress);
 
-    const step = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progressRatio = Math.min(elapsed / duration, 1);
-      
-      // Smooth ease-out curve: 1 - (1 - x)^2.2
-      const easeProgress = Math.min(100, Math.round((1 - Math.pow(1 - progressRatio, 2.2)) * 100));
-
-      setLoadingProgress(easeProgress);
-
-      if (progressRatio < 1) {
-        animationFrameId = requestAnimationFrame(step);
-      } else {
+      if (progress >= 100) {
+        clearInterval(interval);
         setTimeout(() => {
           setIsFadeOut(true);
           setTimeout(() => {
             setIsLoading(false);
-          }, 450);
-        }, 250);
+          }, 600);
+        }, 600);
       }
-    };
+    }, 35); // ~2 seconds total reveal duration
 
-    animationFrameId = requestAnimationFrame(step);
-
-    return () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   // Careers Form States
@@ -867,22 +855,14 @@ const MobileApp = () => {
         <div className={`mobile-preloader ${isFadeOut ? 'fade-out' : ''}`}>
           <div className="mobile-preloader-content">
             <div className="mobile-preloader-logo-wrapper">
-              {/* Background Dim NV Logo */}
-              <img 
-                src="/logo-nv-transparent-hq.png" 
-                alt="NV Logo Dim" 
-                className="preloader-bg-logo"
-              />
-
-              {/* Logo Container (Custom SVG Path Drawing Mask for Bright NV Logo) */}
+              {/* Logo Container (Custom SVG Path Drawing Mask) */}
               <div 
                 className="mobile-preloader-logo-container" 
                 style={{ 
                   position: 'absolute', 
                   top: 0, left: 0,
-                  width: '100%',
-                  height: '100%',
-                  zIndex: 2
+                  opacity: 0.12,
+                  zIndex: 1
                 }}
               >
                 <svg viewBox="0 0 280 280" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
@@ -898,7 +878,7 @@ const MobileApp = () => {
                         strokeDasharray="650" 
                         style={{
                           strokeDashoffset: 650 - (650 * loadingProgress) / 100,
-                          willChange: 'stroke-dashoffset'
+                          transition: 'stroke-dashoffset 0.1s linear'
                         }}
                       />
                     </mask>
@@ -911,28 +891,38 @@ const MobileApp = () => {
                     preserveAspectRatio="xMidYMid meet"
                   />
                 </svg>
+                
+                {/* Full logo overlay to fill any anti-aliasing gaps smoothly */}
+                <img 
+                  src="/logo-nv-transparent-hq.png" 
+                  alt="NV Logo" 
+                  className="preloader-bg-logo"
+                  style={{
+                    opacity: loadingProgress >= 100 ? 1 : 0,
+                    transition: 'opacity 0.6s ease-in-out',
+                    position: 'absolute',
+                    top: 0, left: 0,
+                    width: '100%', height: '100%',
+                    objectFit: 'contain'
+                  }}
+                />
               </div>
 
-              {/* Text Container (Left-to-Right horizontal reveal for VERARVO text) */}
+              {/* Text Container (Left-to-Right horizontal reveal) */}
               <div 
                 className="mobile-preloader-logo-container" 
                 style={{ 
                   position: 'absolute', 
                   top: 0, left: 0, 
-                  width: '100%',
-                  height: '100%',
                   clipPath: `inset(0 ${100 - loadingProgress}% 0 0)`,
                   WebkitClipPath: `inset(0 ${100 - loadingProgress}% 0 0)`,
-                  willChange: 'clip-path',
-                  transform: 'translateZ(0)',
                   zIndex: 10
                 }}
               >
                 <h1 className="preloader-title">VERARVO</h1>
-                <div className="mobile-preloader-glow-line" style={{ left: `${loadingProgress}%` }}></div>
               </div>
             </div>
-            <div className="mobile-preloader-percentage">{loadingProgress}%</div>
+            <div className="mobile-preloader-percentage">{loadingProgress}</div>
           </div>
         </div>
       )}
