@@ -12,10 +12,10 @@ const targetVideos = [
   "/hf_20260702_185634_cbb4702d-c436-45dc-bcf9-6f441d464ca4.mp4",
   "/sun_block.mp4",
   "/talking_avatar_ugc_video.mp4",
-  "/UGC_video1.mov",
-  "/For_Hazlo.mov",
-  "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mov",
-  "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mov"
+  "/UGC_video1.mp4",
+  "/For_Hazlo.mp4",
+  "/hf_20260412_001025_266abd8c-886a-47e6-9959-6371f3b5f840.mp4",
+  "/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mp4"
 ];
 
 const faqData = {
