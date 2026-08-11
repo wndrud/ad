@@ -1964,10 +1964,18 @@ video::-webkit-media-controls-panel,
 video::-webkit-media-controls-play-button,
 video::-webkit-media-controls-start-playback-button,
 video::-webkit-media-controls-overlay-play-button,
-video::-webkit-media-controls-enclosure {
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-toggle-closed-captions-button,
+*::-webkit-media-controls-start-playback-button,
+*::-webkit-media-controls-play-button,
+*::-webkit-media-controls-overlay-play-button {
   display: none !important;
   -webkit-appearance: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  max-width: 0px !important;
+  max-height: 0px !important;
 }

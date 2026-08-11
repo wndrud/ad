@@ -198,11 +198,24 @@ const MobileApp = () => {
     if (ogDesc) ogDesc.setAttribute('content', description);
   }, [currentView]);
 
+  const advanceToNextSlot = () => {
+    if (activeSlot === 'A') {
+      const nextAIndex = (slotBVideoIndex + 1) % targetVideos.length;
+      setSlotAVideoIndex(nextAIndex);
+      setActiveSlot('B');
+    } else {
+      const nextBIndex = (slotAVideoIndex + 1) % targetVideos.length;
+      setSlotBVideoIndex(nextBIndex);
+      setActiveSlot('A');
+    }
+  };
+
   useEffect(() => {
     if (currentView === 'home') {
       const activeVid = activeSlot === 'A' ? videoARef.current : videoBRef.current;
       const inactiveVid = activeSlot === 'A' ? videoBRef.current : videoARef.current;
 
+      // Play active video immediately
       if (activeVid) {
         activeVid.muted = true;
         activeVid.defaultMuted = true;
@@ -212,23 +225,19 @@ const MobileApp = () => {
         }
       }
 
+      // Pre-warm/pre-play inactive video in background so it's 100% buffered and ready
       if (inactiveVid) {
         inactiveVid.muted = true;
         inactiveVid.defaultMuted = true;
         inactiveVid.playsInline = true;
+        if (inactiveVid.paused) {
+          inactiveVid.play().catch(() => {});
+        }
       }
 
-      // Rotate strictly every 4 seconds as requested by the user
+      // Rotate strictly every 4 seconds or when video ends
       const rotateTimer = setTimeout(() => {
-        if (activeSlot === 'A') {
-          const nextIndex = (slotAVideoIndex + 1) % targetVideos.length;
-          setSlotBVideoIndex(nextIndex);
-          setActiveSlot('B');
-        } else {
-          const nextIndex = (slotBVideoIndex + 1) % targetVideos.length;
-          setSlotAVideoIndex(nextIndex);
-          setActiveSlot('A');
-        }
+        advanceToNextSlot();
       }, 4000);
 
       // Touch / click / scroll handler for bulletproof mobile autoplay unlock
@@ -238,12 +247,9 @@ const MobileApp = () => {
             v.muted = true;
             v.defaultMuted = true;
             v.playsInline = true;
+            if (v.paused) v.play().catch(() => {});
           }
         });
-        const currentV = activeSlot === 'A' ? videoARef.current : videoBRef.current;
-        if (currentV && currentV.paused) {
-          currentV.play().catch(() => {});
-        }
       };
 
       window.addEventListener('touchstart', handleTouchOrClick, { passive: true });
@@ -939,9 +945,14 @@ const MobileApp = () => {
             controls={false}
             disablePictureInPicture
             controlsList="nodownload nofullscreen noremoteplayback"
+            poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
             preload="auto"
+            onEnded={() => {
+              if (activeSlot === 'A') advanceToNextSlot();
+            }}
             onError={() => {
               console.warn(`Background video A failed: ${targetVideos[slotAVideoIndex]}`);
+              if (activeSlot === 'A') advanceToNextSlot();
             }}
             style={{
               position: 'absolute',
@@ -968,9 +979,14 @@ const MobileApp = () => {
             controls={false}
             disablePictureInPicture
             controlsList="nodownload nofullscreen noremoteplayback"
+            poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
             preload="auto"
+            onEnded={() => {
+              if (activeSlot === 'B') advanceToNextSlot();
+            }}
             onError={() => {
               console.warn(`Background video B failed: ${targetVideos[slotBVideoIndex]}`);
+              if (activeSlot === 'B') advanceToNextSlot();
             }}
             style={{
               position: 'absolute',
