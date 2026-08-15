@@ -38,6 +38,18 @@
   box-sizing: border-box;
 }
 
+/* Force hide all default mobile browser video play icons */
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
 /* Utility Classes */
 .text-yellow {
   color: var(--yellow) !important;
@@ -115,17 +127,30 @@
 }
 
 /* ==========================================================================
-   2. HERO SCROLL CONTAINER & VIDEO SHRINK PHYSICS
+   2. HERO SCROLL CONTAINER & STICKY VIDEO VIEWPORT
    ========================================================================== */
 .hero-scroll-container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   background-color: var(--black);
-  overflow: hidden;
 }
 
-.hero-video-sticky {
+.hero-sticky-viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--black);
+}
+
+.hero-video-sticky-wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -135,6 +160,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .hero-video-box {
@@ -144,6 +170,7 @@
   position: relative;
   background: #000;
   transform-origin: center center;
+  transition: transform 0.05s ease-out, border-radius 0.05s ease-out;
 }
 
 .hero-bg-video {
@@ -215,7 +242,6 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 20px;
 }
 
 /* Chamfered Clipped Deep Yellow Button */
@@ -255,19 +281,6 @@
   text-transform: uppercase;
   padding: 10px 0;
   cursor: pointer;
-}
-
-.hero-scroll-pill {
-  width: 1.5px;
-  height: 36px;
-  background: linear-gradient(to bottom, var(--yellow), transparent);
-  margin-top: 10px;
-  animation: pulseDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
 }
 
 /* ==========================================================================
@@ -349,6 +362,8 @@
   flex-direction: column;
   background: var(--black);
   border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 20;
 }
 
 .stat-row-item {
@@ -384,6 +399,8 @@
 .portfolio-showcase-section {
   padding: 60px 20px 40px 20px;
   background: var(--black);
+  position: relative;
+  z-index: 20;
 }
 
 .sec-header-block {
@@ -716,6 +733,8 @@
 .differentiators-section {
   padding: 60px 20px;
   background: var(--black);
+  position: relative;
+  z-index: 20;
 }
 
 .diff-items-stack {
@@ -786,6 +805,8 @@
 .faq-section {
   padding: 60px 20px;
   background: var(--black);
+  position: relative;
+  z-index: 20;
 }
 
 .faq-accordion-container {
@@ -857,6 +878,8 @@
 .cta-inquiry-section {
   padding: 60px 20px;
   background: var(--dark-surface);
+  position: relative;
+  z-index: 20;
 }
 
 .cta-header-center {
@@ -1012,6 +1035,8 @@
   background: var(--black);
   border-top: 1px solid var(--border-subtle);
   padding: 40px 20px 30px 20px;
+  position: relative;
+  z-index: 20;
 }
 
 .footer-content-stack {

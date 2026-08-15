@@ -161,6 +161,7 @@ const TypewriterRow = ({ item, isVisible }) => {
 };
 
 const MobileApp = () => {
+  const videoRef = useRef(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [scrollY, setScrollY] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -184,35 +185,77 @@ const MobileApp = () => {
   // Typewriter state tracking
   const [visibleDiffs, setVisibleDiffs] = useState({});
 
+  // 1. Mobile Video Robust Autoplay Trigger
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', 'true');
+      video.setAttribute('webkit-playsinline', 'true');
+
+      const attemptPlay = () => {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(() => {
+            const unlockTouch = () => {
+              video.play().catch(() => {});
+              window.removeEventListener('touchstart', unlockTouch);
+              window.removeEventListener('click', unlockTouch);
+            };
+            window.addEventListener('touchstart', unlockTouch, { once: true });
+            window.addEventListener('click', unlockTouch, { once: true });
+          });
+        }
+      };
+
+      attemptPlay();
+    }
+  }, []);
+
+  // 2. Smooth Scroll & Intersection Observer for Typewriter
   useEffect(() => {
     const handleScroll = () => {
-      const curY = window.scrollY;
-      setScrollY(curY);
-
-      const diffEls = document.querySelectorAll('.diff-item-trigger');
-      diffEls.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const id = el.getAttribute('data-id');
-        if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
-          setVisibleDiffs(prev => ({ ...prev, [id]: true }));
-        }
-      });
+      setScrollY(window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // IntersectionObserver for 100% reliable trigger on mobile
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('data-id');
+            if (id) {
+              setVisibleDiffs(prev => ({ ...prev, [id]: true }));
+            }
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    const diffEls = document.querySelectorAll('.diff-item-trigger');
+    diffEls.forEach(el => observer.observe(el));
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   // Compute Hero Video Shrink & Text Fade
-  const heroHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
-  const scrollProgress = Math.min(Math.max(scrollY / (heroHeight * 0.65), 0), 1);
+  const heroTransitionDistance = 350; // px of scroll to complete hero transition
+  const scrollProgress = Math.min(Math.max(scrollY / heroTransitionDistance, 0), 1);
 
-  const heroTextOpacity = Math.max(0, 1 - scrollProgress * 2.2);
+  const heroTextOpacity = Math.max(0, 1 - scrollProgress * 1.8);
   const heroTextTranslateY = -scrollProgress * 40;
-  const heroVideoScale = 1 - scrollProgress * 0.12;
-  const heroVideoRadius = scrollProgress * 22;
-  const heroVideoPadding = scrollProgress * 16;
+  const heroVideoScale = 1 - scrollProgress * 0.12; // 1.0 -> 0.88
+  const heroVideoRadius = scrollProgress * 20; // 0px -> 20px
+  const heroVideoPadding = scrollProgress * 14; // 0px -> 14px
 
   const filteredImages = selectedCategory === 'ALL' 
     ? allOriginalImages 
@@ -279,73 +322,72 @@ const MobileApp = () => {
         </div>
       </header>
 
-      {/* 2. Hero Section (Single Video with Scroll Shrink & Text Fadeout) */}
+      {/* 2. Hero Section (Sticky Viewport with Scroll Shrink & Text Fadeout) */}
       <section className="hero-scroll-container">
-        <div 
-          className="hero-video-sticky"
-          style={{
-            padding: `${heroVideoPadding}px`,
-            transition: 'padding 0.05s ease-out'
-          }}
-        >
+        <div className="hero-sticky-viewport">
           <div 
-            className="hero-video-box"
+            className="hero-video-sticky-wrapper"
             style={{
-              borderRadius: `${heroVideoRadius}px`,
-              transform: `scale(${heroVideoScale})`,
-              transition: 'transform 0.05s ease-out, border-radius 0.05s ease-out'
+              padding: `${heroVideoPadding}px`
             }}
           >
-            <video
-              src="/Lumiere_Project.mp4"
-              autoPlay
-              muted
-              defaultMuted
-              loop
-              playsInline
-              controls={false}
-              className="hero-bg-video"
-            />
-            <div className="hero-gradient-overlay" />
-          </div>
-        </div>
-
-        {/* Hero Foreground Content */}
-        <div 
-          className="hero-foreground-content"
-          style={{
-            opacity: heroTextOpacity,
-            transform: `translateY(${heroTextTranslateY}px)`,
-            pointerEvents: heroTextOpacity < 0.1 ? 'none' : 'auto'
-          }}
-        >
-          <div className="hero-tagline-row">
-            <span className="yellow-dash" />
-            <span className="hero-tagline-text">AI ADVERTISING &amp; CREATIVE AGENCY</span>
+            <div 
+              className="hero-video-box"
+              style={{
+                borderRadius: `${heroVideoRadius}px`,
+                transform: `scale(${heroVideoScale})`
+              }}
+            >
+              <video
+                ref={videoRef}
+                src="/Lumiere_Project.mp4"
+                autoPlay
+                muted
+                defaultMuted
+                loop
+                playsInline
+                controls={false}
+                disablePictureInPicture
+                preload="auto"
+                className="hero-bg-video"
+              />
+              <div className="hero-gradient-overlay" />
+            </div>
           </div>
 
-          <h1 className="hero-main-title">
-            <span className="hero-title-hollow">VERARVO</span>
-            <span className="title-stroked-line">REIMAGINING</span>
-            <span className="text-yellow-line">THE UNREAL</span>
-          </h1>
+          {/* Hero Foreground Content */}
+          <div 
+            className="hero-foreground-content"
+            style={{
+              opacity: heroTextOpacity,
+              transform: `translateY(${heroTextTranslateY}px)`,
+              pointerEvents: heroTextOpacity < 0.1 ? 'none' : 'auto'
+            }}
+          >
+            <div className="hero-tagline-row">
+              <span className="yellow-dash" />
+              <span className="hero-tagline-text">AI ADVERTISING &amp; CREATIVE AGENCY</span>
+            </div>
 
-          <p className="hero-desc-text">
-            Combining generative AI intelligence with human artistic direction. We produce high-converting commercial videos, editorial imagery, and virtual brand ambassadors delivered in 3 days.
-          </p>
+            <h1 className="hero-main-title">
+              <span className="hero-title-hollow">VERARVO</span>
+              <span className="title-stroked-line">REIMAGINING</span>
+              <span className="text-yellow-line">THE UNREAL</span>
+            </h1>
 
-          <div className="hero-btn-row">
-            <button className="btn-chamfer-yellow" onClick={() => scrollToSection('inquiry-section')}>
-              <span>REQUEST PROPOSAL</span>
-              <ArrowRight size={16} />
-            </button>
-            <button className="btn-link-white" onClick={() => scrollToSection('portfolio-section')}>
-              VIEW PORTFOLIO
-            </button>
-          </div>
+            <p className="hero-desc-text">
+              Combining generative AI intelligence with human artistic direction. We produce high-converting commercial videos, editorial imagery, and virtual brand ambassadors delivered in 3 days.
+            </p>
 
-          <div className="hero-scroll-pill">
-            <div className="scroll-pill-dot" />
+            <div className="hero-btn-row">
+              <button className="btn-chamfer-yellow" onClick={() => scrollToSection('inquiry-section')}>
+                <span>REQUEST PROPOSAL</span>
+                <ArrowRight size={16} />
+              </button>
+              <button className="btn-link-white" onClick={() => scrollToSection('portfolio-section')}>
+                VIEW PORTFOLIO
+              </button>
+            </div>
           </div>
         </div>
       </section>
