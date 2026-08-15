@@ -75,7 +75,7 @@ const differentiators = [
     num: "03",
     title: (
       <>
-        PERFORMANCE-DRIVEN MARKETING <span className="text-yellow">|</span>
+        PERFORMANCE-DRIVEN <span className="text-yellow">|</span> MARKETING
       </>
     ),
     desc: "Engineered specifically for high-impact social media feeds, maximizing click-through rates (CTR) and return on ad spend (ROAS)."
