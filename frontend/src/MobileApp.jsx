@@ -895,10 +895,41 @@ const MobileApp = () => {
               <h4 className="footer-col-head">CONTACT</h4>
               <a href="mailto:jobsverarvo@gmail.com" className="footer-email-link">jobsverarvo@gmail.com</a>
               <div className="footer-social-bubbles">
-                <a href="https://pf.kakao.com/_xhxiBnX" target="_blank" rel="noopener noreferrer" className="bubble-btn">Kakao</a>
-                <a href="https://x.com/VERARVO" target="_blank" rel="noopener noreferrer" className="bubble-btn">X</a>
-                <a href="https://www.instagram.com/verarvo/" target="_blank" rel="noopener noreferrer" className="bubble-btn">Insta</a>
-                <a href="https://www.facebook.com/profile.php?id=61590815180891" target="_blank" rel="noopener noreferrer" className="bubble-btn">FB</a>
+                <a 
+                  href="https://pf.kakao.com/_xhxiBnX" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bubble-btn"
+                  aria-label="KakaoTalk Channel"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3c-5.52 0-10 3.58-10 8 0 2.88 1.88 5.42 4.75 6.77l-1.2 4.45c-.1.38.33.68.66.47l5.24-3.47c.18.02.36.03.55.03 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/>
+                  </svg>
+                </a>
+                <a 
+                  href="https://www.instagram.com/verarvo/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bubble-btn"
+                  aria-label="Instagram"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                  </svg>
+                </a>
+                <a 
+                  href="https://www.facebook.com/profile.php?id=61590815180891" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bubble-btn"
+                  aria-label="Facebook"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
