@@ -1,52 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Plus, Check, Send, Upload, Sparkles, Filter } from 'lucide-react';
+import { ArrowRight, Plus, Check, Send, Upload } from 'lucide-react';
 import './MobileApp.css';
-
-// All 41 original client images categorized cleanly
-const allOriginalImages = [
-  // Fashion & Virtual Models
-  { src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', category: 'MODELS', title: 'Fashion Editorial Series I' },
-  { src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'EDITORIAL', title: 'Beauty Glow Cosmetics' },
-  { src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'EDITORIAL', title: 'Skincare Product Splash' },
-  { src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Luxury Bottle Staging' },
-  { src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Minimalist Packaging Concept' },
-  { src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'PRODUCTS', title: 'Aura Serum Lighting' },
-  { src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', category: 'MODELS', title: 'Street Fashion Portrait' },
-  { src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', category: 'MODELS', title: 'Haute Couture Studio Shoot' },
-  { src: '/DECD6E41-38D0-4BB6-A9D4-7847BA2F0705.jpg', category: 'MODELS', title: 'Monochrome High Fashion' },
-  { src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', category: 'MODELS', title: 'Editorial Model Lookbook' },
-  { src: '/11FA9EAF-0D4F-4BEE-9670-4F2473094321.jpg', category: 'MODELS', title: 'Virtual Brand Ambassador' },
-  { src: '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg', category: 'MODELS', title: 'Digital Runway Staging' },
-  { src: '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg', category: 'MODELS', title: 'Summer Collection Preview' },
-  { src: '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg', category: 'MODELS', title: 'Luxury Sunglasses Campaign' },
-  { src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', category: 'PRODUCTS', title: 'Hydra Care Serum 3D' },
-  { src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'PRODUCTS', title: 'Gold Essence Luxury Dropper' },
-  { src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', category: 'PRODUCTS', title: 'Sun Shield Botanical Bottle' },
-  { src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', category: 'PRODUCTS', title: 'Cosmetic Texture Macro' },
-  { src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'PRODUCTS', title: 'Beverage Refresh Staging' },
-  { src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'PRODUCTS', title: 'Perfume Silhouette Lighting' },
-  { src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'PRODUCTS', title: 'Signature Product Reveal' },
-  { src: '/a (1).jpg', category: 'LIFESTYLE', title: 'Urban Architecture Mood' },
-  { src: '/a (2).jpeg', category: 'LIFESTYLE', title: 'Interior Furniture Aesthetic' },
-  { src: '/a (2).jpg', category: 'LIFESTYLE', title: 'Luxury Living Space' },
-  { src: '/a (3).jpeg', category: 'LIFESTYLE', title: 'Minimalist Dining Set' },
-  { src: '/a (3).jpg', category: 'LIFESTYLE', title: 'Warm Tone Bedroom Mood' },
-  { src: '/a (4).jpeg', category: 'LIFESTYLE', title: 'Modern Spatial Rendering' },
-  { src: '/a (4).jpg', category: 'LIFESTYLE', title: 'Coffee Studio Lighting' },
-  { src: '/a (5).jpeg', category: 'LIFESTYLE', title: 'Minimalist Lamp Design' },
-  { src: '/a (5).jpg', category: 'LIFESTYLE', title: 'Concrete Loft Staging' },
-  { src: '/a (6).jpeg', category: 'LIFESTYLE', title: 'Ceramic Art Staging' },
-  { src: '/a (6).jpg', category: 'LIFESTYLE', title: 'Lounge Chair Composition' },
-  { src: '/IMG_5315.jpeg', category: 'EDITORIAL', title: 'Sunset Outdoor Editorial' },
-  { src: '/IMG_5329.jpeg', category: 'EDITORIAL', title: 'Golden Hour Beauty Shoot' },
-  { src: '/IMG_9116.JPG', category: 'EDITORIAL', title: 'Candid Studio Snapshot' },
-  { src: '/IMG_9117.JPG', category: 'EDITORIAL', title: 'Film Grain Portrait' },
-  { src: '/IMG_9296.PNG', category: 'EDITORIAL', title: 'Night Mood Streetwear' },
-  { src: '/IMG_9300.PNG', category: 'EDITORIAL', title: 'Neon Ambient Look' },
-  { src: '/408471063_1784275816512842~2.jpeg', category: 'EDITORIAL', title: 'Creative Brand Visual' },
-  { src: '/549789471_1784276133887554~2.jpeg', category: 'EDITORIAL', title: 'Vibrant Palette Campaign' },
-  { src: '/Portfolio/ecommerce.webp', category: 'PRODUCTS', title: 'E-Commerce Hero Render' }
-];
 
 const differentiators = [
   {
@@ -113,7 +67,7 @@ const faqItems = [
   }
 ];
 
-// Interactive Typewriter Item Component
+// Interactive Character-by-Character Typewriter Row
 const TypewriterRow = ({ item, isVisible }) => {
   const [typedTitle, setTypedTitle] = useState('');
   const [typedDesc, setTypedDesc] = useState('');
@@ -164,8 +118,6 @@ const TypewriterRow = ({ item, isVisible }) => {
 const MobileApp = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [scrollY, setScrollY] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState('ALL');
-  const [visibleCount, setVisibleCount] = useState(12);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -213,12 +165,6 @@ const MobileApp = () => {
   const heroVideoRadius = scrollProgress * 22; // 0px -> 22px
   const heroVideoPadding = scrollProgress * 16; // 0px -> 16px
 
-  const filteredImages = selectedCategory === 'ALL' 
-    ? allOriginalImages 
-    : allOriginalImages.filter(img => img.category === selectedCategory);
-
-  const displayedImages = filteredImages.slice(0, visibleCount);
-
   const handleFormCheck = (type) => {
     setFormData(prev => {
       const exists = prev.projectType.includes(type);
@@ -258,9 +204,8 @@ const MobileApp = () => {
         </div>
       </header>
 
-      {/* 2. Hero Section with Scroll Shrink & Text Fadeout */}
+      {/* 2. Hero Section (Single Video with Scroll Shrink & Text Fadeout) */}
       <section className="hero-scroll-container">
-        {/* Sticky background video wrapper */}
         <div 
           className="hero-video-sticky"
           style={{
@@ -363,68 +308,78 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 5. Complete 41 Original Images Portfolio Gallery */}
+      {/* 5. Curated 5-Card Portfolio Grid (Exact Reference Asymmetrical Layout) */}
       <section id="portfolio-section" className="portfolio-showcase-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
             <span className="yellow-dash" />
-            <span className="sec-tag-text">PORTFOLIO · ALL {allOriginalImages.length} ASSETS</span>
+            <span className="sec-tag-text">PORTFOLIO</span>
           </div>
           <h2 className="sec-title-display">
             TAKE YOUR BRAND<br />
             TO THE <em className="text-yellow-italic">NEXT</em><br />
             LEVEL WITH AI
           </h2>
-          <p className="sec-subtitle-p">
-            Explore our curated catalog of AI photography, fashion campaigns, and product commercial visuals.
-          </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="portfolio-filter-row">
-          {['ALL', 'MODELS', 'PRODUCTS', 'EDITORIAL', 'LIFESTYLE'].map((cat) => (
-            <button
-              key={cat}
-              className={`filter-pill-btn ${selectedCategory === cat ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedCategory(cat);
-                setVisibleCount(12);
-              }}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Masonry Image Grid */}
-        <div className="gallery-masonry-grid">
-          {displayedImages.map((img, idx) => (
-            <div key={idx} className={`gallery-grid-item ${idx % 5 === 0 ? 'span-2' : ''}`}>
-              <img 
-                src={img.src} 
-                alt={img.title} 
-                className="gallery-item-img"
-                loading="lazy" 
-              />
-              <div className="gallery-item-hover">
-                <span className="gallery-cat-badge">{img.category}</span>
-                <h4 className="gallery-item-title">{img.title}</h4>
+        {/* 5 Cards Stack (Row 1: 2 cards [2:1], Row 2: 3 cards [1:1:1]) */}
+        <div className="asym-portfolio-container">
+          {/* Row 1: 2 Cards */}
+          <div className="asym-row row-top">
+            {/* Card 1 (Wide Flex 2) */}
+            <div className="asym-card card-flex-2">
+              <img src="/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg" alt="Editorial Sessions" className="asym-img" />
+              <div className="asym-overlay">
+                <span className="asym-cat-tag">AI PHOTOGRAPHY · BRANDING</span>
+                <h3 className="asym-card-title">EDITORIAL SESSIONS</h3>
+                <p className="asym-card-desc">Full-scale editorial campaigns generated with AI. Custom models, bespoke lighting, and atmospheric luxury staging.</p>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Load More Button */}
-        {visibleCount < filteredImages.length && (
-          <div className="load-more-center">
-            <button 
-              className="btn-load-more"
-              onClick={() => setVisibleCount(prev => prev + 12)}
-            >
-              <span>VIEW MORE WORKS ({filteredImages.length - visibleCount} REMAINING)</span>
-            </button>
+            {/* Card 2 (Flex 1) */}
+            <div className="asym-card card-flex-1">
+              <img src="/pale_blush_pink_seamless_202605201550_1_Original.JPG" alt="E-Commerce Visuals" className="asym-img" />
+              <div className="asym-overlay">
+                <span className="asym-cat-tag">VISUALIZATION · E-COMMERCE</span>
+                <h3 className="asym-card-title">E-COMMERCE HERO</h3>
+                <p className="asym-card-desc">Photoreal cosmetic and skincare product staging ready for high-converting store launches.</p>
+              </div>
+            </div>
           </div>
-        )}
+
+          {/* Row 2: 3 Cards */}
+          <div className="asym-row row-bottom">
+            {/* Card 3 (Flex 1) */}
+            <div className="asym-card card-square-3">
+              <img src="/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg" alt="UGC Avatars" className="asym-img" />
+              <div className="asym-overlay">
+                <span className="asym-cat-tag">AI CONTENT · SOCIAL</span>
+                <h3 className="asym-card-title">UGC AVATARS</h3>
+                <p className="asym-card-desc">Digital ambassadors delivering authentic social presence 365 days a year.</p>
+              </div>
+            </div>
+
+            {/* Card 4 (Flex 1) */}
+            <div className="asym-card card-square-3">
+              <img src="/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG" alt="Performance Ads" className="asym-img" />
+              <div className="asym-overlay">
+                <span className="asym-cat-tag">ADS · PERFORMANCE</span>
+                <h3 className="asym-card-title">PERFORMANCE ADS</h3>
+                <p className="asym-card-desc">High-CTR multi-angle creatives tested at AI velocity to maximize ROAS.</p>
+              </div>
+            </div>
+
+            {/* Card 5 (Flex 1) */}
+            <div className="asym-card card-square-3">
+              <img src="/file_00000000dd5082469b53d340a3770d19.png" alt="Systems & Automation" className="asym-img" />
+              <div className="asym-overlay">
+                <span className="asym-cat-tag">AI · AUTOMATION · WEB</span>
+                <h3 className="asym-card-title">SYSTEMS &amp; ASSETS</h3>
+                <p className="asym-card-desc">Automated creative pipelines and tailored visual assets built to scale operations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* 6. Trusted Brands (Yellow Band Marquee) */}
@@ -482,62 +437,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 8. Team Profiles Section */}
-      <section className="team-profiles-section">
-        <div className="sec-header-block">
-          <div className="sec-tag-row">
-            <span className="yellow-dash" />
-            <span className="sec-tag-text">THE TEAM</span>
-          </div>
-          <h2 className="sec-title-display">
-            BEHIND <em className="text-yellow-italic">VERARVO</em>
-          </h2>
-          <p className="sec-subtitle-p">Three disciplines united: Strategy, Creative AI, and Software Engineering.</p>
-        </div>
-
-        <div className="team-card-stack">
-          <div className="team-member-card">
-            <div className="team-photo-wrap">
-              <img src="/Team/Lamin.jpeg" alt="LAMIN" className="team-photo" />
-            </div>
-            <div className="team-details">
-              <div className="yellow-mini-dash" />
-              <h3 className="member-name">LAMIN</h3>
-              <p className="member-role">Strategy &amp; Growth Lead</p>
-              <p className="member-stat">+6-FIGURE BRAND SCALING SYSTEMS</p>
-              <p className="member-bio">Scaling brand operations and digital performance with automated AI growth frameworks.</p>
-            </div>
-          </div>
-
-          <div className="team-member-card">
-            <div className="team-photo-wrap">
-              <img src="/Team/Alex.jpeg" alt="ALEX" className="team-photo" />
-            </div>
-            <div className="team-details">
-              <div className="yellow-mini-dash" />
-              <h3 className="member-name">ALEX</h3>
-              <p className="member-role">Creative AI Director</p>
-              <p className="member-stat">+5M ORGANIC VIEWS ON VISUAL CAMPAIGNS</p>
-              <p className="member-bio">Curating photoreal visual direction across Midjourney, Flux, Seedance, and custom fine-tuned models.</p>
-            </div>
-          </div>
-
-          <div className="team-member-card">
-            <div className="team-photo-wrap">
-              <img src="/Team/Dario.jpeg" alt="DARIO" className="team-photo" />
-            </div>
-            <div className="team-details">
-              <div className="yellow-mini-dash" />
-              <h3 className="member-name">DARIO</h3>
-              <p className="member-role">Software Engineer &amp; Systems</p>
-              <p className="member-stat">CLAUDE &amp; N8N AUTOMATION PIPELINES</p>
-              <p className="member-bio">Architecting custom visual automation pipelines and frictionless cloud infrastructures.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. FAQ Section */}
+      {/* 8. FAQ Section */}
       <section className="faq-section">
         <div className="sec-header-block text-center">
           <div className="sec-tag-row justify-center">
@@ -572,7 +472,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 10. Call to Action & Inquiry Form */}
+      {/* 9. Call to Action & Inquiry Form */}
       <section id="inquiry-section" className="cta-inquiry-section">
         <div className="cta-header-center">
           <h2 className="cta-huge-title">
@@ -694,7 +594,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 11. Minimal Footer */}
+      {/* 10. Minimal Footer */}
       <footer className="lathx-footer-simple">
         <div className="footer-content-stack">
           <div className="footer-brand-title">
