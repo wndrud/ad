@@ -923,7 +923,7 @@ const MobileApp = () => {
               <h4 className="footer-col-head">CONTACT</h4>
               <a href="mailto:jobsverarvo@gmail.com" className="footer-email-link">jobsverarvo@gmail.com</a>
               <div className="footer-social-icons-row">
-                {/* 1. KakaoTalk Official Rounded Badge */}
+                {/* 1. KakaoTalk Official Rounded Badge with Speech Bubble & TALK text */}
                 <a 
                   href="https://pf.kakao.com/_xhxiBnX" 
                   target="_blank" 
@@ -931,8 +931,10 @@ const MobileApp = () => {
                   className="footer-icon-link"
                   aria-label="KakaoTalk Channel"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.5 2h-15A2.5 2.5 0 0 0 2 4.5v15A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 19.5 2zM12 5.5c4.14 0 7.5 2.68 7.5 6 0 3.31-3.36 6-7.5 6-.53 0-1.04-.04-1.53-.13l-3.3 2.18c-.37.24-.84-.1-.73-.53l.77-2.85C5.1 14.86 4.5 13.04 4.5 11.5c0-3.32 3.36-6 7.5-6zm-4.7 4.2h3.4v.8H9.3v2.8H8.3v-2.8H7.3v-.8zm4.2 0h1l1.3 3.6h-1l-.25-.7h-1.1l-.25.7H9.2l1.3-3.6zm.5.85l-.36.95h.72l-.36-.95zm2.7-.85h.9v2.8h1.5v.8h-2.4v-3.6zm3.2 0h.9v1.3l1.3-1.3h1.2l-1.4 1.4 1.5 2.2h-1.2l-1.1-1.6-.3.3v1.3h-.9v-3.6z" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect width="24" height="24" rx="5.5" fill="currentColor" />
+                    <path d="M12 5.5c-3.866 0-7 2.462-7 5.5 0 1.954 1.296 3.67 3.274 4.628l-.83 3.05a.25.25 0 0 0 .362.277l3.58-2.368c.203.023.41.035.614.035 3.866 0 7-2.462 7-5.5s-3.134-5.5-7-5.5z" fill="#000000" />
+                    <path d="M8.2 9.4h2.4v.7h-.85v2.2h-.7v-2.2H8.2v-.7zm3.1 0h.8l1.1 2.9h-.8l-.2-.5h-.9l-.2.5h-.75l1.05-2.9zm.35.7l-.3.8h.6l-.3-.8zm2.2-.7h.75v2.2h1.2v.7h-1.95v-2.9zm2.6 0h.75v1l1-1h1l-1.1 1.1 1.2 1.8h-.9l-.85-1.3-.25.25v1.05h-.75v-2.9z" fill="#000000" />
                   </svg>
                 </a>
 
