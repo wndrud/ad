@@ -121,8 +121,8 @@ video::-webkit-media-controls-play-button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 2.3em;
-  height: 2.3em;
+  width: 1.65em;
+  height: 1.65em;
   object-fit: contain;
   pointer-events: none;
   opacity: 0.65;
