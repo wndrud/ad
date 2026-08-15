@@ -18,7 +18,7 @@ const allOriginalImages = [
   { id: 11, src: '/IMG_5315.jpeg', category: 'MODELS', title: 'Golden Hour Leather Outfit' },
   { id: 12, src: '/IMG_5329.jpeg', category: 'MODELS', title: 'Sunset Outdoor Fashion Shoot' },
 
-  // PRODUCTS (18 cosmetics, serums, handbags, and packaging commercial assets)
+  // PRODUCTS (18 cosmetics, serums, luxury goods, and packaging commercial assets)
   { id: 13, src: '/408471063_1784275816512842~2.jpeg', category: 'PRODUCTS', title: 'Luxury Leather Handbag Staging' },
   { id: 14, src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Beauty Glow Cosmetics Staging' },
   { id: 15, src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'PRODUCTS', title: 'Skincare Dropper Splash' },
@@ -32,7 +32,7 @@ const allOriginalImages = [
   { id: 23, src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'PRODUCTS', title: 'Refreshing Beverage Staging' },
   { id: 24, src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'PRODUCTS', title: 'Perfume Silhouette Lighting' },
   { id: 25, src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'PRODUCTS', title: 'Signature Product Reveal' },
-  { id: 26, src: '/Portfolio/ecommerce.webp', category: 'PRODUCTS', title: 'E-Commerce Commercial Render' },
+  { id: 26, src: '/Ultraphotorealistic_commercial_product_2k_20.jpeg', category: 'PRODUCTS', title: 'Cosmetics Commercial Product' },
   { id: 27, src: '/IMG_9116.JPG', category: 'PRODUCTS', title: 'Lumiere Regenerating Facial Cream' },
   { id: 28, src: '/IMG_9117.JPG', category: 'PRODUCTS', title: 'Lumiere Skincare Commercial Reveal' },
   { id: 29, src: '/IMG_9296.PNG', category: 'PRODUCTS', title: 'Jo&Co Salt Body Scrub Staging' },
@@ -577,25 +577,20 @@ const MobileApp = () => {
           </p>
         </div>
 
-        {/* Filter Tabs: Exactly ALL, MODELS, PRODUCTS, LIFESTYLE */}
+        {/* Filter Tabs without parentheses or numbers */}
         <div className="portfolio-filter-row">
-          {['ALL', 'MODELS', 'PRODUCTS', 'LIFESTYLE'].map((cat) => {
-            const count = cat === 'ALL' 
-              ? allOriginalImages.length 
-              : allOriginalImages.filter(img => img.category === cat).length;
-            return (
-              <button
-                key={cat}
-                className={`filter-pill-btn ${selectedCategory === cat ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setVisibleCount(10);
-                }}
-              >
-                {cat} ({count})
-              </button>
-            );
-          })}
+          {['ALL', 'MODELS', 'PRODUCTS', 'LIFESTYLE'].map((cat) => (
+            <button
+              key={cat}
+              className={`filter-pill-btn ${selectedCategory === cat ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedCategory(cat);
+                setVisibleCount(10);
+              }}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         {/* Gallery Grid (Click to enlarge) */}
@@ -621,14 +616,14 @@ const MobileApp = () => {
           ))}
         </div>
 
-        {/* Load More Button */}
+        {/* Load More Button without parentheses or numbers */}
         {visibleCount < filteredImages.length && (
           <div className="load-more-center">
             <button 
               className="btn-load-more"
               onClick={() => setVisibleCount(prev => prev + 10)}
             >
-              <span>VIEW MORE WORKS ({filteredImages.length - visibleCount} REMAINING)</span>
+              <span>VIEW MORE WORKS</span>
             </button>
           </div>
         )}
