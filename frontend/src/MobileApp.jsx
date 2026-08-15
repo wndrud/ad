@@ -118,9 +118,10 @@ const faqItems = [
   }
 ];
 
-// 1. Replayable Interactive Animated Counter Component for Stats (Animates every time section enters view)
+// 1. One-time Count-Up Animation Component on initial scroll down
 const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
   const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -128,8 +129,9 @@ const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          // Animate count up from 0 to target
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+
           let startTime = null;
           const animate = (currentTime) => {
             if (!startTime) startTime = currentTime;
@@ -144,13 +146,9 @@ const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
             }
           };
           animId = requestAnimationFrame(animate);
-        } else {
-          // Reset count to 0 when scrolled away, so it replays upon return
-          if (animId) cancelAnimationFrame(animId);
-          setCount(0);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.2 }
     );
 
     if (ref.current) {
@@ -161,7 +159,7 @@ const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
       if (animId) cancelAnimationFrame(animId);
       observer.disconnect();
     };
-  }, [target, duration]);
+  }, [target, duration, hasAnimated]);
 
   return (
     <span ref={ref} className="stat-huge-number">
