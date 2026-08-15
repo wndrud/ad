@@ -121,48 +121,52 @@ const faqItems = [
 // 1. One-time Count-Up Animation Component on initial scroll down
 const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef(null);
+  const containerRef = useRef(null);
+  const hasStartedRef = useRef(false);
 
   useEffect(() => {
-    let animId = null;
+    const node = containerRef.current;
+    if (!node) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting && !hasStartedRef.current) {
+          hasStartedRef.current = true;
 
-          let startTime = null;
-          const animate = (currentTime) => {
-            if (!startTime) startTime = currentTime;
-            const progress = Math.min((currentTime - startTime) / duration, 1);
-            const easeVal = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-            setCount(Math.floor(easeVal * target));
+          const startTime = performance.now();
+          const step = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Smooth ease-out cubic
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.round(easeOut * target);
+
+            setCount(currentVal);
 
             if (progress < 1) {
-              animId = requestAnimationFrame(animate);
+              requestAnimationFrame(step);
             } else {
               setCount(target);
             }
           };
-          animId = requestAnimationFrame(animate);
+
+          requestAnimationFrame(step);
+          observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05, rootMargin: '50px 0px' }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (animId) cancelAnimationFrame(animId);
       observer.disconnect();
     };
-  }, [target, duration, hasAnimated]);
+  }, [target, duration]);
 
   return (
-    <span ref={ref} className="stat-huge-number">
+    <span ref={containerRef} className="stat-huge-number">
       {prefix}{count}{suffix}
     </span>
   );
