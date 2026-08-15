@@ -267,11 +267,22 @@ const MobileApp = () => {
 
   return (
     <div className="mobile-app-root">
-      {/* 1. Slim Fixed Header with Hollow Stroked Italic Serif Logo */}
+      {/* 1. Slim Fixed Header with Signature VERARVO Italic Serif + Background Monogram Emblem */}
       <header className="lathx-header">
         <div className="lathx-header-inner">
-          <div className="header-logo-hollow" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            VERARVO
+          <div className="header-logo-container" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <span className="header-logo-text">
+              VER
+              <span className="header-logo-a-wrap">
+                A
+                <img 
+                  src="/logo-nv-transparent-hq.png" 
+                  alt="" 
+                  className="header-logo-bg-emblem" 
+                />
+              </span>
+              RVO
+            </span>
           </div>
         </div>
       </header>
@@ -534,7 +545,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 7. Differentiators (01 - 06 with Yellow Bar placed behind the last letter) */}
+      {/* 7. Differentiators (01 - 06) */}
       <section className="differentiators-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -610,7 +621,7 @@ const MobileApp = () => {
           <h3 className="inquiry-card-head">PROJECT INQUIRY</h3>
           {formSubmitted ? (
             <div className="inquiry-success-box">
-              <Check size={48} color="#FFCC00" />
+              <Check size={48} color="#E6B800" />
               <h4>Your proposal request has been received!</h4>
               <p>Our dedicated account manager will review your project details and respond within 24 hours.</p>
               <button 
@@ -720,8 +731,19 @@ const MobileApp = () => {
       {/* 10. Minimal Footer with Hollow Yellow Logo */}
       <footer className="lathx-footer-simple">
         <div className="footer-content-stack">
-          <div className="header-logo-hollow footer-logo-size">
-            VERARVO
+          <div className="header-logo-container" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <span className="header-logo-text footer-scale">
+              VER
+              <span className="header-logo-a-wrap">
+                A
+                <img 
+                  src="/logo-nv-transparent-hq.png" 
+                  alt="" 
+                  className="header-logo-bg-emblem" 
+                />
+              </span>
+              RVO
+            </span>
           </div>
           <p className="footer-slogan">
             Crafting hyper-real visual worlds for visionary brands.
