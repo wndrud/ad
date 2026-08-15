@@ -205,7 +205,7 @@ const FastTypewriterRow = ({ item }) => {
         let currentDescIdx = 0;
         const descLen = item.desc.length;
         const descInterval = setInterval(() => {
-          currentDescIdx += 3; // Fast multi-character typing
+          currentDescIdx += 3;
           if (currentDescIdx >= descLen) {
             setTypedDesc(item.desc);
             clearInterval(descInterval);
@@ -297,39 +297,72 @@ const MobileApp = () => {
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Mobile Video Robust Autoplay Trigger
+  // 1. Mobile Video Robust Autoplay & Replay On-Scroll Engine
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
-      video.setAttribute('playsinline', 'true');
-      video.setAttribute('webkit-playsinline', 'true');
+    if (!video) return;
 
-      const attemptPlay = () => {
-        const promise = video.play();
-        if (promise !== undefined) {
-          promise.catch(() => {
-            const unlockTouch = () => {
-              video.play().catch(() => {});
-              window.removeEventListener('touchstart', unlockTouch);
-              window.removeEventListener('click', unlockTouch);
-            };
-            window.addEventListener('touchstart', unlockTouch, { once: true });
-            window.addEventListener('click', unlockTouch, { once: true });
-          });
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
+
+    const ensurePlay = () => {
+      if (video.paused) {
+        const p = video.play();
+        if (p !== undefined) {
+          p.catch(() => {});
         }
-      };
+      }
+    };
 
-      attemptPlay();
-    }
+    // Initial play attempt
+    ensurePlay();
+
+    // IntersectionObserver to auto-play whenever visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          ensurePlay();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(video);
+
+    // Loop & ended handler
+    const handleEnded = () => {
+      video.currentTime = 0;
+      ensurePlay();
+    };
+    video.addEventListener('ended', handleEnded);
+
+    // Touch & scroll wake up triggers for strict mobile browsers
+    const unlockTouch = () => {
+      ensurePlay();
+    };
+    window.addEventListener('touchstart', unlockTouch, { passive: true });
+    window.addEventListener('scroll', unlockTouch, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener('ended', handleEnded);
+      window.removeEventListener('touchstart', unlockTouch);
+      window.removeEventListener('scroll', unlockTouch);
+    };
   }, []);
 
-  // Smooth Scroll Tracker
+  // 2. Smooth Scroll Tracker & Video Play Liveness Guard
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const curY = window.scrollY;
+      setScrollY(curY);
+
+      // Force video replay if user scrolls back up into hero area
+      if (curY < 500 && videoRef.current && videoRef.current.paused) {
+        videoRef.current.play().catch(() => {});
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -653,7 +686,7 @@ const MobileApp = () => {
         </div>
       )}
 
-      {/* 6. Trusted Brands (Deep Rich Yellow Band Marquee) */}
+      {/* 6. Proven Track Record / Core Production Capabilities (Deep Rich Yellow Band Marquee) */}
       <section className="trusted-brands-section">
         <div className="sec-header-block padded">
           <div className="sec-tag-row">
@@ -661,8 +694,8 @@ const MobileApp = () => {
             <span className="sec-tag-text">PROVEN TRACK RECORD</span>
           </div>
           <h2 className="sec-title-display">
-            TRUSTED BY<br />
-            VISIONARY <em className="text-yellow-italic">BRANDS</em>
+            HIGH IMPACT<br />
+            CREATIVE <em className="text-yellow-italic">CAPABILITIES</em>
           </h2>
         </div>
 
@@ -670,14 +703,14 @@ const MobileApp = () => {
           <div className="yellow-marquee-track">
             {[...Array(3)].map((_, i) => (
               <div className="yellow-marquee-group" key={i}>
-                <span className="brand-item-text">DAYS OF CONFIDENCE <span className="black-dot">·</span></span>
-                <span className="brand-item-text">240KMH <span className="black-dot">·</span></span>
-                <span className="brand-item-text">FLOR DE MAYO <span className="black-dot">·</span></span>
-                <span className="brand-item-text">PERCO COMPANY <span className="black-dot">·</span></span>
-                <span className="brand-item-text">ARCADS <span className="black-dot">·</span></span>
-                <span className="brand-item-text">MAGNIFIC <span className="black-dot">·</span></span>
-                <span className="brand-item-text">INVIDEO.IO <span className="black-dot">·</span></span>
-                <span className="brand-item-text">PROMPTWRK <span className="black-dot">·</span></span>
+                <span className="brand-item-text">AI COMMERCIAL PRODUCTION <span className="black-dot">·</span></span>
+                <span className="brand-item-text">VIRTUAL BRAND AMBASSADORS <span className="black-dot">·</span></span>
+                <span className="brand-item-text">3-DAY RAPID DELIVERY <span className="black-dot">·</span></span>
+                <span className="brand-item-text">PERFORMANCE SHORT-FORM ADS <span className="black-dot">·</span></span>
+                <span className="brand-item-text">4K CINEMATIC COLOR GRADING <span className="black-dot">·</span></span>
+                <span className="brand-item-text">100% COMMERCIAL RIGHTS <span className="black-dot">·</span></span>
+                <span className="brand-item-text">HYPER-REAL PRODUCT 3D <span className="black-dot">·</span></span>
+                <span className="brand-item-text">STUDIO-GRADE HUMAN DIRECTING <span className="black-dot">·</span></span>
               </div>
             ))}
           </div>
