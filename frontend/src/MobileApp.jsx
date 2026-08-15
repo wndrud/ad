@@ -118,48 +118,50 @@ const faqItems = [
   }
 ];
 
-// 1. Interactive Animated Counter Component for Stats
+// 1. Replayable Interactive Animated Counter Component for Stats (Animates every time section enters view)
 const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    let animId = null;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true);
+        if (entry.isIntersecting) {
+          // Animate count up from 0 to target
+          let startTime = null;
+          const animate = (currentTime) => {
+            if (!startTime) startTime = currentTime;
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const easeVal = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            setCount(Math.floor(easeVal * target));
+
+            if (progress < 1) {
+              animId = requestAnimationFrame(animate);
+            } else {
+              setCount(target);
+            }
+          };
+          animId = requestAnimationFrame(animate);
+        } else {
+          // Reset count to 0 when scrolled away, so it replays upon return
+          if (animId) cancelAnimationFrame(animId);
+          setCount(0);
         }
       },
-      { threshold: 0.25 }
+      { threshold: 0.15 }
     );
 
     if (ref.current) {
       observer.observe(ref.current);
     }
 
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
-
-    let startTime = null;
-    const animate = (currentTime) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      const easeVal = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setCount(Math.floor(easeVal * target));
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setCount(target);
-      }
+    return () => {
+      if (animId) cancelAnimationFrame(animId);
+      observer.disconnect();
     };
-
-    requestAnimationFrame(animate);
-  }, [started, target, duration]);
+  }, [target, duration]);
 
   return (
     <span ref={ref} className="stat-huge-number">
@@ -297,7 +299,7 @@ const MobileApp = () => {
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // 1. Mobile Video Robust Autoplay & Replay On-Scroll Engine
+  // 1. Mobile Video Robust Autoplay & Unconditional Scroll-Up Replay Engine
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -308,60 +310,75 @@ const MobileApp = () => {
     video.setAttribute('playsinline', 'true');
     video.setAttribute('webkit-playsinline', 'true');
 
-    const ensurePlay = () => {
-      if (video.paused) {
-        const p = video.play();
-        if (p !== undefined) {
-          p.catch(() => {});
+    const forcePlay = () => {
+      if (!video) return;
+      if (video.paused || video.ended) {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(() => {});
         }
       }
     };
 
-    // Initial play attempt
-    ensurePlay();
+    // Initial play trigger
+    forcePlay();
 
-    // IntersectionObserver to auto-play whenever visible
+    // Heartbeat check every 250ms when in top viewport region
+    const heartbeat = setInterval(() => {
+      if (window.scrollY < 800) {
+        forcePlay();
+      }
+    }, 250);
+
+    // Active IntersectionObserver to immediately resume on visibility
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          ensurePlay();
+          forcePlay();
         }
       },
       { threshold: 0.05 }
     );
     observer.observe(video);
 
-    // Loop & ended handler
+    // Replay on video ended
     const handleEnded = () => {
       video.currentTime = 0;
-      ensurePlay();
+      forcePlay();
     };
     video.addEventListener('ended', handleEnded);
 
-    // Touch & scroll wake up triggers for strict mobile browsers
-    const unlockTouch = () => {
-      ensurePlay();
+    // Visibility / Tab switch listener
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && window.scrollY < 800) {
+        forcePlay();
+      }
     };
-    window.addEventListener('touchstart', unlockTouch, { passive: true });
-    window.addEventListener('scroll', unlockTouch, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    // Touch & scroll wake-up triggers
+    window.addEventListener('touchstart', forcePlay, { passive: true });
 
     return () => {
+      clearInterval(heartbeat);
       observer.disconnect();
       video.removeEventListener('ended', handleEnded);
-      window.removeEventListener('touchstart', unlockTouch);
-      window.removeEventListener('scroll', unlockTouch);
+      document.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('touchstart', forcePlay);
     };
   }, []);
 
-  // 2. Smooth Scroll Tracker & Video Play Liveness Guard
+  // 2. Smooth Scroll Tracker & Scroll-Driven Video Playback Guard
   useEffect(() => {
     const handleScroll = () => {
       const curY = window.scrollY;
       setScrollY(curY);
 
-      // Force video replay if user scrolls back up into hero area
-      if (curY < 500 && videoRef.current && videoRef.current.paused) {
-        videoRef.current.play().catch(() => {});
+      // Instantly play video if user scrolls back up into hero area
+      if (curY < 700 && videoRef.current) {
+        if (videoRef.current.paused || videoRef.current.ended) {
+          videoRef.current.play().catch(() => {});
+        }
       }
     };
 
@@ -545,7 +562,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 4. 3 Stats Impact Section with Count-Up 0 -> Target Animation */}
+      {/* 4. 3 Stats Impact Section with Count-Up 0 -> Target Animation (Replays every time in view) */}
       <section className="stats-impact-section">
         <div className="stat-row-item">
           <CountUpStat target={3} suffix=" DAYS" duration={1000} />
