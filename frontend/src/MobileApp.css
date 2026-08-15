@@ -80,7 +80,7 @@ video::-webkit-media-controls-play-button {
 }
 
 /* ==========================================================================
-   1. SIGNATURE VERARVO ITALIC SERIF BRAND FONT (Top Left & Center Hero)
+   1. SIGNATURE VERARVO ITALIC SERIF BRAND FONT
    ========================================================================== */
 .header-logo-hollow {
   font-family: var(--font-serif-brand);
@@ -94,15 +94,29 @@ video::-webkit-media-controls-play-button {
   line-height: 1;
 }
 
+/* Hero Center VERARVO (slightly scaled down as requested) */
 .hero-title-hollow {
   display: block;
   font-family: var(--font-serif-brand);
   font-style: italic;
+  font-size: clamp(3.0rem, 12.5vw, 4.3rem);
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   color: transparent;
-  -webkit-text-stroke: 1.8px var(--yellow);
-  margin-bottom: 2px;
+  -webkit-text-stroke: 1.6px var(--yellow);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+/* WHY VERARVO section header brand font */
+.why-verarvo-serif {
+  font-family: var(--font-serif-brand);
+  font-style: italic;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--yellow);
+  letter-spacing: 2px;
+  display: inline-block;
 }
 
 .footer-logo-brand {

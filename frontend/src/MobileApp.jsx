@@ -57,7 +57,7 @@ const differentiators = [
     num: "01",
     title: (
       <>
-        HUMAN DIRECTING <span className="text-yellow">|</span> AI AGILITY
+        HUMAN DIRECTING + AI AGILITY <span className="text-yellow">|</span>
       </>
     ),
     desc: "AI creates the hyper-real assets, but our veteran human directors, editors, and colorists supervise every single frame for studio-grade polish."
@@ -66,7 +66,7 @@ const differentiators = [
     num: "02",
     title: (
       <>
-        RAPID 3-DAY <span className="text-yellow">|</span> TURNAROUND
+        RAPID 3-DAY TURNAROUND <span className="text-yellow">|</span>
       </>
     ),
     desc: "From initial brief and generative asset creation to final color grading and sound design, delivered in an average of 3 business days."
@@ -75,7 +75,7 @@ const differentiators = [
     num: "03",
     title: (
       <>
-        PERFORMANCE-DRIVEN <span className="text-yellow">|</span> MARKETING
+        PERFORMANCE-DRIVEN MARKETING <span className="text-yellow">|</span>
       </>
     ),
     desc: "Engineered specifically for high-impact social media feeds, maximizing click-through rates (CTR) and return on ad spend (ROAS)."
@@ -84,7 +84,7 @@ const differentiators = [
     num: "04",
     title: (
       <>
-        MULTI-FORMAT <span className="text-yellow">|</span> AD VARIANTS
+        MULTI-FORMAT AD VARIANTS <span className="text-yellow">|</span>
       </>
     ),
     desc: "Receive horizontal (16:9) and vertical (9:16) multi-angle formats simultaneously for YouTube, Instagram Reels, and TikTok campaigns."
@@ -93,7 +93,7 @@ const differentiators = [
     num: "05",
     title: (
       <>
-        -85% BUDGET <span className="text-yellow">|</span> OPTIMIZATION
+        -85% BUDGET OPTIMIZATION <span className="text-yellow">|</span>
       </>
     ),
     desc: "Save up to 85% on production costs by eliminating expensive physical set rentals, location fees, and bloated film crews."
@@ -102,7 +102,7 @@ const differentiators = [
     num: "06",
     title: (
       <>
-        100% COMMERCIAL <span className="text-yellow">|</span> RIGHTS
+        100% COMMERCIAL RIGHTS <span className="text-yellow">|</span>
       </>
     ),
     desc: "Complete commercial usage rights and intellectual property are 100% transferred to your brand upon delivery with zero royalty fees."
@@ -267,7 +267,7 @@ const MobileApp = () => {
 
   return (
     <div className="mobile-app-root">
-      {/* 1. Slim Fixed Header with Hollow Stroked Yellow Logo */}
+      {/* 1. Slim Fixed Header with Hollow Stroked Italic Serif Logo */}
       <header className="lathx-header">
         <div className="lathx-header-inner">
           <div className="header-logo-hollow" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -534,7 +534,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 7. Differentiators (01 - 06 Clean Static Presentation with Yellow Bars in All Items) */}
+      {/* 7. Differentiators (01 - 06 with Yellow Bar placed behind the last letter) */}
       <section className="differentiators-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -542,7 +542,7 @@ const MobileApp = () => {
             <span className="sec-tag-text">DIFFERENTIATORS</span>
           </div>
           <h2 className="sec-title-display">
-            WHY <em className="text-yellow-italic">VERARVO</em>
+            WHY <span className="why-verarvo-serif">VERARVO</span>
           </h2>
           <p className="sec-subtitle-p">Not just an agency. We are your unfair competitive advantage.</p>
         </div>
