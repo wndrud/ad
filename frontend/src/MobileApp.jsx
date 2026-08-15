@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import './MobileApp.css';
 
-// All 41 original client images accurately grouped into exactly 4 categories
+// All 41 original client images precisely categorized into MODELS, PRODUCTS, and LIFESTYLE
 const allOriginalImages = [
-  // MODELS (17 images)
+  // MODELS (12 pure fashion/model/lookbook assets)
   { id: 1, src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', category: 'MODELS', title: 'Fashion Editorial Lookbook' },
   { id: 2, src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', category: 'MODELS', title: 'Streetwear Model Campaign' },
   { id: 3, src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', category: 'MODELS', title: 'Haute Couture Studio Shoot' },
@@ -14,31 +14,31 @@ const allOriginalImages = [
   { id: 7, src: '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg', category: 'MODELS', title: 'Cinematic Fashion Portrait' },
   { id: 8, src: '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg', category: 'MODELS', title: 'Seasonal Collection Preview' },
   { id: 9, src: '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg', category: 'MODELS', title: 'Luxury Eyewear Campaign' },
-  { id: 10, src: '/IMG_5315.jpeg', category: 'MODELS', title: 'Golden Hour Beauty Shoot' },
-  { id: 11, src: '/IMG_5329.jpeg', category: 'MODELS', title: 'Sunset Outdoor Editorial' },
-  { id: 12, src: '/IMG_9116.JPG', category: 'MODELS', title: 'Studio Model Close-Up' },
-  { id: 13, src: '/IMG_9117.JPG', category: 'MODELS', title: 'Film Grain Portrait Staging' },
-  { id: 14, src: '/IMG_9296.PNG', category: 'MODELS', title: 'Night Mood Street Portrait' },
-  { id: 15, src: '/IMG_9300.PNG', category: 'MODELS', title: 'Neon Ambient Fashion' },
-  { id: 16, src: '/408471063_1784275816512842~2.jpeg', category: 'MODELS', title: 'Creative Brand Ambassador' },
-  { id: 17, src: '/549789471_1784276133887554~2.jpeg', category: 'MODELS', title: 'Vibrant Palette Model Shoot' },
+  { id: 10, src: '/549789471_1784276133887554~2.jpeg', category: 'MODELS', title: 'Vibrant Portrait Model Shoot' },
+  { id: 11, src: '/IMG_5315.jpeg', category: 'MODELS', title: 'Golden Hour Leather Outfit' },
+  { id: 12, src: '/IMG_5329.jpeg', category: 'MODELS', title: 'Sunset Outdoor Fashion Shoot' },
 
-  // PRODUCTS (13 images)
-  { id: 18, src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Beauty Glow Cosmetics Staging' },
-  { id: 19, src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'PRODUCTS', title: 'Skincare Dropper Splash' },
-  { id: 20, src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Luxury Perfume Bottle' },
-  { id: 21, src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Minimalist Product Packaging' },
-  { id: 22, src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'PRODUCTS', title: 'Aura Serum Lighting' },
-  { id: 23, src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', category: 'PRODUCTS', title: 'Hydra Care Serum 3D' },
-  { id: 24, src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'PRODUCTS', title: 'Gold Essence Luxury Dropper' },
-  { id: 25, src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', category: 'PRODUCTS', title: 'Botanical Sun Shield' },
-  { id: 26, src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', category: 'PRODUCTS', title: 'Cosmetic Macro Texture' },
-  { id: 27, src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'PRODUCTS', title: 'Refreshing Beverage Staging' },
-  { id: 28, src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'PRODUCTS', title: 'Perfume Silhouette Lighting' },
-  { id: 29, src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'PRODUCTS', title: 'Signature Product Reveal' },
-  { id: 30, src: '/Portfolio/ecommerce.webp', category: 'PRODUCTS', title: 'E-Commerce Commercial Render' },
+  // PRODUCTS (18 cosmetics, serums, handbags, and packaging commercial assets)
+  { id: 13, src: '/408471063_1784275816512842~2.jpeg', category: 'PRODUCTS', title: 'Luxury Leather Handbag Staging' },
+  { id: 14, src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Beauty Glow Cosmetics Staging' },
+  { id: 15, src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'PRODUCTS', title: 'Skincare Dropper Splash' },
+  { id: 16, src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Luxury Perfume Bottle' },
+  { id: 17, src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Minimalist Product Packaging' },
+  { id: 18, src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'PRODUCTS', title: 'Aura Serum Lighting' },
+  { id: 19, src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', category: 'PRODUCTS', title: 'Hydra Care Serum 3D' },
+  { id: 20, src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'PRODUCTS', title: 'Gold Essence Luxury Dropper' },
+  { id: 21, src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', category: 'PRODUCTS', title: 'Botanical Sun Shield' },
+  { id: 22, src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', category: 'PRODUCTS', title: 'Cosmetic Macro Texture' },
+  { id: 23, src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'PRODUCTS', title: 'Refreshing Beverage Staging' },
+  { id: 24, src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'PRODUCTS', title: 'Perfume Silhouette Lighting' },
+  { id: 25, src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'PRODUCTS', title: 'Signature Product Reveal' },
+  { id: 26, src: '/Portfolio/ecommerce.webp', category: 'PRODUCTS', title: 'E-Commerce Commercial Render' },
+  { id: 27, src: '/IMG_9116.JPG', category: 'PRODUCTS', title: 'Lumiere Regenerating Facial Cream' },
+  { id: 28, src: '/IMG_9117.JPG', category: 'PRODUCTS', title: 'Lumiere Skincare Commercial Reveal' },
+  { id: 29, src: '/IMG_9296.PNG', category: 'PRODUCTS', title: 'Jo&Co Salt Body Scrub Staging' },
+  { id: 30, src: '/IMG_9300.PNG', category: 'PRODUCTS', title: 'Lavender Mousse Face Cream Staging' },
 
-  // LIFESTYLE (11 images)
+  // LIFESTYLE (11 architecture, interior & spatial scenes)
   { id: 31, src: '/a (1).jpg', category: 'LIFESTYLE', title: 'Modern Architectural Space' },
   { id: 32, src: '/a (2).jpeg', category: 'LIFESTYLE', title: 'Interior Furniture Concept' },
   { id: 33, src: '/a (2).jpg', category: 'LIFESTYLE', title: 'Luxury Living Room Mood' },
@@ -55,12 +55,20 @@ const allOriginalImages = [
 const differentiators = [
   {
     num: "01",
-    title: "HUMAN DIRECTING + AI AGILITY",
+    title: (
+      <>
+        HUMAN DIRECTING <span className="text-yellow">|</span> AI AGILITY
+      </>
+    ),
     desc: "AI creates the hyper-real assets, but our veteran human directors, editors, and colorists supervise every single frame for studio-grade polish."
   },
   {
     num: "02",
-    title: "RAPID 3-DAY TURNAROUND",
+    title: (
+      <>
+        RAPID 3-DAY <span className="text-yellow">|</span> TURNAROUND
+      </>
+    ),
     desc: "From initial brief and generative asset creation to final color grading and sound design, delivered in an average of 3 business days."
   },
   {
@@ -74,17 +82,29 @@ const differentiators = [
   },
   {
     num: "04",
-    title: "MULTI-FORMAT AD VARIANTS",
+    title: (
+      <>
+        MULTI-FORMAT <span className="text-yellow">|</span> AD VARIANTS
+      </>
+    ),
     desc: "Receive horizontal (16:9) and vertical (9:16) multi-angle formats simultaneously for YouTube, Instagram Reels, and TikTok campaigns."
   },
   {
     num: "05",
-    title: "-85% BUDGET OPTIMIZATION",
+    title: (
+      <>
+        -85% BUDGET <span className="text-yellow">|</span> OPTIMIZATION
+      </>
+    ),
     desc: "Save up to 85% on production costs by eliminating expensive physical set rentals, location fees, and bloated film crews."
   },
   {
     num: "06",
-    title: "100% COMMERCIAL RIGHTS",
+    title: (
+      <>
+        100% COMMERCIAL <span className="text-yellow">|</span> RIGHTS
+      </>
+    ),
     desc: "Complete commercial usage rights and intellectual property are 100% transferred to your brand upon delivery with zero royalty fees."
   }
 ];
@@ -514,7 +534,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 7. Differentiators (01 - 06 Clean Static Presentation with Yellow Bar right of DRIVEN) */}
+      {/* 7. Differentiators (01 - 06 Clean Static Presentation with Yellow Bars in All Items) */}
       <section className="differentiators-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -540,10 +560,10 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 8. FAQ Section */}
+      {/* 8. FAQ Section with Left-Aligned Tag */}
       <section className="faq-section">
-        <div className="sec-header-block text-center">
-          <div className="sec-tag-row justify-center">
+        <div className="sec-header-block">
+          <div className="sec-tag-row">
             <span className="yellow-dash" />
             <span className="sec-tag-text">FREQUENTLY ASKED QUESTIONS</span>
           </div>
