@@ -1154,29 +1154,27 @@ video::-webkit-media-controls-play-button {
   margin-bottom: 12px;
 }
 
-.footer-social-bubbles {
+.footer-social-icons-row {
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 22px;
+  margin-top: 4px;
 }
 
-.bubble-btn {
+.footer-icon-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1.5px solid var(--yellow);
   color: var(--yellow);
-  background: #000000;
+  opacity: 0.9;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  padding: 2px;
 }
 
-.bubble-btn:active {
-  background: var(--yellow);
-  color: #000000;
-  transform: scale(0.95);
+.footer-icon-link:active {
+  opacity: 1;
+  transform: scale(1.15);
 }
 
 .footer-copyright-line {

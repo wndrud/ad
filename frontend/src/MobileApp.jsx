@@ -927,39 +927,44 @@ const MobileApp = () => {
             <div className="footer-nav-col">
               <h4 className="footer-col-head">CONTACT</h4>
               <a href="mailto:jobsverarvo@gmail.com" className="footer-email-link">jobsverarvo@gmail.com</a>
-              <div className="footer-social-bubbles">
+              <div className="footer-social-icons-row">
+                {/* 1. KakaoTalk Official Rounded Badge */}
                 <a 
                   href="https://pf.kakao.com/_xhxiBnX" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bubble-btn"
+                  className="footer-icon-link"
                   aria-label="KakaoTalk Channel"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3c-5.52 0-10 3.58-10 8 0 2.88 1.88 5.42 4.75 6.77l-1.2 4.45c-.1.38.33.68.66.47l5.24-3.47c.18.02.36.03.55.03 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.5 2h-15A2.5 2.5 0 0 0 2 4.5v15A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 19.5 2zM12 5.5c4.14 0 7.5 2.68 7.5 6 0 3.31-3.36 6-7.5 6-.53 0-1.04-.04-1.53-.13l-3.3 2.18c-.37.24-.84-.1-.73-.53l.77-2.85C5.1 14.86 4.5 13.04 4.5 11.5c0-3.32 3.36-6 7.5-6zm-4.7 4.2h3.4v.8H9.3v2.8H8.3v-2.8H7.3v-.8zm4.2 0h1l1.3 3.6h-1l-.25-.7h-1.1l-.25.7H9.2l1.3-3.6zm.5.85l-.36.95h.72l-.36-.95zm2.7-.85h.9v2.8h1.5v.8h-2.4v-3.6zm3.2 0h.9v1.3l1.3-1.3h1.2l-1.4 1.4 1.5 2.2h-1.2l-1.1-1.6-.3.3v1.3h-.9v-3.6z" />
                   </svg>
                 </a>
+
+                {/* 2. Instagram Outlined Camera */}
                 <a 
                   href="https://www.instagram.com/verarvo/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bubble-btn"
+                  className="footer-icon-link"
                   aria-label="Instagram"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="20" x="2" y="2" rx="5.5" ry="5.5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
                   </svg>
                 </a>
+
+                {/* 3. Facebook Stylized 'f' */}
                 <a 
                   href="https://www.facebook.com/profile.php?id=61590815180891" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bubble-btn"
+                  className="footer-icon-link"
                   aria-label="Facebook"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                   </svg>
                 </a>
