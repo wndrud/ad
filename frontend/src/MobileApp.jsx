@@ -52,59 +52,41 @@ const allOriginalImages = [
   { id: 41, src: '/a (6).jpg', category: 'LIFESTYLE', title: 'Contemporary Lounge Mood' }
 ];
 
-const differentiators = [
+const differentiatorsData = [
   {
     num: "01",
-    title: (
-      <>
-        HUMAN DIRECTING + AI AGILITY <span className="text-yellow">|</span>
-      </>
-    ),
+    rawTitle: "HUMAN DIRECTING + AI AGILITY",
+    isItem3: false,
     desc: "AI creates the hyper-real assets, but our veteran human directors, editors, and colorists supervise every single frame for studio-grade polish."
   },
   {
     num: "02",
-    title: (
-      <>
-        RAPID 3-DAY TURNAROUND <span className="text-yellow">|</span>
-      </>
-    ),
+    rawTitle: "RAPID 3-DAY TURNAROUND",
+    isItem3: false,
     desc: "From initial brief and generative asset creation to final color grading and sound design, delivered in an average of 3 business days."
   },
   {
     num: "03",
-    title: (
-      <>
-        PERFORMANCE-DRIVEN <span className="text-yellow">|</span> MARKETING
-      </>
-    ),
+    rawTitle: "PERFORMANCE-DRIVEN MARKETING",
+    isItem3: true,
     desc: "Engineered specifically for high-impact social media feeds, maximizing click-through rates (CTR) and return on ad spend (ROAS)."
   },
   {
     num: "04",
-    title: (
-      <>
-        MULTI-FORMAT AD VARIANTS <span className="text-yellow">|</span>
-      </>
-    ),
+    rawTitle: "MULTI-FORMAT AD VARIANTS",
+    isItem3: false,
     desc: "Receive horizontal (16:9) and vertical (9:16) multi-angle formats simultaneously for YouTube, Instagram Reels, and TikTok campaigns."
   },
   {
     num: "05",
-    title: (
-      <>
-        -85% BUDGET OPTIMIZATION <span className="text-yellow">|</span>
-      </>
-    ),
+    rawTitle: "-85% BUDGET OPTIMIZATION",
+    isItem3: false,
     desc: "Save up to 85% on production costs by eliminating expensive physical set rentals, location fees, and bloated film crews."
   },
   {
     num: "06",
-    title: (
-      <>
-        100% COMMERCIAL RIGHTS <span className="text-yellow">|</span>
-      </>
-    ),
+    rawTitle: "100% COMMERCIAL RIGHTS",
+    isItem3: false,
     desc: "Complete commercial usage rights and intellectual property are 100% transferred to your brand upon delivery with zero royalty fees."
   }
 ];
@@ -136,6 +118,163 @@ const faqItems = [
   }
 ];
 
+// 1. Interactive Animated Counter Component for Stats
+const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+
+    let startTime = null;
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeVal = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(easeVal * target));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [started, target, duration]);
+
+  return (
+    <span ref={ref} className="stat-huge-number">
+      {prefix}{count}{suffix}
+    </span>
+  );
+};
+
+// 2. Fast Sequential Typewriter Row Component for WHY VERARVO?
+const FastTypewriterRow = ({ item }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [typedTitle, setTypedTitle] = useState('');
+  const [typedDesc, setTypedDesc] = useState('');
+  const [isDone, setIsDone] = useState(false);
+  const rowRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (rowRef.current) observer.observe(rowRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let currentTitleIdx = 0;
+    const titleLen = item.rawTitle.length;
+    const titleInterval = setInterval(() => {
+      currentTitleIdx++;
+      setTypedTitle(item.rawTitle.slice(0, currentTitleIdx));
+      if (currentTitleIdx >= titleLen) {
+        clearInterval(titleInterval);
+
+        // Rapid description typing
+        let currentDescIdx = 0;
+        const descLen = item.desc.length;
+        const descInterval = setInterval(() => {
+          currentDescIdx += 3; // Fast multi-character typing
+          if (currentDescIdx >= descLen) {
+            setTypedDesc(item.desc);
+            clearInterval(descInterval);
+            setIsDone(true);
+          } else {
+            setTypedDesc(item.desc.slice(0, currentDescIdx));
+          }
+        }, 14);
+      }
+    }, 16);
+
+    return () => {
+      clearInterval(titleInterval);
+    };
+  }, [isVisible, item]);
+
+  // Render Title with Yellow Bar
+  const renderTitle = () => {
+    if (!typedTitle) return null;
+
+    if (item.isItem3) {
+      const drivenCut = "PERFORMANCE-DRIVEN".length;
+      if (typedTitle.length <= drivenCut) {
+        return (
+          <>
+            {typedTitle}
+            {!isDone && <span className="type-cursor">|</span>}
+          </>
+        );
+      } else {
+        const firstPart = typedTitle.slice(0, drivenCut);
+        const secondPart = typedTitle.slice(drivenCut);
+        return (
+          <>
+            {firstPart} <span className="text-yellow font-bold">|</span>{secondPart}
+            {!isDone && <span className="type-cursor">|</span>}
+          </>
+        );
+      }
+    }
+
+    return (
+      <>
+        {typedTitle}
+        {isDone ? (
+          <> <span className="text-yellow font-bold">|</span></>
+        ) : (
+          <span className="type-cursor">|</span>
+        )}
+      </>
+    );
+  };
+
+  return (
+    <div ref={rowRef} className="diff-row-item">
+      <span className="diff-big-num">{item.num}</span>
+      <div className="diff-text-box">
+        <h3 className="diff-title-h3">{renderTitle()}</h3>
+        <p className="diff-desc-p">
+          {typedDesc}
+          {typedTitle.length >= item.rawTitle.length && !isDone && (
+            <span className="type-cursor">|</span>
+          )}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const MobileApp = () => {
   const videoRef = useRef(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
@@ -158,7 +297,7 @@ const MobileApp = () => {
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // 1. Mobile Video Robust Autoplay Trigger
+  // Mobile Video Robust Autoplay Trigger
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
@@ -187,7 +326,7 @@ const MobileApp = () => {
     }
   }, []);
 
-  // 2. Smooth Scroll Tracker
+  // Smooth Scroll Tracker
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -373,18 +512,18 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 4. 3 Stats Impact Section (Big Numbers Stacked) */}
+      {/* 4. 3 Stats Impact Section with Count-Up 0 -> Target Animation */}
       <section className="stats-impact-section">
         <div className="stat-row-item">
-          <span className="stat-huge-number">3 DAYS</span>
+          <CountUpStat target={3} suffix=" DAYS" duration={1000} />
           <p className="stat-desc-p">Average production turnaround from initial creative brief to final 4K delivery.</p>
         </div>
         <div className="stat-row-item">
-          <span className="stat-huge-number">-85%</span>
+          <CountUpStat target={85} prefix="-" suffix="%" duration={1200} />
           <p className="stat-desc-p">Average budget reduction compared to traditional physical studio shoots and set rentals.</p>
         </div>
         <div className="stat-row-item">
-          <span className="stat-huge-number">100%</span>
+          <CountUpStat target={100} suffix="%" duration={1300} />
           <p className="stat-desc-p">Guaranteed studio-grade visual conversion quality and full commercial rights transfer.</p>
         </div>
       </section>
@@ -545,7 +684,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 7. Differentiators (01 - 06) */}
+      {/* 7. Differentiators (01 - 06) with Sharp WHY, VERARVO? and Fast Typing */}
       <section className="differentiators-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -553,20 +692,14 @@ const MobileApp = () => {
             <span className="sec-tag-text">DIFFERENTIATORS</span>
           </div>
           <h2 className="sec-title-display">
-            WHY <span className="why-verarvo-serif">VERARVO</span>
+            <span className="why-sharp-text">WHY</span> <span className="why-verarvo-serif">VERARVO?</span>
           </h2>
           <p className="sec-subtitle-p">Not just an agency. We are your unfair competitive advantage.</p>
         </div>
 
         <div className="diff-items-stack">
-          {differentiators.map((item) => (
-            <div key={item.num} className="diff-row-item">
-              <span className="diff-big-num">{item.num}</span>
-              <div className="diff-text-box">
-                <h3 className="diff-title-h3">{item.title}</h3>
-                <p className="diff-desc-p">{item.desc}</p>
-              </div>
-            </div>
+          {differentiatorsData.map((item) => (
+            <FastTypewriterRow key={item.num} item={item} />
           ))}
         </div>
       </section>
