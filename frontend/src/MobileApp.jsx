@@ -1,55 +1,55 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Plus, Check, Send, Upload } from 'lucide-react';
+import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import './MobileApp.css';
 
 // All 41 original client images accurately grouped into exactly 4 categories
 const allOriginalImages = [
   // MODELS (17 images)
-  { src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', category: 'MODELS', title: 'Fashion Editorial Lookbook' },
-  { src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', category: 'MODELS', title: 'Streetwear Model Campaign' },
-  { src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', category: 'MODELS', title: 'Haute Couture Studio Shoot' },
-  { src: '/DECD6E41-38D0-4BB6-A9D4-7847BA2F0705.jpg', category: 'MODELS', title: 'Monochrome High Fashion' },
-  { src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', category: 'MODELS', title: 'Virtual Brand Ambassador' },
-  { src: '/11FA9EAF-0D4F-4BEE-9670-4F2473094321.jpg', category: 'MODELS', title: 'Digital Runway Staging' },
-  { src: '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg', category: 'MODELS', title: 'Cinematic Fashion Portrait' },
-  { src: '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg', category: 'MODELS', title: 'Seasonal Collection Preview' },
-  { src: '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg', category: 'MODELS', title: 'Luxury Eyewear Campaign' },
-  { src: '/IMG_5315.jpeg', category: 'MODELS', title: 'Golden Hour Beauty Shoot' },
-  { src: '/IMG_5329.jpeg', category: 'MODELS', title: 'Sunset Outdoor Editorial' },
-  { src: '/IMG_9116.JPG', category: 'MODELS', title: 'Studio Model Close-Up' },
-  { src: '/IMG_9117.JPG', category: 'MODELS', title: 'Film Grain Portrait Staging' },
-  { src: '/IMG_9296.PNG', category: 'MODELS', title: 'Night Mood Street Portrait' },
-  { src: '/IMG_9300.PNG', category: 'MODELS', title: 'Neon Ambient Fashion' },
-  { src: '/408471063_1784275816512842~2.jpeg', category: 'MODELS', title: 'Creative Brand Ambassador' },
-  { src: '/549789471_1784276133887554~2.jpeg', category: 'MODELS', title: 'Vibrant Palette Model Shoot' },
+  { id: 1, src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', category: 'MODELS', title: 'Fashion Editorial Lookbook' },
+  { id: 2, src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', category: 'MODELS', title: 'Streetwear Model Campaign' },
+  { id: 3, src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', category: 'MODELS', title: 'Haute Couture Studio Shoot' },
+  { id: 4, src: '/DECD6E41-38D0-4BB6-A9D4-7847BA2F0705.jpg', category: 'MODELS', title: 'Monochrome High Fashion' },
+  { id: 5, src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', category: 'MODELS', title: 'Virtual Brand Ambassador' },
+  { id: 6, src: '/11FA9EAF-0D4F-4BEE-9670-4F2473094321.jpg', category: 'MODELS', title: 'Digital Runway Staging' },
+  { id: 7, src: '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg', category: 'MODELS', title: 'Cinematic Fashion Portrait' },
+  { id: 8, src: '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg', category: 'MODELS', title: 'Seasonal Collection Preview' },
+  { id: 9, src: '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg', category: 'MODELS', title: 'Luxury Eyewear Campaign' },
+  { id: 10, src: '/IMG_5315.jpeg', category: 'MODELS', title: 'Golden Hour Beauty Shoot' },
+  { id: 11, src: '/IMG_5329.jpeg', category: 'MODELS', title: 'Sunset Outdoor Editorial' },
+  { id: 12, src: '/IMG_9116.JPG', category: 'MODELS', title: 'Studio Model Close-Up' },
+  { id: 13, src: '/IMG_9117.JPG', category: 'MODELS', title: 'Film Grain Portrait Staging' },
+  { id: 14, src: '/IMG_9296.PNG', category: 'MODELS', title: 'Night Mood Street Portrait' },
+  { id: 15, src: '/IMG_9300.PNG', category: 'MODELS', title: 'Neon Ambient Fashion' },
+  { id: 16, src: '/408471063_1784275816512842~2.jpeg', category: 'MODELS', title: 'Creative Brand Ambassador' },
+  { id: 17, src: '/549789471_1784276133887554~2.jpeg', category: 'MODELS', title: 'Vibrant Palette Model Shoot' },
 
   // PRODUCTS (13 images)
-  { src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Beauty Glow Cosmetics Staging' },
-  { src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'PRODUCTS', title: 'Skincare Dropper Splash' },
-  { src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Luxury Perfume Bottle' },
-  { src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Minimalist Product Packaging' },
-  { src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'PRODUCTS', title: 'Aura Serum Lighting' },
-  { src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', category: 'PRODUCTS', title: 'Hydra Care Serum 3D' },
-  { src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'PRODUCTS', title: 'Gold Essence Luxury Dropper' },
-  { src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', category: 'PRODUCTS', title: 'Botanical Sun Shield' },
-  { src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', category: 'PRODUCTS', title: 'Cosmetic Macro Texture' },
-  { src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'PRODUCTS', title: 'Refreshing Beverage Staging' },
-  { src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'PRODUCTS', title: 'Perfume Silhouette Lighting' },
-  { src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'PRODUCTS', title: 'Signature Product Reveal' },
-  { src: '/Portfolio/ecommerce.webp', category: 'PRODUCTS', title: 'E-Commerce Commercial Render' },
+  { id: 18, src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Beauty Glow Cosmetics Staging' },
+  { id: 19, src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'PRODUCTS', title: 'Skincare Dropper Splash' },
+  { id: 20, src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Luxury Perfume Bottle' },
+  { id: 21, src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Minimalist Product Packaging' },
+  { id: 22, src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'PRODUCTS', title: 'Aura Serum Lighting' },
+  { id: 23, src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', category: 'PRODUCTS', title: 'Hydra Care Serum 3D' },
+  { id: 24, src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'PRODUCTS', title: 'Gold Essence Luxury Dropper' },
+  { id: 25, src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', category: 'PRODUCTS', title: 'Botanical Sun Shield' },
+  { id: 26, src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', category: 'PRODUCTS', title: 'Cosmetic Macro Texture' },
+  { id: 27, src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'PRODUCTS', title: 'Refreshing Beverage Staging' },
+  { id: 28, src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'PRODUCTS', title: 'Perfume Silhouette Lighting' },
+  { id: 29, src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'PRODUCTS', title: 'Signature Product Reveal' },
+  { id: 30, src: '/Portfolio/ecommerce.webp', category: 'PRODUCTS', title: 'E-Commerce Commercial Render' },
 
   // LIFESTYLE (11 images)
-  { src: '/a (1).jpg', category: 'LIFESTYLE', title: 'Modern Architectural Space' },
-  { src: '/a (2).jpeg', category: 'LIFESTYLE', title: 'Interior Furniture Concept' },
-  { src: '/a (2).jpg', category: 'LIFESTYLE', title: 'Luxury Living Room Mood' },
-  { src: '/a (3).jpeg', category: 'LIFESTYLE', title: 'Minimalist Dining Aesthetic' },
-  { src: '/a (3).jpg', category: 'LIFESTYLE', title: 'Warm Tone Bedroom Atmosphere' },
-  { src: '/a (4).jpeg', category: 'LIFESTYLE', title: 'Architectural Spatial Rendering' },
-  { src: '/a (4).jpg', category: 'LIFESTYLE', title: 'Coffee Studio Lighting' },
-  { src: '/a (5).jpeg', category: 'LIFESTYLE', title: 'Sculptural Lighting Design' },
-  { src: '/a (5).jpg', category: 'LIFESTYLE', title: 'Concrete Loft Interior' },
-  { src: '/a (6).jpeg', category: 'LIFESTYLE', title: 'Ceramic Art Staging' },
-  { src: '/a (6).jpg', category: 'LIFESTYLE', title: 'Contemporary Lounge Mood' }
+  { id: 31, src: '/a (1).jpg', category: 'LIFESTYLE', title: 'Modern Architectural Space' },
+  { id: 32, src: '/a (2).jpeg', category: 'LIFESTYLE', title: 'Interior Furniture Concept' },
+  { id: 33, src: '/a (2).jpg', category: 'LIFESTYLE', title: 'Luxury Living Room Mood' },
+  { id: 34, src: '/a (3).jpeg', category: 'LIFESTYLE', title: 'Minimalist Dining Aesthetic' },
+  { id: 35, src: '/a (3).jpg', category: 'LIFESTYLE', title: 'Warm Tone Bedroom Atmosphere' },
+  { id: 36, src: '/a (4).jpeg', category: 'LIFESTYLE', title: 'Architectural Spatial Rendering' },
+  { id: 37, src: '/a (4).jpg', category: 'LIFESTYLE', title: 'Coffee Studio Lighting' },
+  { id: 38, src: '/a (5).jpeg', category: 'LIFESTYLE', title: 'Sculptural Lighting Design' },
+  { id: 39, src: '/a (5).jpg', category: 'LIFESTYLE', title: 'Concrete Loft Interior' },
+  { id: 40, src: '/a (6).jpeg', category: 'LIFESTYLE', title: 'Ceramic Art Staging' },
+  { id: 41, src: '/a (6).jpg', category: 'LIFESTYLE', title: 'Contemporary Lounge Mood' }
 ];
 
 const differentiators = [
@@ -166,6 +166,9 @@ const MobileApp = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [visibleCount, setVisibleCount] = useState(10);
 
+  // Lightbox Modal State
+  const [activeModalIdx, setActiveModalIdx] = useState(null);
+
   // Form State
   const [formData, setFormData] = useState({
     name: '',
@@ -186,7 +189,6 @@ const MobileApp = () => {
       const curY = window.scrollY;
       setScrollY(curY);
 
-      // Check visibility for differentiators
       const diffEls = document.querySelectorAll('.diff-item-trigger');
       diffEls.forEach((el) => {
         const rect = el.getBoundingClientRect();
@@ -208,15 +210,38 @@ const MobileApp = () => {
 
   const heroTextOpacity = Math.max(0, 1 - scrollProgress * 2.2);
   const heroTextTranslateY = -scrollProgress * 40;
-  const heroVideoScale = 1 - scrollProgress * 0.12; // 1.0 -> 0.88
-  const heroVideoRadius = scrollProgress * 22; // 0px -> 22px
-  const heroVideoPadding = scrollProgress * 16; // 0px -> 16px
+  const heroVideoScale = 1 - scrollProgress * 0.12;
+  const heroVideoRadius = scrollProgress * 22;
+  const heroVideoPadding = scrollProgress * 16;
 
   const filteredImages = selectedCategory === 'ALL' 
     ? allOriginalImages 
     : allOriginalImages.filter(img => img.category === selectedCategory);
 
   const displayedImages = filteredImages.slice(0, visibleCount);
+
+  const handleOpenModal = (imgSrc) => {
+    const idx = allOriginalImages.findIndex(item => item.src === imgSrc);
+    if (idx !== -1) {
+      setActiveModalIdx(idx);
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const handleCloseModal = () => {
+    setActiveModalIdx(null);
+    document.body.style.overflow = '';
+  };
+
+  const handleNextModal = (e) => {
+    e.stopPropagation();
+    setActiveModalIdx((prev) => (prev + 1) % allOriginalImages.length);
+  };
+
+  const handlePrevModal = (e) => {
+    e.stopPropagation();
+    setActiveModalIdx((prev) => (prev - 1 + allOriginalImages.length) % allOriginalImages.length);
+  };
 
   const handleFormCheck = (type) => {
     setFormData(prev => {
@@ -245,7 +270,7 @@ const MobileApp = () => {
 
   return (
     <div className="mobile-app-root">
-      {/* 1. Slim Fixed Header with Hollow Stroked Yellow Logo (No AI STUDIO pill) */}
+      {/* 1. Slim Fixed Header with Hollow Stroked Yellow Logo */}
       <header className="lathx-header">
         <div className="lathx-header-inner">
           <div className="header-logo-hollow" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -357,7 +382,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 5. Complete 41 Original Images Categorized into ALL, MODELS, PRODUCTS, LIFESTYLE */}
+      {/* 5. Complete 41 Original Images Categorized into ALL, MODELS, PRODUCTS, LIFESTYLE with Lightbox */}
       <section id="portfolio-section" className="portfolio-showcase-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -369,7 +394,7 @@ const MobileApp = () => {
             BRAND VALUE <em className="text-yellow-italic">WITH AI</em>
           </h2>
           <p className="sec-subtitle-p">
-            Explore our curated catalog of AI commercial photography, fashion models, and spatial design assets.
+            Explore our curated catalog of AI commercial photography, fashion models, and spatial design assets. Tap any image to enlarge in high resolution.
           </p>
         </div>
 
@@ -394,10 +419,14 @@ const MobileApp = () => {
           })}
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid (Click to enlarge) */}
         <div className="gallery-masonry-grid">
           {displayedImages.map((img, idx) => (
-            <div key={idx} className={`gallery-grid-item ${idx % 3 === 0 ? 'span-2' : ''}`}>
+            <div 
+              key={idx} 
+              className={`gallery-grid-item ${idx % 3 === 0 ? 'span-2' : ''}`}
+              onClick={() => handleOpenModal(img.src)}
+            >
               <img 
                 src={img.src} 
                 alt={img.title} 
@@ -407,6 +436,7 @@ const MobileApp = () => {
               <div className="gallery-item-hover">
                 <span className="gallery-cat-badge">{img.category}</span>
                 <h4 className="gallery-item-title">{img.title}</h4>
+                <span className="tap-to-expand">TAP TO VIEW FULLSCREEN ↗</span>
               </div>
             </div>
           ))}
@@ -423,7 +453,59 @@ const MobileApp = () => {
             </button>
           </div>
         )}
+
+        {/* Collaboration Notice Bar */}
+        <div className="creator-collab-banner">
+          <Sparkles size={16} className="text-yellow flex-shrink-0" />
+          <p className="collab-banner-text">
+            Visual works created by AI Creators in official partnership with VERARVO.
+          </p>
+        </div>
       </section>
+
+      {/* Lightbox Fullscreen Modal for all 41 images */}
+      {activeModalIdx !== null && (
+        <div className="lightbox-modal-backdrop" onClick={handleCloseModal}>
+          <div className="lightbox-content-box" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Top Bar */}
+            <div className="lightbox-top-bar">
+              <div className="lightbox-badge-row">
+                <span className="modal-cat-tag">{allOriginalImages[activeModalIdx].category}</span>
+                <span className="modal-counter">{activeModalIdx + 1} / {allOriginalImages.length}</span>
+              </div>
+              <button className="btn-modal-close" onClick={handleCloseModal}>
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Enlarged Image Container with Prev/Next Controls */}
+            <div className="lightbox-image-stage">
+              <button className="lightbox-nav-btn prev-btn" onClick={handlePrevModal}>
+                <ChevronLeft size={24} />
+              </button>
+              <img 
+                src={allOriginalImages[activeModalIdx].src} 
+                alt={allOriginalImages[activeModalIdx].title} 
+                className="lightbox-full-img" 
+              />
+              <button className="lightbox-nav-btn next-btn" onClick={handleNextModal}>
+                <ChevronRight size={24} />
+              </button>
+            </div>
+
+            {/* Modal Footer with Creator Collaboration Caption */}
+            <div className="lightbox-footer-info">
+              <h3 className="lightbox-img-title">{allOriginalImages[activeModalIdx].title}</h3>
+              <div className="lightbox-creator-tag">
+                <Sparkles size={14} className="text-yellow" />
+                <p className="lightbox-creator-p">
+                  Created by AI Creators in partnership with VERARVO.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 6. Trusted Brands (Deep Rich Yellow Band Marquee) */}
       <section className="trusted-brands-section">
