@@ -1,11 +1,95 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Plus, Check, Send, Upload, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Plus, Check, Send, Upload, Sparkles, Filter } from 'lucide-react';
 import './MobileApp.css';
+
+// All 41 original client images categorized cleanly
+const allOriginalImages = [
+  // Fashion & Virtual Models
+  { src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', category: 'MODELS', title: 'Fashion Editorial Series I' },
+  { src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'EDITORIAL', title: 'Beauty Glow Cosmetics' },
+  { src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'EDITORIAL', title: 'Skincare Product Splash' },
+  { src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Luxury Bottle Staging' },
+  { src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Minimalist Packaging Concept' },
+  { src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'PRODUCTS', title: 'Aura Serum Lighting' },
+  { src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', category: 'MODELS', title: 'Street Fashion Portrait' },
+  { src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', category: 'MODELS', title: 'Haute Couture Studio Shoot' },
+  { src: '/DECD6E41-38D0-4BB6-A9D4-7847BA2F0705.jpg', category: 'MODELS', title: 'Monochrome High Fashion' },
+  { src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', category: 'MODELS', title: 'Editorial Model Lookbook' },
+  { src: '/11FA9EAF-0D4F-4BEE-9670-4F2473094321.jpg', category: 'MODELS', title: 'Virtual Brand Ambassador' },
+  { src: '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg', category: 'MODELS', title: 'Digital Runway Staging' },
+  { src: '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg', category: 'MODELS', title: 'Summer Collection Preview' },
+  { src: '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg', category: 'MODELS', title: 'Luxury Sunglasses Campaign' },
+  { src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', category: 'PRODUCTS', title: 'Hydra Care Serum 3D' },
+  { src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'PRODUCTS', title: 'Gold Essence Luxury Dropper' },
+  { src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', category: 'PRODUCTS', title: 'Sun Shield Botanical Bottle' },
+  { src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', category: 'PRODUCTS', title: 'Cosmetic Texture Macro' },
+  { src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'PRODUCTS', title: 'Beverage Refresh Staging' },
+  { src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'PRODUCTS', title: 'Perfume Silhouette Lighting' },
+  { src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'PRODUCTS', title: 'Signature Product Reveal' },
+  { src: '/a (1).jpg', category: 'LIFESTYLE', title: 'Urban Architecture Mood' },
+  { src: '/a (2).jpeg', category: 'LIFESTYLE', title: 'Interior Furniture Aesthetic' },
+  { src: '/a (2).jpg', category: 'LIFESTYLE', title: 'Luxury Living Space' },
+  { src: '/a (3).jpeg', category: 'LIFESTYLE', title: 'Minimalist Dining Set' },
+  { src: '/a (3).jpg', category: 'LIFESTYLE', title: 'Warm Tone Bedroom Mood' },
+  { src: '/a (4).jpeg', category: 'LIFESTYLE', title: 'Modern Spatial Rendering' },
+  { src: '/a (4).jpg', category: 'LIFESTYLE', title: 'Coffee Studio Lighting' },
+  { src: '/a (5).jpeg', category: 'LIFESTYLE', title: 'Minimalist Lamp Design' },
+  { src: '/a (5).jpg', category: 'LIFESTYLE', title: 'Concrete Loft Staging' },
+  { src: '/a (6).jpeg', category: 'LIFESTYLE', title: 'Ceramic Art Staging' },
+  { src: '/a (6).jpg', category: 'LIFESTYLE', title: 'Lounge Chair Composition' },
+  { src: '/IMG_5315.jpeg', category: 'EDITORIAL', title: 'Sunset Outdoor Editorial' },
+  { src: '/IMG_5329.jpeg', category: 'EDITORIAL', title: 'Golden Hour Beauty Shoot' },
+  { src: '/IMG_9116.JPG', category: 'EDITORIAL', title: 'Candid Studio Snapshot' },
+  { src: '/IMG_9117.JPG', category: 'EDITORIAL', title: 'Film Grain Portrait' },
+  { src: '/IMG_9296.PNG', category: 'EDITORIAL', title: 'Night Mood Streetwear' },
+  { src: '/IMG_9300.PNG', category: 'EDITORIAL', title: 'Neon Ambient Look' },
+  { src: '/408471063_1784275816512842~2.jpeg', category: 'EDITORIAL', title: 'Creative Brand Visual' },
+  { src: '/549789471_1784276133887554~2.jpeg', category: 'EDITORIAL', title: 'Vibrant Palette Campaign' },
+  { src: '/Portfolio/ecommerce.webp', category: 'PRODUCTS', title: 'E-Commerce Hero Render' }
+];
+
+const differentiators = [
+  {
+    num: "01",
+    title: "YEARS OF PRODUCTION DNA",
+    desc: "Producing commercial campaigns for top-tier brands long before the AI wave. Aesthetic mastery cannot be improvised."
+  },
+  {
+    num: "02",
+    title: "CINEMA-GRADE AESTHETICS",
+    desc: "Directed by veterans in fashion film and high-end advertising. The human directorial eye is honed through years of craft."
+  },
+  {
+    num: "03",
+    title: "MARKETING THAT SELLS, NOT JUST PRETTY",
+    desc: "Every visual asset is engineered to maximize conversion rates and ROAS, not just to collect vanity likes."
+  },
+  {
+    num: "04",
+    title: "SYSTEMS, NOT JUST ONE-OFF CLIPS",
+    desc: "Digital avatars, automated pipelines, and multi-platform content ecosystems built directly into your operations."
+  },
+  {
+    num: "05",
+    title: "-85% IN PRODUCTION COSTS",
+    desc: "Zero bloated film crews, zero expensive physical set rentals, zero overhead. Same premium luxury finish."
+  },
+  {
+    num: "06",
+    title: "FROM WEEKS TO DAYS (48-72H)",
+    desc: "What legacy production houses deliver in 3 to 4 weeks, our pipeline ships in 48 to 72 hours."
+  },
+  {
+    num: "07",
+    title: "10 VARIATIONS FOR RAPID A/B TESTING",
+    desc: "Generate 10 distinct hooks, angles, and aspect ratios to find your winning ad creative on day one."
+  }
+];
 
 const faqItems = [
   {
     q: "How long does production take?",
-    a: "Our standard turnaround is 48 to 72 hours for initial creative drafts. Full campaigns are typically finalized and delivered within 5 business days."
+    a: "Our standard turnaround is 48 to 72 hours for initial creative drafts. Full multi-format campaigns are typically finalized within 5 business days."
   },
   {
     q: "How is pricing determined?",
@@ -17,7 +101,7 @@ const faqItems = [
   },
   {
     q: "What materials do I need to provide?",
-    a: "Production is seamless with basic assets: high-resolution product photos/videos, brand logo files, and any benchmark ad references you love."
+    a: "Production is seamless with basic assets: high-resolution product photos/videos, brand logo vectors, and any benchmark ad references you admire."
   },
   {
     q: "Are the visuals 100% AI generated?",
@@ -29,47 +113,59 @@ const faqItems = [
   }
 ];
 
-const differentiators = [
-  {
-    num: "01",
-    title: "YEARS OF PRODUCTION DNA",
-    desc: "Producing visual campaigns for global brands long before the AI hype. Aesthetic mastery cannot be improvised."
-  },
-  {
-    num: "02",
-    title: "CINEMA-GRADE AESTHETICS",
-    desc: "Directed by veterans in fashion films and branding. The human directorial eye is trained over years of craft."
-  },
-  {
-    num: "03",
-    title: "MARKETING THAT SELLS, NOT JUST PRETTY",
-    desc: "Every visual asset is engineered to convert and maximize ROAS, not just to collect vanity likes."
-  },
-  {
-    num: "04",
-    title: "SYSTEMS, NOT JUST ONE-OFF CLIPS",
-    desc: "Digital avatars, automated workflows, and multi-platform asset pipelines integrated seamlessly into your brand."
-  },
-  {
-    num: "05",
-    title: "-85% IN PRODUCTION COSTS",
-    desc: "Zero bloated film crews, zero expensive physical set rentals, zero overhead. Same premium luxury finish."
-  },
-  {
-    num: "06",
-    title: "FROM WEEKS TO DAYS (48-72H)",
-    desc: "What legacy production agencies take 3 to 4 weeks to shoot, we deliver in 48 to 72 hours."
-  },
-  {
-    num: "07",
-    title: "10 VARIATIONS FOR RAPID A/B TESTING",
-    desc: "Generate 10 distinct hooks and multi-format angles for real-time performance optimization."
-  }
-];
+// Interactive Typewriter Item Component
+const TypewriterRow = ({ item, isVisible }) => {
+  const [typedTitle, setTypedTitle] = useState('');
+  const [typedDesc, setTypedDesc] = useState('');
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (isVisible && !hasAnimated.current) {
+      hasAnimated.current = true;
+      let tIdx = 0;
+      const titleTimer = setInterval(() => {
+        if (tIdx < item.title.length) {
+          tIdx += 1;
+          setTypedTitle(item.title.slice(0, tIdx));
+        } else {
+          clearInterval(titleTimer);
+          let dIdx = 0;
+          const descTimer = setInterval(() => {
+            if (dIdx < item.desc.length) {
+              dIdx += 2;
+              setTypedDesc(item.desc.slice(0, dIdx));
+            } else {
+              clearInterval(descTimer);
+            }
+          }, 14);
+        }
+      }, 22);
+
+      return () => clearInterval(titleTimer);
+    }
+  }, [isVisible, item.title, item.desc]);
+
+  return (
+    <div className={`diff-row-item diff-item-trigger ${isVisible ? 'active' : ''}`} data-id={item.num}>
+      <span className="diff-big-num">{item.num}</span>
+      <div className="diff-text-box">
+        <h3 className="diff-title-h3">
+          {hasAnimated.current ? (typedTitle || item.title.slice(0, 1)) : item.title}
+          <span className="type-cursor">|</span>
+        </h3>
+        <p className="diff-desc-p">
+          {hasAnimated.current ? (typedDesc || '') : item.desc}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 const MobileApp = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [scrollY, setScrollY] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const [visibleCount, setVisibleCount] = useState(12);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -83,21 +179,20 @@ const MobileApp = () => {
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Typewriter state for Differentiators
+  // Typewriter state tracking
   const [visibleDiffs, setVisibleDiffs] = useState({});
 
-  // Scroll listener for hero video scale & typewriter trigger
   useEffect(() => {
     const handleScroll = () => {
       const curY = window.scrollY;
       setScrollY(curY);
 
-      // Trigger typewriter for diff items based on viewport
-      const diffElements = document.querySelectorAll('.diff-item-trigger');
-      diffElements.forEach((el) => {
+      // Check visibility for differentiators
+      const diffEls = document.querySelectorAll('.diff-item-trigger');
+      diffEls.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const id = el.getAttribute('data-id');
-        if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+        if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
           setVisibleDiffs(prev => ({ ...prev, [id]: true }));
         }
       });
@@ -110,13 +205,19 @@ const MobileApp = () => {
 
   // Compute Hero Video Shrink & Text Fade
   const heroHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
-  const scrollProgress = Math.min(Math.max(scrollY / (heroHeight * 0.7), 0), 1);
+  const scrollProgress = Math.min(Math.max(scrollY / (heroHeight * 0.65), 0), 1);
 
   const heroTextOpacity = Math.max(0, 1 - scrollProgress * 2.2);
   const heroTextTranslateY = -scrollProgress * 40;
-  const heroVideoScale = 1 - scrollProgress * 0.12; // 1 -> 0.88
+  const heroVideoScale = 1 - scrollProgress * 0.12; // 1.0 -> 0.88
   const heroVideoRadius = scrollProgress * 22; // 0px -> 22px
   const heroVideoPadding = scrollProgress * 16; // 0px -> 16px
+
+  const filteredImages = selectedCategory === 'ALL' 
+    ? allOriginalImages 
+    : allOriginalImages.filter(img => img.category === selectedCategory);
+
+  const displayedImages = filteredImages.slice(0, visibleCount);
 
   const handleFormCheck = (type) => {
     setFormData(prev => {
@@ -150,6 +251,9 @@ const MobileApp = () => {
         <div className="lathx-header-inner">
           <div className="lathx-brand-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             VERA<span className="text-yellow">R</span>VO
+          </div>
+          <div className="header-tag-pill">
+            AI STUDIO
           </div>
         </div>
       </header>
@@ -207,7 +311,7 @@ const MobileApp = () => {
           </h1>
 
           <p className="hero-desc-text">
-            Next-generation AI imagery and high-converting video production for global brands. Studio-quality ads and digital avatars delivered in 48-72 hours.
+            Next-generation AI imagery and cinema-grade advertising video production for global brands. Studio-quality commercials and virtual avatars delivered in 48-72 hours.
           </p>
 
           <div className="hero-btn-row">
@@ -220,7 +324,6 @@ const MobileApp = () => {
             </button>
           </div>
 
-          {/* Pulsing Scroll Indicator */}
           <div className="hero-scroll-pill">
             <div className="scroll-pill-dot" />
           </div>
@@ -232,7 +335,7 @@ const MobileApp = () => {
         <div className="ticker-scroll-track">
           {[...Array(3)].map((_, i) => (
             <div className="ticker-group" key={i}>
-              <span className="ticker-text">AI CONTENT <span className="text-yellow">·</span></span>
+              <span className="ticker-text">AI VIDEO ADS <span className="text-yellow">·</span></span>
               <span className="ticker-text">VIRTUAL CINEMA <span className="text-yellow">·</span></span>
               <span className="ticker-text">UGC AVATARS <span className="text-yellow">·</span></span>
               <span className="ticker-text">EDITORIAL SHOOTS <span className="text-yellow">·</span></span>
@@ -252,79 +355,76 @@ const MobileApp = () => {
         </div>
         <div className="stat-row-item">
           <span className="stat-huge-number">-85%</span>
-          <p className="stat-desc-p">Average cost reduction compared to traditional film sets.</p>
+          <p className="stat-desc-p">Average cost reduction compared to traditional physical film sets.</p>
         </div>
         <div className="stat-row-item">
           <span className="stat-huge-number">100%</span>
-          <p className="stat-desc-p">High-converting visual assets with guaranteed 4K quality.</p>
+          <p className="stat-desc-p">High-converting visual assets with guaranteed 4K studio quality.</p>
         </div>
       </section>
 
-      {/* 5. Portfolio Showcase Section */}
+      {/* 5. Complete 41 Original Images Portfolio Gallery */}
       <section id="portfolio-section" className="portfolio-showcase-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
             <span className="yellow-dash" />
-            <span className="sec-tag-text">PORTFOLIO</span>
+            <span className="sec-tag-text">PORTFOLIO · ALL {allOriginalImages.length} ASSETS</span>
           </div>
           <h2 className="sec-title-display">
             TAKE YOUR BRAND<br />
             TO THE <em className="text-yellow-italic">NEXT</em><br />
             LEVEL WITH AI
           </h2>
+          <p className="sec-subtitle-p">
+            Explore our curated catalog of AI photography, fashion campaigns, and product commercial visuals.
+          </p>
         </div>
 
-        <div className="portfolio-card-stack">
-          {/* Card 1: Product Ad */}
-          <div className="port-card card-tall">
-            <img src="/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg" alt="Product Advertising" className="port-card-img" />
-            <div className="port-card-info">
-              <span className="port-cat-badge">AI PHOTOGRAPHY · BRANDING</span>
-              <h3 className="port-card-title">PRODUCT ADVERTISING</h3>
-              <p className="port-card-desc">Cinematic visual production crafted with hyper-real AI aesthetics to maximize conversion rates and brand desire.</p>
-            </div>
-          </div>
-
-          {/* Card 2: Event & Exhibition */}
-          <div className="port-card card-medium">
-            <img src="/Portfolio/ecommerce.webp" alt="Event & Exhibition" className="port-card-img" />
-            <div className="port-card-info">
-              <span className="port-cat-badge">VISUALIZATION · E-COMMERCE</span>
-              <h3 className="port-card-title">EVENT &amp; EXHIBITION</h3>
-              <p className="port-card-desc">Immersive promotional visuals and digital activations designed to dominate trade shows and launches.</p>
-            </div>
-          </div>
-
-          {/* Card 3: Social Short-Form */}
-          <div className="port-card card-square">
-            <img src="/Portfolio/ugc.webp" alt="Social Short-Form" className="port-card-img" />
-            <div className="port-card-info">
-              <span className="port-cat-badge">AI CONTENT · SOCIAL ADS</span>
-              <h3 className="port-card-title">SOCIAL SHORT-FORM</h3>
-              <p className="port-card-desc">Fast-paced, viral-ready short-form video creatives engineered for high engagement on Reels, Shorts, and TikTok.</p>
-            </div>
-          </div>
-
-          {/* Card 4: Virtual Model */}
-          <div className="port-card card-square">
-            <img src="/Portfolio/ads.webp" alt="Virtual Model" className="port-card-img" />
-            <div className="port-card-info">
-              <span className="port-cat-badge">ADS · PERFORMANCE AVATARS</span>
-              <h3 className="port-card-title">VIRTUAL AMBASSADORS</h3>
-              <p className="port-card-desc">Consistent hyper-realistic AI ambassadors and fashion models without casting, location, or schedule constraints.</p>
-            </div>
-          </div>
-
-          {/* Card 5: Interior & Spatial */}
-          <div className="port-card card-square">
-            <img src="/Portfolio/automatizacion.png" alt="Interior & Architecture" className="port-card-img" />
-            <div className="port-card-info">
-              <span className="port-cat-badge">AI · SPATIAL DESIGN</span>
-              <h3 className="port-card-title">INTERIOR &amp; SPATIAL</h3>
-              <p className="port-card-desc">Atmospheric luxury architecture, furniture staging, and spatial moods brought to life with photoreal precision.</p>
-            </div>
-          </div>
+        {/* Filter Tabs */}
+        <div className="portfolio-filter-row">
+          {['ALL', 'MODELS', 'PRODUCTS', 'EDITORIAL', 'LIFESTYLE'].map((cat) => (
+            <button
+              key={cat}
+              className={`filter-pill-btn ${selectedCategory === cat ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedCategory(cat);
+                setVisibleCount(12);
+              }}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
+
+        {/* Masonry Image Grid */}
+        <div className="gallery-masonry-grid">
+          {displayedImages.map((img, idx) => (
+            <div key={idx} className={`gallery-grid-item ${idx % 5 === 0 ? 'span-2' : ''}`}>
+              <img 
+                src={img.src} 
+                alt={img.title} 
+                className="gallery-item-img"
+                loading="lazy" 
+              />
+              <div className="gallery-item-hover">
+                <span className="gallery-cat-badge">{img.category}</span>
+                <h4 className="gallery-item-title">{img.title}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Load More Button */}
+        {visibleCount < filteredImages.length && (
+          <div className="load-more-center">
+            <button 
+              className="btn-load-more"
+              onClick={() => setVisibleCount(prev => prev + 12)}
+            >
+              <span>VIEW MORE WORKS ({filteredImages.length - visibleCount} REMAINING)</span>
+            </button>
+          </div>
+        )}
       </section>
 
       {/* 6. Trusted Brands (Yellow Band Marquee) */}
@@ -358,7 +458,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 7. Differentiators (01 - 07 with Live Typewriter Cursor) */}
+      {/* 7. Differentiators (01 - 07 with Real Character-by-Character Typewriter Animation) */}
       <section className="differentiators-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -372,29 +472,17 @@ const MobileApp = () => {
         </div>
 
         <div className="diff-items-stack">
-          {differentiators.map((item) => {
-            const isVisible = visibleDiffs[item.num];
-            return (
-              <div 
-                key={item.num} 
-                className={`diff-row-item diff-item-trigger ${isVisible ? 'active' : ''}`}
-                data-id={item.num}
-              >
-                <span className="diff-big-num">{item.num}</span>
-                <div className="diff-text-box">
-                  <h3 className="diff-title-h3">
-                    {item.title}
-                    <span className="type-cursor">|</span>
-                  </h3>
-                  <p className="diff-desc-p">{item.desc}</p>
-                </div>
-              </div>
-            );
-          })}
+          {differentiators.map((item) => (
+            <TypewriterRow 
+              key={item.num} 
+              item={item} 
+              isVisible={visibleDiffs[item.num]} 
+            />
+          ))}
         </div>
       </section>
 
-      {/* 8. Team Section */}
+      {/* 8. Team Profiles Section */}
       <section className="team-profiles-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -416,6 +504,7 @@ const MobileApp = () => {
               <div className="yellow-mini-dash" />
               <h3 className="member-name">LAMIN</h3>
               <p className="member-role">Strategy &amp; Growth Lead</p>
+              <p className="member-stat">+6-FIGURE BRAND SCALING SYSTEMS</p>
               <p className="member-bio">Scaling brand operations and digital performance with automated AI growth frameworks.</p>
             </div>
           </div>
@@ -428,7 +517,8 @@ const MobileApp = () => {
               <div className="yellow-mini-dash" />
               <h3 className="member-name">ALEX</h3>
               <p className="member-role">Creative AI Director</p>
-              <p className="member-bio">Curating photoreal visual direction across Midjourney, Flux, Seedance, and custom fine-tuned pipelines.</p>
+              <p className="member-stat">+5M ORGANIC VIEWS ON VISUAL CAMPAIGNS</p>
+              <p className="member-bio">Curating photoreal visual direction across Midjourney, Flux, Seedance, and custom fine-tuned models.</p>
             </div>
           </div>
 
@@ -440,6 +530,7 @@ const MobileApp = () => {
               <div className="yellow-mini-dash" />
               <h3 className="member-name">DARIO</h3>
               <p className="member-role">Software Engineer &amp; Systems</p>
+              <p className="member-stat">CLAUDE &amp; N8N AUTOMATION PIPELINES</p>
               <p className="member-bio">Architecting custom visual automation pipelines and frictionless cloud infrastructures.</p>
             </div>
           </div>
@@ -489,7 +580,7 @@ const MobileApp = () => {
             CONTENT THAT<br />
             <span className="text-yellow">CANNOT BE IGNORED?</span>
           </h2>
-          <p className="cta-sub-p">First results in 48-72h. No legacy production overhead. Complete commercial rights.</p>
+          <p className="cta-sub-p">First deliverables in 48-72 hours. No studio overhead. 100% commercial rights.</p>
         </div>
 
         <div className="inquiry-box-card">
@@ -517,7 +608,7 @@ const MobileApp = () => {
                   type="text" 
                   required 
                   className="theme-input" 
-                  placeholder="John Doe / Brand Co."
+                  placeholder="Brand / Contact Name"
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -550,7 +641,7 @@ const MobileApp = () => {
               <div className="input-group">
                 <label className="input-label">PROJECT TYPE (SELECT ALL THAT APPLY)</label>
                 <div className="checkbox-pills-row">
-                  {['Product Ad', 'Event & Exhibition', 'Social Short-Form', 'Virtual Model', 'Custom / Other'].map((type) => (
+                  {['Product Commercial', 'Event & Exhibition', 'Social Short-Form', 'Virtual Brand Ambassador', 'Custom Campaign'].map((type) => (
                     <button
                       type="button"
                       key={type}
@@ -569,14 +660,14 @@ const MobileApp = () => {
                 <textarea 
                   rows={4} 
                   className="theme-textarea" 
-                  placeholder="Describe your visual concept, target deliverables, reference links, and estimated budget."
+                  placeholder="Describe your visual concept, deliverables, reference ad links, and target deadline."
                   value={formData.message}
                   onChange={e => setFormData({ ...formData, message: e.target.value })}
                 />
               </div>
 
               <div className="input-group">
-                <label className="input-label">ATTACH FILE (OPTIONAL)</label>
+                <label className="input-label">ATTACH BRIEF OR ASSETS (OPTIONAL)</label>
                 <label className="file-attach-box">
                   <Upload size={16} />
                   <span>{formFile ? formFile.name : 'Upload Brief / Reference File (PDF, ZIP, JPG)'}</span>
@@ -616,10 +707,10 @@ const MobileApp = () => {
           <div className="footer-nav-columns">
             <div className="footer-nav-col">
               <h4 className="footer-col-head">SERVICES</h4>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Product Photography</span>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>UGC &amp; Digital Avatars</span>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Editorial Video</span>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Social Media Ads</span>
+              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Product Commercials</span>
+              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Virtual Brand Ambassadors</span>
+              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Editorial Video Production</span>
+              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Social Performance Ads</span>
             </div>
 
             <div className="footer-nav-col">

@@ -3,7 +3,7 @@
    Base: #000000 | Accent: #FFE600 | Card: #111111 | Border: rgba(255,255,255,0.08)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,800;0,900;1,800&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,800;0,900;1,800&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap');
 
 :root {
   --black: #000000;
@@ -16,7 +16,7 @@
   --text-muted: #8e8e8e;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-yellow: rgba(255, 230, 0, 0.35);
-  --font-display: 'Bebas Neue', 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Bebas Neue', 'Barlow Condensed', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -83,7 +83,7 @@
   width: 100%;
   height: 56px;
   z-index: 999;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -99,10 +99,20 @@
 
 .lathx-brand-logo {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   letter-spacing: 3.5px;
   color: var(--white);
   cursor: pointer;
+}
+
+.header-tag-pill {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  border: 1px solid var(--border-yellow);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -149,8 +159,8 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.65) 60%,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.6) 60%,
     rgba(0, 0, 0, 0.95) 100%
   );
   pointer-events: none;
@@ -288,7 +298,7 @@
 
 .ticker-text {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   letter-spacing: 3px;
   color: var(--text-muted);
   padding: 0 18px;
@@ -320,7 +330,7 @@
 
 .brand-item-text {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   letter-spacing: 3px;
   color: #000000;
   padding: 0 20px;
@@ -354,7 +364,7 @@
 
 .stat-huge-number {
   font-family: var(--font-display);
-  font-size: 4.8rem;
+  font-size: 5rem;
   line-height: 0.9;
   font-weight: 900;
   color: var(--yellow);
@@ -370,7 +380,7 @@
 }
 
 /* ==========================================================================
-   5. PORTFOLIO SHOWCASE SECTION
+   5. COMPLETE 41 ORIGINAL IMAGES PORTFOLIO GALLERY
    ========================================================================== */
 .portfolio-showcase-section {
   padding: 60px 20px;
@@ -421,65 +431,111 @@
   font-weight: 300;
 }
 
-.portfolio-card-stack {
+/* Filter Pills */
+.portfolio-filter-row {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  scrollbar-width: none;
 }
 
-.port-card {
+.portfolio-filter-row::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill-btn {
+  background: #0d0d0d;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-pill-btn.active {
+  background: rgba(255, 230, 0, 0.15);
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+/* Masonry Grid */
+.gallery-masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery-grid-item {
   position: relative;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--card-surface);
   border: 1px solid var(--border-subtle);
+  aspect-ratio: 4 / 5;
 }
 
-.card-tall { height: 380px; }
-.card-medium { height: 320px; }
-.card-square { height: 280px; }
+.gallery-grid-item.span-2 {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
 
-.port-card-img {
+.gallery-item-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6;
+  display: block;
 }
 
-.port-card-info {
+.gallery-item-hover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.25) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 60%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 22px;
+  padding: 14px;
 }
 
-.port-cat-badge {
-  font-size: 0.62rem;
-  letter-spacing: 2px;
+.gallery-cat-badge {
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
   color: var(--yellow);
-  font-weight: 700;
-  margin-bottom: 6px;
+  font-weight: 800;
+  margin-bottom: 4px;
 }
 
-.port-card-title {
+.gallery-item-title {
   font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
   color: var(--white);
-  margin: 0 0 6px 0;
-  line-height: 1;
+  margin: 0;
+  line-height: 1.1;
 }
 
-.port-card-desc {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.75);
-  margin: 0;
-  line-height: 1.45;
-  font-weight: 300;
+.load-more-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.btn-load-more {
+  width: 100%;
+  padding: 14px;
+  background: #0d0d0d;
+  border: 1px solid var(--border-yellow);
+  color: var(--yellow);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 /* ==========================================================================
@@ -506,7 +562,7 @@
 
 .diff-big-num {
   font-family: var(--font-display);
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   font-weight: 900;
   color: var(--yellow);
   line-height: 1;
@@ -549,6 +605,7 @@
   margin: 0;
   line-height: 1.5;
   font-weight: 300;
+  min-height: 2.8em;
 }
 
 /* ==========================================================================
@@ -597,18 +654,26 @@
 
 .member-name {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 2rem;
   letter-spacing: 2px;
   color: var(--white);
   margin: 0 0 2px 0;
 }
 
 .member-role {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--yellow);
-  font-weight: 700;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+
+.member-stat {
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 600;
   margin: 0 0 8px 0;
 }
 
@@ -730,7 +795,7 @@
 
 .inquiry-card-head {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   letter-spacing: 2px;
   color: var(--yellow);
   margin: 0 0 20px 0;
@@ -862,7 +927,7 @@
 
 .footer-brand-title {
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   letter-spacing: 4px;
   color: var(--white);
 }
