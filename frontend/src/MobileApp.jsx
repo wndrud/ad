@@ -442,7 +442,7 @@ const MobileApp = () => {
     });
   };
 
-  // Form Submission handler sending data to jobsverarvo@gmail.com via backend
+  // Form Submission handler sending data to jobsverarvo@gmail.com with zero-delay fallback
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim()) {
@@ -451,37 +451,68 @@ const MobileApp = () => {
 
     setFormSubmitting(true);
 
+    const projectTypesStr = formData.projectType.length > 0 
+      ? formData.projectType.join(', ') 
+      : 'General Creative Inquiry';
+
     const detailedMessage = `
 [VERARVO Mobile Proposal Inquiry]
 - Client / Brand: ${formData.name}
 - Email: ${formData.email}
-- Project Type: ${formData.projectType.length > 0 ? formData.projectType.join(', ') : 'Creative Advertising Campaign'}
-- Attached Asset: ${formFile ? formFile.name : 'None'}
+- Project Types: ${projectTypesStr}
+- Attached File: ${formFile ? formFile.name : 'None'}
 
 [Creative Brief / Message Details]:
 ${formData.message || 'No additional notes provided.'}
 `.trim();
 
-    try {
-      await fetch(`${API_BASE_URL}/api/inquiry`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: detailedMessage
-        })
-      });
+    // 1. Direct Formsubmit email transmission to jobsverarvo@gmail.com
+    const formSubmitPromise = fetch('https://formsubmit.co/ajax/jobsverarvo@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: `New VERARVO Proposal Inquiry from ${formData.name}`,
+        name: formData.name,
+        email: formData.email,
+        project_types: projectTypesStr,
+        message: detailedMessage
+      })
+    }).catch(err => {
+      console.warn('FormSubmit notice:', err);
+      return null;
+    });
 
-      setFormSubmitting(false);
-      setFormSubmitted(true);
-    } catch (err) {
-      console.warn('Inquiry submission notice:', err);
-      setFormSubmitting(false);
-      setFormSubmitted(true);
-    }
+    // 2. Dual transmission via backend API endpoint if active
+    const backendPromise = fetch(`${API_BASE_URL}/api/inquiry`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: detailedMessage
+      })
+    }).catch(err => {
+      console.warn('Backend API notice:', err);
+      return null;
+    });
+
+    // 3. Guaranteed timeout safeguard (max 1.8 seconds) so user NEVER gets stuck on SUBMITTING
+    const timeoutPromise = new Promise(resolve => setTimeout(resolve, 1800));
+
+    try {
+      await Promise.race([
+        Promise.allSettled([formSubmitPromise, backendPromise]),
+        timeoutPromise
+      ]);
+    } catch (_) {}
+
+    setFormSubmitting(false);
+    setFormSubmitted(true);
   };
 
   const scrollToSection = (id) => {
