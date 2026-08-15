@@ -65,7 +65,11 @@ const differentiators = [
   },
   {
     num: "03",
-    title: "PERFORMANCE-DRIVEN MARKETING",
+    title: (
+      <>
+        PERFORMANCE-DRIVEN <span className="text-yellow">|</span> MARKETING
+      </>
+    ),
     desc: "Engineered specifically for high-impact social media feeds, maximizing click-through rates (CTR) and return on ad spend (ROAS)."
   },
   {
@@ -112,54 +116,6 @@ const faqItems = [
   }
 ];
 
-// Interactive Character-by-Character Typewriter Row
-const TypewriterRow = ({ item, isVisible }) => {
-  const [typedTitle, setTypedTitle] = useState('');
-  const [typedDesc, setTypedDesc] = useState('');
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    if (isVisible && !hasAnimated.current) {
-      hasAnimated.current = true;
-      let tIdx = 0;
-      const titleTimer = setInterval(() => {
-        if (tIdx < item.title.length) {
-          tIdx += 1;
-          setTypedTitle(item.title.slice(0, tIdx));
-        } else {
-          clearInterval(titleTimer);
-          let dIdx = 0;
-          const descTimer = setInterval(() => {
-            if (dIdx < item.desc.length) {
-              dIdx += 2;
-              setTypedDesc(item.desc.slice(0, dIdx));
-            } else {
-              clearInterval(descTimer);
-            }
-          }, 14);
-        }
-      }, 20);
-
-      return () => clearInterval(titleTimer);
-    }
-  }, [isVisible, item.title, item.desc]);
-
-  return (
-    <div className={`diff-row-item diff-item-trigger ${isVisible ? 'active' : ''}`} data-id={item.num}>
-      <span className="diff-big-num">{item.num}</span>
-      <div className="diff-text-box">
-        <h3 className="diff-title-h3">
-          {hasAnimated.current ? (typedTitle || item.title.slice(0, 1)) : item.title}
-          <span className="type-cursor">|</span>
-        </h3>
-        <p className="diff-desc-p">
-          {hasAnimated.current ? (typedDesc || '') : item.desc}
-        </p>
-      </div>
-    </div>
-  );
-};
-
 const MobileApp = () => {
   const videoRef = useRef(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
@@ -181,9 +137,6 @@ const MobileApp = () => {
   const [formFile, setFormFile] = useState(null);
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-
-  // Typewriter state tracking
-  const [visibleDiffs, setVisibleDiffs] = useState({});
 
   // 1. Mobile Video Robust Autoplay Trigger
   useEffect(() => {
@@ -214,7 +167,7 @@ const MobileApp = () => {
     }
   }, []);
 
-  // 2. Smooth Scroll & Intersection Observer for Typewriter
+  // 2. Smooth Scroll Tracker
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -223,39 +176,20 @@ const MobileApp = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // IntersectionObserver for 100% reliable trigger on mobile
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('data-id');
-            if (id) {
-              setVisibleDiffs(prev => ({ ...prev, [id]: true }));
-            }
-          }
-        });
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    const diffEls = document.querySelectorAll('.diff-item-trigger');
-    diffEls.forEach(el => observer.observe(el));
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
     };
   }, []);
 
   // Compute Hero Video Shrink & Text Fade
-  const heroTransitionDistance = 350; // px of scroll to complete hero transition
+  const heroTransitionDistance = 350;
   const scrollProgress = Math.min(Math.max(scrollY / heroTransitionDistance, 0), 1);
 
   const heroTextOpacity = Math.max(0, 1 - scrollProgress * 1.8);
   const heroTextTranslateY = -scrollProgress * 40;
-  const heroVideoScale = 1 - scrollProgress * 0.12; // 1.0 -> 0.88
-  const heroVideoRadius = scrollProgress * 20; // 0px -> 20px
-  const heroVideoPadding = scrollProgress * 14; // 0px -> 14px
+  const heroVideoScale = 1 - scrollProgress * 0.12;
+  const heroVideoRadius = scrollProgress * 20;
+  const heroVideoPadding = scrollProgress * 14;
 
   const filteredImages = selectedCategory === 'ALL' 
     ? allOriginalImages 
@@ -580,7 +514,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 7. Differentiators (01 - 06 with Live Character-by-Character Typewriter Animation) */}
+      {/* 7. Differentiators (01 - 06 Clean Static Presentation with Yellow Bar right of DRIVEN) */}
       <section className="differentiators-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
@@ -595,11 +529,13 @@ const MobileApp = () => {
 
         <div className="diff-items-stack">
           {differentiators.map((item) => (
-            <TypewriterRow 
-              key={item.num} 
-              item={item} 
-              isVisible={visibleDiffs[item.num]} 
-            />
+            <div key={item.num} className="diff-row-item">
+              <span className="diff-big-num">{item.num}</span>
+              <div className="diff-text-box">
+                <h3 className="diff-title-h3">{item.title}</h3>
+                <p className="diff-desc-p">{item.desc}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
