@@ -285,17 +285,18 @@ const MobileApp = () => {
   // Lightbox Modal State
   const [activeModalIdx, setActiveModalIdx] = useState(null);
 
-  // Form State
+  // Form State (without phone field)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     projectType: [],
     message: ''
   });
   const [formFile, setFormFile] = useState(null);
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
   // 1. Mobile Video Robust Autoplay & Unconditional Scroll-Up Replay Engine
   useEffect(() => {
@@ -354,7 +355,7 @@ const MobileApp = () => {
     };
     document.addEventListener('visibilitychange', handleVisibility);
 
-    // Touch & scroll wake-up triggers
+    // Touch wake-up triggers
     window.addEventListener('touchstart', forcePlay, { passive: true });
 
     return () => {
@@ -437,12 +438,46 @@ const MobileApp = () => {
     });
   };
 
+  // Form Submission handler sending data to jobsverarvo@gmail.com via backend
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim()) {
+      return;
+    }
+
     setFormSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setFormSubmitting(false);
-    setFormSubmitted(true);
+
+    const detailedMessage = `
+[VERARVO Mobile Proposal Inquiry]
+- Client / Brand: ${formData.name}
+- Email: ${formData.email}
+- Project Type: ${formData.projectType.length > 0 ? formData.projectType.join(', ') : 'Creative Advertising Campaign'}
+- Attached Asset: ${formFile ? formFile.name : 'None'}
+
+[Creative Brief / Message Details]:
+${formData.message || 'No additional notes provided.'}
+`.trim();
+
+    try {
+      await fetch(`${API_BASE_URL}/api/inquiry`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: detailedMessage
+        })
+      });
+
+      setFormSubmitting(false);
+      setFormSubmitted(true);
+    } catch (err) {
+      console.warn('Inquiry submission notice:', err);
+      setFormSubmitting(false);
+      setFormSubmitted(true);
+    }
   };
 
   const scrollToSection = (id) => {
@@ -560,7 +595,7 @@ const MobileApp = () => {
         </div>
       </section>
 
-      {/* 4. 3 Stats Impact Section with Count-Up 0 -> Target Animation (Replays every time in view) */}
+      {/* 4. 3 Stats Impact Section with Count-Up 0 -> Target Animation */}
       <section className="stats-impact-section">
         <div className="stat-row-item">
           <CountUpStat target={3} suffix=" DAYS" duration={1000} />
@@ -804,7 +839,7 @@ const MobileApp = () => {
                 className="btn-chamfer-yellow mt-4"
                 onClick={() => {
                   setFormSubmitted(false);
-                  setFormData({ name: '', email: '', phone: '', projectType: [], message: '' });
+                  setFormData({ name: '', email: '', projectType: [], message: '' });
                 }}
               >
                 <span>SUBMIT ANOTHER INQUIRY</span>
@@ -833,18 +868,6 @@ const MobileApp = () => {
                   placeholder="contact@brand.com"
                   value={formData.email}
                   onChange={e => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
-
-              <div className="input-group">
-                <label className="input-label">PHONE / CONTACT *</label>
-                <input 
-                  type="tel" 
-                  required 
-                  className="theme-input" 
-                  placeholder="+82 10-0000-0000"
-                  value={formData.phone}
-                  onChange={e => setFormData({ ...formData, phone: e.target.value })}
                 />
               </div>
 
