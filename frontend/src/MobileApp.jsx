@@ -466,19 +466,22 @@ const MobileApp = () => {
 ${formData.message || 'No additional notes provided.'}
 `.trim();
 
-    // 1. Direct Formsubmit email transmission to jobsverarvo@gmail.com
-    const formSubmitPromise = fetch('https://formsubmit.co/ajax/jobsverarvo@gmail.com', {
+    // 1. Direct Formsubmit email transmission to jobsverarvo@gmail.com using verified secure token
+    const formSubmitPromise = fetch('https://formsubmit.co/ajax/8f20e3b95dde018d33d6e9eb3da45e0b', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        _subject: `New VERARVO Proposal Inquiry from ${formData.name}`,
-        name: formData.name,
-        email: formData.email,
-        project_types: projectTypesStr,
-        message: detailedMessage
+        _subject: `[VERARVO Proposal] ${formData.name} - ${projectTypesStr}`,
+        _template: 'table',
+        _captcha: 'false',
+        'Brand / Contact Name': formData.name,
+        'Sender Email': formData.email,
+        'Project Types': projectTypesStr,
+        'Attached File Name': formFile ? formFile.name : 'None',
+        'Project Details & References': formData.message || 'No additional notes'
       })
     }).catch(err => {
       console.warn('FormSubmit notice:', err);
