@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import './MobileApp.css';
 
-// All 41 original client images precisely categorized with clean titles
+// All 45 original client images precisely categorized with clean titles
 const allOriginalImages = [
-  // MODELS (31 pure fashion models, lookbooks, beauty portraits, and apparel wearers)
+  // MODELS (35 pure fashion models, lookbooks, beauty portraits, and apparel wearers)
   { id: 1, src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', category: 'MODELS', title: 'White Lace Corset Editorial' },
   { id: 2, src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', category: 'MODELS', title: 'Dessert & Lip Gloss Beauty' },
   { id: 3, src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', category: 'MODELS', title: 'Floral Blouse Studio Portrait' },
@@ -36,18 +36,22 @@ const allOriginalImages = [
   { id: 29, src: '/a (5).jpeg', category: 'MODELS', title: 'Architectural White Gown Shoot' },
   { id: 30, src: '/a (5).jpg', category: 'MODELS', title: 'White Blazer Sports Car Shoot' },
   { id: 31, src: '/a (6).jpg', category: 'MODELS', title: 'Woven Clutch Bag Lookbook' },
+  { id: 32, src: '/Q.png', category: 'MODELS', title: 'Ivory Tailored Suit Lookbook' },
+  { id: 33, src: '/W.png', category: 'MODELS', title: 'Brutalist Architecture Fashion' },
+  { id: 34, src: '/E.jpeg', category: 'MODELS', title: 'Monochrome Stiletto Editorial' },
+  { id: 35, src: '/R.PNG', category: 'MODELS', title: 'La Bella Retinol Beauty Model' },
 
   // PRODUCTS (10 pure cosmetic bottles, serums, watches, headphones, handbags, and packaging)
-  { id: 32, src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', category: 'PRODUCTS', title: 'Sayeah Lip Gloss Tubes' },
-  { id: 33, src: '/408471063_1784275816512842~2.jpeg', category: 'PRODUCTS', title: 'Quilted Leather Handbag' },
-  { id: 34, src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Dior Lip Gloss Staging' },
-  { id: 35, src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Studio Over-Ear Headphones' },
-  { id: 36, src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Steel Chronograph Timepiece' },
-  { id: 37, src: '/Ultraphotorealistic_commercial_product_2k_20.jpeg', category: 'PRODUCTS', title: 'Aurum Hydrating Serum 30ml' },
-  { id: 38, src: '/a (2).jpeg', category: 'PRODUCTS', title: 'Aurum Frosted Dropper Bottle' },
-  { id: 39, src: '/a (3).jpeg', category: 'PRODUCTS', title: 'VitaGreen Supergreens Canister' },
-  { id: 40, src: '/a (4).jpeg', category: 'PRODUCTS', title: 'Sternhart Leather Strap Watch' },
-  { id: 41, src: '/a (6).jpeg', category: 'PRODUCTS', title: 'Citrus Glow Cold-Press Juice' }
+  { id: 36, src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', category: 'PRODUCTS', title: 'Sayeah Lip Gloss Tubes' },
+  { id: 37, src: '/408471063_1784275816512842~2.jpeg', category: 'PRODUCTS', title: 'Quilted Leather Handbag' },
+  { id: 38, src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Dior Lip Gloss Staging' },
+  { id: 39, src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Studio Over-Ear Headphones' },
+  { id: 40, src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Steel Chronograph Timepiece' },
+  { id: 41, src: '/Ultraphotorealistic_commercial_product_2k_20.jpeg', category: 'PRODUCTS', title: 'Aurum Hydrating Serum 30ml' },
+  { id: 42, src: '/a (2).jpeg', category: 'PRODUCTS', title: 'Aurum Frosted Dropper Bottle' },
+  { id: 43, src: '/a (3).jpeg', category: 'PRODUCTS', title: 'VitaGreen Supergreens Canister' },
+  { id: 44, src: '/a (4).jpeg', category: 'PRODUCTS', title: 'Sternhart Leather Strap Watch' },
+  { id: 45, src: '/a (6).jpeg', category: 'PRODUCTS', title: 'Citrus Glow Cold-Press Juice' }
 ];
 
 // 8 curated vertical video showcase items
