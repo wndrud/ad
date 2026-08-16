@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import './MobileApp.css';
 
 // All 41 original client images precisely categorized with clean titles
@@ -48,6 +48,40 @@ const allOriginalImages = [
   { id: 39, src: '/a (3).jpeg', category: 'PRODUCTS', title: 'VitaGreen Supergreens Canister' },
   { id: 40, src: '/a (4).jpeg', category: 'PRODUCTS', title: 'Sternhart Leather Strap Watch' },
   { id: 41, src: '/a (6).jpeg', category: 'PRODUCTS', title: 'Citrus Glow Cold-Press Juice' }
+];
+
+// 5 curated vertical video showcase items
+const portfolioVideos = [
+  {
+    id: 1,
+    src: '/sun_block.mp4',
+    title: 'Sun Block Campaign',
+    tag: 'BEAUTY & SKINCARE'
+  },
+  {
+    id: 2,
+    src: '/Orvelle_Project.mp4',
+    title: 'Orvelle Project',
+    tag: 'LUXURY EDITORIAL'
+  },
+  {
+    id: 3,
+    src: '/Motors_Test_Project.mp4',
+    title: 'Motors Test Project',
+    tag: 'AUTOMOTIVE CGI'
+  },
+  {
+    id: 4,
+    src: '/hf_20260702_185634_cbb4702d-c436-45dc-bcf9-6f441d464ca4.mp4',
+    title: 'AI Fashion Film',
+    tag: 'HAUTE COUTURE'
+  },
+  {
+    id: 5,
+    src: '/B.mp4',
+    title: 'B Project Commercial',
+    tag: 'BRAND PERFORMANCE'
+  }
 ];
 
 const differentiatorsData = [
@@ -286,6 +320,19 @@ const MobileApp = () => {
 
   // Lightbox Modal State
   const [activeModalIdx, setActiveModalIdx] = useState(null);
+
+  // Vertical Video Reel State
+  const [activeVideoIdx, setActiveVideoIdx] = useState(0);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const videoSliderRef = useRef(null);
+  const reelTouchStartX = useRef(null);
+
+  const handlePrevVideo = () => {
+    setActiveVideoIdx((prev) => (prev - 1 + portfolioVideos.length) % portfolioVideos.length);
+  };
+  const handleNextVideo = () => {
+    setActiveVideoIdx((prev) => (prev + 1) % portfolioVideos.length);
+  };
 
   // Form State (without phone field)
   const [formData, setFormData] = useState({
@@ -763,6 +810,104 @@ ${formData.message || 'No additional notes provided.'}
           <p className="collab-banner-text">
             Visual works created by AI Creators in official partnership with VERARVO.
           </p>
+        </div>
+
+        {/* Vertical Video Showcase (9:16 Portrait Reel Slider) */}
+        <div className="vertical-video-showcase-wrap">
+          <div className="video-showcase-header">
+            <div className="sec-tag-row" style={{ justifyContent: 'center' }}>
+              <span className="yellow-dash" />
+              <span className="sec-tag-text">AI VIDEO SHOWCASE</span>
+            </div>
+            <h3 className="video-showcase-title">
+              VERTICAL CINEMATIC <em className="text-yellow-italic">REELS</em>
+            </h3>
+          </div>
+
+          <div 
+            className="vertical-reel-stage"
+            onTouchStart={(e) => {
+              if (e.touches && e.touches.length === 1) {
+                reelTouchStartX.current = e.touches[0].clientX;
+              }
+            }}
+            onTouchEnd={(e) => {
+              if (reelTouchStartX.current !== null && e.changedTouches && e.changedTouches.length === 1) {
+                const deltaX = e.changedTouches[0].clientX - reelTouchStartX.current;
+                if (deltaX > 40) handlePrevVideo();
+                else if (deltaX < -40) handleNextVideo();
+              }
+              reelTouchStartX.current = null;
+            }}
+          >
+            {/* Prev Video Button */}
+            <button 
+              className="reel-arrow-btn prev-btn" 
+              onClick={handlePrevVideo} 
+              aria-label="Previous Video"
+            >
+              <ChevronLeft size={22} />
+            </button>
+
+            {/* Video Player Card */}
+            <div className="reel-video-card">
+              <video
+                ref={videoSliderRef}
+                key={portfolioVideos[activeVideoIdx].src}
+                src={portfolioVideos[activeVideoIdx].src}
+                playsInline
+                autoPlay
+                loop
+                muted={isVideoMuted}
+                className="reel-video-media"
+              />
+
+              {/* Video Top Floating Bar */}
+              <div className="reel-card-top-bar">
+                <span className="reel-card-tag">{portfolioVideos[activeVideoIdx].tag}</span>
+                <div className="reel-top-right-group">
+                  <span className="reel-counter-badge">{activeVideoIdx + 1} / {portfolioVideos.length}</span>
+                  <button 
+                    className="reel-sound-toggle-btn"
+                    onClick={() => setIsVideoMuted(prev => !prev)}
+                    aria-label={isVideoMuted ? "Unmute" : "Mute"}
+                  >
+                    {isVideoMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Video Bottom Floating Title */}
+              <div className="reel-card-bottom-bar">
+                <h4 className="reel-card-title">{portfolioVideos[activeVideoIdx].title}</h4>
+                <div className="reel-brand-row">
+                  <Sparkles size={13} className="text-yellow" />
+                  <span>AI COMMERCIAL PRODUCTION</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Next Video Button */}
+            <button 
+              className="reel-arrow-btn next-btn" 
+              onClick={handleNextVideo} 
+              aria-label="Next Video"
+            >
+              <ChevronRight size={22} />
+            </button>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="reel-dots-row">
+            {portfolioVideos.map((_, i) => (
+              <button
+                key={i}
+                className={`reel-dot-btn ${activeVideoIdx === i ? 'active' : ''}`}
+                onClick={() => setActiveVideoIdx(i)}
+                aria-label={`Go to video ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
