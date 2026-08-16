@@ -324,6 +324,7 @@ const MobileApp = () => {
   // Vertical Video Reel State
   const [activeVideoIdx, setActiveVideoIdx] = useState(0);
   const videoRefs = useRef([]);
+  const reelContainerRef = useRef(null);
   const reelTouchStartX = useRef(null);
 
   const handlePrevVideo = () => {
@@ -333,17 +334,66 @@ const MobileApp = () => {
     setActiveVideoIdx((prev) => (prev + 1) % portfolioVideos.length);
   };
 
-  // Instant smooth video playback on slide switch
+  // Robust Vertical Video Autoplay & Intersection Engine (Instant smooth play on scroll & slide)
   useEffect(() => {
-    videoRefs.current.forEach((vid, idx) => {
+    // 1. Explicitly initialize all videos with required mobile attributes
+    videoRefs.current.forEach((vid) => {
       if (!vid) return;
-      if (idx === activeVideoIdx) {
-        vid.currentTime = 0;
-        vid.play().catch(() => {});
-      } else {
-        vid.pause();
-      }
+      vid.muted = true;
+      vid.defaultMuted = true;
+      vid.playsInline = true;
+      vid.setAttribute('playsinline', 'true');
+      vid.setAttribute('webkit-playsinline', 'true');
+      vid.setAttribute('autoplay', 'true');
+      vid.setAttribute('muted', 'true');
+      vid.setAttribute('loop', 'true');
     });
+
+    const playActive = () => {
+      const activeVid = videoRefs.current[activeVideoIdx];
+      if (activeVid) {
+        activeVid.muted = true;
+        if (activeVid.paused || activeVid.ended) {
+          const p = activeVid.play();
+          if (p !== undefined) p.catch(() => {});
+        }
+      }
+      videoRefs.current.forEach((vid, idx) => {
+        if (vid && idx !== activeVideoIdx) {
+          vid.pause();
+        }
+      });
+    };
+
+    // Immediate attempt to play active video
+    playActive();
+
+    // 2. IntersectionObserver to play active video immediately when scrolled into view
+    const container = reelContainerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          playActive();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(container);
+
+    // 3. User interaction kickstart (unlocks video autoplay policy on touch or scroll)
+    const handleFirstInteraction = () => {
+      playActive();
+    };
+    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
   }, [activeVideoIdx]);
 
   // Form State (without phone field)
@@ -825,7 +875,7 @@ ${formData.message || 'No additional notes provided.'}
         </div>
 
         {/* Vertical Video Showcase */}
-        <div className="vertical-video-showcase-wrap">
+        <div ref={reelContainerRef} className="vertical-video-showcase-wrap">
           <div className="video-showcase-header">
             <div className="sec-tag-row" style={{ justifyContent: 'center' }}>
               <span className="yellow-dash" />

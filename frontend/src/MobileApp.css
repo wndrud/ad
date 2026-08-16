@@ -58,16 +58,22 @@ input, textarea, select {
   user-select: text !important;
 }
 
-/* Force hide all default mobile browser video play icons */
-video::-webkit-media-controls {
+/* Force hide all default mobile browser video play icons, overlays and buttons */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-panel {
   display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
-video::-webkit-media-controls-start-playback-button {
-  display: none !important;
-  -webkit-appearance: none;
-}
-video::-webkit-media-controls-play-button {
-  display: none !important;
+
+video {
+  pointer-events: none;
 }
 
 /* Utility Classes */
