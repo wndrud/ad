@@ -880,11 +880,6 @@ ${formData.message || 'No additional notes provided.'}
                       className="reel-video-media"
                     />
 
-                    {/* Top Tag on Video */}
-                    <div className="reel-card-top-bar">
-                      <span className="reel-card-tag">{vid.tag}</span>
-                    </div>
-
                     {/* Bottom Title on Video */}
                     <div className="reel-card-bottom-bar">
                       <h4 className="reel-card-title">{vid.title}</h4>
