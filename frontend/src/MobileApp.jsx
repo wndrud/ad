@@ -304,11 +304,13 @@ const MobileApp = () => {
   useEffect(() => {
     const handleGesture = (e) => {
       e.preventDefault();
+      e.stopPropagation();
     };
 
     const handleMultiTouch = (e) => {
       if (e.touches && e.touches.length > 1) {
         e.preventDefault();
+        e.stopPropagation();
       }
     };
 
@@ -319,6 +321,7 @@ const MobileApp = () => {
         const target = e.target;
         if (!target || (!target.matches('input, textarea, select, button, a') && !target.closest('input, textarea, select, button, a'))) {
           e.preventDefault();
+          e.stopPropagation();
         }
       }
       lastTouchEnd = now;
@@ -330,23 +333,27 @@ const MobileApp = () => {
       }
     };
 
-    // Attach with { passive: false } to allow preventDefault
-    window.addEventListener('gesturestart', handleGesture, { passive: false });
-    window.addEventListener('gesturechange', handleGesture, { passive: false });
-    window.addEventListener('gestureend', handleGesture, { passive: false });
-    window.addEventListener('touchstart', handleMultiTouch, { passive: false });
-    window.addEventListener('touchmove', handleMultiTouch, { passive: false });
-    window.addEventListener('touchend', handleTouchEnd, { passive: false });
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    // Attach to document and window in capturing phase with { passive: false, capture: true }
+    const evts = [
+      ['gesturestart', handleGesture],
+      ['gesturechange', handleGesture],
+      ['gestureend', handleGesture],
+      ['touchstart', handleMultiTouch],
+      ['touchmove', handleMultiTouch],
+      ['touchend', handleTouchEnd],
+      ['wheel', handleWheel]
+    ];
+
+    evts.forEach(([evt, handler]) => {
+      document.addEventListener(evt, handler, { passive: false, capture: true });
+      window.addEventListener(evt, handler, { passive: false, capture: true });
+    });
 
     return () => {
-      window.removeEventListener('gesturestart', handleGesture);
-      window.removeEventListener('gesturechange', handleGesture);
-      window.removeEventListener('gestureend', handleGesture);
-      window.removeEventListener('touchstart', handleMultiTouch);
-      window.removeEventListener('touchmove', handleMultiTouch);
-      window.removeEventListener('touchend', handleTouchEnd);
-      window.removeEventListener('wheel', handleWheel);
+      evts.forEach(([evt, handler]) => {
+        document.removeEventListener(evt, handler, { capture: true });
+        window.removeEventListener(evt, handler, { capture: true });
+      });
     };
   }, []);
 

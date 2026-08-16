@@ -13,38 +13,55 @@
       (function() {
         if (typeof window === 'undefined') return;
         
-        // 1. Block Safari gesture zoom
-        window.addEventListener('gesturestart', function(e) { e.preventDefault(); }, { passive: false });
-        window.addEventListener('gesturechange', function(e) { e.preventDefault(); }, { passive: false });
-        window.addEventListener('gestureend', function(e) { e.preventDefault(); }, { passive: false });
-
-        // 2. Block 2+ finger pinch zoom
-        window.addEventListener('touchstart', function(e) {
+        function blockPinch(e) {
           if (e.touches && e.touches.length > 1) {
             e.preventDefault();
+            e.stopPropagation();
+            return false;
           }
-        }, { passive: false });
+        }
 
-        window.addEventListener('touchmove', function(e) {
-          if (e.touches && e.touches.length > 1) {
-            e.preventDefault();
+        function blockGesture(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+
+        // Intercept at CAPTURING phase so child elements cannot trigger browser native zoom
+        ['touchstart', 'touchmove'].forEach(function(evt) {
+          document.addEventListener(evt, blockPinch, { passive: false, capture: true });
+          window.addEventListener(evt, blockPinch, { passive: false, capture: true });
+          if (document.documentElement) {
+            document.documentElement.addEventListener(evt, blockPinch, { passive: false, capture: true });
           }
-        }, { passive: false });
+        });
 
-        // 3. Block double-tap to zoom
+        ['gesturestart', 'gesturechange', 'gestureend'].forEach(function(evt) {
+          document.addEventListener(evt, blockGesture, { passive: false, capture: true });
+          window.addEventListener(evt, blockGesture, { passive: false, capture: true });
+          if (document.documentElement) {
+            document.documentElement.addEventListener(evt, blockGesture, { passive: false, capture: true });
+          }
+        });
+
+        // Block double-tap to zoom
         var lastTouchEnd = 0;
-        window.addEventListener('touchend', function(e) {
+        function blockDoubleTap(e) {
           var now = Date.now();
           if (now - lastTouchEnd <= 300) {
             var target = e.target;
             if (!target || (!target.matches('input, textarea, select, button, a') && !target.closest('input, textarea, select, button, a'))) {
               e.preventDefault();
+              e.stopPropagation();
             }
           }
           lastTouchEnd = now;
-        }, { passive: false });
+        }
 
-        // 4. Block desktop trackpad ctrl+wheel pinch zoom
+        document.addEventListener('touchend', blockDoubleTap, { passive: false, capture: true });
+        window.addEventListener('touchend', blockDoubleTap, { passive: false, capture: true });
+
+        // Block desktop trackpad ctrl+wheel pinch zoom
         window.addEventListener('wheel', function(e) {
           if (e.ctrlKey) {
             e.preventDefault();

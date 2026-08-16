@@ -23,9 +23,12 @@
 
 /* Base Setup */
 html, body {
-  touch-action: pan-x pan-y;
+  touch-action: pan-y !important;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .mobile-app-root {
@@ -37,15 +40,16 @@ html, body {
   overflow-x: hidden;
   position: relative;
   box-sizing: border-box;
-  touch-action: pan-x pan-y;
+  touch-action: pan-y !important;
   -webkit-text-size-adjust: 100%;
+  -webkit-touch-callout: none;
 }
 
 .mobile-app-root *,
 .mobile-app-root *::before,
 .mobile-app-root *::after {
   box-sizing: border-box;
-  touch-action: pan-x pan-y;
+  touch-action: pan-y !important;
 }
 
 input, textarea, select {
@@ -463,12 +467,20 @@ video::-webkit-media-controls-play-button {
   border-bottom: 1px solid var(--border-subtle);
   position: relative;
   z-index: 20;
+  touch-action: pan-y !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 .stat-row-item {
   padding: 36px 24px;
   border-bottom: 1px solid var(--border-subtle);
   background: var(--card-surface);
+  touch-action: pan-y !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 .stat-row-item:last-child {
@@ -482,6 +494,10 @@ video::-webkit-media-controls-play-button {
   font-weight: 900;
   color: var(--yellow);
   display: block;
+  touch-action: pan-y !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 .stat-desc-p {
@@ -490,6 +506,10 @@ video::-webkit-media-controls-play-button {
   margin: 10px 0 0 0;
   line-height: 1.5;
   font-weight: 300;
+  touch-action: pan-y !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 /* ==========================================================================
