@@ -2,298 +2,52 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import './MobileApp.css';
 
-// All 41 original client images precisely categorized with accurate, concise descriptions
+// All 41 original client images precisely categorized with clean titles
 const allOriginalImages = [
   // MODELS (31 pure fashion models, lookbooks, beauty portraits, and apparel wearers)
-  { 
-    id: 1, 
-    src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', 
-    category: 'MODELS', 
-    title: 'White Lace Corset Editorial', 
-    desc: '고급스러운 화이트 레이스 코르셋과 가든 스튜디오 룩북 연출' 
-  },
-  { 
-    id: 2, 
-    src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', 
-    category: 'MODELS', 
-    title: 'Dessert & Lip Gloss Beauty', 
-    desc: '글로시 립 메이크업과 딸기 디저트가 어우러진 감각적인 뷰티 컷' 
-  },
-  { 
-    id: 3, 
-    src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', 
-    category: 'MODELS', 
-    title: 'Floral Blouse Studio Portrait', 
-    desc: '섬세한 자수 블라우스와 차분한 스튜디오 조명의 아시안 모델 포트레이트' 
-  },
-  { 
-    id: 4, 
-    src: '/DECD6E41-38D0-4BB6-A9D4-7847BA2F0705.jpg', 
-    category: 'MODELS', 
-    title: 'Platinum Gold Jewelry Editorial', 
-    desc: '플래티넘 헤어와 볼드 골드 주얼리가 돋보이는 하이패션 화보' 
-  },
-  { 
-    id: 5, 
-    src: '/11FA9EAF-0D4F-4BEE-9670-4F2473094321.jpg', 
-    category: 'MODELS', 
-    title: 'Silk Lingerie Bedroom Shoot', 
-    desc: '버건디 실크 새틴 란제리와 아늑한 침실 무드의 패션 룩북' 
-  },
-  { 
-    id: 6, 
-    src: '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg', 
-    category: 'MODELS', 
-    title: 'Night Rider Biker Campaign', 
-    desc: '야간 주유소 배경의 라이더 헬멧과 애슬레틱 바이커 패션 캠페인' 
-  },
-  { 
-    id: 7, 
-    src: '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg', 
-    category: 'MODELS', 
-    title: 'Satin Lingerie Close-up', 
-    desc: '버건디 새틴 란제리 클로즈업과 자연스러운 포즈 연출' 
-  },
-  { 
-    id: 8, 
-    src: '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg', 
-    category: 'MODELS', 
-    title: 'Botanical Foliage High Fashion', 
-    desc: '어두운 열대 식물 속 플로럴 코르셋 드레스의 신비로운 하이패션 컷' 
-  },
-  { 
-    id: 9, 
-    src: '/549789471_1784276133887554~2.jpeg', 
-    category: 'MODELS', 
-    title: 'Classic Black Sunglasses Shoot', 
-    desc: '오버사이즈 블랙 선글라스와 가죽 자켓의 시크한 스트리트 무드' 
-  },
-  { 
-    id: 10, 
-    src: '/IMG_5315.jpeg', 
-    category: 'MODELS', 
-    title: 'Beige Suede Suit Lookbook', 
-    desc: '골든아워 자연광 속 베이지 스웨이드 테일러드 수트 패션 화보' 
-  },
-  { 
-    id: 11, 
-    src: '/IMG_5329.jpeg', 
-    category: 'MODELS', 
-    title: 'Couture Ruffle Collar Editorial', 
-    desc: '노을빛 하늘 아래 아방가르드 러플 칼라 자켓의 쿠튀르 에디토리얼' 
-  },
-  { 
-    id: 12, 
-    src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', 
-    category: 'MODELS', 
-    title: 'Framova Luxury Perfume Model', 
-    desc: '프라모바 럭셔리 향수를 든 모델과 물결 파동 조명 연출' 
-  },
-  { 
-    id: 13, 
-    src: '/file_000000002ad881f4b02295613fc8c996~2.png', 
-    category: 'MODELS', 
-    title: 'Moisturizing Cream Beauty Shoot', 
-    desc: '뺨 위에 수분 크림을 얹은 레드헤어 뷰티 모델의 광채 피부 컷' 
-  },
-  { 
-    id: 14, 
-    src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', 
-    category: 'MODELS', 
-    title: 'Winking Lipstick Beauty Model', 
-    desc: '립스틱을 들고 상큼하게 윙크하는 아시안 뷰티 모델 화보' 
-  },
-  { 
-    id: 15, 
-    src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', 
-    category: 'MODELS', 
-    title: 'Calvin Klein Underwear Shoot', 
-    desc: '캘빈클라인 언더웨어를 착용한 탄탄한 남성 모델 스튜디오 컷' 
-  },
-  { 
-    id: 16, 
-    src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', 
-    category: 'MODELS', 
-    title: 'Glasses & Tie Lip Gloss Model', 
-    desc: '안경과 넥타이 셔츠에 립글로스를 바르는 스마트한 긱시크 룩' 
-  },
-  { 
-    id: 17, 
-    src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', 
-    category: 'MODELS', 
-    title: 'Windblown Blonde Beauty Portrait', 
-    desc: '바람에 흩날리는 금발과 투명한 피부톤의 내추럴 뷰티 포트레이트' 
-  },
-  { 
-    id: 18, 
-    src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', 
-    category: 'MODELS', 
-    title: 'Calvin Klein Athletic Model', 
-    desc: '콘크리트 스튜디오 벽면 배경의 캘빈클라인 남성 언더웨어 컷' 
-  },
-  { 
-    id: 19, 
-    src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', 
-    category: 'MODELS', 
-    title: 'Tropical Palm Leaf Beauty', 
-    desc: '트로피컬 야자 잎사귀 사이로 보이는 은은한 조명의 뷰티 인물 컷' 
-  },
-  { 
-    id: 20, 
-    src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', 
-    category: 'MODELS', 
-    title: 'Rhode Skincare Commercial Model', 
-    desc: '로디 무드의 핑크 스킨케어 튜브를 얼굴에 댄 맑은 피부 뷰티 컷' 
-  },
-  { 
-    id: 21, 
-    src: '/IMG_9116.JPG', 
-    category: 'MODELS', 
-    title: 'Lumiere Face Cream Model', 
-    desc: '루미에르 페이셜 크림 튜브와 어우러진 레드헤어 뷰티 모델' 
-  },
-  { 
-    id: 22, 
-    src: '/IMG_9117.JPG', 
-    category: 'MODELS', 
-    title: 'Water Splash Face Cleansing', 
-    desc: '생생한 물보라 스플래시와 함께 세안하는 역동적인 클렌징 컷' 
-  },
-  { 
-    id: 23, 
-    src: '/IMG_9296.PNG', 
-    category: 'MODELS', 
-    title: 'Jo&Co Body Scrub Model', 
-    desc: '조앤코 솔트 바디스크럽 제품을 든 모델의 자연스러운 미소' 
-  },
-  { 
-    id: 24, 
-    src: '/IMG_9300.PNG', 
-    category: 'MODELS', 
-    title: 'Lavender Mousse Skincare Model', 
-    desc: '라벤더 무스 수분크림 단지를 들고 은은하게 미소 짓는 모델 컷' 
-  },
-  { 
-    id: 25, 
-    src: '/a (1).jpg', 
-    category: 'MODELS', 
-    title: 'Sayeah Lip Glaze Application', 
-    desc: '사예 립글레이즈 팁을 입술에 바르는 정밀 뷰티 클로즈업' 
-  },
-  { 
-    id: 26, 
-    src: '/a (2).jpg', 
-    category: 'MODELS', 
-    title: 'Stiletto Heels & Luxury Car', 
-    desc: '화이트 블레이저와 스틸레토 힐을 착용하고 차량에 기댄 패션 컷' 
-  },
-  { 
-    id: 27, 
-    src: '/a (3).jpg', 
-    category: 'MODELS', 
-    title: 'Grand Staircase Couture Gown', 
-    desc: '고전 대리석 계단을 배경으로 한 웅장한 화이트 쿠튀르 드레스 컷' 
-  },
-  { 
-    id: 28, 
-    src: '/a (4).jpg', 
-    category: 'MODELS', 
-    title: 'Diamond Jewelry Beauty Model', 
-    desc: '다이아몬드 반지와 파인 주얼리가 얼굴 선을 따라 빛나는 뷰티 컷' 
-  },
-  { 
-    id: 29, 
-    src: '/a (5).jpeg', 
-    category: 'MODELS', 
-    title: 'Architectural White Gown Shoot', 
-    desc: '입체적 조형미의 화이트 드레스와 골드 이어링 하이패션 화보' 
-  },
-  { 
-    id: 30, 
-    src: '/a (5).jpg', 
-    category: 'MODELS', 
-    title: 'White Blazer Sports Car Shoot', 
-    desc: '화이트 블레이저 룩으로 스포츠카 보닛 위에 누운 자유로운 무드' 
-  },
-  { 
-    id: 31, 
-    src: '/a (6).jpg', 
-    category: 'MODELS', 
-    title: 'Woven Clutch Bag Lookbook', 
-    desc: '아이보리 블레이저와 럭셔리 위빙 가죽 클러치백 패션 룩북' 
-  },
+  { id: 1, src: '/A8DD8087-519E-4CA5-B6E5-AECAFAF27F45.jpg', category: 'MODELS', title: 'White Lace Corset Editorial' },
+  { id: 2, src: '/ABB17C8A-BF95-4E2B-91A3-A918FEF7939C.jpg', category: 'MODELS', title: 'Dessert & Lip Gloss Beauty' },
+  { id: 3, src: '/BAAACB6B-AEFE-4CF0-AC98-9135BA541349.jpg', category: 'MODELS', title: 'Floral Blouse Studio Portrait' },
+  { id: 4, src: '/DECD6E41-38D0-4BB6-A9D4-7847BA2F0705.jpg', category: 'MODELS', title: 'Platinum Gold Jewelry Editorial' },
+  { id: 5, src: '/11FA9EAF-0D4F-4BEE-9670-4F2473094321.jpg', category: 'MODELS', title: 'Silk Lingerie Bedroom Shoot' },
+  { id: 6, src: '/1BE99603-1471-4391-AA49-90CD31B1F4D6.jpg', category: 'MODELS', title: 'Night Rider Biker Campaign' },
+  { id: 7, src: '/4CBC8E25-E527-4295-A88A-372D67E7FAD0.jpg', category: 'MODELS', title: 'Satin Lingerie Close-up' },
+  { id: 8, src: '/55043724-C253-4C26-A5E7-8C55BCF46DC5.jpg', category: 'MODELS', title: 'Botanical Foliage High Fashion' },
+  { id: 9, src: '/549789471_1784276133887554~2.jpeg', category: 'MODELS', title: 'Classic Black Sunglasses Shoot' },
+  { id: 10, src: '/IMG_5315.jpeg', category: 'MODELS', title: 'Beige Suede Suit Lookbook' },
+  { id: 11, src: '/IMG_5329.jpeg', category: 'MODELS', title: 'Couture Ruffle Collar Editorial' },
+  { id: 12, src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'MODELS', title: 'Framova Luxury Perfume Model' },
+  { id: 13, src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'MODELS', title: 'Moisturizing Cream Beauty Shoot' },
+  { id: 14, src: '/092755CE-0A63-49ED-8180-A30EF8687056.jpg', category: 'MODELS', title: 'Winking Lipstick Beauty Model' },
+  { id: 15, src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'MODELS', title: 'Calvin Klein Underwear Shoot' },
+  { id: 16, src: '/56791D9A-9EEC-402C-85A5-B66F42DA5B85.jpg', category: 'MODELS', title: 'Glasses & Tie Lip Gloss Model' },
+  { id: 17, src: '/578D39E0-5165-49E6-8C7F-DD5AE5D1F1EB.jpg', category: 'MODELS', title: 'Windblown Blonde Beauty Portrait' },
+  { id: 18, src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'MODELS', title: 'Calvin Klein Athletic Model' },
+  { id: 19, src: '/820A046E-0FCF-4996-84F5-A01C5D7B1C46.jpg', category: 'MODELS', title: 'Tropical Palm Leaf Beauty' },
+  { id: 20, src: '/att.TJe27SYxmeMhozHrWA7RvmgV1Bq9CqKOxqnweYZc9Aw.jpg', category: 'MODELS', title: 'Rhode Skincare Commercial Model' },
+  { id: 21, src: '/IMG_9116.JPG', category: 'MODELS', title: 'Lumiere Face Cream Model' },
+  { id: 22, src: '/IMG_9117.JPG', category: 'MODELS', title: 'Water Splash Face Cleansing' },
+  { id: 23, src: '/IMG_9296.PNG', category: 'MODELS', title: 'Jo&Co Body Scrub Model' },
+  { id: 24, src: '/IMG_9300.PNG', category: 'MODELS', title: 'Lavender Mousse Skincare Model' },
+  { id: 25, src: '/a (1).jpg', category: 'MODELS', title: 'Sayeah Lip Glaze Application' },
+  { id: 26, src: '/a (2).jpg', category: 'MODELS', title: 'Stiletto Heels & Luxury Car' },
+  { id: 27, src: '/a (3).jpg', category: 'MODELS', title: 'Grand Staircase Couture Gown' },
+  { id: 28, src: '/a (4).jpg', category: 'MODELS', title: 'Diamond Jewelry Beauty Model' },
+  { id: 29, src: '/a (5).jpeg', category: 'MODELS', title: 'Architectural White Gown Shoot' },
+  { id: 30, src: '/a (5).jpg', category: 'MODELS', title: 'White Blazer Sports Car Shoot' },
+  { id: 31, src: '/a (6).jpg', category: 'MODELS', title: 'Woven Clutch Bag Lookbook' },
 
   // PRODUCTS (10 pure cosmetic bottles, serums, watches, headphones, handbags, and packaging)
-  { 
-    id: 32, 
-    src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', 
-    category: 'PRODUCTS', 
-    title: 'Sayeah Lip Gloss Tubes', 
-    desc: '사예 핑크 립글로스 튜브 세트 플랫레이 상업 제품 컷' 
-  },
-  { 
-    id: 33, 
-    src: '/408471063_1784275816512842~2.jpeg', 
-    category: 'PRODUCTS', 
-    title: 'Quilted Leather Handbag', 
-    desc: '미니멀 콘크리트 포디움 위 퀼팅 베이지 가죽 핸드백 스틸 컷' 
-  },
-  { 
-    id: 34, 
-    src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', 
-    category: 'PRODUCTS', 
-    title: 'Dior Lip Gloss Staging', 
-    desc: '우드 스톤 오브제와 핑크빛 드롭렛이 어우러진 디올 립글로스 연출' 
-  },
-  { 
-    id: 35, 
-    src: '/file_00000000dd5082469b53d340a3770d19.png', 
-    category: 'PRODUCTS', 
-    title: 'Studio Over-Ear Headphones', 
-    desc: '원목 데스크 위에 배치된 매트 블랙 프리미엄 스튜디오 헤드폰' 
-  },
-  { 
-    id: 36, 
-    src: '/file_00000000755c8243957ad3597b01b9a8.png', 
-    category: 'PRODUCTS', 
-    title: 'Steel Chronograph Timepiece', 
-    desc: '블랙 마블 포디움 위의 럭셔리 스테인리스 스틸 크로노그래프 시계' 
-  },
-  { 
-    id: 37, 
-    src: '/Ultraphotorealistic_commercial_product_2k_20.jpeg', 
-    category: 'PRODUCTS', 
-    title: 'Aurum Hydrating Serum 30ml', 
-    desc: '자연광이 비치는 마블 위의 오룸 에센셜 30ml 수분 앰플 세럼 병' 
-  },
-  { 
-    id: 38, 
-    src: '/a (2).jpeg', 
-    category: 'PRODUCTS', 
-    title: 'Aurum Frosted Dropper Bottle', 
-    desc: '자연석 받침대 위의 오룸 앰버 프로스테드 글래스 스포이드 병' 
-  },
-  { 
-    id: 39, 
-    src: '/a (3).jpeg', 
-    category: 'PRODUCTS', 
-    title: 'VitaGreen Supergreens Canister', 
-    desc: '신선한 허브와 함께 연출된 비타그린 데일리 슈퍼그린스 영양제 패키지' 
-  },
-  { 
-    id: 40, 
-    src: '/a (4).jpeg', 
-    category: 'PRODUCTS', 
-    title: 'Sternhart Leather Strap Watch', 
-    desc: '브라운 악어가죽 스트랩의 슈테른하르트 클래식 오토매틱 타임피스' 
-  },
-  { 
-    id: 41, 
-    src: '/a (6).jpeg', 
-    category: 'PRODUCTS', 
-    title: 'Citrus Glow Cold-Press Juice', 
-    desc: '생오렌지와 레몬 슬라이스로 상큼함을 더한 시트러스 글로우 착즙 주스' 
-  }
+  { id: 32, src: '/AD883D9D-13DD-400C-BB18-FEB80F173E07.jpg', category: 'PRODUCTS', title: 'Sayeah Lip Gloss Tubes' },
+  { id: 33, src: '/408471063_1784275816512842~2.jpeg', category: 'PRODUCTS', title: 'Quilted Leather Handbag' },
+  { id: 34, src: '/pale_blush_pink_seamless_202605201550_1_Original.JPG', category: 'PRODUCTS', title: 'Dior Lip Gloss Staging' },
+  { id: 35, src: '/file_00000000dd5082469b53d340a3770d19.png', category: 'PRODUCTS', title: 'Studio Over-Ear Headphones' },
+  { id: 36, src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Steel Chronograph Timepiece' },
+  { id: 37, src: '/Ultraphotorealistic_commercial_product_2k_20.jpeg', category: 'PRODUCTS', title: 'Aurum Hydrating Serum 30ml' },
+  { id: 38, src: '/a (2).jpeg', category: 'PRODUCTS', title: 'Aurum Frosted Dropper Bottle' },
+  { id: 39, src: '/a (3).jpeg', category: 'PRODUCTS', title: 'VitaGreen Supergreens Canister' },
+  { id: 40, src: '/a (4).jpeg', category: 'PRODUCTS', title: 'Sternhart Leather Strap Watch' },
+  { id: 41, src: '/a (6).jpeg', category: 'PRODUCTS', title: 'Citrus Glow Cold-Press Juice' }
 ];
 
 const differentiatorsData = [
@@ -1042,12 +796,9 @@ ${formData.message || 'No additional notes provided.'}
               </button>
             </div>
 
-            {/* Modal Footer with Title, Description, and Creator Collaboration Caption */}
+            {/* Modal Footer with Creator Collaboration Caption */}
             <div className="lightbox-footer-info">
               <h3 className="lightbox-img-title">{allOriginalImages[activeModalIdx].title}</h3>
-              {allOriginalImages[activeModalIdx].desc && (
-                <p className="lightbox-img-desc">{allOriginalImages[activeModalIdx].desc}</p>
-              )}
               <div className="lightbox-creator-tag">
                 <Sparkles size={14} className="text-yellow" />
                 <p className="lightbox-creator-p">
