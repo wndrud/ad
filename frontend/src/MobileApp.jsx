@@ -840,13 +840,13 @@ ${formData.message || 'No additional notes provided.'}
               reelTouchStartX.current = null;
             }}
           >
-            {/* Prev Video Button */}
+            {/* Left Prev Arrow Button */}
             <button 
               className="reel-arrow-btn prev-btn" 
               onClick={handlePrevVideo} 
               aria-label="Previous Video"
             >
-              <ChevronLeft size={22} />
+              <ChevronLeft size={24} />
             </button>
 
             {/* Video Player Card */}
@@ -858,23 +858,13 @@ ${formData.message || 'No additional notes provided.'}
                 playsInline
                 autoPlay
                 loop
-                muted={isVideoMuted}
+                muted
                 className="reel-video-media"
               />
 
-              {/* Video Top Floating Bar */}
+              {/* Video Top Floating Tag */}
               <div className="reel-card-top-bar">
                 <span className="reel-card-tag">{portfolioVideos[activeVideoIdx].tag}</span>
-                <div className="reel-top-right-group">
-                  <span className="reel-counter-badge">{activeVideoIdx + 1} / {portfolioVideos.length}</span>
-                  <button 
-                    className="reel-sound-toggle-btn"
-                    onClick={() => setIsVideoMuted(prev => !prev)}
-                    aria-label={isVideoMuted ? "Unmute" : "Mute"}
-                  >
-                    {isVideoMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-                  </button>
-                </div>
               </div>
 
               {/* Video Bottom Floating Title */}
@@ -887,26 +877,14 @@ ${formData.message || 'No additional notes provided.'}
               </div>
             </div>
 
-            {/* Next Video Button */}
+            {/* Right Next Arrow Button */}
             <button 
               className="reel-arrow-btn next-btn" 
               onClick={handleNextVideo} 
               aria-label="Next Video"
             >
-              <ChevronRight size={22} />
+              <ChevronRight size={24} />
             </button>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="reel-dots-row">
-            {portfolioVideos.map((_, i) => (
-              <button
-                key={i}
-                className={`reel-dot-btn ${activeVideoIdx === i ? 'active' : ''}`}
-                onClick={() => setActiveVideoIdx(i)}
-                aria-label={`Go to video ${i + 1}`}
-              />
-            ))}
           </div>
         </div>
       </section>
