@@ -323,8 +323,7 @@ const MobileApp = () => {
 
   // Vertical Video Reel State
   const [activeVideoIdx, setActiveVideoIdx] = useState(0);
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
-  const videoSliderRef = useRef(null);
+  const videoRefs = useRef([]);
   const reelTouchStartX = useRef(null);
 
   const handlePrevVideo = () => {
@@ -333,6 +332,19 @@ const MobileApp = () => {
   const handleNextVideo = () => {
     setActiveVideoIdx((prev) => (prev + 1) % portfolioVideos.length);
   };
+
+  // Instant smooth video playback on slide switch
+  useEffect(() => {
+    videoRefs.current.forEach((vid, idx) => {
+      if (!vid) return;
+      if (idx === activeVideoIdx) {
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      } else {
+        vid.pause();
+      }
+    });
+  }, [activeVideoIdx]);
 
   // Form State (without phone field)
   const [formData, setFormData] = useState({
@@ -812,7 +824,7 @@ ${formData.message || 'No additional notes provided.'}
           </p>
         </div>
 
-        {/* Vertical Video Showcase (9:16 Portrait Reel Slider) */}
+        {/* Vertical Video Showcase */}
         <div className="vertical-video-showcase-wrap">
           <div className="video-showcase-header">
             <div className="sec-tag-row" style={{ justifyContent: 'center' }}>
@@ -820,12 +832,12 @@ ${formData.message || 'No additional notes provided.'}
               <span className="sec-tag-text">AI VIDEO SHOWCASE</span>
             </div>
             <h3 className="video-showcase-title">
-              VERTICAL CINEMATIC <em className="text-yellow-italic">REELS</em>
+              AI COMMERCIAL <em className="text-yellow-italic">VIDEOS</em>
             </h3>
           </div>
 
           <div 
-            className="vertical-reel-stage"
+            className="vertical-reel-carousel-container"
             onTouchStart={(e) => {
               if (e.touches && e.touches.length === 1) {
                 reelTouchStartX.current = e.touches[0].clientX;
@@ -834,13 +846,13 @@ ${formData.message || 'No additional notes provided.'}
             onTouchEnd={(e) => {
               if (reelTouchStartX.current !== null && e.changedTouches && e.changedTouches.length === 1) {
                 const deltaX = e.changedTouches[0].clientX - reelTouchStartX.current;
-                if (deltaX > 40) handlePrevVideo();
-                else if (deltaX < -40) handleNextVideo();
+                if (deltaX > 35) handlePrevVideo();
+                else if (deltaX < -35) handleNextVideo();
               }
               reelTouchStartX.current = null;
             }}
           >
-            {/* Left Prev Arrow Button */}
+            {/* Far-Left Arrow Button */}
             <button 
               className="reel-arrow-btn prev-btn" 
               onClick={handlePrevVideo} 
@@ -849,35 +861,44 @@ ${formData.message || 'No additional notes provided.'}
               <ChevronLeft size={24} />
             </button>
 
-            {/* Video Player Card */}
-            <div className="reel-video-card">
-              <video
-                ref={videoSliderRef}
-                key={portfolioVideos[activeVideoIdx].src}
-                src={portfolioVideos[activeVideoIdx].src}
-                playsInline
-                autoPlay
-                loop
-                muted
-                className="reel-video-media"
-              />
+            {/* Video Viewport / Frame */}
+            <div className="reel-video-viewport">
+              <div 
+                className="reel-slider-track"
+                style={{ transform: `translateX(-${activeVideoIdx * 100}%)` }}
+              >
+                {portfolioVideos.map((vid, idx) => (
+                  <div className="reel-slide-item" key={vid.id}>
+                    <video
+                      ref={(el) => (videoRefs.current[idx] = el)}
+                      src={vid.src}
+                      playsInline
+                      autoPlay={idx === 0}
+                      loop
+                      muted
+                      preload="auto"
+                      className="reel-video-media"
+                    />
 
-              {/* Video Top Floating Tag */}
-              <div className="reel-card-top-bar">
-                <span className="reel-card-tag">{portfolioVideos[activeVideoIdx].tag}</span>
-              </div>
+                    {/* Top Tag on Video */}
+                    <div className="reel-card-top-bar">
+                      <span className="reel-card-tag">{vid.tag}</span>
+                    </div>
 
-              {/* Video Bottom Floating Title */}
-              <div className="reel-card-bottom-bar">
-                <h4 className="reel-card-title">{portfolioVideos[activeVideoIdx].title}</h4>
-                <div className="reel-brand-row">
-                  <Sparkles size={13} className="text-yellow" />
-                  <span>AI COMMERCIAL PRODUCTION</span>
-                </div>
+                    {/* Bottom Title on Video */}
+                    <div className="reel-card-bottom-bar">
+                      <h4 className="reel-card-title">{vid.title}</h4>
+                      <div className="reel-brand-row">
+                        <Sparkles size={13} className="text-yellow" />
+                        <span>AI COMMERCIAL PRODUCTION</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Right Next Arrow Button */}
+            {/* Far-Right Arrow Button */}
             <button 
               className="reel-arrow-btn next-btn" 
               onClick={handleNextVideo} 
