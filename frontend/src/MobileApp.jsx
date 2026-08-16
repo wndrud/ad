@@ -84,13 +84,13 @@ const portfolioVideos = [
   },
   {
     id: 6,
-    src: '/12681248_2160_3840_60fps.mp4',
+    src: '/12681248_optimized.mp4',
     title: 'Cinematic Motion Ad',
     tag: 'DYNAMIC PERFORMANCE'
   },
   {
     id: 7,
-    src: '/D.mov',
+    src: '/D.mp4',
     title: 'D Editorial Project',
     tag: 'LUXURY COMMERCIAL'
   },
@@ -947,15 +947,6 @@ ${formData.message || 'No additional notes provided.'}
                       preload="auto"
                       className="reel-video-media"
                     />
-
-                    {/* Bottom Title on Video */}
-                    <div className="reel-card-bottom-bar">
-                      <h4 className="reel-card-title">{vid.title}</h4>
-                      <div className="reel-brand-row">
-                        <Sparkles size={13} className="text-yellow" />
-                        <span>AI COMMERCIAL PRODUCTION</span>
-                      </div>
-                    </div>
                   </div>
                 ))}
               </div>
