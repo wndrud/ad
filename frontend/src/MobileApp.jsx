@@ -50,7 +50,7 @@ const allOriginalImages = [
   { id: 41, src: '/a (6).jpeg', category: 'PRODUCTS', title: 'Citrus Glow Cold-Press Juice' }
 ];
 
-// 5 curated vertical video showcase items
+// 8 curated vertical video showcase items
 const portfolioVideos = [
   {
     id: 1,
@@ -81,6 +81,24 @@ const portfolioVideos = [
     src: '/B.mp4',
     title: 'B Project Commercial',
     tag: 'BRAND PERFORMANCE'
+  },
+  {
+    id: 6,
+    src: '/12681248_2160_3840_60fps.mp4',
+    title: 'Cinematic Motion Ad',
+    tag: 'DYNAMIC PERFORMANCE'
+  },
+  {
+    id: 7,
+    src: '/D.mov',
+    title: 'D Editorial Project',
+    tag: 'LUXURY COMMERCIAL'
+  },
+  {
+    id: 8,
+    src: '/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mp4',
+    title: 'Haute Couture Visuals',
+    tag: 'AVANT-GARDE FASHION'
   }
 ];
 
