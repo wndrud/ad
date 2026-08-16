@@ -826,6 +826,14 @@ video::-webkit-media-controls-play-button {
   line-height: 1.1;
 }
 
+.lightbox-img-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.45;
+  margin: 4px 0 6px 0;
+  font-weight: 400;
+}
+
 .lightbox-creator-tag {
   display: flex;
   align-items: center;

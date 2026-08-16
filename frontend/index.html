@@ -27,7 +27,7 @@
           return false;
         }
 
-        // Intercept at CAPTURING phase so child elements cannot trigger browser native zoom
+        // Intercept ONLY multi-touch (2+ fingers) at CAPTURING phase so single finger taps/clicks work 100%
         ['touchstart', 'touchmove'].forEach(function(evt) {
           document.addEventListener(evt, blockPinch, { passive: false, capture: true });
           window.addEventListener(evt, blockPinch, { passive: false, capture: true });
@@ -43,23 +43,6 @@
             document.documentElement.addEventListener(evt, blockGesture, { passive: false, capture: true });
           }
         });
-
-        // Block double-tap to zoom
-        var lastTouchEnd = 0;
-        function blockDoubleTap(e) {
-          var now = Date.now();
-          if (now - lastTouchEnd <= 300) {
-            var target = e.target;
-            if (!target || (!target.matches('input, textarea, select, button, a') && !target.closest('input, textarea, select, button, a'))) {
-              e.preventDefault();
-              e.stopPropagation();
-            }
-          }
-          lastTouchEnd = now;
-        }
-
-        document.addEventListener('touchend', blockDoubleTap, { passive: false, capture: true });
-        window.addEventListener('touchend', blockDoubleTap, { passive: false, capture: true });
 
         // Block desktop trackpad ctrl+wheel pinch zoom
         window.addEventListener('wheel', function(e) {
