@@ -24,6 +24,9 @@
 /* The default OS cursor is shown to prevent lag, and the custom cursor acts as a smooth trailing follower. */
 html {
   scroll-behavior: smooth;
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .custom-cursor {

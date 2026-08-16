@@ -300,30 +300,53 @@ const MobileApp = () => {
 
   const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
-  // Prevent accidental mobile viewport zooming (gesture zoom & double tap zoom)
+  // Prevent accidental mobile viewport zooming (pinch-to-zoom, gesture zoom & double tap zoom)
   useEffect(() => {
-    const handleGestureStart = (e) => {
+    const handleGesture = (e) => {
       e.preventDefault();
+    };
+
+    const handleMultiTouch = (e) => {
+      if (e.touches && e.touches.length > 1) {
+        e.preventDefault();
+      }
     };
 
     let lastTouchEnd = 0;
     const handleTouchEnd = (e) => {
       const now = Date.now();
       if (now - lastTouchEnd <= 300) {
-        // Prevent double tap zoom on interactive areas
-        if (!e.target.closest('.theme-input, .theme-textarea')) {
+        const target = e.target;
+        if (!target || (!target.matches('input, textarea, select, button, a') && !target.closest('input, textarea, select, button, a'))) {
           e.preventDefault();
         }
       }
       lastTouchEnd = now;
     };
 
-    document.addEventListener('gesturestart', handleGestureStart, { passive: false });
-    document.addEventListener('touchend', handleTouchEnd, { passive: false });
+    const handleWheel = (e) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    };
+
+    // Attach with { passive: false } to allow preventDefault
+    window.addEventListener('gesturestart', handleGesture, { passive: false });
+    window.addEventListener('gesturechange', handleGesture, { passive: false });
+    window.addEventListener('gestureend', handleGesture, { passive: false });
+    window.addEventListener('touchstart', handleMultiTouch, { passive: false });
+    window.addEventListener('touchmove', handleMultiTouch, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: false });
+    window.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
-      document.removeEventListener('gesturestart', handleGestureStart);
-      document.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('gesturestart', handleGesture);
+      window.removeEventListener('gesturechange', handleGesture);
+      window.removeEventListener('gestureend', handleGesture);
+      window.removeEventListener('touchstart', handleMultiTouch);
+      window.removeEventListener('touchmove', handleMultiTouch);
+      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('wheel', handleWheel);
     };
   }, []);
 

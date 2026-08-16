@@ -23,7 +23,7 @@
 
 /* Base Setup */
 html, body {
-  touch-action: manipulation;
+  touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -37,7 +37,7 @@ html, body {
   overflow-x: hidden;
   position: relative;
   box-sizing: border-box;
-  touch-action: manipulation;
+  touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -45,6 +45,13 @@ html, body {
 .mobile-app-root *::before,
 .mobile-app-root *::after {
   box-sizing: border-box;
+  touch-action: pan-x pan-y;
+}
+
+input, textarea, select {
+  touch-action: manipulation;
+  -webkit-user-select: text !important;
+  user-select: text !important;
 }
 
 /* Force hide all default mobile browser video play icons */
