@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Plus, Check, Send, Upload, X, Sparkles } from 'lucide-react';
+import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import './MobileApp.css';
 
 // All 41 original client images precisely categorized into MODELS and PRODUCTS
@@ -284,6 +284,9 @@ const MobileApp = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [visibleCount, setVisibleCount] = useState(10);
 
+  // Lightbox Modal State
+  const [activeModalIdx, setActiveModalIdx] = useState(null);
+
   // Form State (without phone field)
   const [formData, setFormData] = useState({
     name: '',
@@ -296,6 +299,33 @@ const MobileApp = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+
+  // Prevent accidental mobile viewport zooming (gesture zoom & double tap zoom)
+  useEffect(() => {
+    const handleGestureStart = (e) => {
+      e.preventDefault();
+    };
+
+    let lastTouchEnd = 0;
+    const handleTouchEnd = (e) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        // Prevent double tap zoom on interactive areas
+        if (!e.target.closest('.theme-input, .theme-textarea')) {
+          e.preventDefault();
+        }
+      }
+      lastTouchEnd = now;
+    };
+
+    document.addEventListener('gesturestart', handleGestureStart, { passive: false });
+    document.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+    return () => {
+      document.removeEventListener('gesturestart', handleGestureStart);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, []);
 
   // 1. Mobile Video Robust Autoplay & Unconditional Scroll-Up Replay Engine
   useEffect(() => {
@@ -403,6 +433,29 @@ const MobileApp = () => {
     : allOriginalImages.filter(img => img.category === selectedCategory);
 
   const displayedImages = filteredImages.slice(0, visibleCount);
+
+  const handleOpenModal = (imgSrc) => {
+    const idx = allOriginalImages.findIndex(item => item.src === imgSrc);
+    if (idx !== -1) {
+      setActiveModalIdx(idx);
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const handleCloseModal = () => {
+    setActiveModalIdx(null);
+    document.body.style.overflow = '';
+  };
+
+  const handleNextModal = (e) => {
+    e.stopPropagation();
+    setActiveModalIdx((prev) => (prev + 1) % allOriginalImages.length);
+  };
+
+  const handlePrevModal = (e) => {
+    e.stopPropagation();
+    setActiveModalIdx((prev) => (prev - 1 + allOriginalImages.length) % allOriginalImages.length);
+  };
 
   const handleFormCheck = (type) => {
     setFormData(prev => {
@@ -653,12 +706,13 @@ ${formData.message || 'No additional notes provided.'}
           ))}
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid (Click to enlarge) */}
         <div className="gallery-masonry-grid">
           {displayedImages.map((img, idx) => (
             <div 
               key={idx} 
               className={`gallery-grid-item ${idx % 3 === 0 ? 'span-2' : ''}`}
+              onClick={() => handleOpenModal(img.src)}
             >
               <img 
                 src={img.src} 
@@ -669,6 +723,7 @@ ${formData.message || 'No additional notes provided.'}
               <div className="gallery-item-hover">
                 <span className="gallery-cat-badge">{img.category}</span>
                 <h4 className="gallery-item-title">{img.title}</h4>
+                <span className="tap-to-expand">TAP TO VIEW FULLSCREEN ↗</span>
               </div>
             </div>
           ))}
@@ -694,6 +749,50 @@ ${formData.message || 'No additional notes provided.'}
           </p>
         </div>
       </section>
+
+      {/* Lightbox Fullscreen Modal for all 41 images */}
+      {activeModalIdx !== null && (
+        <div className="lightbox-modal-backdrop" onClick={handleCloseModal}>
+          <div className="lightbox-content-box" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Top Bar */}
+            <div className="lightbox-top-bar">
+              <div className="lightbox-badge-row">
+                <span className="modal-cat-tag">{allOriginalImages[activeModalIdx].category}</span>
+                <span className="modal-counter">{activeModalIdx + 1} / {allOriginalImages.length}</span>
+              </div>
+              <button className="btn-modal-close" onClick={handleCloseModal}>
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Enlarged Image Container with Prev/Next Controls */}
+            <div className="lightbox-image-stage">
+              <button className="lightbox-nav-btn prev-btn" onClick={handlePrevModal}>
+                <ChevronLeft size={24} />
+              </button>
+              <img 
+                src={allOriginalImages[activeModalIdx].src} 
+                alt={allOriginalImages[activeModalIdx].title} 
+                className="lightbox-full-img" 
+              />
+              <button className="lightbox-nav-btn next-btn" onClick={handleNextModal}>
+                <ChevronRight size={24} />
+              </button>
+            </div>
+
+            {/* Modal Footer with Creator Collaboration Caption */}
+            <div className="lightbox-footer-info">
+              <h3 className="lightbox-img-title">{allOriginalImages[activeModalIdx].title}</h3>
+              <div className="lightbox-creator-tag">
+                <Sparkles size={14} className="text-yellow" />
+                <p className="lightbox-creator-p">
+                  Created by AI Creators in partnership with VERARVO.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 6. Proven Track Record / Core Production Capabilities (Deep Rich Yellow Band Marquee) */}
       <section className="trusted-brands-section">
