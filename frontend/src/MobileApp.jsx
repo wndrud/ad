@@ -678,8 +678,8 @@ ${formData.message || 'No additional notes provided.'}
   };
 
   return (
-    <div className={`mobile-app-root ${lang === 'KO' ? 'lang-ko' : ''}`}>
-      {/* 1. Slim Fixed Header with Signature VERARVO Italic Serif + Top-Right EN/KR Switcher */}
+    <div className={`mobile-app-root ${lang === 'KO' ? 'lang-ko' : ''} ${lang === 'ZH' ? 'lang-zh' : ''}`}>
+      {/* 1. Slim Fixed Header with Signature VERARVO Italic Serif + Top-Right Multi-Language Switcher */}
       <header className="lathx-header">
         <div className="lathx-header-inner">
           <div className="header-logo-container" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -697,15 +697,17 @@ ${formData.message || 'No additional notes provided.'}
             </span>
           </div>
 
-          {/* Top-Right Luxury Language Selector Dropdown with Flags (🇺🇸 EN, 🇰🇷 KO) */}
+          {/* Top-Right Luxury Language Selector Dropdown with Flags (🇺🇸 EN, 🇰🇷 KO, 🇨🇳 ZH) */}
           <div className="header-lang-wrapper" ref={langMenuRef}>
             <button 
               className="header-lang-btn" 
               onClick={() => setIsLangMenuOpen(prev => !prev)}
               aria-label="Select Language"
             >
-              <span className="lang-flag-icon">{lang === 'KO' ? '🇰🇷' : '🇺🇸'}</span>
-              <span className="current-lang-code">{lang === 'KO' ? 'KO' : 'EN'}</span>
+              <span className="lang-flag-icon">
+                {lang === 'KO' ? '🇰🇷' : lang === 'ZH' ? '🇨🇳' : '🇺🇸'}
+              </span>
+              <span className="current-lang-code">{lang}</span>
               <ChevronDown size={12} className={`lang-arrow ${isLangMenuOpen ? 'open' : ''}`} />
             </button>
 
@@ -713,7 +715,8 @@ ${formData.message || 'No additional notes provided.'}
               <div className="header-lang-dropdown">
                 {[
                   { code: 'EN', flag: '🇺🇸', label: 'English' },
-                  { code: 'KO', flag: '🇰🇷', label: '한국어' }
+                  { code: 'KO', flag: '🇰🇷', label: '한국어' },
+                  { code: 'ZH', flag: '🇨🇳', label: '中文' }
                 ].map(item => (
                   <button
                     key={item.code}

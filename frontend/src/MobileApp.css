@@ -1579,4 +1579,53 @@ video {
   line-height: 1.25;
 }
 
+/* ==========================================================================
+   12. CHINESE LANGUAGE (lang-zh) TYPOGRAPHY POLISH
+   ========================================================================== */
+.mobile-app-root.lang-zh {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.mobile-app-root.lang-zh .hero-main-title {
+  font-size: 2.35rem;
+  line-height: 1.18;
+  letter-spacing: 0.5px;
+}
+
+.mobile-app-root.lang-zh .hero-desc-text {
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.mobile-app-root.lang-zh .sec-title-display {
+  font-size: 1.95rem;
+  line-height: 1.25;
+  letter-spacing: 0.2px;
+}
+
+.mobile-app-root.lang-zh .diff-title-h3 {
+  font-size: 1.12rem;
+  line-height: 1.35;
+  letter-spacing: 0.2px;
+}
+
+.mobile-app-root.lang-zh .diff-desc-p {
+  font-size: 0.84rem;
+  line-height: 1.62;
+}
+
+.mobile-app-root.lang-zh .stat-huge-number {
+  font-size: 2.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.mobile-app-root.lang-zh .cta-huge-title {
+  font-size: 2.05rem;
+  line-height: 1.25;
+}
+
+
 

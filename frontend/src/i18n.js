@@ -382,5 +382,197 @@ export const TRANSLATIONS = {
       contactHead: 'CONTACT',
       rights: '© VERARVO Agency. All rights reserved.'
     }
+  },
+  ZH: {
+    langCode: 'ZH',
+    langName: '中文',
+    hero: {
+      tagline: 'AI 广告与次世代创意代理机构',
+      titleMain: 'VERARVO',
+      titleLine2: '重塑视觉',
+      titleLine3: '超越现实',
+      desc: '融合生成式 AI 顶尖科技与专业电影级导演的艺术把控。3个工作日内交付高转化商业视频、时尚大片及虚拟品牌代言人。',
+      btnProposal: '即刻获取方案',
+      btnPortfolio: '浏览精选作品'
+    },
+    ticker: [
+      'AI 商业广告',
+      '虚拟品牌代言人',
+      '短视频效果广告',
+      '产品 3D 视觉',
+      '电影级品牌大片',
+      '4K 超清制作'
+    ],
+    stats: [
+      {
+        value: 3,
+        prefix: '平均制作 ',
+        suffix: '天',
+        desc: '从初始创意简报到最终 4K 母带交付的平均制作周期。'
+      },
+      {
+        value: 85,
+        prefix: '-',
+        suffix: '%',
+        desc: '相较于传统实体影棚搭建、拍摄团队与设备租赁，大幅缩减平均制作预算。'
+      },
+      {
+        value: 100,
+        suffix: '%',
+        desc: '保证工作室级高质感转化视觉，交付即享 100% 全面商业版权转移。'
+      }
+    ],
+    portfolio: {
+      tag: 'PORTFOLIO',
+      titlePre: 'AI 重塑',
+      titleLine2: '品牌价值的',
+      titleItalic: '全新标准',
+      desc: '探索 VERARVO 精选的 AI 商业摄影、时尚超模大片与产品布景视觉作品库。',
+      categories: {
+        ALL: '全部',
+        MODELS: '模特',
+        PRODUCTS: '产品'
+      },
+      viewMore: '查看更多作品',
+      partnerBanner: '由 VERARVO 官方签约的专业 AI 创作者联合呈现的视觉艺术作品。',
+      tapToExpand: '点击全屏查看 ↗',
+      modalCreatedBy: 'VERARVO 签约 AI 创作者呈现作品。'
+    },
+    videoShowcase: {
+      tag: 'AI 视频展映',
+      titlePre: 'AI 商业',
+      titleItalic: '广告视频'
+    },
+    capabilities: {
+      tag: '核心制作实力',
+      titlePre: '赋能业务增长的',
+      titleLine2: '核心创意',
+      titleItalic: '解决方案',
+      items: [
+        'AI 商业广告制作',
+        '虚拟品牌代言人',
+        '3天极速交付',
+        '高转化短视频广告',
+        '4K 电影级调色',
+        '100% 商业版权交付',
+        '超写实产品 3D 呈现',
+        '专业导演全程把控'
+      ]
+    },
+    differentiators: {
+      tag: 'DIFFERENTIATORS',
+      titleSharp: 'WHY',
+      titleSerif: 'VERARVO?',
+      subtitle: '助您构筑无可替代的品牌核心竞争优势。',
+      items: [
+        {
+          num: '01',
+          rawTitle: '专业导演把控 + AI 敏捷算力',
+          isItem3: false,
+          desc: 'AI 负责生成超写实数字资产，资深电影导演、剪辑师与调色师逐帧把控，确保工作室级顶级质感。'
+        },
+        {
+          num: '02',
+          rawTitle: '平均 3 天极速交付',
+          isItem3: false,
+          desc: '从创意企划、生成式资产构建到最终调色与混音，平均仅需 3 个工作日即可高效交付。'
+        },
+        {
+          num: '03',
+          rawTitle: '以转化为核心的实效营销',
+          isItem3: false,
+          desc: '专为社交媒体信息流深度定制，最大化提升点击率 (CTR) 与广告投资回报率 (ROAS)。'
+        },
+        {
+          num: '04',
+          rawTitle: '多格式广告全景分发',
+          isItem3: false,
+          desc: '一站式同步输出横版 (16:9) 与竖版 (9:16) 多角度物料，覆盖微信视频号、抖音、小红书、YouTube 及 TikTok。'
+        },
+        {
+          num: '05',
+          rawTitle: '-85% 制作成本优化',
+          isItem3: false,
+          desc: '省去高昂的摄影棚租赁、差旅及庞大剧组开支，制作成本较传统拍摄最高节省 85%。'
+        },
+        {
+          num: '06',
+          rawTitle: '100% 完整商业版权',
+          isItem3: false,
+          desc: '终稿交付后所有商业使用权与知识产权 100% 归客户所有，无后续版权与授权顾虑。'
+        }
+      ]
+    },
+    faq: {
+      tag: '常见问题解答',
+      title: 'FAQ',
+      items: [
+        {
+          q: '制作周期通常需要多久？',
+          a: '初稿平均 3 天内交付，多格式全套广告成片通常在 5 个工作日内完成母带交付。'
+        },
+        {
+          q: '制作费用是如何计算的？',
+          a: '根据视频时长、创意复杂度以及所需的多角度物料数量灵活定价。咨询后我们将即刻出具详细定制方案。'
+        },
+        {
+          q: '包含几次修改反馈？',
+          a: '每个项目均包含 1 至 3 轮专项修改优化，以确保成片与您的品牌调性完美契合。'
+        },
+        {
+          q: '客户需要准备哪些前期资料？',
+          a: '只需提供基础产品图片/视频、高清 Logo 矢量文件、品牌简述或您偏好的参考影片即可迅速启动。'
+        },
+        {
+          q: '作品是纯 AI 自动生成的吗？',
+          a: '我们基于前沿生成式 AI 模型制作底料，但全程由专业广告导演、影视剪辑师及提示词工程师逐帧监修润色。'
+        },
+        {
+          q: '最终的商业版权归谁所有？',
+          a: '成片交付后，所有商业使用权与知识产权将 100% 完整转让给客户，全球永久无限制使用。'
+        }
+      ]
+    },
+    inquiry: {
+      ctaTitle1: '打造令人瞩目的',
+      ctaTitle2: '超写实 AI 视觉内容，',
+      ctaTitleYellow: '准备好开启了吗？',
+      ctaSubLine1: '48-72小时内呈现首期成果，零影棚重资产开销。',
+      ctaSubLine2: '100% 享有完整商业权益。',
+      cardHead: '项目合作咨询',
+      nameLabel: '您的姓名 / 企业名称 *',
+      namePlaceholder: '品牌名 / 联系人姓名',
+      emailLabel: '电子邮箱地址 *',
+      emailPlaceholder: 'contact@brand.com',
+      projectTypeLabel: '项目类型 (可多选)',
+      projectOptions: [
+        '产品商业广告',
+        '活动及展会视频',
+        '社媒短视频广告',
+        '虚拟品牌代言人',
+        '定制全案营销'
+      ],
+      detailsLabel: '项目需求与参考案例',
+      detailsPlaceholder: '请简述您的视觉创意需求、交付物规格、参考案例链接及期望交付时间。',
+      attachLabel: '上传需求简报或素材 (可选)',
+      attachPlaceholder: '上传项目简报 / 参考文件 (PDF, ZIP, JPG)',
+      submitBtn: '提交方案需求',
+      submittingBtn: '提交中...',
+      successTitle: '您的项目咨询已成功送达！',
+      successDesc: '我们的项目总监将在查阅您的需求后，于 24 小时内与您取得联系。',
+      sendAnotherBtn: '提交新的咨询'
+    },
+    footer: {
+      slogan: '为前瞻性品牌构建超写实视觉世界。',
+      servicesHead: 'SERVICES',
+      servicesItems: [
+        '产品商业广告制作',
+        '虚拟品牌代言人',
+        '时尚大片视频制作',
+        '实效短视频广告'
+      ],
+      contactHead: 'CONTACT',
+      rights: '© VERARVO Agency. All rights reserved.'
+    }
   }
 };
