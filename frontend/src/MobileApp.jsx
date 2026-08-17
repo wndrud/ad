@@ -287,11 +287,9 @@ const MobileApp = () => {
         setIsLangMenuOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener('pointerdown', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('pointerdown', handleClickOutside);
     };
   }, []);
 
@@ -701,7 +699,11 @@ ${formData.message || 'No additional notes provided.'}
           <div className="header-lang-wrapper" ref={langMenuRef}>
             <button 
               className="header-lang-btn" 
-              onClick={() => setIsLangMenuOpen(prev => !prev)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsLangMenuOpen(prev => !prev);
+              }}
+              type="button"
               aria-label="Select Language"
             >
               <span className="lang-flag-icon">
@@ -712,7 +714,10 @@ ${formData.message || 'No additional notes provided.'}
             </button>
 
             {isLangMenuOpen && (
-              <div className="header-lang-dropdown">
+              <div 
+                className="header-lang-dropdown"
+                onClick={(e) => e.stopPropagation()}
+              >
                 {[
                   { code: 'EN', flag: '🇺🇸', label: 'English' },
                   { code: 'KO', flag: '🇰🇷', label: '한국어' },
@@ -720,8 +725,10 @@ ${formData.message || 'No additional notes provided.'}
                 ].map(item => (
                   <button
                     key={item.code}
+                    type="button"
                     className={`lang-option-btn ${lang === item.code ? 'active' : ''}`}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setLang(item.code);
                       setIsLangMenuOpen(false);
                     }}
