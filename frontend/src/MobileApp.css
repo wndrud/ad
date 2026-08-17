@@ -331,6 +331,24 @@ video {
   text-align: left;
 }
 
+.lang-flag-icon {
+  font-size: 0.92rem;
+  line-height: 1;
+  display: inline-flex;
+}
+
+.lang-option-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option-flag {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-flex;
+}
+
 .lang-option-btn:active,
 .lang-option-btn.active {
   background: rgba(230, 184, 0, 0.12);
@@ -598,11 +616,12 @@ video {
 
 .stat-huge-number {
   font-family: var(--font-display);
-  font-size: 5rem;
-  line-height: 0.9;
+  font-size: 4.8rem;
+  line-height: 0.95;
   font-weight: 900;
   color: var(--yellow);
   display: block;
+  white-space: nowrap;
   touch-action: pan-y !important;
   -webkit-touch-callout: none !important;
   -webkit-user-select: none !important;
@@ -1545,8 +1564,16 @@ video {
   line-height: 1.6;
 }
 
+.mobile-app-root.lang-ko .stat-huge-number {
+  font-size: 2.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+}
+
 .mobile-app-root.lang-ko .cta-huge-title {
   font-size: 2.05rem;
   line-height: 1.25;
 }
+
 

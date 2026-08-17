@@ -270,7 +270,7 @@ export const TRANSLATIONS = {
       tag: 'DIFFERENTIATORS',
       titleSharp: 'WHY',
       titleSerif: 'VERARVO?',
-      subtitle: '단순한 대행사가 아닙니다. 귀사만의 압도적인 경쟁력이 되어 드립니다.',
+      subtitle: '귀사만의 압도적인 경쟁력이 되어 드립니다.',
       items: [
         {
           num: '01',

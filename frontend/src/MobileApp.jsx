@@ -700,14 +700,14 @@ ${formData.message || 'No additional notes provided.'}
             </span>
           </div>
 
-          {/* Top-Right Luxury Language Selector Dropdown (EN, KO) */}
+          {/* Top-Right Luxury Language Selector Dropdown with Flags (🇺🇸 EN, 🇰🇷 KO) */}
           <div className="header-lang-wrapper" ref={langMenuRef}>
             <button 
               className="header-lang-btn" 
               onClick={() => setIsLangMenuOpen(prev => !prev)}
               aria-label="Select Language"
             >
-              <Globe size={13} className="text-yellow" />
+              <span className="lang-flag-icon">{lang === 'KO' ? '🇰🇷' : '🇺🇸'}</span>
               <span className="current-lang-code">{lang === 'KO' ? 'KO' : 'EN'}</span>
               <ChevronDown size={12} className={`lang-arrow ${isLangMenuOpen ? 'open' : ''}`} />
             </button>
@@ -715,8 +715,8 @@ ${formData.message || 'No additional notes provided.'}
             {isLangMenuOpen && (
               <div className="header-lang-dropdown">
                 {[
-                  { code: 'EN', label: 'English' },
-                  { code: 'KO', label: '한국어' }
+                  { code: 'EN', flag: '🇺🇸', label: 'English' },
+                  { code: 'KO', flag: '🇰🇷', label: '한국어' }
                 ].map(item => (
                   <button
                     key={item.code}
@@ -726,7 +726,10 @@ ${formData.message || 'No additional notes provided.'}
                       setIsLangMenuOpen(false);
                     }}
                   >
-                    <span className="lang-option-name">{item.label}</span>
+                    <span className="lang-option-left">
+                      <span className="lang-option-flag">{item.flag}</span>
+                      <span className="lang-option-name">{item.label}</span>
+                    </span>
                     {lang === item.code && <Check size={14} className="text-yellow" />}
                   </button>
                 ))}
