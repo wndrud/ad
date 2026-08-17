@@ -474,7 +474,7 @@ const MobileApp = () => {
     };
   }, []);
 
-  // 1. Mobile Video Robust Autoplay & Unconditional Scroll-Up Replay Engine
+  // 1. Mobile Video Instant Autoplay & Unconditional Replay Engine
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -482,12 +482,16 @@ const MobileApp = () => {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.setAttribute('playsinline', 'true');
-    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('loop', '');
 
     const forcePlay = () => {
       if (!video) return;
       if (video.paused || video.ended) {
+        video.muted = true;
         const promise = video.play();
         if (promise !== undefined) {
           promise.catch(() => {});
@@ -495,15 +499,19 @@ const MobileApp = () => {
       }
     };
 
-    // Initial play trigger
+    // Instant multi-pulse execution upon mount
     forcePlay();
+    const t1 = setTimeout(forcePlay, 30);
+    const t2 = setTimeout(forcePlay, 100);
+    const t3 = setTimeout(forcePlay, 250);
+    const t4 = setTimeout(forcePlay, 500);
 
-    // Heartbeat check every 250ms when in top viewport region
+    // Continuous heartbeat check when in top hero region
     const heartbeat = setInterval(() => {
       if (window.scrollY < 800) {
         forcePlay();
       }
-    }, 250);
+    }, 150);
 
     // Active IntersectionObserver to immediately resume on visibility
     const observer = new IntersectionObserver(
@@ -512,7 +520,7 @@ const MobileApp = () => {
           forcePlay();
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.01 }
     );
     observer.observe(video);
 
@@ -523,23 +531,33 @@ const MobileApp = () => {
     };
     video.addEventListener('ended', handleEnded);
 
-    // Visibility / Tab switch listener
+    // Visibility / Tab switch / PageShow listener
     const handleVisibility = () => {
       if (document.visibilityState === 'visible' && window.scrollY < 800) {
         forcePlay();
       }
     };
     document.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('pageshow', forcePlay);
+    window.addEventListener('load', forcePlay);
 
-    // Touch wake-up triggers
-    window.addEventListener('touchstart', forcePlay, { passive: true });
+    // Instant interaction wake-up triggers
+    window.addEventListener('touchstart', forcePlay, { passive: true, capture: true });
+    window.addEventListener('pointerdown', forcePlay, { passive: true, capture: true });
 
     return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
       clearInterval(heartbeat);
       observer.disconnect();
       video.removeEventListener('ended', handleEnded);
       document.removeEventListener('visibilitychange', handleVisibility);
-      window.removeEventListener('touchstart', forcePlay);
+      window.removeEventListener('pageshow', forcePlay);
+      window.removeEventListener('load', forcePlay);
+      window.removeEventListener('touchstart', forcePlay, { capture: true });
+      window.removeEventListener('pointerdown', forcePlay, { capture: true });
     };
   }, []);
 
@@ -740,12 +758,28 @@ ${formData.message || 'No additional notes provided.'}
                 src="/Lumiere_Project.mp4"
                 autoPlay
                 muted
-                defaultMuted
                 loop
                 playsInline
                 controls={false}
                 disablePictureInPicture
                 preload="auto"
+                onLoadedMetadata={(e) => {
+                  e.currentTarget.muted = true;
+                  e.currentTarget.play().catch(() => {});
+                }}
+                onCanPlay={(e) => {
+                  e.currentTarget.muted = true;
+                  e.currentTarget.play().catch(() => {});
+                }}
+                onLoadedData={(e) => {
+                  e.currentTarget.muted = true;
+                  e.currentTarget.play().catch(() => {});
+                }}
+                onPause={(e) => {
+                  if (window.scrollY < 600) {
+                    e.currentTarget.play().catch(() => {});
+                  }
+                }}
                 className="hero-bg-video"
               />
               <div className="hero-gradient-overlay" />
