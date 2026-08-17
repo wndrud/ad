@@ -213,7 +213,8 @@ export const TRANSLATIONS = {
     stats: [
       {
         value: 3,
-        suffix: '일 완성',
+        prefix: '평균 제작 ',
+        suffix: '일',
         desc: '최초 기획 브리프 접수부터 최종 4K 마스터 납품까지의 평균 제작 기간.'
       },
       {
@@ -246,7 +247,7 @@ export const TRANSLATIONS = {
     },
     videoShowcase: {
       tag: 'AI 비디오 쇼케이스',
-      titlePre: 'AI 커머셜',
+      titlePre: 'AI 광고',
       titleItalic: '비디오'
     },
     capabilities: {
@@ -286,8 +287,7 @@ export const TRANSLATIONS = {
         {
           num: '03',
           rawTitle: '성과 중심의 퍼포먼스 마케팅',
-          isItem3: true,
-          splitCut: 5,
+          isItem3: false,
           desc: 'SNS 피드에서 즉각 시선을 사로잡아 클릭률(CTR)과 광고 수익률(ROAS)을 극대화하도록 정밀 설계됩니다.'
         },
         {
@@ -341,8 +341,8 @@ export const TRANSLATIONS = {
       ]
     },
     inquiry: {
-      ctaTitle1: '절대 지나칠 수 없는',
-      ctaTitle2: '압도적인 콘텐츠를',
+      ctaTitle1: '현실적인',
+      ctaTitle2: 'AI 콘텐츠를',
       ctaTitleYellow: '만들 준비가 되셨나요?',
       ctaSub: '48~72시간 내 첫 결과물 제공. 불필요한 고정비 0원. 100% 상업적 이용 권리.',
       cardHead: '프로젝트 의뢰하기',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles, Volume2, VolumeX, Globe, ChevronDown } from 'lucide-react';
 import { TRANSLATIONS } from './i18n.js';
 import './MobileApp.css';
 
@@ -280,7 +280,23 @@ const FastTypewriterRow = ({ item }) => {
 const MobileApp = () => {
   const videoRef = useRef(null);
   const [lang, setLang] = useState('EN'); // Default: EN
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const langMenuRef = useRef(null);
   const t = TRANSLATIONS[lang] || TRANSLATIONS.EN;
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, []);
 
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [scrollY, setScrollY] = useState(0);
@@ -684,25 +700,38 @@ ${formData.message || 'No additional notes provided.'}
             </span>
           </div>
 
-          {/* Top-Right Luxury EN / KR Language Toggle */}
-          <div className="header-lang-switch">
-            <button
-              className={`lang-btn ${lang === 'EN' ? 'active' : ''}`}
-              onClick={() => setLang('EN')}
-              type="button"
-              aria-label="Switch to English"
+          {/* Top-Right Luxury Language Selector Dropdown (EN, KO) */}
+          <div className="header-lang-wrapper" ref={langMenuRef}>
+            <button 
+              className="header-lang-btn" 
+              onClick={() => setIsLangMenuOpen(prev => !prev)}
+              aria-label="Select Language"
             >
-              EN
+              <Globe size={13} className="text-yellow" />
+              <span className="current-lang-code">{lang === 'KO' ? 'KO' : 'EN'}</span>
+              <ChevronDown size={12} className={`lang-arrow ${isLangMenuOpen ? 'open' : ''}`} />
             </button>
-            <span className="lang-divider">/</span>
-            <button
-              className={`lang-btn ${lang === 'KO' ? 'active' : ''}`}
-              onClick={() => setLang('KO')}
-              type="button"
-              aria-label="Switch to Korean"
-            >
-              KR
-            </button>
+
+            {isLangMenuOpen && (
+              <div className="header-lang-dropdown">
+                {[
+                  { code: 'EN', label: 'English' },
+                  { code: 'KO', label: '한국어' }
+                ].map(item => (
+                  <button
+                    key={item.code}
+                    className={`lang-option-btn ${lang === item.code ? 'active' : ''}`}
+                    onClick={() => {
+                      setLang(item.code);
+                      setIsLangMenuOpen(false);
+                    }}
+                  >
+                    <span className="lang-option-name">{item.label}</span>
+                    {lang === item.code && <Check size={14} className="text-yellow" />}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </header>
