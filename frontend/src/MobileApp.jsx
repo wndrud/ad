@@ -1137,7 +1137,15 @@ ${formData.message || 'No additional notes provided.'}
             {t.inquiry.ctaTitle2}<br />
             <span className="text-yellow">{t.inquiry.ctaTitleYellow}</span>
           </h2>
-          <p className="cta-sub-p">{t.inquiry.ctaSub}</p>
+          <p className="cta-sub-p">
+            {t.inquiry.ctaSubLine1 || t.inquiry.ctaSub}
+            {t.inquiry.ctaSubLine2 && (
+              <>
+                <br />
+                <span>{t.inquiry.ctaSubLine2}</span>
+              </>
+            )}
+          </p>
         </div>
 
         <div className="inquiry-box-card">
