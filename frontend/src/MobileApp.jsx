@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { TRANSLATIONS } from './i18n.js';
 import './MobileApp.css';
 
 // All 45 original client images precisely categorized with clean titles
@@ -106,72 +107,6 @@ const portfolioVideos = [
   }
 ];
 
-const differentiatorsData = [
-  {
-    num: "01",
-    rawTitle: "HUMAN DIRECTING + AI AGILITY",
-    isItem3: false,
-    desc: "AI creates the hyper-real assets, but our veteran human directors, editors, and colorists supervise every single frame for studio-grade polish."
-  },
-  {
-    num: "02",
-    rawTitle: "RAPID 3-DAY TURNAROUND",
-    isItem3: false,
-    desc: "From initial brief and generative asset creation to final color grading and sound design, delivered in an average of 3 business days."
-  },
-  {
-    num: "03",
-    rawTitle: "PERFORMANCE-DRIVEN MARKETING",
-    isItem3: true,
-    desc: "Engineered specifically for high-impact social media feeds, maximizing click-through rates (CTR) and return on ad spend (ROAS)."
-  },
-  {
-    num: "04",
-    rawTitle: "MULTI-FORMAT AD VARIANTS",
-    isItem3: false,
-    desc: "Receive horizontal (16:9) and vertical (9:16) multi-angle formats simultaneously for YouTube, Instagram Reels, and TikTok campaigns."
-  },
-  {
-    num: "05",
-    rawTitle: "-85% BUDGET OPTIMIZATION",
-    isItem3: false,
-    desc: "Save up to 85% on production costs by eliminating expensive physical set rentals, location fees, and bloated film crews."
-  },
-  {
-    num: "06",
-    rawTitle: "100% COMMERCIAL RIGHTS",
-    isItem3: false,
-    desc: "Complete commercial usage rights and intellectual property are 100% transferred to your brand upon delivery with zero royalty fees."
-  }
-];
-
-const faqItems = [
-  {
-    q: "How long does production take?",
-    a: "Our standard turnaround is an average of 3 days for initial drafts. Complete multi-format ad campaigns are typically finalized within 5 business days."
-  },
-  {
-    q: "How is pricing determined?",
-    a: "Pricing depends on video length, concept complexity, and the number of multi-angle variants required. Detailed custom quotes are provided after consultation."
-  },
-  {
-    q: "How many revision rounds are included?",
-    a: "Every project includes 1 to 3 dedicated revision rounds to guarantee perfect alignment with your brand's visual identity."
-  },
-  {
-    q: "What materials do I need to prepare?",
-    a: "Production is seamless with basic materials: product photos or videos, logo vector files, brand brief, and any benchmark ad references you love."
-  },
-  {
-    q: "Are the visuals created purely by AI?",
-    a: "We leverage cutting-edge generative AI models, but our human film directors, editors, and prompt engineers supervise and refine every frame."
-  },
-  {
-    q: "Who owns the commercial copyright?",
-    a: "Full commercial licensing and intellectual property rights are 100% transferred to the client upon final delivery with zero restrictions."
-  }
-];
-
 // 1. One-time Count-Up Animation Component on initial scroll down
 const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
   const [count, setCount] = useState(0);
@@ -187,16 +122,14 @@ const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
         const entry = entries[0];
         if (entry.isIntersecting && !hasStartedRef.current) {
           hasStartedRef.current = true;
+          let startTime = null;
 
-          const startTime = performance.now();
-          const step = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // Smooth ease-out cubic
-            const easeOut = 1 - Math.pow(1 - progress, 3);
-            const currentVal = Math.round(easeOut * target);
-
-            setCount(currentVal);
+          const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const currentCount = Math.floor(easeOutQuart * target);
+            setCount(currentCount);
 
             if (progress < 1) {
               requestAnimationFrame(step);
@@ -229,16 +162,18 @@ const CountUpStat = ({ target, suffix = '', prefix = '', duration = 1200 }) => {
 // 2. Fast Sequential Typewriter Row Component for WHY VERARVO?
 const FastTypewriterRow = ({ item }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [typedTitle, setTypedTitle] = useState('');
-  const [typedDesc, setTypedDesc] = useState('');
-  const [isDone, setIsDone] = useState(false);
+  const [typedTitle, setTypedTitle] = useState(item.rawTitle);
+  const [typedDesc, setTypedDesc] = useState(item.desc);
+  const [isDone, setIsDone] = useState(true);
   const rowRef = useRef(null);
+  const hasTriggeredRef = useRef(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !hasTriggeredRef.current) {
           setIsVisible(true);
+          hasTriggeredRef.current = true;
         }
       },
       { threshold: 0.15 }
@@ -249,7 +184,16 @@ const FastTypewriterRow = ({ item }) => {
   }, []);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible) {
+      setTypedTitle(item.rawTitle);
+      setTypedDesc(item.desc);
+      setIsDone(true);
+      return;
+    }
+
+    setTypedTitle('');
+    setTypedDesc('');
+    setIsDone(false);
 
     let currentTitleIdx = 0;
     const titleLen = item.rawTitle.length;
@@ -278,15 +222,15 @@ const FastTypewriterRow = ({ item }) => {
     return () => {
       clearInterval(titleInterval);
     };
-  }, [isVisible, item]);
+  }, [isVisible, item.rawTitle, item.desc]);
 
   // Render Title with Yellow Bar
   const renderTitle = () => {
     if (!typedTitle) return null;
 
     if (item.isItem3) {
-      const drivenCut = "PERFORMANCE-DRIVEN".length;
-      if (typedTitle.length <= drivenCut) {
+      const splitCut = item.splitCut || "PERFORMANCE-DRIVEN".length;
+      if (typedTitle.length <= splitCut) {
         return (
           <>
             {typedTitle}
@@ -294,8 +238,8 @@ const FastTypewriterRow = ({ item }) => {
           </>
         );
       } else {
-        const firstPart = typedTitle.slice(0, drivenCut);
-        const secondPart = typedTitle.slice(drivenCut);
+        const firstPart = typedTitle.slice(0, splitCut);
+        const secondPart = typedTitle.slice(splitCut);
         return (
           <>
             {firstPart} <span className="text-yellow font-bold">|</span>{secondPart}
@@ -335,6 +279,9 @@ const FastTypewriterRow = ({ item }) => {
 
 const MobileApp = () => {
   const videoRef = useRef(null);
+  const [lang, setLang] = useState('EN'); // Default: EN
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.EN;
+
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [scrollY, setScrollY] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -647,6 +594,7 @@ const MobileApp = () => {
 
     const detailedMessage = `
 [VERARVO Mobile Proposal Inquiry]
+Language: ${lang}
 - Client / Brand: ${formData.name}
 - Email: ${formData.email}
 - Project Types: ${projectTypesStr}
@@ -667,6 +615,7 @@ ${formData.message || 'No additional notes provided.'}
         _subject: `[VERARVO Proposal] ${formData.name} - ${projectTypesStr}`,
         _template: 'table',
         _captcha: 'false',
+        'Language': lang,
         'Brand / Contact Name': formData.name,
         'Sender Email': formData.email,
         'Project Types': projectTypesStr,
@@ -716,8 +665,8 @@ ${formData.message || 'No additional notes provided.'}
   };
 
   return (
-    <div className="mobile-app-root">
-      {/* 1. Slim Fixed Header with Signature VERARVO Italic Serif + Background Monogram Emblem */}
+    <div className={`mobile-app-root ${lang === 'KO' ? 'lang-ko' : ''}`}>
+      {/* 1. Slim Fixed Header with Signature VERARVO Italic Serif + Top-Right EN/KR Switcher */}
       <header className="lathx-header">
         <div className="lathx-header-inner">
           <div className="header-logo-container" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -733,6 +682,27 @@ ${formData.message || 'No additional notes provided.'}
               </span>
               RVO
             </span>
+          </div>
+
+          {/* Top-Right Luxury EN / KR Language Toggle */}
+          <div className="header-lang-switch">
+            <button
+              className={`lang-btn ${lang === 'EN' ? 'active' : ''}`}
+              onClick={() => setLang('EN')}
+              type="button"
+              aria-label="Switch to English"
+            >
+              EN
+            </button>
+            <span className="lang-divider">/</span>
+            <button
+              className={`lang-btn ${lang === 'KO' ? 'active' : ''}`}
+              onClick={() => setLang('KO')}
+              type="button"
+              aria-label="Switch to Korean"
+            >
+              KR
+            </button>
           </div>
         </div>
       </header>
@@ -797,26 +767,26 @@ ${formData.message || 'No additional notes provided.'}
           >
             <div className="hero-tagline-row">
               <span className="yellow-dash" />
-              <span className="hero-tagline-text">AI ADVERTISING &amp; CREATIVE AGENCY</span>
+              <span className="hero-tagline-text">{t.hero.tagline}</span>
             </div>
 
             <h1 className="hero-main-title">
-              <span className="hero-title-hollow">VERARVO</span>
-              <span className="title-stroked-line">REIMAGINING</span>
-              <span className="text-yellow-line">THE UNREAL</span>
+              <span className="hero-title-hollow">{t.hero.titleMain}</span>
+              <span className="title-stroked-line">{t.hero.titleLine2}</span>
+              <span className="text-yellow-line">{t.hero.titleLine3}</span>
             </h1>
 
             <p className="hero-desc-text">
-              Combining generative AI intelligence with human artistic direction. We produce high-converting commercial videos, editorial imagery, and virtual brand ambassadors delivered in 3 days.
+              {t.hero.desc}
             </p>
 
             <div className="hero-btn-row">
               <button className="btn-chamfer-yellow" onClick={() => scrollToSection('inquiry-section')}>
-                <span>REQUEST PROPOSAL</span>
+                <span>{t.hero.btnProposal}</span>
                 <ArrowRight size={16} />
               </button>
               <button className="btn-link-white" onClick={() => scrollToSection('portfolio-section')}>
-                VIEW PORTFOLIO
+                {t.hero.btnPortfolio}
               </button>
             </div>
           </div>
@@ -828,12 +798,11 @@ ${formData.message || 'No additional notes provided.'}
         <div className="ticker-scroll-track">
           {[...Array(3)].map((_, i) => (
             <div className="ticker-group" key={i}>
-              <span className="ticker-text">AI COMMERCIALS <span className="text-yellow">·</span></span>
-              <span className="ticker-text">VIRTUAL AMBASSADORS <span className="text-yellow">·</span></span>
-              <span className="ticker-text">SHORT-FORM ADS <span className="text-yellow">·</span></span>
-              <span className="ticker-text">PRODUCT VISUALS <span className="text-yellow">·</span></span>
-              <span className="ticker-text">BRAND CINEMATICS <span className="text-yellow">·</span></span>
-              <span className="ticker-text">4K PRODUCTION <span className="text-yellow">·</span></span>
+              {t.ticker.map((item, idx) => (
+                <span className="ticker-text" key={idx}>
+                  {item} <span className="text-yellow">·</span>
+                </span>
+              ))}
             </div>
           ))}
         </div>
@@ -841,48 +810,47 @@ ${formData.message || 'No additional notes provided.'}
 
       {/* 4. 3 Stats Impact Section with Count-Up 0 -> Target Animation */}
       <section className="stats-impact-section">
-        <div className="stat-row-item">
-          <CountUpStat target={3} suffix=" DAYS" duration={1000} />
-          <p className="stat-desc-p">Average production turnaround from initial creative brief to final 4K delivery.</p>
-        </div>
-        <div className="stat-row-item">
-          <CountUpStat target={85} prefix="-" suffix="%" duration={1200} />
-          <p className="stat-desc-p">Average budget reduction compared to traditional physical studio shoots and set rentals.</p>
-        </div>
-        <div className="stat-row-item">
-          <CountUpStat target={100} suffix="%" duration={1300} />
-          <p className="stat-desc-p">Guaranteed studio-grade visual conversion quality and full commercial rights transfer.</p>
-        </div>
+        {t.stats.map((s, idx) => (
+          <div className="stat-row-item" key={idx}>
+            <CountUpStat 
+              target={s.value} 
+              prefix={s.prefix || ''} 
+              suffix={s.suffix || ''} 
+              duration={1000 + idx * 150} 
+            />
+            <p className="stat-desc-p">{s.desc}</p>
+          </div>
+        ))}
       </section>
 
-      {/* 5. Complete 41 Original Images Categorized into ALL, MODELS, PRODUCTS */}
+      {/* 5. Complete 45 Original Images Categorized into ALL, MODELS, PRODUCTS */}
       <section id="portfolio-section" className="portfolio-showcase-section">
         <div className="sec-header-block">
           <div className="sec-tag-row">
             <span className="yellow-dash" />
-            <span className="sec-tag-text">PORTFOLIO</span>
+            <span className="sec-tag-text">{t.portfolio.tag}</span>
           </div>
           <h2 className="sec-title-display">
-            REIMAGINE YOUR<br />
-            BRAND VALUE <em className="text-yellow-italic">WITH AI</em>
+            {t.portfolio.titlePre}<br />
+            {t.portfolio.titleLine2} <em className="text-yellow-italic">{t.portfolio.titleItalic}</em>
           </h2>
           <p className="sec-subtitle-p">
-            Explore our curated catalog of AI commercial photography, fashion models, and product staging visuals.
+            {t.portfolio.desc}
           </p>
         </div>
 
         {/* Filter Tabs without parentheses or numbers */}
         <div className="portfolio-filter-row">
-          {['ALL', 'MODELS', 'PRODUCTS'].map((cat) => (
+          {['ALL', 'MODELS', 'PRODUCTS'].map((catKey) => (
             <button
-              key={cat}
-              className={`filter-pill-btn ${selectedCategory === cat ? 'active' : ''}`}
+              key={catKey}
+              className={`filter-pill-btn ${selectedCategory === catKey ? 'active' : ''}`}
               onClick={() => {
-                setSelectedCategory(cat);
+                setSelectedCategory(catKey);
                 setVisibleCount(10);
               }}
             >
-              {cat}
+              {t.portfolio.categories[catKey] || catKey}
             </button>
           ))}
         </div>
@@ -902,9 +870,9 @@ ${formData.message || 'No additional notes provided.'}
                 loading="lazy" 
               />
               <div className="gallery-item-hover">
-                <span className="gallery-cat-badge">{img.category}</span>
+                <span className="gallery-cat-badge">{t.portfolio.categories[img.category] || img.category}</span>
                 <h4 className="gallery-item-title">{img.title}</h4>
-                <span className="tap-to-expand">TAP TO VIEW FULLSCREEN ↗</span>
+                <span className="tap-to-expand">{t.portfolio.tapToExpand}</span>
               </div>
             </div>
           ))}
@@ -917,7 +885,7 @@ ${formData.message || 'No additional notes provided.'}
               className="btn-load-more"
               onClick={() => setVisibleCount(prev => prev + 10)}
             >
-              <span>VIEW MORE WORKS</span>
+              <span>{t.portfolio.viewMore}</span>
             </button>
           </div>
         )}
@@ -926,7 +894,7 @@ ${formData.message || 'No additional notes provided.'}
         <div className="creator-collab-banner">
           <Sparkles size={16} className="text-yellow flex-shrink-0" />
           <p className="collab-banner-text">
-            Visual works created by AI Creators in official partnership with VERARVO.
+            {t.portfolio.partnerBanner}
           </p>
         </div>
 
@@ -935,10 +903,10 @@ ${formData.message || 'No additional notes provided.'}
           <div className="video-showcase-header">
             <div className="sec-tag-row" style={{ justifyContent: 'center' }}>
               <span className="yellow-dash" />
-              <span className="sec-tag-text">AI VIDEO SHOWCASE</span>
+              <span className="sec-tag-text">{t.videoShowcase.tag}</span>
             </div>
             <h3 className="video-showcase-title">
-              AI COMMERCIAL <em className="text-yellow-italic">VIDEOS</em>
+              {t.videoShowcase.titlePre} <em className="text-yellow-italic">{t.videoShowcase.titleItalic}</em>
             </h3>
           </div>
 
@@ -1002,14 +970,14 @@ ${formData.message || 'No additional notes provided.'}
         </div>
       </section>
 
-      {/* Lightbox Fullscreen Modal for all 41 images */}
+      {/* Lightbox Fullscreen Modal for all 45 images */}
       {activeModalIdx !== null && (
         <div className="lightbox-modal-backdrop" onClick={handleCloseModal}>
           <div className="lightbox-content-box" onClick={(e) => e.stopPropagation()}>
             {/* Modal Top Bar */}
             <div className="lightbox-top-bar">
               <div className="lightbox-badge-row">
-                <span className="modal-cat-tag">{allOriginalImages[activeModalIdx].category}</span>
+                <span className="modal-cat-tag">{t.portfolio.categories[allOriginalImages[activeModalIdx].category] || allOriginalImages[activeModalIdx].category}</span>
                 <span className="modal-counter">{activeModalIdx + 1} / {allOriginalImages.length}</span>
               </div>
               <button className="btn-modal-close" onClick={handleCloseModal}>
@@ -1038,7 +1006,7 @@ ${formData.message || 'No additional notes provided.'}
               <div className="lightbox-creator-tag">
                 <Sparkles size={14} className="text-yellow" />
                 <p className="lightbox-creator-p">
-                  Created by AI Creators in partnership with VERARVO.
+                  {t.portfolio.modalCreatedBy}
                 </p>
               </div>
             </div>
@@ -1051,11 +1019,11 @@ ${formData.message || 'No additional notes provided.'}
         <div className="sec-header-block padded">
           <div className="sec-tag-row">
             <span className="yellow-dash" />
-            <span className="sec-tag-text">PROVEN TRACK RECORD</span>
+            <span className="sec-tag-text">{t.capabilities.tag}</span>
           </div>
           <h2 className="sec-title-display">
-            HIGH IMPACT<br />
-            CREATIVE <em className="text-yellow-italic">CAPABILITIES</em>
+            {t.capabilities.titlePre}<br />
+            {t.capabilities.titleLine2} <em className="text-yellow-italic">{t.capabilities.titleItalic}</em>
           </h2>
         </div>
 
@@ -1063,14 +1031,11 @@ ${formData.message || 'No additional notes provided.'}
           <div className="yellow-marquee-track">
             {[...Array(3)].map((_, i) => (
               <div className="yellow-marquee-group" key={i}>
-                <span className="brand-item-text">AI COMMERCIAL PRODUCTION <span className="black-dot">·</span></span>
-                <span className="brand-item-text">VIRTUAL BRAND AMBASSADORS <span className="black-dot">·</span></span>
-                <span className="brand-item-text">3-DAY RAPID DELIVERY <span className="black-dot">·</span></span>
-                <span className="brand-item-text">PERFORMANCE SHORT-FORM ADS <span className="black-dot">·</span></span>
-                <span className="brand-item-text">4K CINEMATIC COLOR GRADING <span className="black-dot">·</span></span>
-                <span className="brand-item-text">100% COMMERCIAL RIGHTS <span className="black-dot">·</span></span>
-                <span className="brand-item-text">HYPER-REAL PRODUCT 3D <span className="black-dot">·</span></span>
-                <span className="brand-item-text">STUDIO-GRADE HUMAN DIRECTING <span className="black-dot">·</span></span>
+                {t.capabilities.items.map((item, idx) => (
+                  <span className="brand-item-text" key={idx}>
+                    {item} <span className="black-dot">·</span>
+                  </span>
+                ))}
               </div>
             ))}
           </div>
@@ -1082,16 +1047,16 @@ ${formData.message || 'No additional notes provided.'}
         <div className="sec-header-block">
           <div className="sec-tag-row">
             <span className="yellow-dash" />
-            <span className="sec-tag-text">DIFFERENTIATORS</span>
+            <span className="sec-tag-text">{t.differentiators.tag}</span>
           </div>
           <h2 className="sec-title-display">
-            <span className="why-sharp-text">WHY</span> <span className="why-verarvo-serif">VERARVO?</span>
+            <span className="why-sharp-text">{t.differentiators.titleSharp}</span> <span className="why-verarvo-serif">{t.differentiators.titleSerif}</span>
           </h2>
-          <p className="sec-subtitle-p">Not just an agency. We are your unfair competitive advantage.</p>
+          <p className="sec-subtitle-p">{t.differentiators.subtitle}</p>
         </div>
 
         <div className="diff-items-stack">
-          {differentiatorsData.map((item) => (
+          {t.differentiators.items.map((item) => (
             <FastTypewriterRow key={item.num} item={item} />
           ))}
         </div>
@@ -1102,13 +1067,13 @@ ${formData.message || 'No additional notes provided.'}
         <div className="sec-header-block">
           <div className="sec-tag-row">
             <span className="yellow-dash" />
-            <span className="sec-tag-text">FREQUENTLY ASKED QUESTIONS</span>
+            <span className="sec-tag-text">{t.faq.tag}</span>
           </div>
-          <h2 className="sec-title-display">FAQ</h2>
+          <h2 className="sec-title-display">{t.faq.title}</h2>
         </div>
 
         <div className="faq-accordion-container">
-          {faqItems.map((item, index) => {
+          {t.faq.items.map((item, index) => {
             const isOpen = openFaqIndex === index;
             return (
               <div key={index} className={`faq-row-item ${isOpen ? 'open' : ''}`}>
@@ -1136,20 +1101,20 @@ ${formData.message || 'No additional notes provided.'}
       <section id="inquiry-section" className="cta-inquiry-section">
         <div className="cta-header-center">
           <h2 className="cta-huge-title">
-            READY TO CREATE<br />
-            CONTENT THAT<br />
-            <span className="text-yellow">CANNOT BE IGNORED?</span>
+            {t.inquiry.ctaTitle1}<br />
+            {t.inquiry.ctaTitle2}<br />
+            <span className="text-yellow">{t.inquiry.ctaTitleYellow}</span>
           </h2>
-          <p className="cta-sub-p">First deliverables in 48-72 hours. No studio overhead. 100% commercial rights.</p>
+          <p className="cta-sub-p">{t.inquiry.ctaSub}</p>
         </div>
 
         <div className="inquiry-box-card">
-          <h3 className="inquiry-card-head">PROJECT INQUIRY</h3>
+          <h3 className="inquiry-card-head">{t.inquiry.cardHead}</h3>
           {formSubmitted ? (
             <div className="inquiry-success-box">
               <Check size={48} color="#E6B800" />
-              <h4>Your proposal request has been received!</h4>
-              <p>Our dedicated account manager will review your project details and respond within 24 hours.</p>
+              <h4>{t.inquiry.successTitle}</h4>
+              <p>{t.inquiry.successDesc}</p>
               <button 
                 className="btn-chamfer-yellow mt-4"
                 onClick={() => {
@@ -1157,39 +1122,39 @@ ${formData.message || 'No additional notes provided.'}
                   setFormData({ name: '', email: '', projectType: [], message: '' });
                 }}
               >
-                <span>SUBMIT ANOTHER INQUIRY</span>
+                <span>{t.inquiry.sendAnotherBtn}</span>
               </button>
             </div>
           ) : (
             <form onSubmit={handleFormSubmit} className="inquiry-form-stack">
               <div className="input-group">
-                <label className="input-label">NAME / COMPANY *</label>
+                <label className="input-label">{t.inquiry.nameLabel}</label>
                 <input 
                   type="text" 
                   required 
                   className="theme-input" 
-                  placeholder="Brand / Contact Name"
+                  placeholder={t.inquiry.namePlaceholder}
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
 
               <div className="input-group">
-                <label className="input-label">EMAIL ADDRESS *</label>
+                <label className="input-label">{t.inquiry.emailLabel}</label>
                 <input 
                   type="email" 
                   required 
                   className="theme-input" 
-                  placeholder="contact@brand.com"
+                  placeholder={t.inquiry.emailPlaceholder}
                   value={formData.email}
                   onChange={e => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
 
               <div className="input-group">
-                <label className="input-label">PROJECT TYPE (SELECT ALL THAT APPLY)</label>
+                <label className="input-label">{t.inquiry.projectTypeLabel}</label>
                 <div className="checkbox-pills-row">
-                  {['Product Commercial', 'Event & Exhibition', 'Social Short-Form', 'Virtual Brand Ambassador', 'Custom Campaign'].map((type) => (
+                  {t.inquiry.projectOptions.map((type) => (
                     <button
                       type="button"
                       key={type}
@@ -1204,21 +1169,21 @@ ${formData.message || 'No additional notes provided.'}
               </div>
 
               <div className="input-group">
-                <label className="input-label">PROJECT DETAILS &amp; REFERENCES</label>
+                <label className="input-label">{t.inquiry.detailsLabel}</label>
                 <textarea 
                   rows={4} 
                   className="theme-textarea" 
-                  placeholder="Describe your visual concept, deliverables, reference ad links, and target deadline."
+                  placeholder={t.inquiry.detailsPlaceholder}
                   value={formData.message}
                   onChange={e => setFormData({ ...formData, message: e.target.value })}
                 />
               </div>
 
               <div className="input-group">
-                <label className="input-label">ATTACH BRIEF OR ASSETS (OPTIONAL)</label>
+                <label className="input-label">{t.inquiry.attachLabel}</label>
                 <label className="file-attach-box">
                   <Upload size={16} />
-                  <span>{formFile ? formFile.name : 'Upload Brief / Reference File (PDF, ZIP, JPG)'}</span>
+                  <span>{formFile ? formFile.name : t.inquiry.attachPlaceholder}</span>
                   <input 
                     type="file" 
                     className="hidden-file-el" 
@@ -1229,10 +1194,10 @@ ${formData.message || 'No additional notes provided.'}
 
               <button type="submit" className="btn-chamfer-yellow submit-full" disabled={formSubmitting}>
                 {formSubmitting ? (
-                  <span>SUBMITTING...</span>
+                  <span>{t.inquiry.submittingBtn}</span>
                 ) : (
                   <>
-                    <span>REQUEST YOUR PROPOSAL</span>
+                    <span>{t.inquiry.submitBtn}</span>
                     <Send size={16} />
                   </>
                 )}
@@ -1260,20 +1225,19 @@ ${formData.message || 'No additional notes provided.'}
             </span>
           </div>
           <p className="footer-slogan">
-            Crafting hyper-real visual worlds for visionary brands.
+            {t.footer.slogan}
           </p>
 
           <div className="footer-nav-columns">
             <div className="footer-nav-col">
-              <h4 className="footer-col-head">SERVICES</h4>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Product Commercials</span>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Virtual Brand Ambassadors</span>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Editorial Video Production</span>
-              <span className="footer-nav-link" onClick={() => scrollToSection('portfolio-section')}>Social Performance Ads</span>
+              <h4 className="footer-col-head">{t.footer.servicesHead}</h4>
+              {t.footer.servicesItems.map((s, idx) => (
+                <span className="footer-nav-link" key={idx} onClick={() => scrollToSection('portfolio-section')}>{s}</span>
+              ))}
             </div>
 
             <div className="footer-nav-col">
-              <h4 className="footer-col-head">CONTACT</h4>
+              <h4 className="footer-col-head">{t.footer.contactHead}</h4>
               <a href="mailto:jobsverarvo@gmail.com" className="footer-email-link">jobsverarvo@gmail.com</a>
               <div className="footer-social-icons-row">
                 {/* 1. KakaoTalk Official Rounded Badge with Speech Bubble & TALK text */}
@@ -1323,7 +1287,7 @@ ${formData.message || 'No additional notes provided.'}
           </div>
 
           <div className="footer-copyright-line">
-            © VERARVO Agency. All rights reserved.
+            {t.footer.rights}
           </div>
         </div>
       </footer>

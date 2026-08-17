@@ -231,8 +231,48 @@ video {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 20px;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+/* Header Luxury EN / KR Toggle Switch */
+.header-lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(18, 18, 18, 0.8);
+  border: 1px solid rgba(230, 184, 0, 0.35);
+  border-radius: 20px;
+  padding: 4px 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.lang-btn.active {
+  color: var(--yellow);
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(230, 184, 0, 0.45);
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.72rem;
+  font-weight: 300;
+  user-select: none;
 }
 
 /* ==========================================================================
@@ -1405,3 +1445,45 @@ video {
   color: rgba(255, 255, 255, 0.35);
   width: 100%;
 }
+
+/* ==========================================================================
+   11. KOREAN LANGUAGE (lang-ko) TYPOGRAPHY POLISH
+   ========================================================================== */
+.mobile-app-root.lang-ko {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.mobile-app-root.lang-ko .hero-main-title {
+  font-size: 2.35rem;
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+}
+
+.mobile-app-root.lang-ko .hero-desc-text {
+  font-size: 0.88rem;
+  line-height: 1.62;
+}
+
+.mobile-app-root.lang-ko .sec-title-display {
+  font-size: 1.95rem;
+  line-height: 1.22;
+  letter-spacing: -0.3px;
+}
+
+.mobile-app-root.lang-ko .diff-title-h3 {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.mobile-app-root.lang-ko .diff-desc-p {
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.mobile-app-root.lang-ko .cta-huge-title {
+  font-size: 2.05rem;
+  line-height: 1.25;
+}
+
