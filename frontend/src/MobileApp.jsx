@@ -52,53 +52,61 @@ const allOriginalImages = [
   { id: 45, src: '/R.PNG', category: 'MODELS', title: 'La Bella Retinol Beauty Model' }
 ];
 
-// 8 curated vertical video showcase items (with Orvelle Project as #1)
+// 8 curated vertical video showcase items (with Orvelle Project as #1 & extracted high-res posters)
 const portfolioVideos = [
   {
     id: 1,
     src: '/Orvelle_Project.mp4',
+    poster: '/posters/poster_1.jpg',
     title: 'Orvelle Project',
     tag: 'LUXURY EDITORIAL'
   },
   {
     id: 2,
     src: '/sun_block.mp4',
+    poster: '/posters/poster_2.jpg',
     title: 'Sun Block Campaign',
     tag: 'BEAUTY & SKINCARE'
   },
   {
     id: 3,
     src: '/Motors_Test_Project.mp4',
+    poster: '/posters/poster_3.jpg',
     title: 'Motors Test Project',
     tag: 'AUTOMOTIVE CGI'
   },
   {
     id: 4,
     src: '/hf_20260702_185634_cbb4702d-c436-45dc-bcf9-6f441d464ca4.mp4',
+    poster: '/posters/poster_4.jpg',
     title: 'AI Fashion Film',
     tag: 'HAUTE COUTURE'
   },
   {
     id: 5,
     src: '/B.mp4',
+    poster: '/posters/poster_5.jpg',
     title: 'B Project Commercial',
     tag: 'BRAND PERFORMANCE'
   },
   {
     id: 6,
     src: '/12681248_optimized.mp4',
+    poster: '/posters/poster_6.jpg',
     title: 'Cinematic Motion Ad',
     tag: 'DYNAMIC PERFORMANCE'
   },
   {
     id: 7,
     src: '/D.mp4',
+    poster: '/posters/poster_7.jpg',
     title: 'D Editorial Project',
     tag: 'LUXURY COMMERCIAL'
   },
   {
     id: 8,
     src: '/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mp4',
+    poster: '/posters/poster_8.jpg',
     title: 'Haute Couture Visuals',
     tag: 'AVANT-GARDE FASHION'
   }
@@ -815,6 +823,7 @@ ${formData.message || 'No additional notes provided.'}
               <video
                 ref={handleHeroVideoMount}
                 src="/Lumiere_Project.mp4"
+                poster="/posters/hero_poster.jpg"
                 autoPlay
                 muted
                 loop
@@ -1046,6 +1055,7 @@ ${formData.message || 'No additional notes provided.'}
                     <video
                       ref={(el) => (videoRefs.current[idx] = el)}
                       src={vid.src}
+                      poster={vid.poster}
                       playsInline
                       controls={false}
                       disablePictureInPicture
