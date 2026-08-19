@@ -322,10 +322,10 @@ const MobileApp = () => {
     setActiveVideoIdx((prev) => (prev + 1) % portfolioVideos.length);
   };
 
-  // Robust Vertical Video Autoplay & Intersection Engine (Instant smooth play when scrolled into view)
+  // Unconditional Active Video Autoplay Engine
   useEffect(() => {
     // 1. Explicitly initialize all vertical reel videos with required mobile attributes
-    videoRefs.current.forEach((vid) => {
+    videoRefs.current.forEach((vid, idx) => {
       if (!vid) return;
       vid.muted = true;
       vid.defaultMuted = true;
@@ -334,73 +334,47 @@ const MobileApp = () => {
       vid.setAttribute('playsinline', '');
       vid.setAttribute('webkit-playsinline', '');
       vid.setAttribute('muted', '');
+      vid.setAttribute('autoplay', '');
       vid.setAttribute('loop', '');
     });
 
-    const playActive = () => {
+    const playCurrent = () => {
       const activeVid = videoRefs.current[activeVideoIdx];
       if (activeVid) {
         activeVid.muted = true;
         activeVid.defaultMuted = true;
         activeVid.volume = 0;
-        if (activeVid.paused || activeVid.ended) {
-          const p = activeVid.play();
-          if (p !== undefined) p.catch(() => {});
-        }
+        const p = activeVid.play();
+        if (p !== undefined) p.catch(() => {});
       }
       videoRefs.current.forEach((vid, idx) => {
-        if (vid && idx !== activeVideoIdx && !vid.paused) {
+        if (vid && idx !== activeVideoIdx) {
           vid.pause();
         }
       });
     };
 
-    const pauseAll = () => {
-      videoRefs.current.forEach((vid) => {
-        if (vid && !vid.paused) {
-          vid.pause();
-        }
-      });
+    // Instant play triggers
+    playCurrent();
+    const t1 = setTimeout(playCurrent, 50);
+    const t2 = setTimeout(playCurrent, 200);
+    const t3 = setTimeout(playCurrent, 600);
+
+    // Global interaction triggers to immediately resume playback on any touch/scroll/click
+    const handleUnlock = () => {
+      playCurrent();
     };
-
-    const checkVisibilityAndSync = () => {
-      const container = reelContainerRef.current;
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      const inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) + 50 && rect.bottom > -50;
-      if (inView) {
-        playActive();
-      } else {
-        pauseAll();
-      }
-    };
-
-    // 2. IntersectionObserver with generous rootMargin and zero threshold for instant playback
-    const container = reelContainerRef.current;
-    let observer;
-    if (container) {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            playActive();
-          } else {
-            pauseAll();
-          }
-        },
-        { rootMargin: '80px 0px 80px 0px', threshold: 0 }
-      );
-      observer.observe(container);
-    }
-
-    // Direct check if active index changed while reel is already on screen
-    checkVisibilityAndSync();
-
-    window.addEventListener('scroll', checkVisibilityAndSync, { passive: true });
+    window.addEventListener('touchstart', handleUnlock, { passive: true, capture: true });
+    window.addEventListener('pointerdown', handleUnlock, { passive: true, capture: true });
+    window.addEventListener('scroll', handleUnlock, { passive: true });
 
     return () => {
-      if (observer) observer.disconnect();
-      window.removeEventListener('scroll', checkVisibilityAndSync);
-      pauseAll();
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener('touchstart', handleUnlock, { capture: true });
+      window.removeEventListener('pointerdown', handleUnlock, { capture: true });
+      window.removeEventListener('scroll', handleUnlock);
     };
   }, [activeVideoIdx]);
 
@@ -1053,9 +1027,26 @@ ${formData.message || 'No additional notes provided.'}
                 {portfolioVideos.map((vid, idx) => (
                   <div className="reel-slide-item" key={vid.id}>
                     <video
-                      ref={(el) => (videoRefs.current[idx] = el)}
+                      ref={(el) => {
+                        videoRefs.current[idx] = el;
+                        if (el) {
+                          el.muted = true;
+                          el.defaultMuted = true;
+                          el.volume = 0;
+                          el.playsInline = true;
+                          el.setAttribute('playsinline', '');
+                          el.setAttribute('webkit-playsinline', '');
+                          el.setAttribute('muted', '');
+                          el.setAttribute('autoplay', '');
+                          el.setAttribute('loop', '');
+                          if (idx === activeVideoIdx) {
+                            el.play().catch(() => {});
+                          }
+                        }
+                      }}
                       src={vid.src}
                       poster={vid.poster}
+                      autoPlay={idx === activeVideoIdx}
                       playsInline
                       controls={false}
                       disablePictureInPicture
@@ -1068,13 +1059,7 @@ ${formData.message || 'No additional notes provided.'}
                         v.defaultMuted = true;
                         v.volume = 0;
                         if (idx === activeVideoIdx) {
-                          const container = reelContainerRef.current;
-                          if (container) {
-                            const rect = container.getBoundingClientRect();
-                            if (rect.top < window.innerHeight + 80 && rect.bottom > -80) {
-                              v.play().catch(() => {});
-                            }
-                          }
+                          v.play().catch(() => {});
                         }
                       }}
                       onCanPlay={(e) => {
@@ -1083,13 +1068,7 @@ ${formData.message || 'No additional notes provided.'}
                         v.defaultMuted = true;
                         v.volume = 0;
                         if (idx === activeVideoIdx) {
-                          const container = reelContainerRef.current;
-                          if (container) {
-                            const rect = container.getBoundingClientRect();
-                            if (rect.top < window.innerHeight + 80 && rect.bottom > -80) {
-                              v.play().catch(() => {});
-                            }
-                          }
+                          v.play().catch(() => {});
                         }
                       }}
                       className="reel-video-media"
