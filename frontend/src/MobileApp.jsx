@@ -314,9 +314,9 @@ const MobileApp = () => {
     setActiveVideoIdx((prev) => (prev + 1) % portfolioVideos.length);
   };
 
-  // Robust Vertical Video Autoplay & Intersection Engine (Instant smooth play on scroll & slide)
+  // Robust Vertical Video Autoplay & Intersection Engine (Plays ONLY when scrolled into view)
   useEffect(() => {
-    // 1. Explicitly initialize all videos with required mobile attributes
+    // 1. Explicitly initialize all vertical reel videos with required mobile attributes
     videoRefs.current.forEach((vid) => {
       if (!vid) return;
       vid.muted = true;
@@ -324,7 +324,6 @@ const MobileApp = () => {
       vid.playsInline = true;
       vid.setAttribute('playsinline', 'true');
       vid.setAttribute('webkit-playsinline', 'true');
-      vid.setAttribute('autoplay', 'true');
       vid.setAttribute('muted', 'true');
       vid.setAttribute('loop', 'true');
     });
@@ -345,34 +344,32 @@ const MobileApp = () => {
       });
     };
 
-    // Immediate attempt to play active video
-    playActive();
-
-    // 2. IntersectionObserver to play active video immediately when scrolled into view
+    // 2. IntersectionObserver to play active video ONLY when vertical reel section is scrolled into view
     const container = reelContainerRef.current;
     if (!container) return;
 
+    let isReelInView = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
+        isReelInView = entry.isIntersecting;
         if (entry.isIntersecting) {
           playActive();
+        } else {
+          videoRefs.current.forEach((vid) => {
+            if (vid && !vid.paused) vid.pause();
+          });
         }
       },
       { threshold: 0.1 }
     );
     observer.observe(container);
 
-    // 3. User interaction kickstart (unlocks video autoplay policy on touch or scroll)
-    const handleFirstInteraction = () => {
+    if (isReelInView) {
       playActive();
-    };
-    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
-    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+    }
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
     };
   }, [activeVideoIdx]);
 
@@ -432,13 +429,50 @@ const MobileApp = () => {
     };
   }, []);
 
-  // 1. Mobile Video Instant Autoplay & Unconditional Replay Engine
+  // 1. Instant Callback Ref to guarantee 0-second immediate autoplay upon initial site entrance
+  const handleHeroVideoMount = (el) => {
+    videoRef.current = el;
+    if (!el) return;
+    el.muted = true;
+    el.defaultMuted = true;
+    el.volume = 0;
+    el.playsInline = true;
+    el.setAttribute('playsinline', '');
+    el.setAttribute('webkit-playsinline', '');
+    el.setAttribute('muted', '');
+    el.setAttribute('autoplay', '');
+    el.setAttribute('loop', '');
+    el.setAttribute('preload', 'auto');
+
+    const tryInstantPlay = () => {
+      if (!el) return;
+      el.muted = true;
+      el.defaultMuted = true;
+      el.volume = 0;
+      if (el.paused || el.ended) {
+        const p = el.play();
+        if (p !== undefined) {
+          p.catch(() => {});
+        }
+      }
+    };
+
+    tryInstantPlay();
+    requestAnimationFrame(tryInstantPlay);
+    setTimeout(tryInstantPlay, 20);
+    setTimeout(tryInstantPlay, 80);
+    setTimeout(tryInstantPlay, 200);
+    setTimeout(tryInstantPlay, 500);
+  };
+
+  // 2. Mobile Video Instant Autoplay & Keep-Alive Lifecycle Engine
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     video.muted = true;
     video.defaultMuted = true;
+    video.volume = 0;
     video.playsInline = true;
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
@@ -447,31 +481,25 @@ const MobileApp = () => {
     video.setAttribute('loop', '');
 
     const forcePlay = () => {
-      if (!video) return;
-      if (video.paused || video.ended) {
-        video.muted = true;
-        const promise = video.play();
+      const v = videoRef.current;
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
+      if (v.paused || v.ended) {
+        const promise = v.play();
         if (promise !== undefined) {
           promise.catch(() => {});
         }
       }
     };
 
-    // Instant multi-pulse execution upon mount
     forcePlay();
-    const t1 = setTimeout(forcePlay, 30);
-    const t2 = setTimeout(forcePlay, 100);
-    const t3 = setTimeout(forcePlay, 250);
-    const t4 = setTimeout(forcePlay, 500);
+    const t1 = setTimeout(forcePlay, 50);
+    const t2 = setTimeout(forcePlay, 150);
+    const t3 = setTimeout(forcePlay, 350);
 
-    // Continuous heartbeat check when in top hero region
-    const heartbeat = setInterval(() => {
-      if (window.scrollY < 800) {
-        forcePlay();
-      }
-    }, 150);
-
-    // Active IntersectionObserver to immediately resume on visibility
+    // Active IntersectionObserver to play when visible
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -484,12 +512,13 @@ const MobileApp = () => {
 
     // Replay on video ended
     const handleEnded = () => {
-      video.currentTime = 0;
-      forcePlay();
+      if (video) {
+        video.currentTime = 0;
+        forcePlay();
+      }
     };
     video.addEventListener('ended', handleEnded);
 
-    // Visibility / Tab switch / PageShow listener
     const handleVisibility = () => {
       if (document.visibilityState === 'visible' && window.scrollY < 800) {
         forcePlay();
@@ -499,7 +528,7 @@ const MobileApp = () => {
     window.addEventListener('pageshow', forcePlay);
     window.addEventListener('load', forcePlay);
 
-    // Instant interaction wake-up triggers
+    // Immediate interaction wake-up triggers
     window.addEventListener('touchstart', forcePlay, { passive: true, capture: true });
     window.addEventListener('pointerdown', forcePlay, { passive: true, capture: true });
 
@@ -507,8 +536,6 @@ const MobileApp = () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
-      clearTimeout(t4);
-      clearInterval(heartbeat);
       observer.disconnect();
       video.removeEventListener('ended', handleEnded);
       document.removeEventListener('visibilitychange', handleVisibility);
@@ -519,7 +546,7 @@ const MobileApp = () => {
     };
   }, []);
 
-  // 2. Smooth Scroll Tracker & Scroll-Driven Video Playback Guard
+  // 3. Smooth Scroll Tracker & Scroll-Driven Video Playback Guard
   useEffect(() => {
     const handleScroll = () => {
       const curY = window.scrollY;
@@ -763,7 +790,7 @@ ${formData.message || 'No additional notes provided.'}
               }}
             >
               <video
-                ref={videoRef}
+                ref={handleHeroVideoMount}
                 src="/Lumiere_Project.mp4"
                 autoPlay
                 muted
@@ -773,21 +800,32 @@ ${formData.message || 'No additional notes provided.'}
                 disablePictureInPicture
                 preload="auto"
                 onLoadedMetadata={(e) => {
-                  e.currentTarget.muted = true;
-                  e.currentTarget.play().catch(() => {});
+                  const v = e.currentTarget;
+                  v.muted = true;
+                  v.defaultMuted = true;
+                  v.volume = 0;
+                  v.play().catch(() => {});
                 }}
                 onCanPlay={(e) => {
-                  e.currentTarget.muted = true;
-                  e.currentTarget.play().catch(() => {});
+                  const v = e.currentTarget;
+                  v.muted = true;
+                  v.defaultMuted = true;
+                  v.volume = 0;
+                  v.play().catch(() => {});
+                }}
+                onCanPlayThrough={(e) => {
+                  const v = e.currentTarget;
+                  v.muted = true;
+                  v.defaultMuted = true;
+                  v.volume = 0;
+                  v.play().catch(() => {});
                 }}
                 onLoadedData={(e) => {
-                  e.currentTarget.muted = true;
-                  e.currentTarget.play().catch(() => {});
-                }}
-                onPause={(e) => {
-                  if (window.scrollY < 600) {
-                    e.currentTarget.play().catch(() => {});
-                  }
+                  const v = e.currentTarget;
+                  v.muted = true;
+                  v.defaultMuted = true;
+                  v.volume = 0;
+                  v.play().catch(() => {});
                 }}
                 className="hero-bg-video"
               />
