@@ -321,24 +321,35 @@ const MobileApp = () => {
       if (!vid) return;
       vid.muted = true;
       vid.defaultMuted = true;
+      vid.volume = 0;
       vid.playsInline = true;
-      vid.setAttribute('playsinline', 'true');
-      vid.setAttribute('webkit-playsinline', 'true');
-      vid.setAttribute('muted', 'true');
-      vid.setAttribute('loop', 'true');
+      vid.setAttribute('playsinline', '');
+      vid.setAttribute('webkit-playsinline', '');
+      vid.setAttribute('muted', '');
+      vid.setAttribute('loop', '');
     });
 
     const playActive = () => {
       const activeVid = videoRefs.current[activeVideoIdx];
       if (activeVid) {
         activeVid.muted = true;
+        activeVid.defaultMuted = true;
+        activeVid.volume = 0;
         if (activeVid.paused || activeVid.ended) {
           const p = activeVid.play();
           if (p !== undefined) p.catch(() => {});
         }
       }
       videoRefs.current.forEach((vid, idx) => {
-        if (vid && idx !== activeVideoIdx) {
+        if (vid && idx !== activeVideoIdx && !vid.paused) {
+          vid.pause();
+        }
+      });
+    };
+
+    const pauseAll = () => {
+      videoRefs.current.forEach((vid) => {
+        if (vid && !vid.paused) {
           vid.pause();
         }
       });
@@ -348,28 +359,21 @@ const MobileApp = () => {
     const container = reelContainerRef.current;
     if (!container) return;
 
-    let isReelInView = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        isReelInView = entry.isIntersecting;
         if (entry.isIntersecting) {
           playActive();
         } else {
-          videoRefs.current.forEach((vid) => {
-            if (vid && !vid.paused) vid.pause();
-          });
+          pauseAll();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     );
     observer.observe(container);
 
-    if (isReelInView) {
-      playActive();
-    }
-
     return () => {
       observer.disconnect();
+      pauseAll();
     };
   }, [activeVideoIdx]);
 
@@ -1024,10 +1028,11 @@ ${formData.message || 'No additional notes provided.'}
                       ref={(el) => (videoRefs.current[idx] = el)}
                       src={vid.src}
                       playsInline
-                      autoPlay={idx === 0}
+                      controls={false}
+                      disablePictureInPicture
                       loop
                       muted
-                      preload="auto"
+                      preload="metadata"
                       className="reel-video-media"
                     />
                   </div>

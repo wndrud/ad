@@ -95,8 +95,7 @@ export const TRANSLATIONS = {
         {
           num: '03',
           rawTitle: 'PERFORMANCE-DRIVEN MARKETING',
-          isItem3: true,
-          splitCut: 18,
+          isItem3: false,
           desc: 'Engineered specifically for high-impact social media feeds, maximizing click-through rates (CTR) and return on ad spend (ROAS).'
         },
         {
