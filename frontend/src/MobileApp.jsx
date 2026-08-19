@@ -314,7 +314,7 @@ const MobileApp = () => {
     setActiveVideoIdx((prev) => (prev + 1) % portfolioVideos.length);
   };
 
-  // Robust Vertical Video Autoplay & Intersection Engine (Plays ONLY when scrolled into view)
+  // Robust Vertical Video Autoplay & Intersection Engine (Instant smooth play when scrolled into view)
   useEffect(() => {
     // 1. Explicitly initialize all vertical reel videos with required mobile attributes
     videoRefs.current.forEach((vid) => {
@@ -355,24 +355,43 @@ const MobileApp = () => {
       });
     };
 
-    // 2. IntersectionObserver to play active video ONLY when vertical reel section is scrolled into view
-    const container = reelContainerRef.current;
-    if (!container) return;
+    const checkVisibilityAndSync = () => {
+      const container = reelContainerRef.current;
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      const inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) + 50 && rect.bottom > -50;
+      if (inView) {
+        playActive();
+      } else {
+        pauseAll();
+      }
+    };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          playActive();
-        } else {
-          pauseAll();
-        }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(container);
+    // 2. IntersectionObserver with generous rootMargin and zero threshold for instant playback
+    const container = reelContainerRef.current;
+    let observer;
+    if (container) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            playActive();
+          } else {
+            pauseAll();
+          }
+        },
+        { rootMargin: '80px 0px 80px 0px', threshold: 0 }
+      );
+      observer.observe(container);
+    }
+
+    // Direct check if active index changed while reel is already on screen
+    checkVisibilityAndSync();
+
+    window.addEventListener('scroll', checkVisibilityAndSync, { passive: true });
 
     return () => {
-      observer.disconnect();
+      if (observer) observer.disconnect();
+      window.removeEventListener('scroll', checkVisibilityAndSync);
       pauseAll();
     };
   }, [activeVideoIdx]);
@@ -1032,7 +1051,37 @@ ${formData.message || 'No additional notes provided.'}
                       disablePictureInPicture
                       loop
                       muted
-                      preload="metadata"
+                      preload="auto"
+                      onLoadedMetadata={(e) => {
+                        const v = e.currentTarget;
+                        v.muted = true;
+                        v.defaultMuted = true;
+                        v.volume = 0;
+                        if (idx === activeVideoIdx) {
+                          const container = reelContainerRef.current;
+                          if (container) {
+                            const rect = container.getBoundingClientRect();
+                            if (rect.top < window.innerHeight + 80 && rect.bottom > -80) {
+                              v.play().catch(() => {});
+                            }
+                          }
+                        }
+                      }}
+                      onCanPlay={(e) => {
+                        const v = e.currentTarget;
+                        v.muted = true;
+                        v.defaultMuted = true;
+                        v.volume = 0;
+                        if (idx === activeVideoIdx) {
+                          const container = reelContainerRef.current;
+                          if (container) {
+                            const rect = container.getBoundingClientRect();
+                            if (rect.top < window.innerHeight + 80 && rect.bottom > -80) {
+                              v.play().catch(() => {});
+                            }
+                          }
+                        }
+                      }}
                       className="reel-video-media"
                     />
                   </div>
