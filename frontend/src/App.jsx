@@ -1972,7 +1972,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "9/16", title: "소셜 UGC 광고 시안 (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "소셜 UGC 광고 시안 (9:16)", url: "/2b.mov", rotate: false },
 
         { type: "video", aspectRatio: "9/16", title: "UGC 비디오 시안 (9:16)", url: "/1.mp4", rotate: false }
 
@@ -2200,7 +2200,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "9/16", title: "Social UGC Ad Promo (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "Social UGC Ad Promo (9:16)", url: "/2b.mov", rotate: false },
 
         { type: "video", aspectRatio: "9/16", title: "UGC Video Promo (9:16)", url: "/1.mp4", rotate: false }
 
@@ -2428,7 +2428,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "9/16", title: "社交 UGC 广告样片 (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "社交 UGC 广告样片 (9:16)", url: "/2b.mov", rotate: false },
 
         { type: "video", aspectRatio: "9/16", title: "UGC 视频样片 (9:16)", url: "/1.mp4", rotate: false }
 
@@ -2656,7 +2656,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "16/9", title: "ソーシャルVlogプロモーション試案 (16:9)", url: "/hf_20260422_001333_36103dd7-9f8a-414f-9b5f-23683f07f703.mp4" },
+        { type: "video", aspectRatio: "9/16", title: "ソーシャルUGC広告試案 (9:16)", url: "/2b.mov", rotate: false },
 
         { type: "video", aspectRatio: "9/16", title: "インフルエンサー縦型ショート試案 (9:16)", url: "/mixkit-portrait-of-an-influencer-talking-to-the-camera-42323-full-hd.mp4", rotate: false }
 
@@ -2884,7 +2884,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "9/16", title: "Video Quảng cáo UGC Mạng xã hội (9:16)", url: "/ai video ugc ads creation.mp4", rotate: false },
+        { type: "video", aspectRatio: "9/16", title: "Video Quảng cáo UGC Mạng xã hội (9:16)", url: "/2b.mov", rotate: false },
 
         { type: "video", aspectRatio: "9/16", title: "Video UGC mẫu (9:16)", url: "/1.mp4", rotate: false }
 
