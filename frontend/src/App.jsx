@@ -6766,19 +6766,13 @@ ${customConceptText}
 
                     <div className="hero-tag">{translations[lang].heroTag}</div>
 
-                    <h1 className="hero-title">
+                    <h1 className={`hero-title ${lang === 'KO' ? 'hero-title--ko' : ''}`}>
 
                       {translations[lang].heroTitlePre} <br />
 
-                      <span>{translations[lang].heroTitleSpan}</span> <br />
+                      <span className="hero-title-accent">{translations[lang].heroTitleSpan}</span> <br />
 
                       <span style={{
-
-                        fontFamily: "'Playfair Display', serif",
-
-                        fontWeight: 600,
-
-                        letterSpacing: '0.02em',
 
                         color: 'transparent',
 
