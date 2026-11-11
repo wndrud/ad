@@ -2018,7 +2018,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "16/9", title: "가상 모델 클로즈업 컷 (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "가상 모델 클로즈업 컷 (16:9)", url: "/17.mov" },
 
         { type: "video", aspectRatio: "9/16", title: "디지털 피팅룸 바이럴 비디오 (9:16)", url: "/B.mp4", rotate: false }
 
@@ -2246,7 +2246,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "16/9", title: "Virtual Ambassador Portrait Cut (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "Virtual Ambassador Portrait Cut (16:9)", url: "/17.mov" },
 
         { type: "video", aspectRatio: "9/16", title: "Digital Fitting Room Viral Video (9:16)", url: "/B.mp4", rotate: false }
 
@@ -2474,7 +2474,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "16/9", title: "虚拟代言人肖像片段 (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "虚拟代言人肖像片段 (16:9)", url: "/17.mov" },
 
         { type: "video", aspectRatio: "9/16", title: "数字试衣间创意视频 (9:16)", url: "/B.mp4", rotate: false }
 
@@ -2702,7 +2702,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "16/9", title: "バーチャルモデル ポートレート動画 (16:9)", url: "/3763027-uhd_3840_2160_25fps.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "バーチャルモデル ポートレート動画 (16:9)", url: "/17.mov" },
 
         { type: "video", aspectRatio: "9/16", title: "デジタルフィッティング動画 (9:16)", url: "/B.mp4", rotate: false }
 
@@ -2930,7 +2930,7 @@ const serviceDetailsData = {
 
       media: [
 
-        { type: "video", aspectRatio: "16/9", title: "Cảnh cận cảnh đại sứ ảo (16:9)", url: "/257945.mp4" },
+        { type: "video", aspectRatio: "16/9", title: "Cảnh cận cảnh đại sứ ảo (16:9)", url: "/17.mov" },
 
         { type: "video", aspectRatio: "9/16", title: "Video phòng thử đồ kỹ thuật số (9:16)", url: "/B.mp4", rotate: false }
 
