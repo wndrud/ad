@@ -6774,6 +6774,12 @@ ${customConceptText}
 
                       <span style={{
 
+                        fontFamily: "'Playfair Display', serif",
+
+                        fontWeight: 600,
+
+                        letterSpacing: '0.02em',
+
                         color: 'transparent',
 
                         WebkitTextFillColor: 'transparent',
