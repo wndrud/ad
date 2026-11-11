@@ -3012,12 +3012,11 @@ const heroVideos = [
 
 const backgroundVideos = [
   "/1a.mp4",
-  "/1b.mp4",
-  "/1c.mp4",
   "/1d.mov",
   "/1e.mp4",
   "/1f.mov",
-  "/1g.mp4"
+  "/1g.mp4",
+  "/1h.mp4"
 ];
 
 const languageFlags = {
