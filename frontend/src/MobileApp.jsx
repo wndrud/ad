@@ -56,63 +56,74 @@ const allOriginalImages = [
   { id: 49, src: '/R.PNG', category: 'MODELS', title: 'La Bella Retinol Beauty Model' }
 ];
 
-// 8 curated vertical video showcase items (with Orvelle Project as #1 & extracted high-res posters)
+// 11 curated vertical video showcase items
 const portfolioVideos = [
   {
     id: 1,
+    src: '/2a.mp4',
+    title: 'Commercial Reel 2A',
+    tag: 'AI COMMERCIAL'
+  },
+  {
+    id: 2,
+    src: '/2b.mov',
+    title: 'Social Short-Form 2B',
+    tag: 'SHORT-FORM AD'
+  },
+  {
+    id: 3,
+    src: '/2c.mp4',
+    title: 'Brand Editorial 2C',
+    tag: 'BRAND FILM'
+  },
+  {
+    id: 4,
+    src: '/2d.mp4',
+    title: 'Visual Campaign 2D',
+    tag: 'LUXURY VISUALS'
+  },
+  {
+    id: 5,
+    src: '/2e.mp4',
+    title: 'Fashion Motion 2E',
+    tag: 'EDITORIAL MOTION'
+  },
+  {
+    id: 6,
+    src: '/2f.mp4',
+    title: 'Creative Showcase 2F',
+    tag: 'CREATIVE DIRECTION'
+  },
+  {
+    id: 7,
+    src: '/2h.mov',
+    title: 'High-Impact Cut 2H',
+    tag: 'PERFORMANCE AD'
+  },
+  {
+    id: 8,
+    src: '/2y.mp4',
+    title: 'Signature Film 2Y',
+    tag: 'SIGNATURE REEL'
+  },
+  {
+    id: 9,
+    src: '/1.mp4',
+    title: 'UGC Promo Reel',
+    tag: 'SOCIAL CAMPAIGN'
+  },
+  {
+    id: 10,
+    src: '/3.mp4',
+    title: 'Commercial Feature 03',
+    tag: 'CINEMATIC AD'
+  },
+  {
+    id: 11,
     src: '/Orvelle_Project.mp4',
     poster: '/posters/poster_1.jpg',
     title: 'Orvelle Project',
     tag: 'LUXURY EDITORIAL'
-  },
-  {
-    id: 2,
-    src: '/sun_block.mp4',
-    poster: '/posters/poster_2.jpg',
-    title: 'Sun Block Campaign',
-    tag: 'BEAUTY & SKINCARE'
-  },
-  {
-    id: 3,
-    src: '/Motors_Test_Project.mp4',
-    poster: '/posters/poster_3.jpg',
-    title: 'Motors Test Project',
-    tag: 'AUTOMOTIVE CGI'
-  },
-  {
-    id: 4,
-    src: '/hf_20260702_185634_cbb4702d-c436-45dc-bcf9-6f441d464ca4.mp4',
-    poster: '/posters/poster_4.jpg',
-    title: 'AI Fashion Film',
-    tag: 'HAUTE COUTURE'
-  },
-  {
-    id: 5,
-    src: '/B.mp4',
-    poster: '/posters/poster_5.jpg',
-    title: 'B Project Commercial',
-    tag: 'BRAND PERFORMANCE'
-  },
-  {
-    id: 6,
-    src: '/12681248_optimized.mp4',
-    poster: '/posters/poster_6.jpg',
-    title: 'Cinematic Motion Ad',
-    tag: 'DYNAMIC PERFORMANCE'
-  },
-  {
-    id: 7,
-    src: '/D.mp4',
-    poster: '/posters/poster_7.jpg',
-    title: 'D Editorial Project',
-    tag: 'LUXURY COMMERCIAL'
-  },
-  {
-    id: 8,
-    src: '/hf_20260410_200105_6b9142b4-9ac9-4c42-9206-84b70c939e52.mp4',
-    poster: '/posters/poster_8.jpg',
-    title: 'Haute Couture Visuals',
-    tag: 'AVANT-GARDE FASHION'
   }
 ];
 
