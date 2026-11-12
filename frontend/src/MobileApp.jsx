@@ -3,7 +3,7 @@ import { ArrowRight, Plus, Check, Send, Upload, X, ChevronLeft, ChevronRight, Sp
 import { TRANSLATIONS } from './i18n.js';
 import './MobileApp.css';
 
-// All 54 curated client images (40 MODELS & 14 PRODUCTS interleaved for rich, dynamic catalog presentation)
+// All 49 curated client images (39 MODELS & 10 PRODUCTS interleaved for rich, dynamic catalog presentation)
 const allOriginalImages = [
   { id: 1, src: '/00 (10).png', category: 'MODELS', title: 'Cafe Espresso & Yellow Dress' },
   { id: 2, src: '/00 (1).jpg', category: 'MODELS', title: 'Prada Slingback Fur Editorial' },
@@ -36,29 +36,24 @@ const allOriginalImages = [
   { id: 29, src: '/file_00000000755c8243957ad3597b01b9a8.png', category: 'PRODUCTS', title: 'Steel Chronograph Timepiece' },
   { id: 30, src: '/IMG_5329.jpeg', category: 'MODELS', title: 'Couture Ruffle Collar Editorial' },
   { id: 31, src: '/openart-image_1779918779704_080a80c5_1779918781015_6d955aa5_Original.PNG', category: 'MODELS', title: 'Framova Luxury Perfume Model' },
-  { id: 32, src: '/Ultraphotorealistic_commercial_product_2k_20.jpeg', category: 'PRODUCTS', title: 'Aurum Hydrating Serum 30ml' },
-  { id: 33, src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'MODELS', title: 'Moisturizing Cream Beauty Shoot' },
-  { id: 34, src: '/a (2).jpeg', category: 'PRODUCTS', title: 'Aurum Frosted Dropper Bottle' },
-  { id: 35, src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'MODELS', title: 'Calvin Klein Underwear Shoot' },
-  { id: 36, src: '/a (3).jpeg', category: 'PRODUCTS', title: 'VitaGreen Supergreens Canister' },
-  { id: 37, src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'MODELS', title: 'Calvin Klein Athletic Model' },
-  { id: 38, src: '/a (4).jpeg', category: 'PRODUCTS', title: 'Sternhart Leather Strap Watch' },
-  { id: 39, src: '/a (6).jpeg', category: 'PRODUCTS', title: 'Citrus Glow Cold-Press Juice' },
-  { id: 40, src: '/IMG_9116.JPG', category: 'MODELS', title: 'Lumiere Face Cream Model' },
-  { id: 41, src: '/IMG_9117.JPG', category: 'MODELS', title: 'Water Splash Face Cleansing' },
-  { id: 42, src: '/IMG_9296.PNG', category: 'MODELS', title: 'Jo&Co Body Scrub Model' },
-  { id: 43, src: '/IMG_9300.PNG', category: 'MODELS', title: 'Lavender Mousse Skincare Model' },
-  { id: 44, src: '/a (1).jpg', category: 'MODELS', title: 'Sayeah Lip Glaze Application' },
-  { id: 45, src: '/a (2).jpg', category: 'MODELS', title: 'Stiletto Heels & Luxury Car' },
-  { id: 46, src: '/a (3).jpg', category: 'MODELS', title: 'Grand Staircase Couture Gown' },
-  { id: 47, src: '/a (4).jpg', category: 'MODELS', title: 'Diamond Jewelry Beauty Model' },
-  { id: 48, src: '/a (5).jpeg', category: 'MODELS', title: 'Architectural White Gown Shoot' },
-  { id: 49, src: '/a (5).jpg', category: 'MODELS', title: 'White Blazer Sports Car Shoot' },
-  { id: 50, src: '/a (6).jpg', category: 'MODELS', title: 'Woven Clutch Bag Lookbook' },
-  { id: 51, src: '/Q.png', category: 'MODELS', title: 'Ivory Tailored Suit Lookbook' },
-  { id: 52, src: '/W.png', category: 'MODELS', title: 'Brutalist Architecture Fashion' },
-  { id: 53, src: '/E.jpeg', category: 'MODELS', title: 'Monochrome Stiletto Editorial' },
-  { id: 54, src: '/R.PNG', category: 'MODELS', title: 'La Bella Retinol Beauty Model' }
+  { id: 32, src: '/file_000000002ad881f4b02295613fc8c996~2.png', category: 'MODELS', title: 'Moisturizing Cream Beauty Shoot' },
+  { id: 33, src: '/3760999B-251C-41DC-B5F4-2EAD7E2AA190.jpg', category: 'MODELS', title: 'Calvin Klein Underwear Shoot' },
+  { id: 34, src: '/80811198-6082-461B-A227-DFC81D2EA772.jpg', category: 'MODELS', title: 'Calvin Klein Athletic Model' },
+  { id: 35, src: '/a (6).jpeg', category: 'PRODUCTS', title: 'Citrus Glow Cold-Press Juice' },
+  { id: 36, src: '/IMG_9116.JPG', category: 'MODELS', title: 'Lumiere Face Cream Model' },
+  { id: 37, src: '/IMG_9117.JPG', category: 'MODELS', title: 'Water Splash Face Cleansing' },
+  { id: 38, src: '/IMG_9296.PNG', category: 'MODELS', title: 'Jo&Co Body Scrub Model' },
+  { id: 39, src: '/IMG_9300.PNG', category: 'MODELS', title: 'Lavender Mousse Skincare Model' },
+  { id: 40, src: '/a (1).jpg', category: 'MODELS', title: 'Sayeah Lip Glaze Application' },
+  { id: 41, src: '/a (2).jpg', category: 'MODELS', title: 'Stiletto Heels & Luxury Car' },
+  { id: 42, src: '/a (3).jpg', category: 'MODELS', title: 'Grand Staircase Couture Gown' },
+  { id: 43, src: '/a (4).jpg', category: 'MODELS', title: 'Diamond Jewelry Beauty Model' },
+  { id: 44, src: '/a (5).jpg', category: 'MODELS', title: 'White Blazer Sports Car Shoot' },
+  { id: 45, src: '/a (6).jpg', category: 'MODELS', title: 'Woven Clutch Bag Lookbook' },
+  { id: 46, src: '/Q.png', category: 'MODELS', title: 'Ivory Tailored Suit Lookbook' },
+  { id: 47, src: '/W.png', category: 'MODELS', title: 'Brutalist Architecture Fashion' },
+  { id: 48, src: '/E.jpeg', category: 'MODELS', title: 'Monochrome Stiletto Editorial' },
+  { id: 49, src: '/R.PNG', category: 'MODELS', title: 'La Bella Retinol Beauty Model' }
 ];
 
 // 8 curated vertical video showcase items (with Orvelle Project as #1 & extracted high-res posters)
